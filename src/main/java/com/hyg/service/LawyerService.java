@@ -1,6 +1,7 @@
 package com.hyg.service;
 
-import com.hyg.util.lead.RepObject;
+import com.hyg.util.JsonRep;
+import com.hyg.util.LawyerRep;
 
 public interface LawyerService
 {
@@ -8,5 +9,5 @@ public interface LawyerService
 	 * 获得律师信息
 	 * @return
 	 */
-	RepObject getLawyerData();
+	JsonRep<LawyerRep> getLawyerData();
 }

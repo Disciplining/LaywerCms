@@ -1,4 +1,4 @@
-package com.hyg.util.lead;
+package com.hyg.util;
 
 import lombok.Data;
 

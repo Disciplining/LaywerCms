@@ -1,8 +1,8 @@
 package com.hyg.service;
 
 import com.hyg.pojo.Lawyer;
-import com.hyg.util.lead.RepObject;
-import com.hyg.util.lead.Util;
+import com.hyg.util.JsonRep;
+import com.hyg.util.LawyerRep;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,7 +18,7 @@ public class LawyerServiceImpl implements LawyerService
 	 */
 	@Override
 	@ResponseBody
-	public RepObject getLawyerData()
+	public JsonRep<LawyerRep> getLawyerData()
 	{
 		/**
 		 * 模拟从数据库中取数据
@@ -35,6 +35,9 @@ public class LawyerServiceImpl implements LawyerService
 			list.add(temp);
 		}
 
-		return Util.getRepObject(list);
+		JsonRep<LawyerRep> jsonRep = new JsonRep<>();
+		jsonRep.setData(list);
+
+		return jsonRep;
 	}
 }

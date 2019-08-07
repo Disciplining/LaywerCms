@@ -1,7 +1,8 @@
 package com.hyg.controller;
 
 import com.hyg.service.LawyerService;
-import com.hyg.util.lead.RepObject;
+import com.hyg.util.JsonRep;
+import com.hyg.util.LawyerRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ public class LawyerController
 
 	@GetMapping("/getLawyerData")
 	@ResponseBody
-	public RepObject getLawyerData()
+	public JsonRep<LawyerRep> getLawyerData()
 	{
 		return lawyerService.getLawyerData();
 	}
