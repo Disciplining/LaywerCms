@@ -2,6 +2,7 @@ package com.hyg.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -29,5 +30,15 @@ public class CommonController
 	public String index()
 	{
 		return "lawerWeb/index";
+	}
+
+	/**
+	 * 通用页面跳转
+	 * @return
+	 */
+	@GetMapping("/{page}")
+	public String pgegeChange(@PathVariable("page") String page)
+	{
+		return page;
 	}
 }
