@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md12">
+					<div class="layui-card">
+						<div class="layui-card-header">设置事务所介绍</div>
+						<div class="layui-card-body">
+							<form class="layui-form" action="">
+								<div class="layui-form-item">
+									<label class="layui-form-label">事务所介绍</label>
+									<div class="layui-input-inline">
+										<textarea id="editor_id" name="content" style="width:700px;height:300px;"></textarea>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<div class="layui-input-block">
+										<button class="layui-btn" lay-submit lay-filter="formDemo" id="save">保存</button>
+										<button type="reset" class="layui-btn layui-btn-primary">取消</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script src="../../layuiadmin/layui/layui.js"></script>
+			<script src="../../layuiadmin/layui/layui.js"></script>
+			<script src="../component/kindeditor/kindeditor-all-min.js"></script>
+			<script src="../../layuiadmin/modules/jquery.js" type="text/javascript" charset="utf-8"></script>
+			<script>
+				//Demo
+				KindEditor.ready(function(K) {
+				window.editor = K.create('#editor_id');
+			});
+				layui.use(['form', 'upload', 'jquery'], function() {
+					var form = layui.form,
+						upload = layui.upload,
+						$ = layui.$;
+
+					upload.render({
+						elem: '#test1',
+						url: 'upload',
+						size: 2048,
+						auto: false //选择文件后不自动上传
+							,
+						bindAction: '#save' //指向一个按钮触发上传
+							,
+						choose: function(obj) {
+							//预读本地文件
+							obj.preview(function(index, file, result) {
+								$('#loadinput').val(file.name); //展示文件名
+								$('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a> ');
+							})
+						}
+					});
+
+				});
+			</script>
+	</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>树组件</title>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css">
+</head>
+
+<body>
+    <div class="layui-container" style="margin: 20px auto;">
+        <div class="layui-row">
+            <div class="layui-col-md4">
+                <div id="test1"></div>
+            </div>
+            <div class="layui-col-md8">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">菜单名称:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="mainmenu" id="mainmenu" required lay-verify="required"
+                            class="layui-input" style="width:300px;height:40px">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">下级菜单:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="semenu" id="nextMenu" required lay-verify="required" class="layui-input"
+                            style="width:300px;height:40px">
+                    </div>
+                </div>
+                <div class="layui-form-item" id="router">
+                    <label class="layui-form-label">路由:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="thmenu" required lay-verify="required" class="layui-input"
+                            style="width:300px;height:40px">
+                    </div>
+                </div>
+                <div style="margin-left: 80px;">
+                    <button class="layui-btn layui-btn-normal">添加下级</button>
+                    <button class="layui-btn layui-btn-normal">修改</button>
+                    <button class="layui-btn layui-btn-normal" id="dele">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../layuiadmin/layui/layui.js"></script>
+    <script>
+        var inputName = document.getElementById('mainmenu');
+        var router = document.getElementById('router');
+        console.log(inputName)
+        console.log(router)
+        var nextMenu = document.getElementById('nextMenu');
+        var dele = document.getElementById('dele');
+        layui.use(['tree','jquery','layer'], function () {
+            var tree = layui.tree,
+            $ = layui.$,
+            layer=layui.layer;
+
+            //渲染
+            var inst1 = tree.render({
+                elem: '#test1'  //绑定元素
+                , data: [{
+                    title: '介绍' ,
+                    id:1
+                    //一级菜单
+                    , children: [{
+                        title: '律师事务所',
+                        id:11
+                        //二级菜单
+                        // , children: [{
+                        //     title: '高新区' //三级菜单
+                        //     //…… //以此类推，可无限层级
+                        // }]
+                    },{
+                      title:'团队介绍',
+                      id:12
+                    },{
+                      title:'团队文集',
+                      id:13
+                    }]
+                }, {
+                    title: '公司法律服务',
+                    id:2
+                     //一级菜单
+                    , children: [{
+                        title: '股权设计',
+                        id:21
+                         //二级菜单
+                    },{
+                        title:'股权激励',
+                        id:22
+                    },{
+                      title:'报价配置表',
+                      id:23
+                    }]
+                },{
+                  title:'刑事法律服务',
+                  id:3
+                  ,children:[
+                    {
+                      title:'形式服务',
+                      id:31
+                    },
+                    {
+                    	title:'优势服务',
+                    	id:32
+                    }
+                  ]
+                },{
+                	title:'劳动法律服务',
+                	id:4
+                	,children:[
+                		{
+                			title:'诉讼与仲裁应对',
+                			id:41
+                		},{
+                			title:'劳动用工制度事先设计',
+                			id:42
+                		},{
+                			title:'企业文化与策略选择',
+                			id:43
+                		}
+                	]
+                }
+                ], click: function (obj) {
+//                  console.log(obj.data); //得到当前点击的节点数据
+                    inputName.value = ''
+                    inputName.value = obj.data.title
+                    var id = obj.data.id;
+                    console.log(id)
+                    dele.addEventListener('click',function(){
+                    	layer.confirm('是否删除', {icon: 1, title:'提示'}, function(index){
+                    		$("div[data-id="+id+"]").remove();
+                    		inputName.value = '';
+                    		nextMenu.value=''
+                    		layer.close(index);
+					});
+                    })
+                       var arr = obj.data.children
+                       if(arr){
+                       		var str =''
+                       		for(var i=0;i<arr.length;i++){
+                       			str+=arr[i].title+','
+                       		}
+                       		str = str.substr(0, str.length - 1); 
+                       		nextMenu.value = str
+                       		}else {
+                       		nextMenu.value=''
+                       	}
+                       
+                }, operate: function (obj) {
+                    var type = obj.type; //得到操作类型：add、edit、del
+                    var data = obj.data; //得到当前节点的数据
+                    var elem = obj.elem; //得到当前节点元素
+
+                    //Ajax 操作
+                    var id = data.id; //得到节点索引
+                    if (type === 'add') { //增加节点
+                        //返回 key 值
+                        return 123;
+                    } else if (type === 'update') { //修改节点
+                        console.log(elem.find('.layui-tree-txt').html()); //得到修改后的内容
+                    } else if (type === 'del') { //删除节点
+
+                    };
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
