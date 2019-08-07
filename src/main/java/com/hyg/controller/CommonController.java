@@ -29,16 +29,16 @@ public class CommonController
 	@GetMapping("/")
 	public String index()
 	{
-		return "lawerWeb/index";
+		return "web/index";
 	}
 
 	/**
-	 * 通用页面跳转
+	 * 网站页面 通用页面跳转
 	 * @return
 	 */
-	@GetMapping("/{page}")
+	@GetMapping("/web/{page}")
 	public String pgegeChange(@PathVariable("page") String page)
 	{
-		return page;
+		return "web/" + page;
 	}
 }
