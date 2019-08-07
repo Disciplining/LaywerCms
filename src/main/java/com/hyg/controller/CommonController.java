@@ -28,6 +28,6 @@ public class CommonController
 	@GetMapping("/")
 	public String index()
 	{
-		return "";
+		return "lawerWeb/index";
 	}
 }
