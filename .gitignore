@@ -2,4 +2,6 @@
 src/test
 target
 
+src/main/resources/templates/lyxtest
+
 *.iml

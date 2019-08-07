@@ -16,6 +16,6 @@ public class CommonController
 	@GetMapping("/")
 	public String index()
 	{
-		return "test";
+		return "lyxtest/test.html";
 	}
 }
