@@ -29,7 +29,7 @@ public class CommonController
 	@GetMapping("/")
 	public String index()
 	{
-		return "web/index";
+		return "index";
 	}
 
 	/**

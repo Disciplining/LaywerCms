@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>留言列表</title>
+		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css">
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md12">
+					<div class="layui-card">
+						<div class="layui-card-header">团队成员列表</div>
+						<div class="layui-card-body">
+							<table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
+							</table>
+							<script type="text/html" id="test-table-toolbar-toolbarDemo">
+								<div class="layui-btn-container">
+									<button class="layui-btn layui-btn-sm" lay-href="base/addLwyer.html">添加</button>
+								</div>
+							</script>
+
+							<script type="text/html" id="test-table-toolbar-barDemo">
+								<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+								<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../layuiadmin/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: '../../layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'table', 'upload'], function() {
+				var admin = layui.admin,
+					table = layui.table,
+					upload = layui.upload;
+				table.render({
+					elem: '#test-table-toolbar',
+					url: '../static/person.json',
+					toolbar: '#test-table-toolbar-toolbarDemo',
+					title: '用户数据表',
+					page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+						layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
+						groups: 1 ,//只显示 1 个连续页码,
+						first: false, //不显示首页,
+						last: false ,//不显示尾页
+						limit:5
+
+					},
+					cols: [
+						[{
+							field: 'lawyername',
+							title: '律师名',
+							width: 85
+						}, {
+							field: 'profession',
+							title: '律师职级',
+							width: 100
+						}, {
+							field: 'introuce',
+							title: '律师简介',
+						}, {
+							field: 'lawyerImg',
+							title: '律师照片',
+							width: 140
+						}, {
+							field: 'graduate',
+							title: '毕业学校',
+							width: 100
+						}, {
+							field: 'major',
+							title: '主修专业',
+							width: 100
+						}, {
+							field: 'achievement',
+							title: '主要荣誉',
+							width: 100
+						}, {
+							field: 'customers',
+							title: '重要服务客户',
+							width: 120
+						}, {
+							title: '操作',
+							toolbar: '#test-table-toolbar-barDemo',
+							width: 120
+						}]
+					],
+				});
+				//头工具栏事件
+				table.on('toolbar(test-table-toolbar)', function(obj) {
+					var checkStatus = table.checkStatus(obj.config.id);
+					switch(obj.event) {
+						case 'getCheckData':
+							var data = checkStatus.data;
+							layer.alert(JSON.stringify(data));
+							break;
+						case 'getCheckLength':
+							var data = checkStatus.data;
+							layer.msg('选中了：' + data.length + ' 个');
+							break;
+					};
+				});
+				var uploadInst = upload.render({
+					elem: '#test1' //绑定元素
+						,
+					url: '' //上传接口
+						,
+					auto: false //选择文件后不自动上传
+						,
+					bindAction: '#testListAction',
+					done: function(res) {
+						//上传完毕回调
+					},
+					error: function() {
+						//请求异常回调
+					}
+				});
+
+				//监听行工具事件
+				table.on('tool(test-table-toolbar)', function(obj) {
+					var data = obj.data;
+					if(obj.event === 'del') {
+						layer.confirm('真的删除行么', function(index) {
+							obj.del();
+							layer.close(index);
+						});
+					} else if(obj.event === 'edit') {
+						var data=obj.data;
+						window.location.href='personEdit.html?id='+data.id;
+					}
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

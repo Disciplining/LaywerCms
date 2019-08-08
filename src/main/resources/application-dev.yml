@@ -3,7 +3,7 @@ server:
 
 spring:
     thymeleaf:
-        prefix: classpath:/templates/
+        prefix: classpath:/templates/views/
         suffix: .html
         mode: HTML5
         encoding: UTF-8
