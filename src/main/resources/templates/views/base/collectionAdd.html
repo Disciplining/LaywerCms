@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
-		<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
-	</head>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
 
-	<body>
-		<div class="layui-fluid">
-			<div class="layui-row layui-col-space15">
-				<div class="layui-col-md12">
-					<div class="layui-card">
-						<div class="layui-card-header">添加文集</div>
-						<div class="layui-card-body">
-							<form class="layui-form" action="">
-								<div class="layui-form-item">
-									<label class="layui-form-label">法律类型</label>
-									<div class="layui-input-block">
-										<select name="city" lay-verify="required">
-											<option value=""></option>
-											<option value="0">公司法律</option>
-											<option value="1">劳动法律</option>
-											<option value="2">形式法律</option>
-										</select>
-									</div>
-								</div>
-								<div class="layui-form-item">
-									<label class="layui-form-label">文章名字</label>
-									<div class="layui-input-block">
-										<input type="text" required lay-verify="required" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-form-item">
-									<label class="layui-form-label">作者名字</label>
-									<div class="layui-input-block">
-										<input type="text" required lay-verify="required" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-form-item">
-									<label class="layui-form-label">文集简介</label>
-									<div class="layui-input-block">
-										<textarea required lay-verify="required" autocomplete="off" class="layui-textarea"></textarea>
-									</div>
-								</div>
-								<div class="layui-form-item layui-form-text">
-									<label class="layui-form-label">文章内容</label>
-									<div class="layui-input-block">
-										<textarea id="editor_id" name="content" style="width: 100%;"></textarea>
-									</div>
-								</div>
-								<div class="layui-form-item">
-									<div class="layui-input-block">
-										<button class="layui-btn" lay-submit lay-filter="formDemo" id="save">保存</button>
-										<button type="reset" class="layui-btn layui-btn-primary">取消</button>
-									</div>
-								</div>
-							</form>
+<body>
+<div class="layui-fluid">
+	<div class="layui-row layui-col-space15">
+		<div class="layui-col-md12">
+			<div class="layui-card" style="position: relative;">
+				<div class="layui-card-header">添加文集</div>
+				<div class="layui-card-body">
+					<form class="layui-form" action="">
+						<div class="layui-form-item">
+							<label class="layui-form-label">法律类型</label>
+							<div class="layui-input-block">
+								<select name="city" lay-verify="required">
+									<option value=""></option>
+									<option value="0">公司法律</option>
+									<option value="1">劳动法律</option>
+									<option value="2">形式法律</option>
+								</select>
+							</div>
 						</div>
-					</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">文章名字</label>
+							<div class="layui-input-block">
+								<input type="text" required lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">作者名字</label>
+							<div class="layui-input-block">
+								<input type="text" required lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">文集简介</label>
+							<div class="layui-input-block">
+								<textarea required lay-verify="required" autocomplete="off" class="layui-textarea"></textarea>
+							</div>
+						</div>
+						<div class="layui-form-item layui-form-text">
+							<label class="layui-form-label">文章内容</label>
+							<div class="layui-input-block">
+								<textarea id="editor_id" name="content" style="width: 100%;"></textarea>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit lay-filter="formDemo" id="save">保存</button>
+							</div>
+						</div>
+					</form>
+					<a style="position: absolute;left: 220px;bottom: 25px;" href="./collectionMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
 				</div>
 			</div>
-			<script src="../../layuiadmin/layui/layui.js"></script>
-			<script src="../component/kindeditor/kindeditor-all-min.js"></script>
-			<script src="../component/kindeditor/lang/zh-CN.js"></script>
-			<script src="../../layuiadmin/modules/jquery.js" type="text/javascript" charset="utf-8"></script>
-			<script>
-				//Demo
-				KindEditor.ready(function(K) {
-					window.editor = K.create('#editor_id');
-				});
-				layui.use(['form', 'upload', 'jquery'], function() {
-					var form = layui.form
+		</div>
+	</div>
+	<script src="../../layuiadmin/layui/layui.js"></script>
+	<script src="../component/kindeditor/kindeditor-all-min.js"></script>
+	<script src="../component/kindeditor/lang/zh-CN.js"></script>
+	<script src="../../layuiadmin/modules/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		//Demo
+		KindEditor.ready(function(K) {
+			window.editor = K.create('#editor_id');
+		});
+		layui.use(['form', 'upload', 'jquery'], function() {
+			var form = layui.form
 
-				});
-			</script>
-	</body>
+		});
+	</script>
+</body>
 
 </html>

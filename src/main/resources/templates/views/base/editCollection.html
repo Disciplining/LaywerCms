@@ -1,107 +1,104 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
-		<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
 
-	<body>
-		<div style="margin: 20px 0 0 28px;">
-			<button class='layui-btn' onclick='window.history.go(-1)'>返回文集列表页</button>
-		</div>
-		<div class="layui-fluid">
-			<div class="layui-row layui-col-space15">
-				<div class="layui-col-md12">
-					<div class="layui-card">
-						<div class="layui-card-header">团队成员列表</div>
-						<div class="layui-card-body">
-							<div style="margin-top:20px">
-								<form class="layui-form" action="">
-									<div class="layui-form-item layui-form-text">
-										<label class="layui-form-label">法律类型</label>
-										<div class="layui-input-block">
-											<input type="text" id="type" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
-										</div>
-									</div>
-									<div class="layui-form-item layui-form-text">
-										<label class="layui-form-label">文章名字</label>
-										<div class="layui-input-block">
-											<input type="text" id="articleTitle" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
-										</div>
-									</div>
-									<div class="layui-form-item layui-form-text">
-										<label class="layui-form-label">作者名字</label>
-										<div class="layui-input-block">
-											<input type="text" id="author" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
-										</div>
-									</div>
-									<div class="layui-form-item layui-form-text">
-										<label class="layui-form-label">文集简介</label>
-										<div class="layui-input-block">
-											<textarea name="desc" id="intro" class="layui-textarea"></textarea>
-										</div>
-									</div>
-									<div class="layui-form-item layui-form-text">
-										<label class="layui-form-label">文章内容</label>
-										<div class="layui-input-block">
-											<textarea id="editor_id" name="content" style="width: 100%;"></textarea>
-										</div>
-									</div>
-									<div class="layui-form-item">
-										<div class="layui-input-block">
-											<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-											<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-										</div>
-									</div>
-								</form>
+<body>
+<div class="layui-fluid">
+	<div class="layui-row layui-col-space15">
+		<div class="layui-col-md12">
+			<div class="layui-card" style="position: relative;">
+				<div class="layui-card-header">团队成员列表</div>
+				<div class="layui-card-body">
+					<div style="margin-top:20px">
+						<form class="layui-form" action="">
+							<div class="layui-form-item layui-form-text">
+								<label class="layui-form-label">法律类型</label>
+								<div class="layui-input-block">
+									<input type="text" id="type" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+								</div>
 							</div>
-						</div>
+							<div class="layui-form-item layui-form-text">
+								<label class="layui-form-label">文章名字</label>
+								<div class="layui-input-block">
+									<input type="text" id="articleTitle" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item layui-form-text">
+								<label class="layui-form-label">作者名字</label>
+								<div class="layui-input-block">
+									<input type="text" id="author" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item layui-form-text">
+								<label class="layui-form-label">文集简介</label>
+								<div class="layui-input-block">
+									<textarea name="desc" id="intro" class="layui-textarea"></textarea>
+								</div>
+							</div>
+							<div class="layui-form-item layui-form-text">
+								<label class="layui-form-label">文章内容</label>
+								<div class="layui-input-block">
+									<textarea id="editor_id" name="content" style="width: 100%;"></textarea>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<div class="layui-input-block">
+									<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+								</div>
+							</div>
+						</form>
+						<a style="position: absolute;left: 250px;bottom: 25px;" href="./collectionMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script src="../../layuiadmin/layui/layui.js"></script>
-		<script src="../component/kindeditor/kindeditor-all-min.js"></script>
-		<script src="../component/kindeditor/lang/zh-CN.js"></script>
-		<script>
-			function filterId(str) {
-				var newStr = str.split('?')[1].split('=')[1]
-				return newStr
-			}
-			KindEditor.ready(function(K) {
-				window.editor = K.create('#editor_id');
-			});
-			var idr = filterId(location.href)
-			var type = document.getElementById('type')
-			var agencyDetail = document.getElementById('agencyDetail')
-			var id = document.getElementById('id')
-			var author = document.getElementById('author')
-			var intro = document.getElementById('intro')
-			var editor_id = document.getElementById('editor_id')
-			layui.use('jquery', function() {
-				var $ = layui.$;
-				$.ajax({
-					url: '../static/collection.json',
-					type: "get",
-					dataType: "json",
-					success: function(data) {
-						var data = data.data
-						for(var i = 0; i < data.length; i++) {
-							if(data[i].articleId == idr) {
-								type.value = data[i].type
-								articleTitle.value = data[i].articleTitle
-								author.value = data[i].author
-								intro.innerHTML = data[i].intro
-								editor.html(data[i].content)
-							}
-						}
+	</div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script src="../component/kindeditor/kindeditor-all-min.js"></script>
+<script src="../component/kindeditor/lang/zh-CN.js"></script>
+<script>
+	function filterId(str) {
+		var newStr = str.split('?')[1].split('=')[1]
+		return newStr
+	}
+	KindEditor.ready(function(K) {
+		window.editor = K.create('#editor_id');
+	});
+	var idr = filterId(location.href)
+	var type = document.getElementById('type')
+	var agencyDetail = document.getElementById('agencyDetail')
+	var id = document.getElementById('id')
+	var author = document.getElementById('author')
+	var intro = document.getElementById('intro')
+	var editor_id = document.getElementById('editor_id')
+	layui.use('jquery', function() {
+		var $ = layui.$;
+		$.ajax({
+			url: '../static/collection.json',
+			type: "get",
+			dataType: "json",
+			success: function(data) {
+				var data = data.data
+				for(var i = 0; i < data.length; i++) {
+					if(data[i].articleId == idr) {
+						type.value = data[i].type
+						articleTitle.value = data[i].articleTitle
+						author.value = data[i].author
+						intro.innerHTML = data[i].intro
+						editor.html(data[i].content)
 					}
-				})
-			})
-		</script>
-	</body>
+				}
+			}
+		})
+	})
+</script>
+</body>
 
 </html>

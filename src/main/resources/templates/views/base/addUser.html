@@ -1,96 +1,98 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>添加用户</title>
-		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
-		<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>添加用户</title>
+	<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
 
-	<body>
-		<div class="layui-fluid">
-			<div class="layui-row layui-col-space15">
-				<div class="layui-col-md12">
-					<div class="layui-card">
-						<div class="layui-card-header">用户列表</div>
-						<div class="layui-card-body">
-							<div style="margin-top:20px">
-								<form class="layui-form" style="margin-top: 20px;">
-			<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-			<div class="layui-form-item">
-				<label class="layui-form-label">用户名</label>
-				<div class="layui-input-block">
-					<input type="text" name="" placeholder="请输入" class="layui-input">
-				</div>
-			</div>
-				<div class="layui-form-item" style="margin-left: 60px;">
-				<label for="file">头像</label>
-				<button type="button" class="layui-btn" id="test1" style="margin-left: 20px;">
-  		<i class="layui-icon">&#xe67c;</i>上传图片
-	</button>
-			</div>
-			
-			<div class="layui-form-item">
-				<label class="layui-form-label">手机</label>
-				<div class="layui-input-block">
-					<input type="text" name="" placeholder="请输入" class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">邮箱</label>
-				<div class="layui-input-block">
-					<input type="email" name="" placeholder="请输入" class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">性别</label>
-				<div class="layui-input-block">
-					<input type="radio" name="sex" value="0" title="男" checked="checked">
-					<input type="radio" name="sex" value="1" title="女" checked>
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">IP</label>
-				<div class="layui-input-block">
-					<input type="number" name="" placeholder="请输入"  class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
-					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-				</div>
-			</div>
-		</form>
+<body>
+<div class="layui-fluid">
+	<div class="layui-row layui-col-space15">
+		<div class="layui-col-md12">
+			<div class="layui-card" style="position: relative;">
+				<div class="layui-card-header">用户列表</div>
+				<div class="layui-card-body">
+					<div style="margin-top:20px">
+						<form class="layui-form" style="margin-top: 20px;">
+							<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+							<div class="layui-form-item">
+								<label class="layui-form-label">用户名</label>
+								<div class="layui-input-block">
+									<input type="text" name="" placeholder="请输入" class="layui-input">
+								</div>
 							</div>
-						</div>
+							<div class="layui-form-item" style="margin-left: 60px;">
+								<label for="file">头像</label>
+								<button type="button" class="layui-btn" id="test1" style="margin-left: 20px;">
+									<i class="layui-icon">&#xe67c;</i>上传图片
+								</button>
+							</div>
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">手机</label>
+								<div class="layui-input-block">
+									<input type="text" name="" placeholder="请输入" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">邮箱</label>
+								<div class="layui-input-block">
+									<input type="email" name="" placeholder="请输入" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">性别</label>
+								<div class="layui-input-block">
+									<input type="radio" name="sex" value="0" title="男" checked="checked">
+									<input type="radio" name="sex" value="1" title="女" checked>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">IP</label>
+								<div class="layui-input-block">
+									<input type="number" name="" placeholder="请输入"  class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<div class="layui-input-block">
+									<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+									<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+								</div>
+							</div>
+						</form>
+						<a style="position: absolute;left: 230px;bottom: 25px;" href="./userMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
+
 					</div>
 				</div>
 			</div>
 		</div>
-		<script src="../../layuiadmin/layui/layui.js"></script>
-		<script>
-			layui.use(['form', 'upload'], function() {
-				var form = layui.form,
-					upload = layui.upload;
-				var uploadInst = upload.render({
-					elem: '#test1' //绑定元素
-						,
-					url: '' //上传接口
-						,
-					auto: false,
-					done: function(res) {
-						//上传完毕回调
-					},
-					error: function() {
-						//请求异常回调
-					}
-				});
+	</div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+	layui.use(['form', 'upload'], function() {
+		var form = layui.form,
+				upload = layui.upload;
+		var uploadInst = upload.render({
+			elem: '#test1' //绑定元素
+			,
+			url: '' //上传接口
+			,
+			auto: false,
+			done: function(res) {
+				//上传完毕回调
+			},
+			error: function() {
+				//请求异常回调
+			}
+		});
 
-				//各种基于事件的操作，下面会有进一步介绍
-			});
-		</script>
-	</body>
+		//各种基于事件的操作，下面会有进一步介绍
+	});
+</script>
+</body>
 
 </html>
