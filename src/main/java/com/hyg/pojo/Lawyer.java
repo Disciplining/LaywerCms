@@ -17,6 +17,7 @@ public class Lawyer
 	private String major;
 	private String achievement;
 	private String customers;
+	private String deleteFlag;
 
 	public static class LawyerLevel
 	{

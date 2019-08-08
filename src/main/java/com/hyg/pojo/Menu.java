@@ -9,7 +9,7 @@ import lombok.Data;
 public class Menu
 {
 	private Integer menuId;
-	private String muneName;
+	private String menuName;
 	private Integer parentId;
 	private String router;
 }
