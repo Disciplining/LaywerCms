@@ -6,154 +6,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>菜单管理</title>
-    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
 </head>
 
 <body>
-        <div class="layui-container" style="margin-top: 20px">
-                <div class="layui-row">
-                    <div class="layui-col-md4">
-                        <div id="test1"></div>
-                    </div>
-                    <div class="layui-col-md8">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">菜单名称:</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="mainmenu" id="mainmenu" required lay-verify="required"
-                                    class="layui-input" style="width:300px;height:30px">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">下级菜单:</label>
-                            <div class="layui-input-block" >
-                                <input type="text" name="semenu" required lay-verify="required" class="layui-input"
-                                    style="width:300px;height:30px" id="down-pull">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">路由:</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="thmenu" required lay-verify="required" class="layui-input"
-                                    style="width:300px;height:30px">
-                            </div>
-                        </div>
-                        <div style="margin-left:90px">
-                            <button class="layui-btn layui-btn-normal">添加下级</button>
-                            <button class="layui-btn layui-btn-normal">修改</button>
-                            <button class="layui-btn layui-btn-normal" id="dele">删除</button>
-                        </div>
-                    </div>
+<div class="layui-container" style="margin-top: 20px">
+    <div class="layui-row">
+        <div class="layui-col-md4">
+            <div id="test1"></div>
+        </div>
+        <div class="layui-col-md8">
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单名称:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mainmenu" id="mainmenu" required lay-verify="required"
+                           class="layui-input" style="width:300px;height:30px">
                 </div>
             </div>
-    <script src="/layuiadmin/layui/layui.js"></script>
-		<script src="/layuiadmin/modules/jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-        layui.use(["tree","jquery","layer"], function(){
-				var tree = layui.tree,
-				$=layui.$,
-				layer=layui.layer;
-   
-    //渲染
-    var inst1 = tree.render({
-      elem: '#test1'  //绑定元素
-      ,data: [
-			{
-        title:'介绍' //一级菜单
-				,id:2
-				,route:""
-        ,children: [{
-					id:21,
-          title: '律师事务所' ,//二级菜单
-					route:""
-        },
-				{
-					id:22,
-					title: '团队介绍' ,//二级菜单
-					route:""
-				},
-				{
-					id:23,
-					title: '团队文集' ,//二级菜单
-					route:""
-				}
-				]
-      },
-			{
-				id:3,
-				title:"公司法律服务",
-				route:"",
-				children:[{
-					id:31,
-					title:"股权设计",
-					route:""
-					
-				},
-				{
-					id:32,
-					title:"股权激励",
-					route:""
-				},
-				{
-					id:33,
-					title:"报价配置表",
-					route:""
-				}
-				]
-			},{
-				id:4,
-				title:"形式法律服务",
-				route:"",
-				children:[{
-					id:41,
-					title:"形式服务",
-					route:""
-				},{
-					id:42,
-					title:"优势服务",
-					route:""
-				}]
-			},{
-				id:5,
-				title:"劳动法律服务",
-				route:"",
-				children:[{
-					id:51,
-					title:"诉讼与仲裁应对",
-					route:""
-				},
-				{
-					id:52,
-					title:"劳动用工制度事先设计",
-					route:""
-				},
-				{
-					id:53,
-					title:"企业文化与策略选择",
-					route:""
-				}]
-			}
-			]
-			,click: function(obj){
-				var mainmenu=document.getElementById("mainmenu");
-				var mainmenu1=document.getElementById("mainmenu1");
-				var downpull=document.getElementById('down-pull');
-				var dele =document.getElementById('dele');
-				let id =obj.data.id;
-				dele.addEventListener('click',function(){
-					layer.confirm('确定删除？',function(index){
-						$("div[data-id="+id+"]").remove();
-						layer.close(index);
-					})		
-				})
-				mainmenu.value=obj.data.title;
-				if(downpull.value!=null){
-					//发送ajax请求，带参数
-				}
-			}
+            <div class="layui-form-item">
+                <label class="layui-form-label">下级菜单:</label>
+                <div class="layui-input-block" >
+                    <input type="text" name="semenu" required lay-verify="required" class="layui-input"
+                           style="width:300px;height:30px" id="down-pull">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">路由:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="thmenu" required lay-verify="required" class="layui-input"
+                           style="width:300px;height:30px">
+                </div>
+            </div>
+            <div style="margin-left:90px">
+                <button class="layui-btn layui-btn-normal">添加下级</button>
+                <button class="layui-btn layui-btn-normal">修改</button>
+                <button class="layui-btn layui-btn-normal" id="dele">删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script src="../../layuiadmin/modules/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    layui.use(["tree","jquery","layer"], function(){
+        var tree = layui.tree,
+            $=layui.$,
+            layer=layui.layer;
+
+        //渲染
+        var inst1 = tree.render({
+            elem: '#test1'  //绑定元素
+            ,data: [
+                {
+                    title:'介绍' //一级菜单
+                    ,id:2
+                    ,route:""
+                    ,children: [{
+                        id:21,
+                        title: '律师事务所' ,//二级菜单
+                        route:""
+                    },
+                        {
+                            id:22,
+                            title: '团队介绍' ,//二级菜单
+                            route:""
+                        },
+                        {
+                            id:23,
+                            title: '团队文集' ,//二级菜单
+                            route:""
+                        }
+                    ]
+                },
+                {
+                    id:3,
+                    title:"公司法律服务",
+                    route:"",
+                    children:[{
+                        id:31,
+                        title:"股权设计",
+                        route:""
+
+                    },
+                        {
+                            id:32,
+                            title:"股权激励",
+                            route:""
+                        },
+                        {
+                            id:33,
+                            title:"报价配置表",
+                            route:""
+                        }
+                    ]
+                },{
+                    id:4,
+                    title:"形式法律服务",
+                    route:"",
+                    children:[{
+                        id:41,
+                        title:"形式服务",
+                        route:""
+                    },{
+                        id:42,
+                        title:"优势服务",
+                        route:""
+                    }]
+                },{
+                    id:5,
+                    title:"劳动法律服务",
+                    route:"",
+                    children:[{
+                        id:51,
+                        title:"诉讼与仲裁应对",
+                        route:""
+                    },
+                        {
+                            id:52,
+                            title:"劳动用工制度事先设计",
+                            route:""
+                        },
+                        {
+                            id:53,
+                            title:"企业文化与策略选择",
+                            route:""
+                        }]
+                }
+            ]
+            ,click: function(obj){
+                var mainmenu=document.getElementById("mainmenu");
+                var mainmenu1=document.getElementById("mainmenu1");
+                var downpull=document.getElementById('down-pull');
+                var dele =document.getElementById('dele');
+                let id =obj.data.id;
+                dele.addEventListener('click',function(){
+                    layer.confirm('确定删除？',function(index){
+                        $("div[data-id="+id+"]").remove();
+                        layer.close(index);
+                    })
+                })
+                mainmenu.value=obj.data.title;
+                if(downpull.value!=null){
+                    //发送ajax请求，带参数
+                }
+            }
+        });
     });
-  });
-    </script>
+</script>
 </body>
 
 </html>
