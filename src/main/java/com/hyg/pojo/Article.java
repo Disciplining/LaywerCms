@@ -17,10 +17,10 @@ public class Article
 	private Integer editDate;
 	private Integer count;
 
-	public class ArticleType
+	public static class ArticleType
 	{
-		public static final String COMPANY_LAW = "公司法律";
-		public static final String LABOUT_LAW = "公司法律";
-		public static final String FORMAL_LAW = "公司法律";
+		public static final Integer COMPANY_LAW = 1;
+		public static final Integer LABOUR_LAW = 2;
+		public static final Integer FORMAL_LAW = 3;
 	}
 }

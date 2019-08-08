@@ -18,7 +18,7 @@ public class Lawyer
 	private String achievement;
 	private String customers;
 
-	public class LawyerLevel
+	public static class LawyerLevel
 	{
 		public static final String CHIEF_LAWYER = "主任律师";
 		public static final String PRACTICING_LAWYER = "执业律师";
