@@ -33,12 +33,12 @@ public class CommonController
 	}
 
 	/**
-	 * 网站页面 通用页面跳转
+	 * 通用页面跳转
 	 * @return
 	 */
-	@GetMapping("/web/{page}")
+	@GetMapping("/{page}")
 	public String pgegeChange(@PathVariable("page") String page)
 	{
-		return "web/" + page;
+		return page;
 	}
 }
