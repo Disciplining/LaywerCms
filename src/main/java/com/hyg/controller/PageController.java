@@ -32,4 +32,24 @@ public class PageController
 	{
 		return secondDir + "/" + page;
 	}
+
+	/**
+	 * 获得 第3层 目录下的html文件
+	 *
+	 * 请求地址为：/getPage/第2层目录名/第三层目录名/文件名
+	 * @param secondDir
+	 * @param thirdDir
+	 * @param page
+	 * @return
+	 */
+	@GetMapping("/getPage/{secondDir}/{thirdDir}/{page}")
+	public String getPate
+	(
+		@PathVariable("secondDir") String secondDir,
+		@PathVariable("thirdDir") String thirdDir,
+		@PathVariable("page") String page
+	)
+	{
+		return secondDir + "/" + thirdDir + "/" + page;
+	}
 }
