@@ -15,4 +15,6 @@ public class User
 	private Boolean gender;
 	private String userTel;
 	private String email;
+	private String position;
+	private String deleteFlag;
 }

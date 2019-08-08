@@ -17,7 +17,7 @@ public class Lawyer
 	private String major;
 	private String achievement;
 	private String customers;
-	private Boolean deleteFlag;
+	private String deleteFlag;
 
 	public static class LawyerLevel
 	{

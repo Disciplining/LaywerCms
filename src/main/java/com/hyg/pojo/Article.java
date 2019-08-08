@@ -16,7 +16,7 @@ public class Article
 	private Integer content;
 	private Integer editDate;
 	private Integer count;
-	private Boolean deleteFlag;
+	private String deleteFlag;
 
 	public static class ArticleType
 	{
