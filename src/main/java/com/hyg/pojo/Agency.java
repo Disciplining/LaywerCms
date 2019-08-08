@@ -12,4 +12,5 @@ public class Agency
 	private String agencyName;
 	private String agencyImg;
 	private String agencyDetail;
+	private Boolean deleteFlag;
 }
