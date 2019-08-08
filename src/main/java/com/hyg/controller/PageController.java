@@ -36,7 +36,8 @@ public class PageController
 	/**
 	 * 获得 第3层 目录下的html文件
 	 *
-	 * 请求地址为：/getPage/第2层目录名/第三层目录名/文件名
+	 * 请求地址为：/getPage/第2层目录名/第3层目录名/文件名
+	 *
 	 * @param secondDir
 	 * @param thirdDir
 	 * @param page
