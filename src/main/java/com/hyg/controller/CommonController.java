@@ -19,7 +19,7 @@ public class CommonController
 	@ResponseBody
 	public String test()
 	{
-		return "success run";
+		return "success 123";
 	}
 
 	/**
