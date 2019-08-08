@@ -11,4 +11,11 @@ public interface UserService
 	 * @return
 	 */
 	public List<User> listUsers();
+
+	/**
+	 * 用户注册逻辑
+	 * @param user 用户数据包含明文密码
+	 * @return
+	 */
+	boolean userReg(User user);
 }
