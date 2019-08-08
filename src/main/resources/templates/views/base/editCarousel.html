@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 	<head>
 		<meta charset="UTF-8">
@@ -9,6 +9,8 @@
 	<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
 
 	<body>
+        <input type="text" th:value="${id}"/>
+
 		<div style="margin: 20px 0 0 28px;">
 			<button class='layui-btn' onclick='window.history.go(-1)'>返回留言列表页</button>
 		</div>

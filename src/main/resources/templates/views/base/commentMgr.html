@@ -83,7 +83,8 @@
 				})
 				table.on('row(LAY-app-message-notice)', function(obj) {
 					var data = obj.data;
-					window.location.href="./editCarousel.html?id="+data.id
+                    // window.location.href="./editCarousel.html?id="+data.id
+                    window.location.href="/getPage/base/editCarousel?id=" + data.id;
 				})
 			});
 		</script>

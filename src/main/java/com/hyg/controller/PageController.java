@@ -1,8 +1,10 @@
 package com.hyg.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 页面控制器
@@ -27,9 +29,16 @@ public class PageController
 	public String getPage
 	(
 		@PathVariable("secondDir") String secondDir,
-		@PathVariable("page") String page
+		@PathVariable("page") String page,
+		@RequestParam(value = "id", defaultValue = "-1") String id,
+		Model model
 	)
 	{
+		if (!"-1".equals(id))
+		{
+			model.addAttribute("id", id);
+		}
+
 		return secondDir + "/" + page;
 	}
 
