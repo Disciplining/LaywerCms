@@ -18,9 +18,14 @@
 					<div style="margin-top:20px">
 						<form class="layui-form" action="">
 							<div class="layui-form-item layui-form-text">
-								<label class="layui-form-label">法律类型</label>
+								<label class="layui-form-label">文集类型</label>
 								<div class="layui-input-block">
-									<input type="text" id="type" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+									<select name="city" lay-verify="required">
+										<option value=""></option>
+										<option value="公司法律">公司法律</option>
+										<option value="劳动法律">劳动法律</option>
+										<option value="刑事法律">刑事法律</option>
+									</select>
 								</div>
 							</div>
 							<div class="layui-form-item layui-form-text">
@@ -44,7 +49,7 @@
 							<div class="layui-form-item layui-form-text">
 								<label class="layui-form-label">文章内容</label>
 								<div class="layui-input-block">
-									<textarea id="editor_id" name="content" style="width: 100%;"></textarea>
+									<textarea id="editor_id" name="content" style="width: 100%;height: 500px"></textarea>
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -72,14 +77,17 @@
 		window.editor = K.create('#editor_id');
 	});
 	var idr = filterId(location.href)
+	var select =document.getElementsByTagName('select');
+	var option =document.getElementsByTagName('option');
 	var type = document.getElementById('type')
 	var agencyDetail = document.getElementById('agencyDetail')
 	var id = document.getElementById('id')
 	var author = document.getElementById('author')
 	var intro = document.getElementById('intro')
 	var editor_id = document.getElementById('editor_id')
-	layui.use('jquery', function() {
-		var $ = layui.$;
+	layui.use(['jquery','form'], function() {
+		var $ = layui.$, form=layui.form;
+		;
 		$.ajax({
 			url: '../static/collection.json',
 			type: "get",
@@ -88,11 +96,17 @@
 				var data = data.data
 				for(var i = 0; i < data.length; i++) {
 					if(data[i].articleId == idr) {
-						type.value = data[i].type
 						articleTitle.value = data[i].articleTitle
 						author.value = data[i].author
 						intro.innerHTML = data[i].intro
 						editor.html(data[i].content)
+						for(var f=0;f<option.length;f++){
+							if(option[f].value==data[i].type){
+								$("select").val(data[i].type);
+								form.render("select");
+							}
+
+						}
 					}
 				}
 			}
