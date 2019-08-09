@@ -21,4 +21,7 @@ public interface UserMapper
 
 	@Insert("insert into `t_user` (`password`,`loginName`,`realName`,`gender`,`userTel`,`email`) values (#{password},#{loginName},#{realName},#{gender},#{userTel},#{email})")
 	void insertOneUser(User user);
+
+	@Select("select * from `t_user` where `loginName`=#{loginName}")
+	User getOneUser(String loginName);
 }

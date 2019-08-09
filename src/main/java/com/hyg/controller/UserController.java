@@ -48,4 +48,12 @@ public class UserController
 
 		return userService.userReg(user);
 	}
+
+	@GetMapping("/userLogin")
+	public String userLogin(User user)
+	{
+		System.out.println(user);
+
+		return "index";
+	}
 }
