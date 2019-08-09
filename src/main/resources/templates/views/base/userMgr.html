@@ -1,141 +1,164 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>用户列表</title>
-		<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css">
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>用户列表</title>
+	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css"/>
+</head>
 
-	<body>
-		<div class="layui-fluid">
-			<div class="layui-row layui-col-space15">
-				<div class="layui-col-md12">
-					<div class="layui-card">
-						<div class="layui-card-header">用户列表</div>
-						<div class="layui-card-body">
-							<table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
-							</table>
-							<script type="text/html" id="test-table-toolbar-toolbarDemo">
-								<div class="layui-btn-container">
-									<button class="layui-btn layui-btn-sm" lay-href="getPage/base/addUser.html">添加</button>
-								</div>
-							</script>
-
-							<script type="text/html" id="test-table-toolbar-barDemo">
-								<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-								<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-							</script>
+<body>
+<div class="layui-fluid" style="margin-top: 20px;">
+	<div class="layui-row layui-col-space15">
+		<div class="layui-col-md12">
+			<div class="layui-card">
+				<div class="layui-card-header">用户列表</div>
+				<div class="layui-card-body">
+					<div class="demoTable" style="display: inline;">
+						用户名:
+						<div class="layui-inline" style="margin-right: 20px;">
+							<input class="layui-input" name="username" id="demoReload" autocomplete="off">
 						</div>
+						性别:
+						<div class="layui-inline">
+							<input class="layui-input" name="sex" id="demoReload" autocomplete="off">
+						</div>
+						<button class="layui-btn" data-type="reload">搜索</button>
 					</div>
+					<table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
+					</table>
+					<script type="text/html" id="zizeng">
+						{{d.LAY_TABLE_INDEX+1}}
+					</script>
+					<script type="text/html" id="test-table-toolbar-toolbarDemo">
+						<div class="layui-btn-container">
+							<a href="./addUser.html"><button class="layui-btn layui-btn-sm" >添加</button></a>
+						</div>
+					</script>
+
+					<script type="text/html" id="test-table-toolbar-barDemo">
+						<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+						<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					</script>
 				</div>
 			</div>
 		</div>
-		<script src="/layuiadmin/layui/layui.js"></script>
-		<script>
-			layui.config({
-				base: '../../layuiadmin/' //静态资源所在路径
-			}).extend({
-				index: 'lib/index' //主入口模块
-			}).use(['index', 'table', 'upload'], function() {
-				var admin = layui.admin,
-					table = layui.table,
-					upload = layui.upload;
-				table.render({
-					elem: '#test-table-toolbar',
-					url: '../static/user.json',
-					toolbar: '#test-table-toolbar-toolbarDemo',
-					title: '用户数据表',
-					page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-						layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
-						groups: 1 ,//只显示 1 个连续页码,
-						first: false, //不显示首页,
-						last: false ,//不显示尾页
-						limit:5
+	</div>
+</div>
+<script src="/layuiadmin/layui/layui.js"></script>
+<script>
+	layui.config({
+		base: '../../layuiadmin/' //静态资源所在路径
+	}).extend({
+		index: 'lib/index' //主入口模块
+	}).use(['index', 'table', 'upload'], function() {
+		var admin = layui.admin,
+				table = layui.table,
+				upload = layui.upload;
+		table.render({
+			elem: '#test-table-toolbar',
+			url: '../static/user.json',
+			toolbar: '#test-table-toolbar-toolbarDemo',
+			title: '用户数据表',
+			page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+				layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
+				groups: 1, //只显示 1 个连续页码,
+				first: false, //不显示首页,
+				last: false, //不显示尾页
+				limit: 5
 
-					},
-					cols: [
-						[{
-							field: 'username',
-							title: '用户名',
-							width: 100
-						}, {
-							field: 'ava',
-							title: '头像',
-							width: 100
-						}, {
-							field: 'phonenumber',
-							title: '手机',
-							width: 100,
-							edit: true
-						}, {
-							field: 'email',
-							title: '邮箱',
-						}, {
-							field: 'sex',
-							title: '性别',
-							width: 100
-						}, {
-							field: 'ip',
-							title: 'IP',
-							width: 100
-						}, {
-							field: 'Jonntime',
-							title: '加入时间',
-							width: 100,
-							sort: true
-						}, {
-							title: '操作',
-							toolbar: '#test-table-toolbar-barDemo',
-							width: 200
-						}]
-					],
-				});
-				//头工具栏事件
-				table.on('toolbar(test-table-toolbar)', function(obj) {
-					var checkStatus = table.checkStatus(obj.config.id);
-					switch(obj.event) {
-						case 'getCheckData':
-							var data = checkStatus.data;
-							layer.alert(JSON.stringify(data));
-							break;
-						case 'getCheckLength':
-							var data = checkStatus.data;
-							layer.msg('选中了：' + data.length + ' 个');
-							break;
-					};
-				});
-				var uploadInst = upload.render({
-					elem: '#test1' //绑定元素
-						,
-					url: '' //上传接口
-						,
-					auto: false //选择文件后不自动上传
-						,
-					bindAction: '#testListAction',
-					done: function(res) {
-						//上传完毕回调
-					},
-					error: function() {
-						//请求异常回调
-					}
-				});
+			},
+			cols: [
+				[{
+					field: 'zizeng',
+					width: 80,
+					title: '编号',
+					fixed: 'left',
+					templet: '#zizeng'
+				},
+					{
+						field: 'username',
+						title: '用户名',
+						width: 100
+					}, {
+					field: 'ava',
+					title: '头像',
+					width: 100
+				}, {
+					field: 'phonenumber',
+					title: '手机',
+					width: 100,
+					edit: true
+				}, {
+					field: 'email',
+					title: '邮箱',
+				}, {
+					field: 'sex',
+					title: '性别',
+					width: 100
+				}, {
+					field: 'ip',
+					title: 'IP',
+					width: 100
+				}, {
+					field: 'Jonntime',
+					title: '加入时间',
+					width: 100,
+					sort: true
+				}, {
+					title: '操作',
+					toolbar: '#test-table-toolbar-barDemo',
+					width: 200
+				}
+				]
+			],
+		});
+		//头工具栏事件
+		table.on('toolbar(test-table-toolbar)', function(obj) {
+			var checkStatus = table.checkStatus(obj.config.id);
+			switch(obj.event) {
+				case 'getCheckData':
+					var data = checkStatus.data;
+					layer.alert(JSON.stringify(data));
+					break;
+				case 'getCheckLength':
+					var data = checkStatus.data;
+					layer.msg('选中了：' + data.length + ' 个');
+					break;
+			};
+		});
+		var uploadInst = upload.render({
+			elem: '#test1' //绑定元素
+			,
+			url: '' //上传接口
+			,
+			auto: false //选择文件后不自动上传
+			,
+			bindAction: '#testListAction',
+			done: function(res) {
+				//上传完毕回调
+			},
+			error: function() {
+				//请求异常回调
+			}
+		});
 
-				//监听行工具事件
-				table.on('tool(test-table-toolbar)', function(obj) {
-					var data = obj.data;
-					if(obj.event === 'del') {
-						layer.confirm('真的删除行么', function(index) {
-							obj.del();
-							layer.close(index);
-						});
-					} else if(obj.event === 'edit') {
-						var data=obj.data;
-						window.location.href="./editUser.html?id="+data.id
-					}
+		//监听行工具事件
+		table.on('tool(test-table-toolbar)', function(obj) {
+			var data = obj.data;
+			if(obj.event === 'del') {
+				layer.confirm('真的删除行么', function(index) {
+					obj.del();
+					layer.close(index);
 				});
+			} else if(obj.event === 'edit') {
+				var data = obj.data;
+				window.location.href = "./editUser.html?id=" + data.id
+			}
+		});
 
-			});
-		</script>
-	</body>
+	});
+</script>
+</body>
+
 </html>

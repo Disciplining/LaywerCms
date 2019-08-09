@@ -1,106 +1,119 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>添加用户</title>
-		<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
-		<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>添加用户</title>
+	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+</head>
 
-	<body>
-		<form class="layui-form" style="margin-top: 20px;">
-			<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-			<div class="layui-form-item">
-				<label class="layui-form-label">律师名</label>
-				<div class="layui-input-block">
-					<input type="text" name="" placeholder="请输入" class="layui-input">
+<body>
+<div class="layui-fluid">
+	<div class="layui-row layui-col-space15">
+		<div class="layui-col-md12">
+			<div class="layui-card" style="position: relative;">
+				<div class="layui-card-header">用户列表</div>
+				<div class="layui-card-body">
+					<div style="margin-top:20px">
+						<form class="layui-form" style="margin-top: 20px;">
+							<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+							<div class="layui-form-item">
+								<label class="layui-form-label">律师名</label>
+								<div class="layui-input-block">
+									<input type="text" name="" placeholder="请输入" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">律师职称</label>
+								<div class="layui-input-block">
+									<select name="city" lay-verify="required">
+										<option value=""></option>
+										<option value="0">主任律师</option>
+										<option value="1">执业律师</option>
+										<option value="2">实习律师</option>
+										<option value="3">助理律师</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-form-item layui-form-text">
+								<label class="layui-form-label">律师简介</label>
+								<div class="layui-input-block">
+									<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">律师照片</label>
+								<div class="layui-input-block">
+									<div id="colla_img" style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
+									<button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
+										<i class="layui-icon">&#xe67c;</i>上传图片
+									</button>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">毕业学校</label>
+								<div class="layui-input-block">
+									<input type="text" name="" placeholder="请输入" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">主修专业</label>
+								<div class="layui-input-block">
+									<input type="text" name="" placeholder="请输入" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">主要荣誉</label>
+								<div class="layui-input-block">
+									<input type="text" name="" placeholder="请输入" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">重要服务客户</label>
+								<div class="layui-input-block">
+									<input type="text" name="" placeholder="请输入" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<div class="layui-input-block">
+									<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+								</div>
+							</div>
+							<!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+						</form>
+						<a style="position: absolute;left: 250px;bottom: 25px;" href="./collectionMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
+					</div>
 				</div>
 			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">律师职称</label>
-				<div class="layui-input-block">
-					<select name="city" lay-verify="required">
-						<option value=""></option>
-						<option value="0">主任律师</option>
-						<option value="1">执业律师</option>
-						<option value="2">实习律师</option>
-						<option value="3">助理律师</option>
-					</select>
-				</div>
-			</div>
-			<div class="layui-form-item layui-form-text">
-				<label class="layui-form-label">律师简介</label>
-				<div class="layui-input-block">
-					<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">律师照片</label>
-				<div class="layui-input-block">
-					<div id="colla_img" style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
-					<button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
-	  	<i class="layui-icon">&#xe67c;</i>上传图片
-	  </button>
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">毕业学校</label>
-				<div class="layui-input-block">
-					<input type="text" name="" placeholder="请输入" class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">主修专业</label>
-				<div class="layui-input-block">
-					<input type="text" name="" placeholder="请输入" class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">主要荣誉</label>
-				<div class="layui-input-block">
-					<input type="text" name="" placeholder="请输入" class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">重要服务客户</label>
-				<div class="layui-input-block">
-					<input type="text" name="" placeholder="请输入" class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
-					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-				</div>
-			</div>
-			<!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
-		</form>
-		<script src="/layuiadmin/layui/layui.js"></script>
-		<script>
-			layui.use(['form', 'upload', 'jquery'], function() {
-				var form = layui.form,
-					$ = layui.$,
-					upload = layui.upload;
-				upload.render({
-					elem: '#test1',
-					url: 'upload',
-					size: 2048,
-					auto: false //选择文件后不自动上传
-						,
-					bindAction: '#save' //指向一个按钮触发上传
-						,
-					choose: function(obj) {
-						//预读本地文件
-						obj.preview(function(index, file, result) {
-							$('#loadinput').val(file.name); //展示文件名
-							$('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a> ');
-						})
-					}
-				});
-				//各种基于事件的操作，下面会有进一步介绍
-			});
-		</script>
-	</body>
+		</div>
+	</div>
+</div>
+<script src="/layuiadmin/layui/layui.js"></script>
+<script>
+	layui.use(['form', 'upload', 'jquery'], function() {
+		var form = layui.form,
+				$ = layui.$,
+				upload = layui.upload;
+		upload.render({
+			elem: '#test1',
+			url: 'upload',
+			size: 2048,
+			auto: false //选择文件后不自动上传
+			,
+			bindAction: '#save' //指向一个按钮触发上传
+			,
+			choose: function(obj) {
+				//预读本地文件
+				obj.preview(function(index, file, result) {
+					$('#loadinput').val(file.name); //展示文件名
+					$('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a> ');
+				})
+			}
+		});
+		//各种基于事件的操作，下面会有进一步介绍
+	});
+</script>
+</body>
 
 </html>

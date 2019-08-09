@@ -1,155 +1,153 @@
+
 <!DOCTYPE html>
 <html>
- <head>
-  <meta charset="UTF-8">
-  <title></title>
- </head>
- <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
- <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
- <body>
-  <div style="margin: 20px 0 0 28px;">
-   <button class='layui-btn' onclick='window.history.go(-1)'>返回成员管理列表</button>
-  </div>
-  <div class="layui-fluid">
-  	<div class="layui-row layui-col-space15">
-  		<div class="layui-col-md12">
-  			<div class="layui-card">
-  <div class="layui-card-header">团队成员编辑</div>
-  <form class="layui-form" action="" style="margin: 20px 0 0 28px;"  >
-  <div class="layui-form-item">
-    <label class="layui-form-label" >律师姓名</label>
-    <div class="layui-input-block">
-      <input type="text"  required lay-verify="required"  autocomplete="off" id="lawerName" class="layui-input">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card" style="position: relative;padding-bottom: 10px;">
+                <div class="layui-card-header">团队成员编辑</div>
+                <form class="layui-form" action="" style="margin: 20px 0 0 28px;">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" >律师姓名</label>
+                        <div class="layui-input-block">
+                            <input type="text"  required lay-verify="required"  autocomplete="off" id="lawerName" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" >律师职级</label>
+                        <div class="layui-input-block">
+                            <select name="city" lay-verify="required" lay-filter="category" >
+                                <option value="主任律师">主任律师</option>
+                                <option value="执业律师">执业律师</option>
+                                <option value="实习">实习</option>
+                                <option value="助理律师">助理律师</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">律师简介</label>
+                        <div class="layui-input-block">
+                            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" id="lawerIntro"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">律师照片</label>
+                        <div class="layui-input-block">
+                            <div  id="colla_img"  style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
+                            <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
+                                <i class="layui-icon">&#xe67c;</i>上传图片
+                            </button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">毕业学校</label>
+                        <div class="layui-input-block">
+                            <input type="text"  required lay-verify="required"  autocomplete="off" class="layui-input" id="graduate">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">主修专业</label>
+                        <div class="layui-input-block">
+                            <input type="text"  required lay-verify="required"  autocomplete="off" class="layui-input" id="major">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">主要荣誉</label>
+                        <div class="layui-input-block">
+                            <input type="text"  required lay-verify="required"  autocomplete="off" class="layui-input" id="achievement">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">重要服务客户</label>
+                        <div class="layui-input-block">
+                            <input type="text"  required lay-verify="required"   class="layui-input" id="customers">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        </div>
+                    </div>
+                </form>
+                <a style="position: absolute;left: 250px;bottom: 25px;" href="./personMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label" >律师职级</label>
-    <div class="layui-input-block">
-      <select name="city" lay-verify="required" lay-filter="category" >	
-        <option value="主任律师">主任律师</option>
-        <option value="执业律师">执业律师</option>
-        <option value="实习">实习</option>
-        <option value="助理律师">助理律师</option>
-      </select>
-    </div>
-  </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">律师简介</label>
-    <div class="layui-input-block">
-      <textarea name="desc" placeholder="请输入内容" class="layui-textarea" id="lawerIntro"></textarea>
-    </div>
-  </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">律师照片</label>
-    <div class="layui-input-block">
-      <div  id="colla_img"  style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
-	  <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
-	  	<i class="layui-icon">&#xe67c;</i>上传图片
-	  </button>
-    </div>
-  </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">毕业学校</label>
-	<div class="layui-input-block">
-		<input type="text"  required lay-verify="required"  autocomplete="off" class="layui-input" id="graduate">
-	</div>
-  </div>
-  <div class="layui-form-item">
-  <label class="layui-form-label">主修专业</label>
-  <div class="layui-input-block">
-  	<input type="text"  required lay-verify="required"  autocomplete="off" class="layui-input" id="major">
-  </div>
-  </div>
- <div class="layui-form-item">
- <label class="layui-form-label">主要荣誉</label>
- <div class="layui-input-block">
- <input type="text"  required lay-verify="required"  autocomplete="off" class="layui-input" id="achievement">
- </div>
- </div>
- <div class="layui-form-item">
- <label class="layui-form-label">重要服务客户</label>
- <div class="layui-input-block">
- <input type="text"  required lay-verify="required"   class="layui-input" id="customers">
- </div>
- </div>
-  <div class="layui-form-item">
-    <div class="layui-input-block">
-      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-    </div>
-	</div>
-	</div>
-	</div>
-	</div>
-  </div>
-  </form>
-  </div>
-  <script src="/layuiadmin/layui/layui.js"></script>
-  <script>
-   var dd = document.getElementById('dd');
-   var time = document.getElementById('time')
+</div>
+</div>
+<script src="/layuiadmin/layui/layui.js"></script>
+<script>
+    var dd = document.getElementById('dd');
+    var time = document.getElementById('time')
 
-   function filterId(str) {
-    var newStr = str.split('?')[1].split('=')[1]
-    return newStr
-   }
-   var idr = filterId(location.href)
-   layui.use(['layer', 'jquery','form','upload'], function() {
-    var layer = layui.layer,
-	form=layui.form,
-	upload=layui.upload,
-     $ = layui.$;
-     upload.render({
-  elem: '#test1'
-  ,url: 'upload',
-  size:2048
-  ,auto: false //选择文件后不自动上传
-  ,bindAction: '#save' //指向一个按钮触发上传
-  ,choose: function (obj) {
-		//预读本地文件
-		obj.preview(function (index, file, result) {
-		$('#loadinput').val(file.name); //展示文件名
-		$('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a> ');
-		})
-		}
-});
-    $.ajax({
-     url: '../static/person.json',
-     type: "get",
-     dataType: "json",
-     success: function(data) {
-      var data = data.data;
-	  var lawerName=document.getElementById('lawerName');
-	  var lawerIntro=document.getElementById('lawerIntro')
-	  var lawerImg=document.getElementById('lawerImg');
-	  var profession=document.getElementById('profession');
-	  var select =document.getElementsByTagName('select');
-	  var option =document.getElementsByTagName('option');
-	  var graduate=document.getElementById('graduate');
-	  var major=document.getElementById('major');
-	  var achievement=document.getElementById('achievement');
-	  var customers=document.getElementById('customers');
-      for(var i = 0; i < data.length; i++) {
-       if(data[i].id == idr) {
-			lawerName.value=data[i].lawyername;
-			lawerIntro.value=data[i].introuce;
-			graduate.value=data[i].graduate;
-			major.value=data[i].major;
-			achievement.value=data[i].achievement;
-			customers.value=data[i].customers;		
-			for(var f=0;f<option.length;f++){
-				if(option[f].value==data[i].profession){
-					$("select").val(data[i].profession);
-					form.render("select");	
-				}
-			
-			}
-	   }
-      }
-     }
-    });
-   })
-  </script>
- </body>
+    function filterId(str) {
+        var newStr = str.split('?')[1].split('=')[1]
+        return newStr
+    }
+    var idr = filterId(location.href)
+    layui.use(['layer', 'jquery','form','upload'], function() {
+        var layer = layui.layer,
+            form=layui.form,
+            upload=layui.upload,
+            $ = layui.$;
+        upload.render({
+            elem: '#test1'
+            ,url: 'upload',
+            size:2048
+            ,auto: false //选择文件后不自动上传
+            ,bindAction: '#save' //指向一个按钮触发上传
+            ,choose: function (obj) {
+                //预读本地文件
+                obj.preview(function (index, file, result) {
+                    $('#loadinput').val(file.name); //展示文件名
+                    $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a> ');
+                })
+            }
+        });
+        $.ajax({
+            url: '../static/person.json',
+            type: "get",
+            dataType: "json",
+            success: function(data) {
+                var data = data.data;
+                var lawerName=document.getElementById('lawerName');
+                var lawerIntro=document.getElementById('lawerIntro');
+                var lawerImg=document.getElementById('lawerImg');
+                var profession=document.getElementById('profession');
+                var select =document.getElementsByTagName('select');
+                var option =document.getElementsByTagName('option');
+                var graduate=document.getElementById('graduate');
+                var major=document.getElementById('major');
+                var achievement=document.getElementById('achievement');
+                var customers=document.getElementById('customers');
+                for(var i = 0; i < data.length; i++) {
+                    if(data[i].id == idr) {
+                        lawerName.value=data[i].lawyername;
+                        lawerIntro.value=data[i].introuce;
+                        graduate.value=data[i].graduate;
+                        major.value=data[i].major;
+                        achievement.value=data[i].achievement;
+                        customers.value=data[i].customers;
+                        for(var f=0;f<option.length;f++){
+                            if(option[f].value==data[i].profession){
+                                $("select").val(data[i].profession);
+                                form.render("select");
+                            }
+
+                        }
+                    }
+                }
+            }
+        });
+    })
+</script>
+</body>
 
 </html>

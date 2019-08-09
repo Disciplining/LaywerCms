@@ -2,91 +2,108 @@
 
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title>消息中心</title>
-		<meta name="renderer" content="webkit">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
-		<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
-	</head>
+<head>
+	<meta charset="utf-8">
+	<title>消息中心</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+</head>
 
-	<body>
+<body>
 
-		<div class="layui-fluid" id="LAY-app-message">
-			<div class="layui-card">
-				<div class="layui-tab layui-tab-brief">
-					<div class="layui-tab-content">
-						<div class="layui-tab-item-show">
-
-							<div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-								<button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="ready">全部</button>
-								<button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="readyAll">未读</button>
-							</div>
-
-							<table event="clickA" id="LAY-app-message-notice" lay-filter="LAY-app-message-notice"></table>
+<div class="layui-fluid" id="LAY-app-message">
+	<div class="layui-card">
+		<div class="layui-card-header">留言列表</div>
+		<div class="layui-tab layui-tab-brief">
+			<div class="layui-tab-content">
+				<div class="layui-tab-item-show">
+					<div class="demoTable" style="margin-bottom: 20px;">
+						客户姓名:
+						<div class="layui-inline">
+							<input class="layui-input" name="id" id="demoReload" autocomplete="off">
 						</div>
+						<button class="layui-btn" data-type="reload">搜索</button>
 					</div>
+					<div class="LAY-app-message-btns" style="margin-bottom: 10px;">
+						<button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="ready">全部</button>
+						<button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="readyAll">未读</button>
+					</div>
+					<table event="clickA" id="LAY-app-message-notice" lay-filter="LAY-app-message-notice"></table>
+					<script type="text/html" id="zizeng">
+						{{d.LAY_TABLE_INDEX+1}}
+					</script>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
 
-		<script src="/layuiadmin/layui/layui.js"></script>
-		<script>
-			layui.config({
-				base: '../../layuiadmin/' //静态资源所在路径
-			}).extend({
-				index: 'lib/index' //主入口模块
-			}).use(['index', 'message', 'table'], function() {
-				var table = layui.table;
-				table.render({
-					elem: '#LAY-app-message-notice',
-					url: '../static/comment.json',
-					skin: 'line' ,//行边框风格
-					page: {
-						groups: 3 //只显示 1 个连续页码
-						,first: false //不显示首页
-						,last: false //不显示尾页
-					},
-					title: '留言管理',
-					cols: [
-						[
-						{
-							field: 'name',
-							title: '客户姓名',
-							width: 100
-						}, {
-							field: 'tel',
-							title: '客户电话',
-							width: 100
-						}, {
-							field: 'content',
-							title: '案情描述',
-						}, {
-							field: 'time',
-							title: '创建时间',
-							width: 100
-						},{
-							field:'replyName',
-							title:'回复律师名',
-							width:100
-						},{
-							field:'replyDate',
-							title:'回复时间',
-							width:100
-						}]
-					],
-				});
-				table.on('del',function(){
-					alert('yep')
-				})
-				table.on('row(LAY-app-message-notice)', function(obj) {
-					var data = obj.data;
-					window.location.href="./editCarousel.html?id="+data.id
-				})
-			});
-		</script>
-	</body>
+<script src="/layuiadmin/layui/layui.js"></script>
+<script>
+	layui.config({
+		base: '../../layuiadmin/' //静态资源所在路径
+	}).extend({
+		index: 'lib/index' //主入口模块
+	}).use(['index', 'message', 'table'], function() {
+		var table = layui.table;
+		table.render({
+			elem: '#LAY-app-message-notice',
+			url: '../static/comment.json',
+			skin: 'line' ,//行边框风格
+			page: {
+				groups: 3 //只显示 1 个连续页码
+				,first: false //不显示首页
+				,last: false //不显示尾页
+			},
+			title: '留言管理',
+			cols: [
+				[
+					{
+						field:'zizeng',
+						width:80,
+						title: '编号',
+						fixed: 'left',
+						templet:'#zizeng'
+					}
+					,
+					{
+						field: 'name',
+						title: '客户姓名',
+						width: 100
+					}, {
+					field: 'tel',
+					title: '客户电话',
+					width: 100
+				}, {
+					field: 'content',
+					title: '案情描述',
+				}, {
+					field: 'time',
+					title: '创建时间',
+					width: 100
+				},{
+					field:'replyName',
+					title:'回复律师名',
+					width:100
+				},{
+					field:'replyDate',
+					title:'回复时间',
+					width:100
+				}]
+			],
+		});
+		table.on('del',function(){
+			alert('yep')
+		})
+		table.on('row(LAY-app-message-notice)', function(obj) {
+			var data = obj.data;
+			window.location.href="./editCarousel.html?id="+data.id
+		})
+	});
+</script>
+</body>
 
 </html>
