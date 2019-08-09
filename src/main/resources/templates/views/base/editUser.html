@@ -69,7 +69,7 @@
 				upload = layui.upload,
 				form = layui.form;
 		$.ajax({
-			url: '../static/user.json',
+			url: '/getUserData',
 			type: "get",
 			dataType: "json",
 			success: function(data) {
@@ -78,11 +78,11 @@
 				for(var i = 0; i < data.length; i++) {
 					console.log(data[i].id)
 					if(data[i].id == idr){
-						document.getElementById('username').value=data[i].username
-						document.getElementById('phone').value=data[i].phonenumber
+						document.getElementById('username').value=data[i].loginName
+						document.getElementById('phone').value=data[i].userTel
 						document.getElementById("email").value=data[i].email
 						var nameArr = document.getElementsByName("sex")
-						if(data[i].sex == '男'){
+						if(data[i].sex == true){
 							nameArr[0].checked="checked"
 //									nameArr[0].checked="checked"
 							form.render('radio')

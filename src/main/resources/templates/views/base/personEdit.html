@@ -84,7 +84,7 @@
             }
         });
         $.ajax({
-            url: '../static/person.json',
+            url: '/getLawyerData',
             type: "get",
             dataType: "json",
             success: function(data) {
@@ -95,11 +95,12 @@
                 var profession=document.getElementById('profession');
                 var lawerPro = document.getElementById("lawerPro");
                 for(var i = 0; i < data.length; i++) {
-                    if(data[i].id == idr) {
-                        lawerName.value=data[i].lawyername;
-                        lawerIntro.value=data[i].introuce;
-                        lawerPro.value=data[i].profession;
-
+                    if(data[i].lawyerId == idr) {
+                        console.log('yep')
+                        console.log(data[i].lawyerId)
+                        lawerName.value=data[i].lawyerName;
+                        lawerIntro.value=data[i].introduction;
+                        lawerPro.value=data[i].lawyerLevel;
                     }
                 }
             }
