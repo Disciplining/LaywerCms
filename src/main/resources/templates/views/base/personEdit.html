@@ -23,12 +23,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label" >律师职级</label>
                         <div class="layui-input-block">
-                            <select name="city" lay-verify="required" lay-filter="category" >
-                                <option value="主任律师">主任律师</option>
-                                <option value="执业律师">执业律师</option>
-                                <option value="实习">实习</option>
-                                <option value="助理律师">助理律师</option>
-                            </select>
+                            <input type="text"  required lay-verify="required"  autocomplete="off" id="lawerPro" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -46,30 +41,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">毕业学校</label>
-                        <div class="layui-input-block">
-                            <input type="text"  required lay-verify="required"  autocomplete="off" class="layui-input" id="graduate">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">主修专业</label>
-                        <div class="layui-input-block">
-                            <input type="text"  required lay-verify="required"  autocomplete="off" class="layui-input" id="major">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">主要荣誉</label>
-                        <div class="layui-input-block">
-                            <input type="text"  required lay-verify="required"  autocomplete="off" class="layui-input" id="achievement">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">重要服务客户</label>
-                        <div class="layui-input-block">
-                            <input type="text"  required lay-verify="required"   class="layui-input" id="customers">
-                        </div>
-                    </div>
+
                     <div class="layui-form-item">
                         <div class="layui-input-block">
                             <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
@@ -121,27 +93,13 @@
                 var lawerIntro=document.getElementById('lawerIntro');
                 var lawerImg=document.getElementById('lawerImg');
                 var profession=document.getElementById('profession');
-                var select =document.getElementsByTagName('select');
-                var option =document.getElementsByTagName('option');
-                var graduate=document.getElementById('graduate');
-                var major=document.getElementById('major');
-                var achievement=document.getElementById('achievement');
-                var customers=document.getElementById('customers');
+                var lawerPro = document.getElementById("lawerPro");
                 for(var i = 0; i < data.length; i++) {
                     if(data[i].id == idr) {
                         lawerName.value=data[i].lawyername;
                         lawerIntro.value=data[i].introuce;
-                        graduate.value=data[i].graduate;
-                        major.value=data[i].major;
-                        achievement.value=data[i].achievement;
-                        customers.value=data[i].customers;
-                        for(var f=0;f<option.length;f++){
-                            if(option[f].value==data[i].profession){
-                                $("select").val(data[i].profession);
-                                form.render("select");
-                            }
+                        lawerPro.value=data[i].profession;
 
-                        }
                     }
                 }
             }

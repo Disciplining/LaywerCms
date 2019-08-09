@@ -25,15 +25,6 @@
 							</div>
 						</div>
 						<div class="layui-form-item layui-form-text">
-							<label class="layui-form-label">头像</label>
-							<div class="layui-input-block">
-								<div id="colla_img" style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
-								<button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
-									<i class="layui-icon">&#xe67c;</i>上传图片
-								</button>
-							</div>
-						</div>
-						<div class="layui-form-item layui-form-text">
 							<label class="layui-form-label">手机</label>
 							<div class="layui-input-block">
 								<input type="text" id="phone" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
@@ -102,22 +93,6 @@
 						}
 					}
 				}
-			}
-		})
-		upload.render({
-			elem: '#test1',
-			url: 'upload',
-			size: 2048,
-			auto: false //选择文件后不自动上传
-			,
-			bindAction: '#save' //指向一个按钮触发上传
-			,
-			choose: function(obj) {
-				//预读本地文件
-				obj.preview(function(index, file, result) {
-					$('#loadinput').val(file.name); //展示文件名
-					$('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a> ');
-				})
 			}
 		});
 	});
