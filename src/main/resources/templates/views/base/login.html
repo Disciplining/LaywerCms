@@ -21,6 +21,7 @@
         <h2>lawyerAdmin</h2>
         <p>律师事务所后台管理登录</p>
       </div>
+      <form action="/userLogin" method="post">
       <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
         <div class="layui-form-item">
           <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
@@ -48,9 +49,10 @@
           <a href="../user/forget.html" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
         </div>
         <div class="layui-form-item">
-            <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登录</button>
+            <button class="layui-btn layui-btn-fluid" type="submit">登录</button>
         </div>
       </div>
+      </form>
     </div>
 
     
