@@ -63,7 +63,7 @@
 
 		table.render({
 			elem: '#test-table-toolbar',
-			url: '../static/collection.json',
+			url: '/getArticleData',
 			toolbar: '#test-table-toolbar-toolbarDemo',
 			title: '团队文集',
 			cols: [
@@ -76,7 +76,7 @@
 						templet:'#zizeng'
 					}
 					,{
-					field: 'type',
+					field: 'typeExpand',
 					title: '文集类型',
 					width: 100,
 				}, {

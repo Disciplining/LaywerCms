@@ -61,7 +61,8 @@
 				upload = layui.upload;
 		table.render({
 			elem: '#test-table-toolbar',
-			url: '../static/ajax.json',
+			url: '/getCarouselData',
+            dataType: 'json',
 			toolbar: '#test-table-toolbar-toolbarDemo',
 			title: '用户数据表',
 			cols: [
