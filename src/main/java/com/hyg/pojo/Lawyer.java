@@ -18,12 +18,4 @@ public class Lawyer
 	private String achievement;
 	private String customers;
 	private String deleteFlag;
-
-	public static class LawyerLevel
-	{
-		public static final String CHIEF_LAWYER = "主任律师";
-		public static final String PRACTICING_LAWYER = "执业律师";
-		public static final String APPRENTICE_LAWYER = "实习律师";
-		public static final String ASSISTANT_LAWYER = "助理律师";
-	}
 }
