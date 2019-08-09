@@ -87,9 +87,8 @@
 	var editor_id = document.getElementById('editor_id')
 	layui.use(['jquery','form'], function() {
 		var $ = layui.$, form=layui.form;
-		;
 		$.ajax({
-			url: '../static/collection.json',
+			url: '/getArticleData',
 			type: "get",
 			dataType: "json",
 			success: function(data) {
@@ -101,8 +100,9 @@
 						intro.innerHTML = data[i].intro
 						editor.html(data[i].content)
 						for(var f=0;f<option.length;f++){
-							if(option[f].value==data[i].type){
-								$("select").val(data[i].type);
+							if(option[f].value==data[i].typeExpand){
+								console.log(option[f].value)
+								$("select").val(data[i].typeExpand);
 								form.render("select");
 							}
 
