@@ -1,6 +1,7 @@
 package com.hyg.pojo;
 
 import lombok.Data;
+import java.sql.Date;
 
 /**
  * 留言表
@@ -9,12 +10,12 @@ import lombok.Data;
 public class MsgBoard
 {
 	private Integer msgId;
-	private Integer customerName;
-	private Integer customerTel;
-	private Integer caseDetail;
-	private Integer createDate;
+	private String customerName;
+	private String customerTel;
+	private String caseDetail;
+	private Date createDate;
 	private Integer replyId;
-	private Integer replyName;
-	private Integer replyDate;
+	private String replyName;
+	private Date replyDate;
 	private String readFlag;
 }
