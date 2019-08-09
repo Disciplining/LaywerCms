@@ -87,4 +87,15 @@ public class GetDataController
 	{
 		return getTableService.getLawyerData();
 	}
+
+	/**
+	 * 菜单表
+	 * @return
+	 */
+	@GetMapping("/getMenuData")
+	@ResponseBody
+	public RespondJson<Menu> getMenuData()
+	{
+		return getTableService.getMenuData();
+	}
 }

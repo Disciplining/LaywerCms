@@ -174,4 +174,19 @@ public class GetTableServiceImpl implements GetTableService
 
 		return json;
 	}
+
+	@Override
+	public RespondJson<Menu> getMenuData()
+	{
+		List<Menu> list = getDataMapper.listMenus();
+
+		RespondJson<Menu> json = new RespondJson<>();
+
+		json.setCode(0);
+		json.setMsg(null);
+		json.setCount((long)list.size());
+		json.setData(list);
+
+		return json;
+	}
 }

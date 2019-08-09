@@ -46,4 +46,6 @@ public interface GetTableService
 	 * @return
 	 */
 	RespondJson<Lawyer> getLawyerData();
+
+	RespondJson<Menu> getMenuData();
 }
