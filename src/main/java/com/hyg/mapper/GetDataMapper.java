@@ -21,7 +21,7 @@ public interface GetDataMapper
 	 * @return
 	 */
 	@Select("select * from `t_agency`")
-	Agency getAgency();
+	List<Agency> getAgency();
 
 	/**
 	 * 团队文集表
@@ -57,4 +57,11 @@ public interface GetDataMapper
 	 */
 	@Select("select * from `t_user`")
 	List<User> listUsers();
+
+	/**
+	 * 律师表
+	 * @return
+	 */
+	@Select("select * from `t_lawyer`")
+	List<Lawyer> listLawyers();
 }

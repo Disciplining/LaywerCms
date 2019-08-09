@@ -136,17 +136,40 @@ public class GetTableServiceImpl implements GetTableService
 		return json;
 	}
 
+	/**
+	 * 事务所表
+	 * @return
+	 */
 	@Override
 	public RespondJson<Agency> getAgencyData()
 	{
-		List<Agency> list = new ArrayList<>(1);
-		list.add(getDataMapper.getAgency());
+		List<Agency> list = getDataMapper.getAgency();
 
 		RespondJson<Agency> json = new RespondJson<>();
 
 		json.setCode(0);
 		json.setMsg(null);
-		json.setCount((long)1);
+		json.setCount((long)list.size());
+		json.setData(list);
+
+		return json;
+	}
+
+	/**
+	 * 律师表
+	 *
+	 * @return
+	 */
+	@Override
+	public RespondJson<Lawyer> getLawyerData()
+	{
+		List<Lawyer> list = getDataMapper.listLawyers();
+
+		RespondJson<Lawyer> json = new RespondJson<>();
+
+		json.setCode(0);
+		json.setMsg(null);
+		json.setCount((long)list.size());
 		json.setData(list);
 
 		return json;

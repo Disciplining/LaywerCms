@@ -76,4 +76,15 @@ public class GetDataController
 	{
 		return getTableService.getAgencyData();
 	}
+
+	/**
+	 * 律师表
+	 * @return
+	 */
+	@GetMapping("/getLawyerData")
+	@ResponseBody
+	public RespondJson<Lawyer> getLawyerData()
+	{
+		return getTableService.getLawyerData();
+	}
 }

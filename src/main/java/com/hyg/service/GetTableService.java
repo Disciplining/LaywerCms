@@ -40,4 +40,10 @@ public interface GetTableService
 	 * @return
 	 */
 	RespondJson<Agency> getAgencyData();
+
+	/**
+	 * 律师表
+	 * @return
+	 */
+	RespondJson<Lawyer> getLawyerData();
 }
