@@ -24,12 +24,11 @@ public class CarouselServiceImpl implements CarouselService
 	public RespondJson<Carousel> getCarouselData()
 	{
 		List<Carousel> list = carouselMapper.listCarousels();
-		long count = carouselMapper.countCarousel();
 
 		RespondJson<Carousel> json = new RespondJson<>();
 		json.setCode(0);
 		json.setMsg(null);
-		json.setCount(count);
+		json.setCount((long)list.size());
 		json.setData(list);
 
 		return json;
