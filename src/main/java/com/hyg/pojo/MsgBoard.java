@@ -16,5 +16,5 @@ public class MsgBoard
 	private Integer replyId;
 	private Integer replyName;
 	private Integer replyDate;
-	private Boolean readFlag;
+	private String readFlag;
 }

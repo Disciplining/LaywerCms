@@ -6,6 +6,7 @@ import com.hyg.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,14 +47,32 @@ public class UserController
 	{
 		User user = JSON.parseObject(jsonData, User.class);
 
-		return userService.userReg(user);
+		return userService.dealUserReg(user);
 	}
 
-	@GetMapping("/userLogin")
-	public String userLogin(User user)
+	@PostMapping("/userLogin")
+	public String userLogin(User user, Model model)
 	{
-		System.out.println(user);
+		int flag = userService.dealUserLogin(user);
 
-		return "index";
+		if (flag == 0) // 用户不存在
+		{
+			model.addAttribute("res", "用户不存在");
+			return "base/login";
+		}
+		else if (flag == 1) // 用户存在但密码错误
+		{
+			model.addAttribute("res", "密码错误");
+			return "base/login";
+		}
+		else if (flag == 2) // 登录成功
+		{
+			return "index";
+		}
+		else
+		{
+			model.addAttribute("res", "出现未知错误");
+			return "base/login";
+		}
 	}
 }

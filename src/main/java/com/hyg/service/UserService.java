@@ -17,7 +17,7 @@ public interface UserService
 	 * @param user 用户数据包含明文密码
 	 * @return
 	 */
-	boolean userReg(User user);
+	boolean dealUserReg(User user);
 
 	/**
 	 * 用户登录逻辑

@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService
 	 * @return
 	 */
 	@Override
-	public boolean userReg(User user)
+	public boolean dealUserReg(User user)
 	{
 		// 加密用户密码
 		user.setPassword(UserUtil.getEncryptPassword(user.getPassword()));
