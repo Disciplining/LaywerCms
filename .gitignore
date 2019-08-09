@@ -1,5 +1,6 @@
 .idea
 src/test
 target
+src/main/java/com/hyg/test
 
 *.iml
