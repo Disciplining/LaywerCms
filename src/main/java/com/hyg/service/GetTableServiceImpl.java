@@ -1,6 +1,6 @@
 package com.hyg.service;
 
-import com.hyg.mapper.GetDataMapper;
+import com.hyg.mapper.ListMapper;
 import com.hyg.pojo.*;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class GetTableServiceImpl implements GetTableService
 {
 	@Autowired
 	@Qualifier("getDataMapper")
-	private GetDataMapper getDataMapper;
+	private ListMapper getDataMapper;
 
 	/*====================================================================================*/
 

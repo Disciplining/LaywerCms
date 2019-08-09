@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Mapper
 @Repository("getDataMapper")
-public interface GetDataMapper
+public interface ListMapper
 {
 	/**
 	 * 事务所表  只有一条数据
