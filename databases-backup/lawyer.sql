@@ -66,7 +66,7 @@ CREATE TABLE `t_carousel` (
   `imgPath` varchar(255) NOT NULL,
   `editDate` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,10 +82,6 @@ CREATE TABLE `t_lawyer` (
   `lawyerLevel` varchar(100) NOT NULL,
   `introduction` varchar(2000) DEFAULT NULL,
   `lawyerImg` int(11) DEFAULT NULL,
-  `graduate` varchar(255) DEFAULT NULL,
-  `major` varchar(255) DEFAULT NULL,
-  `achievement` text,
-  `customers` varchar(255) DEFAULT NULL,
   `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`lawyerId`),
   UNIQUE KEY `t_lawyer_lawyerName_uindex` (`lawyerName`)
@@ -163,4 +159,4 @@ CREATE TABLE `t_user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-08 22:25:35
+-- Dump completed on 2019-08-09  9:45:54
