@@ -27,7 +27,7 @@ CREATE TABLE `t_agency` (
   `agencyName` varchar(100) DEFAULT NULL,
   `agencyImg` varchar(255) NOT NULL,
   `agencyDetail` int(11) NOT NULL,
-  `deleteFlag` tinyint(1) NOT NULL,
+  `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -48,7 +48,7 @@ CREATE TABLE `t_article` (
   `content` text NOT NULL,
   `editDate` datetime NOT NULL,
   `count` int(10) NOT NULL,
-  `deleteFlag` tinyint(1) NOT NULL,
+  `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`articleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -86,7 +86,7 @@ CREATE TABLE `t_lawyer` (
   `major` varchar(255) DEFAULT NULL,
   `achievement` text,
   `customers` varchar(255) DEFAULT NULL,
-  `deleteFlag` tinyint(1) NOT NULL,
+  `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`lawyerId`),
   UNIQUE KEY `t_lawyer_lawyerName_uindex` (`lawyerName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -148,8 +148,10 @@ CREATE TABLE `t_user` (
   `gender` tinyint(1) DEFAULT NULL,
   `userTel` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -161,4 +163,4 @@ CREATE TABLE `t_user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-08 10:50:40
+-- Dump completed on 2019-08-08 22:25:35
