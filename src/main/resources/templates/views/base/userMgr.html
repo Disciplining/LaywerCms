@@ -19,10 +19,6 @@
 						<div class="layui-inline" style="margin-right: 20px;">
 							<input class="layui-input" name="username" id="demoReload" autocomplete="off">
 						</div>
-						性别:
-						<div class="layui-inline">
-							<input class="layui-input" name="sex" id="demoReload" autocomplete="off">
-						</div>
 						<button class="layui-btn" data-type="reload">搜索</button>
 					</div>
 					<table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
@@ -57,7 +53,7 @@
 				upload = layui.upload;
 		table.render({
 			elem: '#test-table-toolbar',
-			url: '../static/user.json',
+			url: '/getUserData',
 			toolbar: '#test-table-toolbar-toolbarDemo',
 			title: '用户数据表',
 			page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
@@ -77,11 +73,11 @@
 					templet: '#zizeng'
 				},
 					{
-						field: 'username',
+						field: 'loginName',
 						title: '用户名',
 						width: 100
 					}, {
-					field: 'phonenumber',
+					field: 'userTel',
 					title: '手机',
 					width: 100,
 					edit: true
@@ -89,19 +85,14 @@
 					field: 'email',
 					title: '邮箱',
 				}, {
-					field: 'sex',
+					field: 'gender',
 					title: '性别',
 					width: 100
 				}, {
-					field: 'ip',
+					field: 'position',
 					title: 'IP',
 					width: 100
-				}, {
-					field: 'Jonntime',
-					title: '加入时间',
-					width: 100,
-					sort: true
-				}, {
+				},  {
 					title: '操作',
 					toolbar: '#test-table-toolbar-barDemo',
 					width: 200

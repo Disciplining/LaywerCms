@@ -51,7 +51,7 @@
 		var table = layui.table;
 		table.render({
 			elem: '#LAY-app-message-notice',
-			url: '../static/comment.json',
+			url: '/getMsgBoardData',
 			skin: 'line' ,//行边框风格
 			page: {
 				groups: 3 //只显示 1 个连续页码
@@ -70,18 +70,18 @@
 					}
 					,
 					{
-						field: 'name',
+						field: 'customerName',
 						title: '客户姓名',
 						width: 100
 					}, {
-					field: 'tel',
+					field: 'customerTel',
 					title: '客户电话',
 					width: 100
 				}, {
-					field: 'content',
+					field: 'caseDetail',
 					title: '案情描述',
 				}, {
-					field: 'time',
+					field: 'createDate',
 					title: '创建时间',
 					width: 100
 				},{
@@ -100,7 +100,7 @@
 		})
 		table.on('row(LAY-app-message-notice)', function(obj) {
 			var data = obj.data;
-			window.location.href="./editCarousel.html?id="+data.id
+			window.location.href="./editCarousel.html?id="+data.msgId
 		})
 	});
 </script>

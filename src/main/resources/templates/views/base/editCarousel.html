@@ -55,18 +55,18 @@
 		var layer = layui.layer,
 				$ = layui.$;
 		$.ajax({
-			url: '../static/comment.json',
+			url: '/getMsgBoardData',
 			type: "get",
 			dataType: "json",
 			success: function(data) {
 				var data = data.data
 				for(var i = 0; i < data.length; i++) {
-					if(data[i].id == idr) {
-						hname.innerHTML=data[i].name
-						spane.innerHTML=data[i].time
+					if(data[i].msgId == idr) {
+						hname.innerHTML=data[i].customerName
+						spane.innerHTML=data[i].createDate
 						dd.innerHTML = "<div id='main'>" +
 								"<p style='text-indent:25px'>" +
-								"" + data[i].content + "" +
+								"" + data[i].caseDetail + "" +
 								"</p>" +
 								"</div>"
 					}

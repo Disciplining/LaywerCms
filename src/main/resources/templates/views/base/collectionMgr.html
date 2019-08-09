@@ -19,17 +19,13 @@
 			<div class="layui-card">
 				<div class="layui-card-header">事务所介绍</div>
 				<div class="layui-card-body">
-					<div class="demoTable" style="margin-bottom: 20px;">
-						文集类型:
-						<div class="layui-inline" style="margin-right: 20px;">
-							<input class="layui-input" name="type" id="demoReload" autocomplete="off">
-						</div>
-						作者名字:
-						<div class="layui-inline">
-							<input class="layui-input" name="author" id="demoReload" autocomplete="off">
-						</div>
-						<button class="layui-btn" data-type="reload">搜索</button>
-					</div>
+                    <div class="demoTable" style="margin-bottom: 20px">
+						author：
+                        <div class="layui-inline">
+                            <input class="layui-input" name="author" id="demoReload" autocomplete="off">
+                        </div>
+                        <button class="layui-btn" data-type="reload">搜索</button>
+                    </div>
 					<table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
 					</table>
 					<script type="text/html" id="zizeng">
@@ -57,9 +53,10 @@
 		base: '../../layuiadmin/' //静态资源所在路径
 	}).extend({
 		index: 'lib/index' //主入口模块
-	}).use(['index', 'table'], function() {
+	}).use(['index', 'table','jquery'], function() {
 		var admin = layui.admin,
-				table = layui.table
+            $=layui.$,
+				table = layui.table;
 
 		table.render({
 			elem: '#test-table-toolbar',
@@ -104,8 +101,32 @@
 					width: 120
 				}]
 			]
+				,id: 'testReload'
 
 		});
+        var $ = layui.$, active = {
+            reload: function(){
+                var demoReload = $('#demoReload');
+
+                //执行重载
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        key: {
+							author : demoReload.val()
+                        }
+                    }
+                }, 'data');
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            console.log(type)
+            active[type] ? active[type].call(this) : '';
+        });
 
 		//头工具栏事件
 		table.on('toolbar(test-table-toolbar)', function(obj) {
