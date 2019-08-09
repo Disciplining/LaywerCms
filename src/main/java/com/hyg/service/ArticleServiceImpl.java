@@ -41,6 +41,8 @@ public class ArticleServiceImpl implements ArticleService
 			temp.setAuthor(foo.getAuthor());
 			temp.setIntro(foo.getIntro());
 			temp.setContent(foo.getContent());
+			temp.setEditDate(foo.getEditDate());
+			temp.setCount(foo.getCount());
 			temp.setDeleteFlag(foo.getDeleteFlag());
 
 			switch (foo.getType())
