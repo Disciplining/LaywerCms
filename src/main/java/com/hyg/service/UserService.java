@@ -10,7 +10,7 @@ public interface UserService
 	 * 获得所有的登录用户 的所有字段
 	 * @return
 	 */
-	public List<User> listUsers();
+	List<User> listUsers();
 
 	/**
 	 * 用户注册逻辑
