@@ -1,7 +1,8 @@
-package com.hyg.service;
+package com.hyg.service.impl;
 
 import com.hyg.mapper.UserMapper;
 import com.hyg.pojo.User;
+import com.hyg.service.UserService;
 import com.hyg.util.UserUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;

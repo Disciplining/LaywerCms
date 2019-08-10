@@ -18,4 +18,5 @@ public class MsgBoard
 	private String replyName;
 	private Date replyDate;
 	private String readFlag;
+	private String replyMsg;
 }

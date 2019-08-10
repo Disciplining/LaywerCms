@@ -1,33 +1,40 @@
-package com.hyg.service;
+package com.hyg.service.impl;
 
-import com.hyg.mapper.InsertMapper;
+import com.hyg.mapper.UpdateMapper;
 import com.hyg.pojo.Article;
 import com.hyg.pojo.ArticleExpand;
+import com.hyg.service.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 
-@Service("insertServiceImpl")
-public class InsertServiceImpl implements InsertService
+/**
+ * 根据主键
+ * 更新表
+ * 除了自增字段 都更新
+ */
+@Service("updateServiceImpl")
+public class UpdateServiceImpl implements UpdateService
 {
 	@Autowired
-	@Qualifier("insertMapper")
-	private InsertMapper insertMapper;
+	@Qualifier("updateMapper")
+	private UpdateMapper updateMapper;
 
 	/**
 	 * 团队文集表
 	 *
-	 * @param articleExpand
+	 * @param articleExpand 用户传过来的数据
 	 * @return
 	 */
 	@Override
-	public boolean insertTableArticle(ArticleExpand articleExpand)
+	public boolean updateTableArticle(ArticleExpand articleExpand)
 	{
 		Article article = new Article();
 
 		// 前端传过来的数据
+		article.setArticleId(articleExpand.getArticleId());
 		article.setArticleTitle(articleExpand.getArticleTitle());
 		article.setAuthor(articleExpand.getAuthor());
 		article.setIntro(articleExpand.getIntro());
@@ -57,17 +64,16 @@ public class InsertServiceImpl implements InsertService
 
 		// 后端生成的数据
 		article.setEditDate(new Date(System.currentTimeMillis()));
-		article.setCount(0);
-		article.setDeleteFlag("false");
 
 		try
 		{
-			insertMapper.insertOneArticle(article);
+			updateMapper.updateArticle(article);
 		}
 		catch (Exception e)
 		{
 			return false;
 		}
+
 
 		return true;
 	}
