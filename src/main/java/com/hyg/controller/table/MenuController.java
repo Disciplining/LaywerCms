@@ -20,7 +20,7 @@ public class MenuController
 	 * 获得律师表中的所有数据
 	 * @return
 	 */
-	@GetMapping("/getMenuData")
+	@GetMapping("/selectData/getMenuData")
 	@ResponseBody
 	public RespondJson<Menu> getMenuData()
 	{

@@ -24,7 +24,7 @@ public class UserController
 	 * 获得用户表中的所有数据
 	 * @return
 	 */
-	@GetMapping("/getUserData")
+	@GetMapping("/selectData/getUserData")
 	@ResponseBody
 	public RespondJson<User> getUserData()
 	{

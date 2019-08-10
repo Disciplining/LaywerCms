@@ -24,7 +24,7 @@ public class ArticleController
 	 * 获得团队文集表中的所有数据
 	 * @return
 	 */
-	@GetMapping("/getArticleData")
+	@GetMapping("/selectData/getArticleData")
 	@ResponseBody
 	public RespondJson<ArticleExpand> getArticleData()
 	{

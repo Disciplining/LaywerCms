@@ -20,7 +20,7 @@ public class CarouselController
 	 * 获得轮播图表中的所有数据
 	 * @return
 	 */
-	@GetMapping("/getCarouselData")
+	@GetMapping("/selectData/getCarouselData")
 	@ResponseBody
 	public RespondJson<Carousel> getCarouselData()
 	{

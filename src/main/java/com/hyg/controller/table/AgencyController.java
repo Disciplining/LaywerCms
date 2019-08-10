@@ -20,7 +20,7 @@ public class AgencyController
 	 * 获得事务所表中的所有数据
 	 * @return
 	 */
-	@GetMapping("/getAgencyData")
+	@GetMapping("/selectData/getAgencyData")
 	@ResponseBody
 	public RespondJson<Agency> getAgencyData()
 	{

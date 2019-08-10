@@ -20,7 +20,7 @@ public class LawyerController
 	 * 获得律师表中的所有数据
 	 * @return
 	 */
-	@GetMapping("/getLawyerData")
+	@GetMapping("/selectData/getLawyerData")
 	@ResponseBody
 	public RespondJson<Lawyer> getLawyerData()
 	{

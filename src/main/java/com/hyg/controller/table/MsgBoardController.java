@@ -20,7 +20,7 @@ public class MsgBoardController
 	 * 获得留言表中的所有数据
 	 * @return
 	 */
-	@GetMapping("/getMsgBoardData")
+	@GetMapping("/selectData/getMsgBoardData")
 	@ResponseBody
 	public RespondJson<MsgBoard> getMsgBoardData()
 	{
