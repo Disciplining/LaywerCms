@@ -1,6 +1,7 @@
 package com.hyg.mapper;
 
 import com.hyg.pojo.Article;
+import com.hyg.pojo.Carousel;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -23,5 +24,10 @@ public interface InsertMapper
 				"values (#{type},#{articleTitle},#{author},#{intro},#{content},#{editDate},#{count},#{deleteFlag})")
 	void insertOneArticle(Article article);
 
-//	void insertOneCarousel(Carousel carousel);
+	/**
+	 * 轮播图表
+	 * @param carousel
+	 */
+	@Insert("insert into `t_carousel` (`id`,`bannerName`,`imgPath`,`editDate`) values(#{id},#{bannerName},#{imgPath},#{editDate})")
+	void insertOneCarousel(Carousel carousel);
 }
