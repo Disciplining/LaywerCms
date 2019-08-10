@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 	<meta charset="utf-8">
@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<div th:text="${res}"></div>
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md12">
@@ -19,11 +20,11 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label">文集类型</label>
 							<div class="layui-input-block">
-								<select name="type" lay-verify="required">
+								<select name="typeExpand" lay-verify="required">
 									<option value=""></option>
-									<option value="0">公司法律</option>
-									<option value="1">劳动法律</option>
-									<option value="2">形式法律</option>
+									<option value="公司法律">公司法律</option>
+									<option value="劳动法律">劳动法律</option>
+									<option value="形式法律">形式法律</option>
 								</select>
 							</div>
 						</div>

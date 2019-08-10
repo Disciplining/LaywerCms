@@ -34,7 +34,6 @@ public class GetTableServiceImpl implements GetTableService
 		// 将拿到的数据转换为前端的形式
 		for (Article foo : articles)
 		{
-			System.out.println(foo);
 			ArticleExpand temp = new ArticleExpand();
 			temp.setArticleId(foo.getArticleId());
 			temp.setType(foo.getType());

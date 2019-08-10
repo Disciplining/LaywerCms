@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+
 @Service("insertTableDataServiceImpl")
 public class InsertTableDataServiceImpl implements InsertTableDataService
 {
@@ -23,8 +25,13 @@ public class InsertTableDataServiceImpl implements InsertTableDataService
 	@Override
 	public boolean insertTableArticle(ArticleExpand articleExpand)
 	{
-		Article article = articleExpand;
+		Article article = new Article();
 
+		// 前端传过来的数据
+		article.setArticleTitle(articleExpand.getArticleTitle());
+		article.setAuthor(articleExpand.getAuthor());
+		article.setIntro(articleExpand.getIntro());
+		article.setContent(articleExpand.getContent());
 		switch (articleExpand.getTypeExpand())
 		{
 			case "公司法律":
@@ -48,10 +55,19 @@ public class InsertTableDataServiceImpl implements InsertTableDataService
 			}
 		}
 
+		// 后端生成的数据
+		article.setEditDate(new Date(System.currentTimeMillis()));
+		article.setCount(0);
+		article.setDeleteFlag("false");
 
-		System.out.println("++++++++++ www.baidu.com ++++++++++ debug:" + article);
-
-//		insertMapper.insertOneArticle(article);
+		try
+		{
+			insertMapper.insertOneArticle(article);
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
 
 		return true;
 	}

@@ -5,12 +5,9 @@ import com.hyg.service.InsertTableDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 向表中插入数据
@@ -24,15 +21,18 @@ public class InsertTableController
 	private InsertTableDataService insertTableDataService;
 
 	@PostMapping("/Article")
-	@ResponseBody
-	public Map<String, String> insertArticle(ArticleExpand articleExpand)
+	public String insertArticle(ArticleExpand articleExpand, Model model)
 	{
-		insertTableDataService.insertTableArticle(articleExpand);
+		boolean insertFlag = insertTableDataService.insertTableArticle(articleExpand);
 
-		Map<String, String> map = new HashMap<>();
-
-		map.put("a", "bb");
-
-		return map;
+		if (insertFlag)
+		{
+			return "base/collectionMgr";
+		}
+		else
+		{
+			model.addAttribute("res", "插入数据失败");
+			return "base/collectionAdd";
+		}
 	}
 }
