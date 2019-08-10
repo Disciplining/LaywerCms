@@ -17,10 +17,11 @@
 				<div class="layui-card-body">
 					<div style="margin-top:20px">
 						<form class="layui-form" action="">
+							<input type="hidden" id="realId" name="articleId">
 							<div class="layui-form-item layui-form-text">
 								<label class="layui-form-label">文集类型</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
+									<select name="typeExpand" lay-verify="required">
 										<option value=""></option>
 										<option value="公司法律">公司法律</option>
 										<option value="劳动法律">劳动法律</option>
@@ -31,19 +32,19 @@
 							<div class="layui-form-item layui-form-text">
 								<label class="layui-form-label">文章名字</label>
 								<div class="layui-input-block">
-									<input type="text" id="articleTitle" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+									<input type="text" id="articleTitle" name="articleTitle" required lay-verify="required" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 							<div class="layui-form-item layui-form-text">
 								<label class="layui-form-label">作者名字</label>
 								<div class="layui-input-block">
-									<input type="text" id="author" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+									<input type="text" id="author" name="author" required lay-verify="required" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 							<div class="layui-form-item layui-form-text">
 								<label class="layui-form-label">文集简介</label>
 								<div class="layui-input-block">
-									<textarea name="desc" id="intro" class="layui-textarea"></textarea>
+									<textarea name="intro" id="intro" class="layui-textarea"></textarea>
 								</div>
 							</div>
 							<div class="layui-form-item layui-form-text">
@@ -77,6 +78,7 @@
 		window.editor = K.create('#editor_id');
 	});
 	var idr = filterId(location.href)
+	var realId = document.getElementById("realId")
 	var select =document.getElementsByTagName('select');
 	var option =document.getElementsByTagName('option');
 	var type = document.getElementById('type')
@@ -95,13 +97,13 @@
 				var data = data.data
 				for(var i = 0; i < data.length; i++) {
 					if(data[i].articleId == idr) {
+						realId.value= data[i].articleId
 						articleTitle.value = data[i].articleTitle
 						author.value = data[i].author
 						intro.innerHTML = data[i].intro
 						editor.html(data[i].content)
 						for(var f=0;f<option.length;f++){
 							if(option[f].value==data[i].typeExpand){
-								console.log(option[f].value)
 								$("select").val(data[i].typeExpand);
 								form.render("select");
 							}

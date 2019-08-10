@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<div th:text="${res}"></div>
+<input th:value="${res}" id="error" style="display: none">
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md12">
@@ -96,11 +96,16 @@
 		// setInterval(function(){
 		// 	time.value=realTime();
 		// },1000)
+		var error = document.getElementById('error').value;
 		KindEditor.ready(function(K) {
 			window.editor = K.create('#editor_id');
 		});
-		layui.use(['form', 'upload', 'jquery'], function() {
-			var form = layui.form
+		layui.use(['form', 'upload', 'jquery','layer'], function() {
+			var form = layui.form,
+					layer=layui.layer;
+			if(error){
+				layer.alert('插入失败')
+			}
 		});
 	</script>
 </body>
