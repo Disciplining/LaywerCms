@@ -9,6 +9,6 @@ public class RespondJson<T>
 {
 	private Integer code;
 	private String msg;
-	private Long count;
+	private Integer count;
 	private List<T> data;
 }

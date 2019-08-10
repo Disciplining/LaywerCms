@@ -3,6 +3,7 @@ package com.hyg.service.impl;
 import com.hyg.mapper.UserMapper;
 import com.hyg.pojo.User;
 import com.hyg.service.UserService;
+import com.hyg.util.RespondJson;
 import com.hyg.util.UserUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -14,12 +15,35 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService
 {
 	@Autowired
 	@Qualifier("userMapper")
 	private UserMapper userMapper;
+
+	/**
+	 * 获得符合前端格式的
+	 * 用户表的数据
+	 *
+	 * @return
+	 */
+	@Override
+	public RespondJson<User> getUserData()
+	{
+		List<User> list = userMapper.listUsers();
+
+		RespondJson<User> json = new RespondJson<>();
+
+		json.setCode(0);
+		json.setMsg(null);
+		json.setCount(list.size());
+		json.setData(list);
+
+		return json;
+	}
 
 	/**
 	 * 用户注册逻辑

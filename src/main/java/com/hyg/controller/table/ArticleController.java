@@ -1,10 +1,7 @@
 package com.hyg.controller.table;
 
 import com.hyg.pojo.ArticleExpand;
-import com.hyg.service.DeleteService;
-import com.hyg.service.InsertService;
 import com.hyg.service.SelectService;
-import com.hyg.service.UpdateService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

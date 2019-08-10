@@ -1,9 +1,17 @@
 package com.hyg.service;
 
 import com.hyg.pojo.User;
+import com.hyg.util.RespondJson;
 
 public interface UserService
 {
+	/**
+	 * 获得符合前端格式的
+	 * 用户表的数据
+	 * @return
+	 */
+	RespondJson<User> getUserData();
+
 	/**
 	 * 用户注册逻辑
 	 * @param user 用户数据包含明文密码
