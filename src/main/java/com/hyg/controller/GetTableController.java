@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * json数据
  */
 @Controller
-public class GetDataController
+public class GetTableController
 {
 	@Autowired
 	@Qualifier("getTableServiceImpl")

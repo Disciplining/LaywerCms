@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 @Configuration
 public class ShiroConfig
 {
@@ -23,10 +26,9 @@ public class ShiroConfig
 		/**
 		 * 设置拦截URL
 		 */
-//		Map<String, String> map = new LinkedHashMap<>();
-//		map.put("/add", "authc"); //拦截的URL中可以使用*号
-//		map.put("/update", "authc");
-//		shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
+		Map<String, String> map = new LinkedHashMap<>();
+		map.put("/insertData/*", "authc"); //拦截的URL中可以使用*号
+		shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
 		/**
 		 * 设置未认证时发给controller的请求

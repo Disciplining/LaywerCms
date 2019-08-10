@@ -4,7 +4,6 @@ import lombok.Data;
 
 import java.sql.Date;
 
-
 /**
  * 轮播图表
  */
