@@ -27,6 +27,7 @@ public class ShiroConfig
 		 * 设置拦截URL
 		 */
 		Map<String, String> map = new LinkedHashMap<>();
+		map.put("/selectData/*", "authc");
 		map.put("/insertData/*", "authc");
 		map.put("/updateData/*", "authc");
 		map.put("/deleteData/*", "authc");
