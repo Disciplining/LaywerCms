@@ -6,5 +6,5 @@ public interface DeleteService
 	 * 团队文集表
 	 * @param id
 	 */
-	void deleteOneArticleById(int id);
+	boolean deleteOneArticleById(int id);
 }

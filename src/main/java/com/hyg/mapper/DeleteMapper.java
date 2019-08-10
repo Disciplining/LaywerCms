@@ -16,5 +16,5 @@ public interface DeleteMapper
 	 * @param articleId
 	 */
 	@Delete("delete from `t_article` where `articleId`=#{articleId}")
-	void deleteOneArticleById(int articleId);
+	boolean deleteOneArticleById(int articleId);
 }

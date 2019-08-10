@@ -22,8 +22,17 @@ public class DeleteServiceImpl implements DeleteService
 	 * @param id
 	 */
 	@Override
-	public void deleteOneArticleById(int id)
+	public boolean deleteOneArticleById(int id)
 	{
-		deleteMapper.deleteOneArticleById(id);
+		try
+		{
+			deleteMapper.deleteOneArticleById(id);
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+
+		return true;
 	}
 }

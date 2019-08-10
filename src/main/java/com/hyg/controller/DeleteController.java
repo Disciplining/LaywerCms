@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 根据主键删除表中的数据
@@ -20,10 +21,16 @@ public class DeleteController
 	private DeleteService deleteService;
 
 	@GetMapping("/article")
-	String deleteOneArticleById(@RequestParam("id") String id)
+	@ResponseBody
+	public String deleteOneArticleById(@RequestParam("id") String id)
 	{
-		deleteService.deleteOneArticleById(Integer.parseInt(id));
-
-		return "base/collectionMgr";
+		if (deleteService.deleteOneArticleById(Integer.parseInt(id)))
+		{
+			return "success";
+		}
+		else
+		{
+			return "fail";
+		}
 	}
 }
