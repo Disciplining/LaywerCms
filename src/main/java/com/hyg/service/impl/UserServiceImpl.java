@@ -54,8 +54,18 @@ public class UserServiceImpl implements UserService
 	@Override
 	public boolean dealUserReg(User user)
 	{
+		if (user.getLoginName() == null || user.getPassword() == null)
+		{
+			return false;
+		}
+
 		// 加密用户密码
 		user.setPassword(UserUtil.getEncryptPassword(user.getPassword()));
+
+		if (user.getDeleteFlag() == null)
+		{
+			user.setDeleteFlag("0");
+		}
 
 		try
 		{
