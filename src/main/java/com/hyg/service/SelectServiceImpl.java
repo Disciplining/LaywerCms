@@ -1,6 +1,6 @@
 package com.hyg.service;
 
-import com.hyg.mapper.ListMapper;
+import com.hyg.mapper.SelectMapper;
 import com.hyg.pojo.*;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("getTableServiceImpl")
-public class GetTableServiceImpl implements GetTableService
+@Service("selectServiceImpl")
+public class SelectServiceImpl implements SelectService
 {
 	@Autowired
-	@Qualifier("getDataMapper")
-	private ListMapper getDataMapper;
+	@Qualifier("selectMapper")
+	private SelectMapper selectMapper;
 
 	/*====================================================================================*/
 
@@ -27,7 +27,7 @@ public class GetTableServiceImpl implements GetTableService
 	@Override
 	public RespondJson<ArticleExpand> getArticleData()
 	{
-		List<Article> articles = getDataMapper.listArticles(); // 文集数据
+		List<Article> articles = selectMapper.listArticles(); // 文集数据
 		List<ArticleExpand> list = new ArrayList<>(articles.size());
 
 
@@ -85,7 +85,7 @@ public class GetTableServiceImpl implements GetTableService
 	@Override
 	public RespondJson<Carousel> getCarouselData()
 	{
-		List<Carousel> list = getDataMapper.listCarousels();
+		List<Carousel> list = selectMapper.listCarousels();
 
 		RespondJson<Carousel> json = new RespondJson<>();
 		json.setCode(0);
@@ -104,7 +104,7 @@ public class GetTableServiceImpl implements GetTableService
 	@Override
 	public RespondJson<MsgBoard> getMsgBoardData()
 	{
-		List<MsgBoard> list = getDataMapper.listMsgBoards();
+		List<MsgBoard> list = selectMapper.listMsgBoards();
 
 		RespondJson<MsgBoard> json = new RespondJson<>();
 		json.setCode(0);
@@ -123,7 +123,7 @@ public class GetTableServiceImpl implements GetTableService
 	@Override
 	public RespondJson<User> getUserData()
 	{
-		List<User> list = getDataMapper.listUsers();
+		List<User> list = selectMapper.listUsers();
 
 		RespondJson<User> json = new RespondJson<>();
 
@@ -142,7 +142,7 @@ public class GetTableServiceImpl implements GetTableService
 	@Override
 	public RespondJson<Agency> getAgencyData()
 	{
-		List<Agency> list = getDataMapper.getAgency();
+		List<Agency> list = selectMapper.getAgency();
 
 		RespondJson<Agency> json = new RespondJson<>();
 
@@ -162,7 +162,7 @@ public class GetTableServiceImpl implements GetTableService
 	@Override
 	public RespondJson<Lawyer> getLawyerData()
 	{
-		List<Lawyer> list = getDataMapper.listLawyers();
+		List<Lawyer> list = selectMapper.listLawyers();
 
 		RespondJson<Lawyer> json = new RespondJson<>();
 
@@ -177,7 +177,7 @@ public class GetTableServiceImpl implements GetTableService
 	@Override
 	public RespondJson<Menu> getMenuData()
 	{
-		List<Menu> list = getDataMapper.listMenus();
+		List<Menu> list = selectMapper.listMenus();
 
 		RespondJson<Menu> json = new RespondJson<>();
 

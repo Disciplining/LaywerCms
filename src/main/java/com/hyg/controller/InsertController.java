@@ -1,7 +1,7 @@
 package com.hyg.controller;
 
 import com.hyg.pojo.ArticleExpand;
-import com.hyg.service.InsertTableDataService;
+import com.hyg.service.InsertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/insertData")
-public class InsertTableController
+public class InsertController
 {
 	@Autowired
-	@Qualifier("insertTableDataServiceImpl")
-	private InsertTableDataService insertTableDataService;
+	@Qualifier("insertServiceImpl")
+	private InsertService insertService;
 
 	/**
 	 * 团队文集表
@@ -29,7 +29,7 @@ public class InsertTableController
 	@PostMapping("/Article")
 	public String insertArticle(ArticleExpand articleExpand, Model model)
 	{
-		boolean insertFlag = insertTableDataService.insertTableArticle(articleExpand);
+		boolean insertFlag = insertService.insertTableArticle(articleExpand);
 
 		if (insertFlag)
 		{

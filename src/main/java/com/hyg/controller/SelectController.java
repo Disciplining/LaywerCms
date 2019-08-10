@@ -1,7 +1,7 @@
 package com.hyg.controller;
 
 import com.hyg.pojo.*;
-import com.hyg.service.GetTableService;
+import com.hyg.service.SelectService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * json数据
  */
 @Controller
-public class GetTableController
+public class SelectController
 {
 	@Autowired
-	@Qualifier("getTableServiceImpl")
-	private GetTableService getTableService;
+	@Qualifier("selectServiceImpl")
+	private SelectService selectService;
 
 	/*============================================================*/
 
@@ -30,7 +30,7 @@ public class GetTableController
 	@ResponseBody
 	public RespondJson<ArticleExpand> getArticleData()
 	{
-		return getTableService.getArticleData();
+		return selectService.getArticleData();
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class GetTableController
 	@ResponseBody
 	public RespondJson<Carousel> getCarouselData()
 	{
-		return getTableService.getCarouselData();
+		return selectService.getCarouselData();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class GetTableController
 	@ResponseBody
 	public RespondJson<MsgBoard> getMsgBoardData()
 	{
-		return getTableService.getMsgBoardData();
+		return selectService.getMsgBoardData();
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class GetTableController
 	@ResponseBody
 	public RespondJson<User> getUserData()
 	{
-		return getTableService.getUserData();
+		return selectService.getUserData();
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class GetTableController
 	@ResponseBody
 	public RespondJson<Agency> getAgencyData()
 	{
-		return getTableService.getAgencyData();
+		return selectService.getAgencyData();
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class GetTableController
 	@ResponseBody
 	public RespondJson<Lawyer> getLawyerData()
 	{
-		return getTableService.getLawyerData();
+		return selectService.getLawyerData();
 	}
 
 	/**
@@ -96,6 +96,6 @@ public class GetTableController
 	@ResponseBody
 	public RespondJson<Menu> getMenuData()
 	{
-		return getTableService.getMenuData();
+		return selectService.getMenuData();
 	}
 }

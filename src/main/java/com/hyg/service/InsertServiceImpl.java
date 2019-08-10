@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 
-@Service("insertTableDataServiceImpl")
-public class InsertTableDataServiceImpl implements InsertTableDataService
+@Service("insertServiceImpl")
+public class InsertServiceImpl implements InsertService
 {
 	@Autowired
 	@Qualifier("insertMapper")

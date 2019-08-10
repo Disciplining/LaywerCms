@@ -6,7 +6,7 @@ import com.hyg.pojo.ArticleExpand;
  * 向数据库中的表插入数据
  * 除了自增字段 全部插入
  */
-public interface InsertTableDataService
+public interface InsertService
 {
 	/**
 	 * 团队文集表

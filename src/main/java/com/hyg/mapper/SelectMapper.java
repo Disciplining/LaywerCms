@@ -13,8 +13,8 @@ import java.util.List;
  * 且获取的是所有数据的所有字段
  */
 @Mapper
-@Repository("getDataMapper")
-public interface ListMapper
+@Repository("selectMapper")
+public interface SelectMapper
 {
 	/**
 	 * 事务所表  只有一条数据
