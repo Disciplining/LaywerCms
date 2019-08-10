@@ -20,8 +20,10 @@ public class DeleteController
 	private DeleteService deleteService;
 
 	@GetMapping("/article")
-	void deleteOneArticleById(@RequestParam("id") String id)
+	String deleteOneArticleById(@RequestParam("id") String id)
 	{
 		deleteService.deleteOneArticleById(Integer.parseInt(id));
+
+		return "base/collectionMgr";
 	}
 }
