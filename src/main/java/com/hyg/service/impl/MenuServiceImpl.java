@@ -6,9 +6,11 @@ import com.hyg.service.MenuService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service("menuServiceImpl")
 public class MenuServiceImpl implements MenuService
 {
 	@Autowired

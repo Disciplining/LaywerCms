@@ -1,7 +1,7 @@
 package com.hyg.controller.table;
 
 import com.hyg.pojo.ArticleExpand;
-import com.hyg.service.SelectService;
+import com.hyg.service.ArticleService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,20 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ArticleController
 {
 	@Autowired
-	@Qualifier("deleteServiceImpl")
-	private DeleteService deleteService;
-
-	@Autowired
-	@Qualifier("insertServiceImpl")
-	private InsertService insertService;
-
-	@Autowired
-	@Qualifier("selectServiceImpl")
-	private SelectService selectService;
-
-	@Autowired
-	@Qualifier("updateServiceImpl")
-	private UpdateService updateService;
+	@Qualifier("articleServiceImpl")
+	private ArticleService articleService;
 
 
 	/**
@@ -40,7 +28,7 @@ public class ArticleController
 	@ResponseBody
 	public RespondJson<ArticleExpand> getArticleData()
 	{
-		return selectService.getArticleData();
+		return articleService.getArticleData();
 	}
 
 	/**
@@ -53,7 +41,7 @@ public class ArticleController
 	@ResponseBody
 	public String deleteOneArticleById(@RequestParam("id") String id)
 	{
-		if (deleteService.deleteOneArticleById(Integer.parseInt(id)))
+		if (articleService.deleteOneArticleById(Integer.parseInt(id)))
 		{
 			return "success";
 		}
@@ -72,7 +60,7 @@ public class ArticleController
 	@PostMapping("/insertData/article")
 	public String insertArticle(ArticleExpand articleExpand, Model model)
 	{
-		boolean insertFlag = insertService.insertTableArticle(articleExpand);
+		boolean insertFlag = articleService.insertOneArticle(articleExpand);
 
 		if (insertFlag)
 		{
@@ -92,9 +80,9 @@ public class ArticleController
 	 * @return
 	 */
 	@PostMapping("/updateData/article")
-	public String updateArticle(ArticleExpand articleExpand, Model model)
+	public String editOneArticle(ArticleExpand articleExpand, Model model)
 	{
-		boolean success = updateService.updateTableArticle(articleExpand);
+		boolean success = articleService.editOneArticle(articleExpand);
 
 		if (success)
 		{

@@ -7,11 +7,13 @@ import com.hyg.service.ArticleService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service("articleServiceImpl")
 public class ArticleServiceImpl implements ArticleService
 {
 	@Autowired
@@ -68,7 +70,7 @@ public class ArticleServiceImpl implements ArticleService
 		RespondJson<ArticleExpand> json = new RespondJson<>();
 
 		json.setCode(0);
-		json.setCount((long)list.size());
+		json.setCount(list.size());
 		json.setMsg(null);
 		json.setData(list);
 

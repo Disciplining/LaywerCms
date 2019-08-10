@@ -6,9 +6,11 @@ import com.hyg.service.CarouselService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service("carouselServiceImpl")
 public class CarouselServiceImpl implements CarouselService
 {
 	@Autowired
@@ -29,7 +31,7 @@ public class CarouselServiceImpl implements CarouselService
 		RespondJson<Carousel> json = new RespondJson<>();
 		json.setCode(0);
 		json.setMsg(null);
-		json.setCount((long)list.size());
+		json.setCount(list.size());
 		json.setData(list);
 
 		return json;

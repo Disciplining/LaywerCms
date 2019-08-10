@@ -1,7 +1,7 @@
 package com.hyg.controller.table;
 
 import com.hyg.pojo.Lawyer;
-import com.hyg.service.SelectService;
+import com.hyg.service.LawyerService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LawyerController
 {
 	@Autowired
-	@Qualifier("selectServiceImpl")
-	private SelectService selectService;
+	@Qualifier("lawyerServiceImpl")
+	private LawyerService lawyerService;
 
 	/**
 	 * 获得律师表中的所有数据
@@ -24,6 +24,6 @@ public class LawyerController
 	@ResponseBody
 	public RespondJson<Lawyer> getLawyerData()
 	{
-		return selectService.getLawyerData();
+		return lawyerService.getLawyerData();
 	}
 }

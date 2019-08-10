@@ -30,7 +30,7 @@ public class AgencyServiceImpl implements AgencyService
 
 		json.setCode(0);
 		json.setMsg(null);
-		json.setCount((long)list.size());
+		json.setCount(list.size());
 		json.setData(list);
 
 		return json;

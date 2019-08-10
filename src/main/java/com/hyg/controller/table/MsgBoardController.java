@@ -1,7 +1,7 @@
 package com.hyg.controller.table;
 
 import com.hyg.pojo.MsgBoard;
-import com.hyg.service.SelectService;
+import com.hyg.service.MsgBoardService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MsgBoardController
 {
 	@Autowired
-	@Qualifier("selectServiceImpl")
-	private SelectService selectService;
+	@Qualifier("msgBoardServiceImpl")
+	private MsgBoardService msgBoardService;
 
 	/**
 	 * 获得留言表中的所有数据
@@ -24,6 +24,6 @@ public class MsgBoardController
 	@ResponseBody
 	public RespondJson<MsgBoard> getMsgBoardData()
 	{
-		return selectService.getMsgBoardData();
+		return msgBoardService.getMsgBoardData();
 	}
 }

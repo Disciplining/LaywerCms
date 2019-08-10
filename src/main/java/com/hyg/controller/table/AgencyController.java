@@ -1,7 +1,7 @@
 package com.hyg.controller.table;
 
 import com.hyg.pojo.Agency;
-import com.hyg.service.SelectService;
+import com.hyg.service.AgencyService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AgencyController
 {
 	@Autowired
-	@Qualifier("selectServiceImpl")
-	private SelectService selectService;
-
+	@Qualifier("agencyServiceImpl")
+	private AgencyService agencyService;
 
 	/**
 	 * 获得事务所表中的所有数据
@@ -25,6 +24,6 @@ public class AgencyController
 	@ResponseBody
 	public RespondJson<Agency> getAgencyData()
 	{
-		return selectService.getAgencyData();
+		return agencyService.getAgencyData();
 	}
 }

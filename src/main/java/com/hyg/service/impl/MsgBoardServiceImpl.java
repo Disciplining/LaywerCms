@@ -6,9 +6,11 @@ import com.hyg.service.MsgBoardService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service("msgBoardServiceImpl")
 public class MsgBoardServiceImpl implements MsgBoardService
 {
 	@Autowired

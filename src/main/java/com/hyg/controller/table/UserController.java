@@ -2,7 +2,6 @@ package com.hyg.controller.table;
 
 import com.alibaba.fastjson.JSON;
 import com.hyg.pojo.User;
-import com.hyg.service.SelectService;
 import com.hyg.service.UserService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +20,6 @@ public class UserController
 	@Qualifier("userServiceImpl")
 	private UserService userService;
 
-	@Autowired
-	@Qualifier("selectServiceImpl")
-	private SelectService selectService;
-
 	/**
 	 * 获得用户表中的所有数据
 	 * @return
@@ -33,7 +28,7 @@ public class UserController
 	@ResponseBody
 	public RespondJson<User> getUserData()
 	{
-		return selectService.getUserData();
+		return userService.getUserData();
 	}
 
 	/**
