@@ -20,6 +20,12 @@ public class InsertTableController
 	@Qualifier("insertTableDataServiceImpl")
 	private InsertTableDataService insertTableDataService;
 
+	/**
+	 * 团队文集表
+	 * @param articleExpand
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/Article")
 	public String insertArticle(ArticleExpand articleExpand, Model model)
 	{

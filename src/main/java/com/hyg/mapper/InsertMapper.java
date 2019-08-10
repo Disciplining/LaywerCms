@@ -2,6 +2,7 @@ package com.hyg.mapper;
 
 import com.hyg.pojo.Article;
 import com.hyg.pojo.Carousel;
+import com.hyg.pojo.Lawyer;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -30,4 +31,12 @@ public interface InsertMapper
 	 */
 	@Insert("insert into `t_carousel` (`id`,`bannerName`,`imgPath`,`editDate`) values(#{id},#{bannerName},#{imgPath},#{editDate})")
 	void insertOneCarousel(Carousel carousel);
+
+	/**
+	 * 律师表
+	 * @param lawyer
+	 */
+	@Insert("insert into `t_lawyer` (`lawyerId`,`lawyerName`,`lawyerLevel`,`introduction`,`lawyerImg`,`deleteFlag`)" +
+				"values (#{lawyerId},#{lawyerName},#{lawyerLevel},#{introduction},#{lawyerImg},#{deleteFlag});")
+	void insertOneLawyer(Lawyer lawyer);
 }
