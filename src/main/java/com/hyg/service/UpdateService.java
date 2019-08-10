@@ -2,7 +2,7 @@ package com.hyg.service;
 
 import com.hyg.pojo.ArticleExpand;
 
-public interface UpdateTableService
+public interface UpdateService
 {
 	/**
 	 * 团队文集表

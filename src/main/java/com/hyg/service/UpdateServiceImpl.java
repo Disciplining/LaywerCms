@@ -14,8 +14,8 @@ import java.sql.Date;
  * 更新表
  * 除了自增字段 都更新
  */
-@Service("updateTableServiceImpl")
-public class UpdateTableServiceImpl implements UpdateTableService
+@Service("updateServiceImpl")
+public class UpdateServiceImpl implements UpdateService
 {
 	@Autowired
 	@Qualifier("updateMapper")
