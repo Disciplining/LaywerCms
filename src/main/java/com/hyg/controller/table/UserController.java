@@ -1,12 +1,15 @@
-package com.hyg.controller;
+package com.hyg.controller.table;
 
 import com.alibaba.fastjson.JSON;
 import com.hyg.pojo.User;
+import com.hyg.service.SelectService;
 import com.hyg.service.UserService;
+import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +20,21 @@ public class UserController
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userService;
+
+	@Autowired
+	@Qualifier("selectServiceImpl")
+	private SelectService selectService;
+
+	/**
+	 * 获得用户表中的所有数据
+	 * @return
+	 */
+	@GetMapping("/getUserData")
+	@ResponseBody
+	public RespondJson<User> getUserData()
+	{
+		return selectService.getUserData();
+	}
 
 	/**
 	 * 用户注册接口
@@ -34,6 +52,12 @@ public class UserController
 		return userService.dealUserReg(user);
 	}
 
+	/**
+	 * 用户登录接口
+	 * @param user
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/userLogin")
 	public String userLogin(User user, Model model)
 	{

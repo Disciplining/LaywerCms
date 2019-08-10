@@ -27,7 +27,7 @@ public class ShiroConfig
 		 * 设置拦截URL
 		 */
 		Map<String, String> map = new LinkedHashMap<>();
-		map.put("/insertData/*", "authc"); //拦截的URL中可以使用*号
+		map.put("/insertData/*", "authc");
 		map.put("/updateData/*", "authc");
 		map.put("/deleteData/*", "authc");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
