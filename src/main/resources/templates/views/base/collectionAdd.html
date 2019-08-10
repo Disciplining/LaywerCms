@@ -12,17 +12,14 @@
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md12">
-			<div>
-				<input type="text" name="time" id="thisTime">
-			</div>
 			<div class="layui-card" style="position: relative;">
 				<div class="layui-card-header">添加文集</div>
 				<div class="layui-card-body">
-					<form class="layui-form" action="">
+					<form class="layui-form" method="post" action="/">
 						<div class="layui-form-item">
 							<label class="layui-form-label">文集类型</label>
 							<div class="layui-input-block">
-								<select name="city" lay-verify="required">
+								<select name="type" lay-verify="required">
 									<option value=""></option>
 									<option value="0">公司法律</option>
 									<option value="1">劳动法律</option>
@@ -33,19 +30,19 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label">文章名字</label>
 							<div class="layui-input-block">
-								<input type="text" required lay-verify="required" autocomplete="off" class="layui-input">
+								<input type="text" required lay-verify="required" name="articleTitle" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item">
 							<label class="layui-form-label">作者名字</label>
 							<div class="layui-input-block">
-								<input type="text" required lay-verify="required" autocomplete="off" class="layui-input">
+								<input type="text" required lay-verify="required" name="author" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item">
 							<label class="layui-form-label">文集简介</label>
 							<div class="layui-input-block">
-								<textarea required lay-verify="required" autocomplete="off" class="layui-textarea"></textarea>
+								<textarea required lay-verify="required" name="intro" autocomplete="off" class="layui-textarea"></textarea>
 							</div>
 						</div>
 						<div class="layui-form-item layui-form-text">
@@ -70,41 +67,39 @@
 	<script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
 	<script src="/layuiadmin/modules/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script>
-		Date.prototype.format = function(fmt) {
-			var o = {
-				"M+" : this.getMonth()+1,                 //月份
-				"d+" : this.getDate(),                    //日
-				"h+" : this.getHours(),                   //小时
-				"m+" : this.getMinutes(),                 //分
-				"s+" : this.getSeconds(),                 //秒
-				"q+" : Math.floor((this.getMonth()+3)/3), //季度
-				"S"  : this.getMilliseconds()             //毫秒
-			};
-			if(/(y+)/.test(fmt)) {
-				fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
-			}
-			for(var k in o) {
-				if(new RegExp("("+ k +")").test(fmt)){
-					fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
-				}
-			}
-			return fmt;
-		}
-		function realTime(){
-			var time1 = new Date().format("yyyy-MM-dd hh:mm:ss");
-			return time1
-		}
-		var time = document.getElementById("thisTime")
-		setInterval(function(){
-			time.value=realTime();
-		},1000)
-		//Demo
+		// Date.prototype.format = function(fmt) {
+		// 	var o = {
+		// 		"M+" : this.getMonth()+1,                 //月份
+		// 		"d+" : this.getDate(),                    //日
+		// 		"h+" : this.getHours(),                   //小时
+		// 		"m+" : this.getMinutes(),                 //分
+		// 		"s+" : this.getSeconds(),                 //秒
+		// 		"q+" : Math.floor((this.getMonth()+3)/3), //季度
+		// 		"S"  : this.getMilliseconds()             //毫秒
+		// 	};
+		// 	if(/(y+)/.test(fmt)) {
+		// 		fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+		// 	}
+		// 	for(var k in o) {
+		// 		if(new RegExp("("+ k +")").test(fmt)){
+		// 			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+		// 		}
+		// 	}
+		// 	return fmt;
+		// }
+		// function realTime(){
+		// 	var time1 = new Date().format("yyyy-MM-dd hh:mm:ss");
+		// 	return time1
+		// }
+		// var time = document.getElementById("thisTime")
+		// setInterval(function(){
+		// 	time.value=realTime();
+		// },1000)
 		KindEditor.ready(function(K) {
 			window.editor = K.create('#editor_id');
 		});
 		layui.use(['form', 'upload', 'jquery'], function() {
 			var form = layui.form
-
 		});
 	</script>
 </body>
