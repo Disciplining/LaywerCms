@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -50,6 +51,25 @@ public class LawyerController
 		{
 			model.addAttribute("res", "添加失败");
 			return "添加失败";
+		}
+	}
+
+	/**
+	 * 根据id删除一个律师
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/deleteData/lawyer")
+	@ResponseBody
+	public String deleteOneLawyerById(@RequestParam("id") String id)
+	{
+		if (lawyerService.deleteOneLawyerById(Integer.parseInt(id)))
+		{
+			return "success";
+		}
+		else
+		{
+			return "fail";
 		}
 	}
 }

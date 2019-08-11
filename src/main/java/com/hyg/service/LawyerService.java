@@ -18,4 +18,11 @@ public interface LawyerService
 	 * @param lawyerExpand
 	 */
 	boolean insertOneLawyer (LawyerExpand lawyerExpand);
+
+	/**
+	 * 根据id删除一个律师
+	 * @param lawyerId
+	 * @return
+	 */
+	boolean deleteOneLawyerById(int lawyerId);
 }

@@ -90,4 +90,25 @@ public class LawyerServiceImpl implements LawyerService
 
 		return true;
 	}
+
+	/**
+	 * 根据id删除一个律师
+	 *
+	 * @param lawyerId
+	 * @return
+	 */
+	@Override
+	public boolean deleteOneLawyerById(int lawyerId)
+	{
+		try
+		{
+			lawyerMapper.deleteOneLawyerById(lawyerId);
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+
+		return true;
+	}
 }

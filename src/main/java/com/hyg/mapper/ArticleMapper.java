@@ -18,7 +18,6 @@ public interface ArticleMapper
 	List<Article> listArticles();
 
 	/**
-	 * 后期改成逻辑删除
 	 * 根据id删除一个团队文集
 	 * @param articleId
 	 */
