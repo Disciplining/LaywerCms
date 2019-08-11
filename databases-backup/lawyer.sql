@@ -26,10 +26,10 @@ CREATE TABLE `t_agency` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `agencyName` varchar(100) DEFAULT NULL,
   `agencyImg` varchar(255) NOT NULL,
-  `agencyDetail` text NOT NULL,
+  `agencyDetail` mediumtext NOT NULL,
   `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,12 +55,12 @@ CREATE TABLE `t_article` (
   `articleTitle` varchar(255) NOT NULL,
   `author` varchar(50) NOT NULL,
   `intro` varchar(500) DEFAULT NULL,
-  `content` text NOT NULL,
+  `content` mediumtext NOT NULL,
   `editDate` datetime NOT NULL,
   `count` int(10) NOT NULL,
   `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`articleId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `t_article` (
 
 LOCK TABLES `t_article` WRITE;
 /*!40000 ALTER TABLE `t_article` DISABLE KEYS */;
-INSERT INTO `t_article` VALUES (1,1,'title','Jhon','good','123123','2019-07-09 09:59:28',123,'false'),(2,2,'title-1','Jhon-1','good','123123','2009-07-14 09:59:28',123,'true');
+INSERT INTO `t_article` VALUES (63,1,'的点点滴滴','顶顶顶顶','顶顶顶顶','顶顶顶顶','2019-08-10 00:00:00',0,'false');
 /*!40000 ALTER TABLE `t_article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `t_carousel` (
   `imgPath` varchar(255) NOT NULL,
   `editDate` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `t_carousel` (
 
 LOCK TABLES `t_carousel` WRITE;
 /*!40000 ALTER TABLE `t_carousel` DISABLE KEYS */;
-INSERT INTO `t_carousel` VALUES (1,'banner1','http://xxx','2019-01-01 00:00:00'),(2,'banner2','http://xxx','2018-08-09 08:05:41'),(3,'banner3','http://xxx','2019-08-09 08:06:09');
+INSERT INTO `t_carousel` VALUES (1,'banner1','http://xxx','2019-01-01 00:00:00'),(2,'banner2','http://xxx','2018-08-09 08:05:41'),(3,'banner3','http://xxx','2019-08-09 08:06:09'),(4,'vannerName-666','http://xxxxx','2019-08-07 00:00:00');
 /*!40000 ALTER TABLE `t_carousel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +115,7 @@ CREATE TABLE `t_lawyer` (
   `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`lawyerId`),
   UNIQUE KEY `t_lawyer_lawyerName_uindex` (`lawyerName`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,6 @@ CREATE TABLE `t_lawyer` (
 
 LOCK TABLES `t_lawyer` WRITE;
 /*!40000 ALTER TABLE `t_lawyer` DISABLE KEYS */;
-INSERT INTO `t_lawyer` VALUES (1,'Dr zhang','good level','this is a good lawyer','http://xxx','false'),(2,'Dr Li','good level','this is a no good lawyer','http://xxx','true');
 /*!40000 ALTER TABLE `t_lawyer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +140,7 @@ CREATE TABLE `t_menu` (
   `parentId` int(10) NOT NULL,
   `router` varchar(100) NOT NULL,
   PRIMARY KEY (`menuId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +149,7 @@ CREATE TABLE `t_menu` (
 
 LOCK TABLES `t_menu` WRITE;
 /*!40000 ALTER TABLE `t_menu` DISABLE KEYS */;
-INSERT INTO `t_menu` VALUES (1,'menu-name-1',0,'router-aaa'),(2,'menu-name-2',3,'router-bbb');
+INSERT INTO `t_menu` VALUES (1,'介绍',0,'router-aaa'),(2,'公司法律服务',0,'router-bbb'),(3,'刑事法律服务',0,'router-ccc'),(4,'劳动法律服务',0,'router-ddd'),(5,'律师事务所',1,'router-aaa1');
 /*!40000 ALTER TABLE `t_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,18 +164,19 @@ CREATE TABLE `t_msgBoard` (
   `msgId` int(10) NOT NULL AUTO_INCREMENT,
   `customerName` varchar(100) DEFAULT NULL,
   `customerTel` varchar(100) NOT NULL,
-  `caseDetail` text NOT NULL,
+  `caseDetail` mediumtext NOT NULL,
   `createDate` datetime NOT NULL,
   `replyId` int(10) DEFAULT NULL,
   `replyName` varchar(100) DEFAULT NULL,
   `replyDate` datetime DEFAULT NULL,
   `readFlag` varchar(10) NOT NULL,
+  `replyMsg` text,
   PRIMARY KEY (`msgId`),
-  KEY `fk_msgBoard` (`replyId`),
-  KEY `fk_msgBoard_repN` (`replyName`),
-  CONSTRAINT `fk_msgBoard` FOREIGN KEY (`replyId`) REFERENCES `t_lawyer` (`lawyerId`) ON DELETE SET NULL ON UPDATE SET NULL,
-  CONSTRAINT `fk_msgBoard_repN` FOREIGN KEY (`replyName`) REFERENCES `t_lawyer` (`lawyerName`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `redply_fk` (`replyId`),
+  KEY `redply_name_fk` (`replyName`),
+  CONSTRAINT `redply_fk` FOREIGN KEY (`replyId`) REFERENCES `t_lawyer` (`lawyerId`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `redply_name_fk` FOREIGN KEY (`replyName`) REFERENCES `t_lawyer` (`lawyerName`) ON DELETE SET NULL ON UPDATE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,7 +206,7 @@ CREATE TABLE `t_user` (
   `position` varchar(255) DEFAULT NULL,
   `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +215,7 @@ CREATE TABLE `t_user` (
 
 LOCK TABLES `t_user` WRITE;
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` VALUES (1,'123123','test1','zhangwei',1,'13888888888','example@163.com',NULL,''),(2,'d52af20fcaf39ff11dafcef333c5c7d5','amy',NULL,0,NULL,NULL,NULL,'');
+INSERT INTO `t_user` VALUES (1,'123123','test1','zhangwei',1,'13888888888','example@163.com',NULL,''),(2,'d52af20fcaf39ff11dafcef333c5c7d5','amy',NULL,0,NULL,NULL,NULL,''),(3,'95322257287357a8acad57913e3b2129','lyx',NULL,1,NULL,NULL,NULL,'0');
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -228,4 +228,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-09 16:04:23
+-- Dump completed on 2019-08-11  9:51:40
