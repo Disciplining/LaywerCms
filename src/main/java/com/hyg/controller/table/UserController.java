@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.hyg.pojo.User;
 import com.hyg.service.UserService;
 import com.hyg.util.RespondJson;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -77,5 +78,16 @@ public class UserController
 			model.addAttribute("res", "出现未知错误");
 			return "base/login";
 		}
+	}
+
+	/**
+	 * 退出登录
+	 * @return
+	 */
+	@GetMapping("/userLogout")
+	public String userLogout()
+	{
+		SecurityUtils.getSubject().logout();
+		return "base/login";
 	}
 }
