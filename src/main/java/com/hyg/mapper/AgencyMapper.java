@@ -15,7 +15,7 @@ public interface AgencyMapper
 	 * 事务所表  只有一条数据
 	 * @return
 	 */
-	@Select("select * from `t_agency`")
+	@Select("select * from `t_agency` where `deleteFlag`!='1'")
 	List<Agency> listAgency();
 
 }

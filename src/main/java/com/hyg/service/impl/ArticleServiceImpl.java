@@ -203,6 +203,7 @@ public class ArticleServiceImpl implements ArticleService
 		}
 		catch (Exception e)
 		{
+			e.printStackTrace();
 			return false;
 		}
 

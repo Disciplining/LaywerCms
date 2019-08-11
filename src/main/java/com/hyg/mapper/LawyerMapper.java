@@ -16,7 +16,7 @@ public interface LawyerMapper
 	 * 律师表
 	 * @return
 	 */
-	@Select("select * from `t_lawyer`")
+	@Select("select * from `t_lawyer` where `deleteFlag`!='1'")
 	List<Lawyer> listLawyers();
 
 	/**
@@ -24,6 +24,6 @@ public interface LawyerMapper
 	 * @param lawyer
 	 */
 	@Insert("insert into `t_lawyer` (`lawyerName`,`lawyerLevel`,`introduction`,`lawyerImg`,`deleteFlag`)" +
-			"values (#{lawyerName},#{lawyerLevel},#{introduction},#{lawyerImg},#{deleteFlag});")
+				"values (#{lawyerName},#{lawyerLevel},#{introduction},#{lawyerImg},#{deleteFlag});")
 	void insertOneLawyer(Lawyer lawyer);
 }

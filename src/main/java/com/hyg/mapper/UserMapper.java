@@ -16,7 +16,7 @@ public interface UserMapper
 	 * 用户表
 	 * @return
 	 */
-	@Select("select * from `t_user`")
+	@Select(" select * from `t_user` where `deleteFlag`!='1' ")
 	List<User> listUsers();
 
 	/**
@@ -32,6 +32,6 @@ public interface UserMapper
 	 * @param loginName
 	 * @return
 	 */
-	@Select("select * from `t_user` where `loginName`=#{loginName}")
+	@Select(" select * from `t_user` where `loginName`=#{loginName} and `deleteFlag`!='1' ")
 	User getOneUser(String loginName);
 }

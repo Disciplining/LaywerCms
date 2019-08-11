@@ -14,7 +14,7 @@ public interface ArticleMapper
 	 * 团队文集表
 	 * @return
 	 */
-	@Select("select * from `t_article`")
+	@Select("select * from `t_article` where `deleteFlag`!='1'")
 	List<Article> listArticles();
 
 	/**
@@ -22,7 +22,7 @@ public interface ArticleMapper
 	 * 根据id删除一个团队文集
 	 * @param articleId
 	 */
-	@Delete("delete from `t_article` where `articleId`=#{articleId}")
+	@Update(" update `t_article` set `deleteFlag`='1' where `articleId`=#{articleId} ")
 	boolean deleteOneArticleById(int articleId);
 
 	/**
@@ -34,6 +34,7 @@ public interface ArticleMapper
 	void insertOneArticle(Article article);
 
 	/**
+	 * 编辑文集调用这个语句
 	 * 根据id更新团队文集表中的一条数据
 	 * count 与 deleteFlag 更新
 	 * @param article
