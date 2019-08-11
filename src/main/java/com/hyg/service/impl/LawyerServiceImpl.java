@@ -1,5 +1,6 @@
 package com.hyg.service.impl;
 
+import com.hyg.config.PicDir;
 import com.hyg.mapper.LawyerMapper;
 import com.hyg.pojo.Lawyer;
 import com.hyg.pojo.LawyerExpand;
@@ -11,10 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 @Service("lawyerServiceImpl")
 public class LawyerServiceImpl implements LawyerService
@@ -23,8 +21,12 @@ public class LawyerServiceImpl implements LawyerService
 	@Qualifier("lawyerMapper")
 	private LawyerMapper lawyerMapper;
 
+	// 存储图片总目录
+	// 显示图片的url为： /images/这个目录下路径
+	// 例如这个目录是：/pic-dir/  下边有一张图片：/pic-dir/aa/bb/test.png
+	// 那么显示的路径就是：/images/aa/bb/test.png
 	@Value("${cbs.imagesPath}")
-	private String picDir; //全局配置文件中设置的图片的路径
+	private String picDirSetting; //全局配置文件中设置的图片的路径
 
 	/**
 	 * 获得符合前端格式的
@@ -61,33 +63,22 @@ public class LawyerServiceImpl implements LawyerService
 		lawyer.setLawyerName(lawyerExpand.getLawyerName());
 		lawyer.setLawyerLevel(lawyerExpand.getLawyerLevel());
 		lawyer.setIntroduction(lawyerExpand.getIntroduction());
-
-		String parentDirPath = picDir.substring(picDir.indexOf(':')+1); //通过设置的那个字符串获得存放图片的目录路径
-		String fileName = UUID.randomUUID().toString(); // 文件名
-		String fileExtension = FileUtil.getFileExtension(lawyerExpand.getLawyerImgExpand().getOriginalFilename()); // 文件扩展名
-
-		File parentDir = new File(parentDirPath);
-		if(!parentDir.exists()) //如果图片目录不存在先创建目录
+		String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
+		String lawyerPicDir = allPicDir + PicDir.LAWYER_TABLE_DIR; // 存储律师照片的目录
+		String picUrl = FileUtil.savePicToDisk(lawyerExpand.getLawyerImgExpand(), lawyerPicDir);
+		if (picUrl == null)
 		{
-			parentDir.mkdirs();
-		}
-
-		try
-		{
-			lawyerExpand.getLawyerImgExpand().transferTo( new File(parentDirPath + fileName + fileExtension) ); // 存入磁盘
-		}
-		catch (IOException e)
-		{
-			// 存入磁盘失败
-			e.printStackTrace();
 			return false;
 		}
-
-		lawyer.setLawyerImg("/images/" + fileName + fileExtension);
+		else
+		{
+			lawyer.setLawyerImg(picUrl);
+		}
 
 		// 除前端传过来的数据剩下的字段
 		lawyer.setDeleteFlag("0");
 
+		// 存入数据库
 		try
 		{
 			lawyerMapper.insertOneLawyer(lawyer);
