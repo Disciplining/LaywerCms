@@ -209,4 +209,63 @@ public class ArticleServiceImpl implements ArticleService
 
 		return true;
 	}
+
+	/**
+	 * 根据作者查找文集
+	 *
+	 * @param author
+	 * @return
+	 */
+	@Override
+	public RespondJson<ArticleExpand> listArticlesByAuthor(String author)
+	{
+		List<Article> articles = articleMapper.listArticlesByAuthor(author);
+
+		List<ArticleExpand> list = new ArrayList<>(articles.size());
+
+		// 将拿到的数据转换为前端的形式
+		for (Article foo : articles)
+		{
+			ArticleExpand temp = new ArticleExpand();
+			temp.setArticleId(foo.getArticleId());
+			temp.setType(foo.getType());
+			temp.setArticleTitle(foo.getArticleTitle());
+			temp.setAuthor(foo.getAuthor());
+			temp.setIntro(foo.getIntro());
+			temp.setContent(foo.getContent());
+			temp.setEditDate(foo.getEditDate());
+			temp.setCount(foo.getCount());
+			temp.setDeleteFlag(foo.getDeleteFlag());
+
+			switch (foo.getType())
+			{
+				case Article.ArticleType.COMPANY_LAW:
+				{
+					temp.setTypeExpand("公司法律");
+					break;
+				}
+				case Article.ArticleType.LABOUR_LAW:
+				{
+					temp.setTypeExpand("劳动法律");
+					break;
+				}
+				case Article.ArticleType.FORMAL_LAW:
+				{
+					temp.setTypeExpand("形式法律");
+					break;
+				}
+			}
+
+			list.add(temp);
+		}
+
+		RespondJson<ArticleExpand> json = new RespondJson<>();
+
+		json.setCode(0);
+		json.setCount(list.size());
+		json.setMsg(null);
+		json.setData(list);
+
+		return json;
+	}
 }

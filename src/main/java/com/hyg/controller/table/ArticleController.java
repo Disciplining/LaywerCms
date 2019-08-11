@@ -19,7 +19,6 @@ public class ArticleController
 	@Qualifier("articleServiceImpl")
 	private ArticleService articleService;
 
-
 	/**
 	 * 获得团队文集表中的所有数据
 	 * @return
@@ -93,5 +92,17 @@ public class ArticleController
 			model.addAttribute("res", "更新数据失败");
 			return "base/editCollection";
 		}
+	}
+
+	/**
+	 * 根据作者名查找文章支持模糊查找
+	 * @param author
+	 * @return
+	 */
+	@GetMapping("/selectData/search")
+	@ResponseBody
+	public RespondJson<ArticleExpand> searchArticlesByAuthor(@RequestParam(value = "author", defaultValue = "") String author)
+	{
+		return articleService.listArticlesByAuthor(author);
 	}
 }

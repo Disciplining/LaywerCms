@@ -14,7 +14,7 @@ public interface ArticleMapper
 	 * 团队文集表
 	 * @return
 	 */
-	@Select("select * from `t_article` where `deleteFlag`!='1'")
+	@Select(" select * from `t_article` where `deleteFlag`!='1' ")
 	List<Article> listArticles();
 
 	/**
@@ -42,4 +42,12 @@ public interface ArticleMapper
 	@Update("update `t_article` set `articleId`=#{articleId},`type`=#{type},`articleTitle`=#{articleTitle},`author`=#{author},`intro`=#{intro},`content`=#{content},`editDate`=#{editDate}" +
 				"where `articleId`=#{articleId}")
 	void updateOneArticleById(Article article);
+
+	/**
+	 * 根据文章作者查找文章
+	 * @param author
+	 * @return
+	 */
+	@Select(" select * from `t_article` where `deleteFlag`!='1' and `author` like concat('%',#{author},'%') ")
+	List<Article> listArticlesByAuthor(String author);
 }

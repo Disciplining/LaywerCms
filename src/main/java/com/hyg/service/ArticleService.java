@@ -32,4 +32,11 @@ public interface ArticleService
 	 * @param id
 	 */
 	boolean deleteOneArticleById(int id);
+
+	/**
+	 * 根据作者查找文集
+	 * @param author
+	 * @return
+	 */
+	RespondJson<ArticleExpand> listArticlesByAuthor(String author);
 }
