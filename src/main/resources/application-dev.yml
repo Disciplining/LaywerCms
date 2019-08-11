@@ -14,3 +14,6 @@ spring:
         mode: HTML5
         encoding: UTF-8
         cache: false
+
+cbs:
+    imagesPath: file:/media/root/my-disk/download/pic-dir/
