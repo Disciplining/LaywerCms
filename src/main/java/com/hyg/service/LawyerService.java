@@ -1,6 +1,7 @@
 package com.hyg.service;
 
 import com.hyg.pojo.Lawyer;
+import com.hyg.pojo.LawyerExpand;
 import com.hyg.util.RespondJson;
 
 public interface LawyerService
@@ -11,4 +12,10 @@ public interface LawyerService
 	 * @return
 	 */
 	RespondJson<Lawyer> getLawyerData();
+
+	/**
+	 * 添加一个律师
+	 * @param lawyerExpand
+	 */
+	boolean insertOneLawyer (LawyerExpand lawyerExpand);
 }

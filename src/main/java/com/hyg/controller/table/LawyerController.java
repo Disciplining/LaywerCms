@@ -1,12 +1,14 @@
 package com.hyg.controller.table;
 
 import com.hyg.pojo.Lawyer;
+import com.hyg.pojo.LawyerExpand;
 import com.hyg.service.LawyerService;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -25,5 +27,13 @@ public class LawyerController
 	public RespondJson<Lawyer> getLawyerData()
 	{
 		return lawyerService.getLawyerData();
+	}
+
+	@PostMapping("/insertData/lawyer")
+	@ResponseBody
+	public String insertOneLawyer(LawyerExpand lawyerExpand)
+	{
+		lawyerService.insertOneLawyer(lawyerExpand);
+		return "success";
 	}
 }

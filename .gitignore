@@ -2,5 +2,6 @@
 src/test
 target
 src/main/java/com/hyg/test
+/src/main/resources/static/test.html
 
 *.iml
