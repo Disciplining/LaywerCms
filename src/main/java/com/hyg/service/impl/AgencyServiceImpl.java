@@ -35,4 +35,26 @@ public class AgencyServiceImpl implements AgencyService
 
 		return json;
 	}
+
+	/**
+	 * 修改事务所介绍
+	 *
+	 * @param detail
+	 * @return
+	 */
+	@Override
+	public boolean updateAgencyDetail(String detail)
+	{
+		try
+		{
+			agencyMapper.updateAgencyDetail(detail);
+		}
+		catch (Exception e)
+		{
+			System.out.println("++++++++++++++++++++发生异常++++++++++++++++++++");
+			return false;
+		}
+
+		return true;
+	}
 }

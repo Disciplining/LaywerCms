@@ -3,6 +3,7 @@ package com.hyg.mapper;
 import com.hyg.pojo.Agency;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,6 @@ public interface AgencyMapper
 	 * 修改事务所介绍
 	 * @param detail
 	 */
-//	@Update(" update  ")
-//	void updateAgencyDetail(String detail);
+	@Update(" update `t_agency` set `agencyDetail`=#{detail} where `deleteFlag`!='1' ")
+	void updateAgencyDetail(String detail);
 }

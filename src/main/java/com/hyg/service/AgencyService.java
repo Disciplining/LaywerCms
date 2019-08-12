@@ -10,4 +10,11 @@ public interface AgencyService
 	 * @return
 	 */
 	RespondJson<Agency> getAgencyData();
+
+	/**
+	 * 修改事务所介绍
+	 * @param detail
+	 * @return
+	 */
+	boolean updateAgencyDetail(String detail);
 }
