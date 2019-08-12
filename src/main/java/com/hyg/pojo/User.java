@@ -17,6 +17,7 @@ public class User
 	private String email;
 	private String position;
 	private String deleteFlag;
+	private String role;
 
 	public static class GenderType
 	{

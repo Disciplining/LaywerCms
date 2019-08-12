@@ -1,6 +1,5 @@
 package com.hyg.controller.table;
 
-import com.alibaba.fastjson.JSON;
 import com.hyg.pojo.User;
 import com.hyg.service.UserService;
 import com.hyg.util.RespondJson;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -33,18 +31,15 @@ public class UserController
 	}
 
 	/**
-	 * 用户注册接口
-	 * 使用这个接口向数据库中添加用户 不提供前端页面
-	 * 后期注释掉这个接口
-	 * @param jsonData 用户数据包含明文密码
+	 * 用户添加
+	 * 前端传过来的数据：用户名、密码、手机、邮箱、性别
+	 * @param user 用户数据包含明文密码
 	 * @return
 	 */
-	@PostMapping("/userReg")
+	@PostMapping("/insertData/addOneUser")
 	@ResponseBody
-	public boolean userReg(@RequestBody String jsonData)
+	public boolean addOneUser(User user)
 	{
-		User user = JSON.parseObject(jsonData, User.class);
-
 		return userService.dealUserReg(user);
 	}
 
