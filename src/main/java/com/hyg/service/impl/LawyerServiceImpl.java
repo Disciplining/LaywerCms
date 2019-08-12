@@ -89,6 +89,7 @@ public class LawyerServiceImpl implements LawyerService
 		}
 		catch (Exception e)
 		{
+			System.out.println("debug--------------------------出现异常");
 			return false;
 		}
 
