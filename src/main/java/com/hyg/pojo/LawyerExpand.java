@@ -12,5 +12,5 @@ public class LawyerExpand extends Lawyer
 //	private String introduction;
 //	private String lawyerImg;
 //	private String deleteFlag;
-	private MultipartFile lawyerImgExpand;
+	private MultipartFile file;
 }

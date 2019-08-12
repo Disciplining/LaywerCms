@@ -38,19 +38,18 @@ public class LawyerController
 	 * @return
 	 */
 	@PostMapping("/insertData/lawyer")
-	@ResponseBody
 	public String insertOneLawyer(LawyerExpand lawyerExpand, Model model)
 	{
 		boolean successFlag = lawyerService.insertOneLawyer(lawyerExpand);
 
 		if (successFlag)
 		{
-			return "添加成功";
+			return "base/personMgr";
 		}
 		else
 		{
 			model.addAttribute("res", "添加失败");
-			return "添加失败";
+			return "base/addLwyer";
 		}
 	}
 
@@ -87,12 +86,12 @@ public class LawyerController
 
 		if (success)
 		{
-			return "页面1";
+			return "base/personMgr";
 		}
 		else
 		{
 			model.addAttribute("res", "更新数据失败");
-			return "页面2";
+			return "base/personEdit";
 		}
 	}
 
