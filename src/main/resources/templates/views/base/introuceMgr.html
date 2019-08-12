@@ -16,7 +16,8 @@
 				<div class="layui-card-header">事务所介绍</div>
 				<div class="layui-card-body" style="margin-left: -60px;">
 					<div class="form" >
-						<form class="layui-form" style="margin-top: 20px;" method="post" action="/getAgencyData">
+						<form class="layui-form" style="margin-top: 20px;" method="post" action="/updateData/agencyDetail">
+">
 							<div class="layui-form-item layui-form-text">
 								<div class="layui-input-block" style="margin-left: 60px;">
 									<textarea id="editor_id" name="content" style="width:100%;height:600px;"></textarea>
@@ -44,8 +45,16 @@
 		var newStr = str.split('?')[1].split('=')[1]
 		return newStr
 	}
+	var editor;
 	KindEditor.ready(function(K) {
-		window.editor = K.create('#editor_id');
+		editor = K.create('textarea[name="content"]',{
+			resizeMode : 1,
+			shadowMode : false,
+			allowPreviewEmoticons : false,
+			urlType : 'absolute',
+			allowUpload : true, //允许上传图片
+			uploadJson : 'geo/uploadImg' //服务端上传图片处理URI
+		});
 	});
 	layui.use('jquery', function() {
 		var $ = layui.$;
