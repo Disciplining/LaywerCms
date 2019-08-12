@@ -2,12 +2,18 @@ package com.hyg.shiro;
 
 import com.hyg.mapper.UserMapper;
 import com.hyg.pojo.User;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+
+import java.util.Collection;
+import java.util.HashSet;
 
 public class UserRealm extends AuthorizingRealm
 {
@@ -23,8 +29,23 @@ public class UserRealm extends AuthorizingRealm
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection)
 	{
-		System.out.println("执行授权逻辑");
-		return null;
+		Subject subject = SecurityUtils.getSubject();
+		User user = (User) subject.getPrincipal(); //获得当前登录的用户
+
+		//获得当前登录用户的角色并处理成一个集合
+		String[] roleArr = user.getRole().split(" ");
+		System.out.println("数组长度：" + roleArr.length);
+
+		Collection<String> roles = new HashSet<>(roleArr.length);
+		for (String role : roleArr)
+		{
+			roles.add(role);
+		}
+
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(); //创建一个这样的对象，它是返回的类型的子类
+		info.addRoles(roles); //为当前用户关联角色
+
+		return info;
 	}
 
 	/**

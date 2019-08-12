@@ -92,6 +92,14 @@
 			<version>1.9.21</version>
 		</dependency>
 
+		<!-- thymeleaf整合shiro -->
+		<dependency>
+			<groupId>com.github.theborakompanioni</groupId>
+			<artifactId>thymeleaf-extras-shiro</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

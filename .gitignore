@@ -1,7 +1,8 @@
 .idea
 src/test
 target
-src/main/java/com/hyg/test
-/src/main/resources/static/test
+
+src/main/resources/static/lyxTest
+src/main/resources/templates/views/lyxTest
 
 *.iml

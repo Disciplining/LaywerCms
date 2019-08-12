@@ -3,6 +3,7 @@ package com.hyg.service.impl;
 import com.hyg.mapper.UserMapper;
 import com.hyg.pojo.User;
 import com.hyg.service.UserService;
+import com.hyg.shiro.UserRole;
 import com.hyg.util.RespondJson;
 import com.hyg.util.UserUtil;
 import org.apache.shiro.SecurityUtils;
@@ -66,6 +67,8 @@ public class UserServiceImpl implements UserService
 		{
 			user.setDeleteFlag("0");
 		}
+
+		user.setRole(UserRole.COMMON_USER);
 
 		try
 		{
