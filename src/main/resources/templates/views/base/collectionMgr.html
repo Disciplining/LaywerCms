@@ -17,24 +17,24 @@
 			<div class="layui-card">
 				<div class="layui-card-header">事务所介绍</div>
 				<div class="layui-card-body">
-                    <div class="demoTable" style="margin-bottom: 20px">
-						作者：
-                        <div class="layui-inline" style="margin-right: 100px">
-                            <input class="layui-input" name="author" id="demoReloadAuthor" autocomplete="off">
-                        </div>
-							<div class="layui-form-item">
-								<label class="layui-form-label">文集类型</label>
-								<div class="layui-input-inline">
-									<select name="typeExpand" id="demoReloadTypeExpand" lay-verify="required">
-										<option value=""></option>
-										<option value="公司法律">公司法律</option>
-										<option value="劳动法律">劳动法律</option>
-										<option value="形式法律">形式法律</option>
-									</select>
-								</div>
+					<div class="demoTable" style="margin-bottom: 20px">
+						作者
+						<div class="layui-inline" style="margin-right: 60px">
+							<input class="layui-input" name="author" id="demoReloadAuthor" autocomplete="off">
+						</div>
+						<form class="layui-form" style="display: inline-block">
+							文集类型
+							<div class="layui-input-inline">
+								<select name="typeExpand" id="demoReloadTypeExpand" lay-verify="required">
+									<option value=""></option>
+									<option value="公司法律">公司法律</option>
+									<option value="劳动法律">劳动法律</option>
+									<option value="形式法律">形式法律</option>
+								</select>
 							</div>
-						<button class="layui-btn" data-type="reload">搜索</button>
-                    </div>
+						</form>
+						<button style="margin-left: 10px" class="layui-btn" data-type="reload">搜索</button>
+					</div>
 					<table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
 					</table>
 					<script type="text/html" id="zizeng">
@@ -42,13 +42,13 @@
 					</script>
 					<script type="text/html" id="test-table-toolbar-toolbarDemo">
 						<div class="layui-btn-container">
-							<a href="/getPage/base/collectionAdd"><button class="layui-btn layui-btn-sm">添加</button></a>
+							< a href=" "><button class="layui-btn layui-btn-sm">添加</button></ a>
 						</div>
 					</script>
 
 					<script type="text/html" id="test-table-toolbar-barDemo">
 						<a class="layui-btn  layui-btn-xs" lay-event="edit">编辑</a>
-						<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+						<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</ a>
 					</script>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 		index: 'lib/index' //主入口模块
 	}).use(['index', 'table','jquery'], function() {
 		var admin = layui.admin,
-            $=layui.$,
+				$=layui.$,
 				table = layui.table;
 
 		table.render({
@@ -110,32 +110,32 @@
 					width: 120
 				}]
 			]
-				,id: 'testReload'
+			,id: 'testReload'
 
 		});
-        var $ = layui.$, active = {
-            reload: function(){
-                var demoReloadAuthor = $('#demoReloadAuthor');
-                var demoReloadTypeExpand=$('#demoReloadTypeExpand');
-                console.log(demoReloadAuthor.val())
+		var $ = layui.$, active = {
+			reload: function(){
+				var demoReloadAuthor = $('#demoReloadAuthor');
+				var demoReloadTypeExpand=$('#demoReloadTypeExpand');
+				console.log(demoReloadAuthor.val())
 				console.log(demoReloadTypeExpand.val())
 
-                //执行重载
-                table.reload('testReload', {
-                    page: {
-                        curr: 1 //重新从第 1 页开始
-                    },
+				//执行重载
+				table.reload('testReload', {
+					page: {
+						curr: 1 //重新从第 1 页开始
+					},
 					url:'/selectData/searchArticle?author='+demoReloadAuthor.val()+'&typeExpand='+demoReloadTypeExpand.val(),
 					method:'get'
-                }, 'data');
-            }
-        };
+				}, 'data');
+			}
+		};
 
-        $('.demoTable .layui-btn').on('click', function(){
-            var type = $(this).data('type');
-            console.log(type)
-            active[type] ? active[type].call(this) : '';
-        });
+		$('.demoTable .layui-btn').on('click', function(){
+			var type = $(this).data('type');
+			console.log(type)
+			active[type] ? active[type].call(this) : '';
+		});
 
 		//头工具栏事件
 		table.on('toolbar(test-table-toolbar)', function(obj) {
@@ -164,12 +164,12 @@
 						success: function(data) {
 							layer.close(index);
 							if(data=="success"){
-								 obj.del();
-								 window.location.href='/getPage/base/collectionMgr';
-								 // console.log(location.href)
+								obj.del();
+								window.location.href='/getPage/base/collectionMgr';
+								// console.log(location.href)
 								// location.reload()
-								 // table.reload('zizeng',{page:{curr:1}})//重载表格的数据
-                                 // parent.layui.table.reload('articleId',{page:{curr:1}})
+								// table.reload('zizeng',{page:{curr:1}})//重载表格的数据
+								// parent.layui.table.reload('articleId',{page:{curr:1}})
 							}
 						}
 					})

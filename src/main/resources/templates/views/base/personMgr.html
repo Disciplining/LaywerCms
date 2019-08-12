@@ -27,6 +27,9 @@
 					</div>
 					<table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
 					</table>
+					<script type="text/html" id="imgTpl">
+						<img src="{{ d.lawyerImg }}">
+					</script>
 					<script type="text/html" id="zizeng">
 						{{d.LAY_TABLE_INDEX+1}}
 					</script>
@@ -91,7 +94,8 @@
 				}, {
 					field: 'lawyerImg',
 					title: '律师照片',
-					width: 200
+					width: 200,
+					templet:'#imgTpl'
 				}, {
 					title: '操作',
 					toolbar: '#test-table-toolbar-barDemo',
