@@ -16,7 +16,7 @@ spring:
         cache: false
 
 cbs:
-    imagesPath: file:/media/root/my-disk/download/pic-dir/
+    imagesPath: file:/media/root/my-disk/download/pic-dir/ # 图片存储总目录
 
 mybatis:
     configuration:

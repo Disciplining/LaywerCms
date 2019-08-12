@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("articleServiceImpl")
 public class ArticleServiceImpl implements ArticleService
@@ -216,15 +218,40 @@ public class ArticleServiceImpl implements ArticleService
 	}
 
 	/**
-	 * 根据作者查找文集
-	 *
+	 * 根据作者与文章类型查找文章
 	 * @param author
 	 * @return
 	 */
 	@Override
-	public RespondJson<ArticleExpand> listArticlesByAuthor(String author)
+	public RespondJson<ArticleExpand> listArticlesByAuthor(String author, String typeExpand)
 	{
-		List<Article> articles = articleMapper.listArticlesByAuthor(author);
+		Map<String, Object> par = new HashMap<>(2);
+		par.put("author", author);
+		switch (typeExpand)
+		{
+			case ArticleExpand.TypeExpand.COMPANY_LAW_STRING:
+			{
+				par.put("type", Article.ArticleType.COMPANY_LAW);
+				break;
+			}
+			case ArticleExpand.TypeExpand.LABOUR_LAW_STRING:
+			{
+				par.put("type", Article.ArticleType.LABOUR_LAW);
+				break;
+			}
+			case ArticleExpand.TypeExpand.FORMAL_LAW_STRING:
+			{
+				par.put("type", Article.ArticleType.FORMAL_LAW);
+				break;
+			}
+			case "": // 没有传类型
+			{
+				par.put("type", "");
+				break;
+			}
+		}
+
+		List<Article> articles = articleMapper.listArticlesByAuthor(par);
 
 		List<ArticleExpand> list = new ArrayList<>(articles.size());
 

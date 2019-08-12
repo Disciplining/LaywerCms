@@ -95,14 +95,18 @@ public class ArticleController
 	}
 
 	/**
-	 * 根据作者名查找文章支持模糊查找
+	 * 根据作者名和文章类型查找作者
 	 * @param author
 	 * @return
 	 */
 	@GetMapping("/selectData/searchArticle")
 	@ResponseBody
-	public RespondJson<ArticleExpand> searchArticlesByAuthor(@RequestParam(value = "author", defaultValue = "") String author)
+	public RespondJson<ArticleExpand> searchArticlesByAuthor
+	(
+		@RequestParam(value = "author", defaultValue = "") String author,
+		@RequestParam(value = "typeExpand", defaultValue = "") String typeExpand
+	)
 	{
-		return articleService.listArticlesByAuthor(author);
+		return articleService.listArticlesByAuthor(author, typeExpand);
 	}
 }

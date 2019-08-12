@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Service("articleMapper")
@@ -43,10 +44,12 @@ public interface ArticleMapper
 	void updateOneArticleById(Article article);
 
 	/**
-	 * 根据文章作者查找文章
-	 * @param author
+	 * 根据文章作者和文章类型查找文章
+	 * @param par
 	 * @return
 	 */
-	@Select(" select * from `t_article` where `deleteFlag`!='1' and `author` like concat('%',#{author},'%') ")
-	List<Article> listArticlesByAuthor(String author);
+	@Select(" select * from `t_article` " +
+				" where `deleteFlag`!='1' and " +
+					" ( `author` like concat('%',#{author},'%') and `type` like concat('%',#{type},'%') )")
+	List<Article> listArticlesByAuthor(Map<String, Object> par);
 }

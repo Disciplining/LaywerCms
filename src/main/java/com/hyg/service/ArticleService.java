@@ -34,9 +34,9 @@ public interface ArticleService
 	boolean deleteOneArticleById(int id);
 
 	/**
-	 * 根据作者查找文集
+	 * 根据作者与文章类型查找文章
 	 * @param author
 	 * @return
 	 */
-	RespondJson<ArticleExpand> listArticlesByAuthor(String author);
+	RespondJson<ArticleExpand> listArticlesByAuthor(String author, String typeExpand);
 }
