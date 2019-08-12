@@ -40,7 +40,8 @@ public class AgencyController
 
 		if (agencyService.updateAgencyDetail(content))
 		{
-			return "index";
+			model.addAttribute("res", "更新数据成功");
+			return "base/introuceMgr";
 		}
 		else
 		{

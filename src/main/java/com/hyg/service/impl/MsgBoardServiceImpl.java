@@ -45,10 +45,16 @@ public class MsgBoardServiceImpl implements MsgBoardService
 	@Override
 	public RespondJson<MsgBoard> listMsgNoRead()
 	{
-//		List<MsgBoard> list =
-//
-//		RespondJson<MsgBoard> json = new RespondJson<>();
+		List<MsgBoard> list = msgBoardMapper.listMsgNoRead();
 
-		return null;
+		System.out.println(list);
+
+		RespondJson<MsgBoard> json = new RespondJson<>();
+		json.setCode(0);
+		json.setMsg(null);
+		json.setCode(list.size());
+		json.setData(list);
+
+		return json;
 	}
 }

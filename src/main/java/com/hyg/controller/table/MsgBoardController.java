@@ -26,4 +26,11 @@ public class MsgBoardController
 	{
 		return msgBoardService.getMsgBoardData();
 	}
+
+	@GetMapping("/foo")
+	@ResponseBody
+	public RespondJson<MsgBoard> listMsgNoRead()
+	{
+		return msgBoardService.listMsgNoRead();
+	}
 }
