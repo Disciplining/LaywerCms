@@ -18,7 +18,7 @@ public interface LawyerMapper
 	 * 律师表所有信息（未被删除的）
 	 * @return
 	 */
-	@Select("select * from `t_lawyer` where `deleteFlag`!='0'")
+	@Select("select * from `t_lawyer` where `deleteFlag`!='1'")
 	List<Lawyer> listLawyers();
 
 	/**
