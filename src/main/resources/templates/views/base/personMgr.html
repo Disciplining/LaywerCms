@@ -6,12 +6,11 @@
 	<title>留言列表</title>
 	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css">
 	<style>
-		.layui-table-cell-1-lawyerImg{
+		.layui-table-cell-1-lawyerImg img{
 			/*height:auto!important;*/
 			/*white-space: normal;*/
-			max-height:145px;
-			max-width: 120px;
-			vertical-align:middle;
+			max-height:20px!important;
+			max-width: 20px!important;
 		}
 	</style>
 </head>
@@ -26,11 +25,11 @@
 					<div class="demoTable" style="display: inline;">
 						律师名:
 						<div class="layui-inline" style="margin-right: 20px;">
-							<input class="layui-input" name="lawyername" id="demoReload" autocomplete="off">
+							<input class="layui-input" name="lawyerName" id="demoReloadLaywer" autocomplete="off">
 						</div>
 						律师职称:
 						<div class="layui-inline">
-							<input class="layui-input" name="profession"  autocomplete="off">
+							<input class="layui-input" name="lawyerLevel" id="demoReloadlawyerLevel"  autocomplete="off">
 						</div>
 						<button class="layui-btn" data-type="reload">搜索</button>
 					</div>
@@ -63,9 +62,10 @@
 		base: '../../layuiadmin/' //静态资源所在路径
 	}).extend({
 		index: 'lib/index' //主入口模块
-	}).use(['index', 'table', 'upload'], function() {
+	}).use(['index', 'table', 'upload','jquery'], function() {
 		var admin = layui.admin,
 				table = layui.table,
+            $ = layui.$,
 				upload = layui.upload;
 		table.render({
 			elem: '#test-table-toolbar',
@@ -109,9 +109,30 @@
 					title: '操作',
 					toolbar: '#test-table-toolbar-barDemo',
 					width: 130
-				}]
+				}],
 			],
+            id:'testReload'
 		});
+
+        var $ = layui.$, active = {
+            reload: function(){
+                var demoReloadLaywer=$('#demoReloadLaywer');
+                var demoReloadlawyerLevel = $('#demoReloadlawyerLevel')
+                console.log(demoReloadLaywer)
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    },
+                    url:'/selectData/searchLawyer?name='+demoReloadLaywer.val()+'&level='+demoReloadlawyerLevel.val(),
+                    method:"get"
+                }, 'data');
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
 		//头工具栏事件
 		table.on('toolbar(test-table-toolbar)', function(obj) {
 			var checkStatus = table.checkStatus(obj.config.id);
@@ -147,12 +168,21 @@
 			var data = obj.data;
 			if(obj.event === 'del') {
 				layer.confirm('真的删除行么', function(index) {
-					obj.del();
-					layer.close(index);
+				    $.ajax({
+                        url:'/deleteData/lawyer?id='+data.lawyerId,
+                        method:'get',
+                        success:function (data) {
+                            if(data=="success"){
+                                obj.del();
+                                layer.close(index);
+                                window.location.href="/getPage/base/personMgr"
+                            }
+                        }
+                    })
 				});
 			} else if(obj.event === 'edit') {
-				var data=obj.data;
-				window.location.href='personEdit.html?id='+data.lawyerId;
+			    console.log("test-------------------");
+				window.location.href='/getPage/base/personEdit?id='+data.lawyerId;
 			}
 		});
 

@@ -1,41 +1,42 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title></title>
 </head>
-<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
-<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all" />
 <body>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card" style="position: relative;padding-bottom: 10px;">
                 <div class="layui-card-header">团队成员编辑</div>
-                <form class="layui-form" action="/updateData/lawyer"  method="post" style="margin: 20px 0 0 28px;">
+                <form class="layui-form" action="/updateData/lawyer"  method="post" enctype="multipart/form-data" style="margin: 20px 0 0 28px;">
+                    <input name="lawyerId" id="ida" type="hidden" />
                     <div class="layui-form-item">
                         <label class="layui-form-label" >律师姓名</label>
                         <div class="layui-input-block">
-                            <input type="text"  name="" required lay-verify="required"  autocomplete="off" id="lawerName" class="layui-input">
+                            <input type="text"  name="lawyerName" required lay-verify="required"  autocomplete="off" id="lawerName" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label" >律师职级</label>
                         <div class="layui-input-block">
-                            <input type="text"  required lay-verify="required"  autocomplete="off" id="lawerPro" class="layui-input">
+                            <input type="text" name="lawyerLevel"  required lay-verify="required"  autocomplete="off" id="lawerPro" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">律师简介</label>
                         <div class="layui-input-block">
-                            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" id="lawerIntro"></textarea>
+                            <textarea name="introduction" placeholder="请输入内容" class="layui-textarea" id="lawerIntro"></textarea>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">律师照片</label>
                         <div class="layui-input-block">
-                            <div  id="colla_img"  style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
+                            <div  id="colla_img"  style="width: 500px; height: 500px; border: 1px solid #E0E0E0;"></div>
                             <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
                                 <i class="layui-icon">&#xe67c;</i>上传图片
                             </button>
@@ -57,10 +58,9 @@
 <script src="/layuiadmin/layui/layui.js"></script>
 <script>
     var dd = document.getElementById('dd');
-    var time = document.getElementById('time')
-
+    var time = document.getElementById('time');
     function filterId(str) {
-        var newStr = str.split('?')[1].split('=')[1]
+        var newStr = str.split('?')[1].split('=')[1];
         return newStr
     }
     var idr = filterId(location.href)
@@ -79,28 +79,30 @@
                 //预读本地文件
                 obj.preview(function (index, file, result) {
                     $('#loadinput').val(file.name); //展示文件名
-                    $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a> ');
+                    $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a>');
                 })
             }
         });
         $.ajax({
-            url: '/getLawyerData',
+            url: '/selectData/getLawyerData',
             type: "get",
             dataType: "json",
             success: function(data) {
                 var data = data.data;
                 var lawerName=document.getElementById('lawerName');
                 var lawerIntro=document.getElementById('lawerIntro');
-                var lawerImg=document.getElementById('lawerImg');
-                var profession=document.getElementById('profession');
+                var ida = document.getElementById("ida");
                 var lawerPro = document.getElementById("lawerPro");
+                var colla_img = document.getElementById("colla_img")
+                console.log(location.href)
                 for(var i = 0; i < data.length; i++) {
                     if(data[i].lawyerId == idr) {
-                        console.log('yep')
-                        console.log(data[i].lawyerId)
                         lawerName.value=data[i].lawyerName;
                         lawerIntro.value=data[i].introduction;
                         lawerPro.value=data[i].lawyerLevel;
+                        colla_img.style.background='url('+data[i].lawyerImg+')';
+                        ida.value=data[i].lawyerId;
+                        console.log(data[i].lawyerId);
                     }
                 }
             }

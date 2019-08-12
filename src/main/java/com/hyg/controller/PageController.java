@@ -39,6 +39,9 @@ public class PageController
 			model.addAttribute("id", id);
 		}
 
+		System.out.println("+++++++++++++++++++++++++ : " + id);
+		System.out.println( "+++++++++++++++++页面：" + secondDir + "/" + page);
+
 		return secondDir + "/" + page;
 	}
 

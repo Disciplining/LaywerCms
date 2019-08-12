@@ -127,32 +127,40 @@ public class LawyerServiceImpl implements LawyerService
 	public boolean editOneLawyer(LawyerExpand lawyerExpand)
 	{
 		Lawyer lawyer = new Lawyer();
-
-		// 前端传过来的数据
 		lawyer.setLawyerId(lawyerExpand.getLawyerId());
 		lawyer.setLawyerName(lawyerExpand.getLawyerName());
 		lawyer.setLawyerLevel(lawyerExpand.getLawyerLevel());
 		lawyer.setIntroduction(lawyerExpand.getIntroduction());
-		String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
-		String lawyerPicDir = allPicDir + PicDir.LAWYER_TABLE_DIR; // 存储律师照片的目录
-		String picUrl = FileUtil.savePicToDisk(lawyerExpand.getFile(), lawyerPicDir);
-		if (picUrl == null)
-		{
-			return false;
-		}
-		else
-		{
-			lawyer.setLawyerImg(picUrl);
-		}
 
-		// 删除磁盘中原先的图片
-		String oldUrl = lawyerMapper.getOneLawyerById(lawyer.getLawyerId()).getLawyerImg();
-		String allPicDirNext = oldUrl.substring(8);
-		File oldPic = new File(allPicDir + allPicDirNext);
-
-		if (oldPic.exists())
+		if (lawyerExpand.getFile().getOriginalFilename().isEmpty()) // 用户没选新的图片
 		{
-			oldPic.delete();
+			Lawyer oldLawyer = lawyerMapper.getOneLawyerById(lawyer.getLawyerId());
+			lawyer.setLawyerImg(oldLawyer.getLawyerImg()); // 还是设置原来的url
+		}
+		else // 用户选择了新的图片
+		{
+			// 存入新的图片
+			String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
+			String lawyerPicDir = allPicDir + PicDir.LAWYER_TABLE_DIR; // 存储律师照片的目录
+			String picUrl = FileUtil.savePicToDisk(lawyerExpand.getFile(), lawyerPicDir); // 将图片存入磁盘
+			if (picUrl == null) // 为null说明存入磁盘失败
+			{
+				return false;
+			}
+			else
+			{
+				lawyer.setLawyerImg(picUrl); // 设置新的图片地址
+			}
+
+			// 删除磁盘中原先的图片
+			String oldUrl = lawyerMapper.getOneLawyerById(lawyer.getLawyerId()).getLawyerImg();
+			String allPicDirNext = oldUrl.substring(8);
+			File oldPic = new File(allPicDir + allPicDirNext);
+
+			if (oldPic.exists())
+			{
+				oldPic.delete();
+			}
 		}
 
 		// 更新数据
@@ -188,7 +196,7 @@ public class LawyerServiceImpl implements LawyerService
 		RespondJson<Lawyer> json = new RespondJson<>();
 		json.setCode(0);
 		json.setMsg("");
-		json.setCode(lawyers.size());
+		json.setCount(lawyers.size());
 		json.setData(lawyers);
 
 		return json;

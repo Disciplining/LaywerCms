@@ -79,7 +79,6 @@ public class LawyerController
 	 * @return
 	 */
 	@PostMapping("/updateData/lawyer")
-	@ResponseBody
 	public String editOneLawyer(LawyerExpand lawyerExpand, Model model)
 	{
 		boolean success = lawyerService.editOneLawyer(lawyerExpand);
@@ -109,9 +108,6 @@ public class LawyerController
 		@RequestParam(value = "level", defaultValue = "") String lawyerLevel
 	)
 	{
-		System.out.println("名字：" + lawyerName);
-		System.out.println("职称：" + lawyerLevel);
-
 		return lawyerService.listLawyersByNameAndLevel(lawyerName, lawyerLevel);
 	}
 }
