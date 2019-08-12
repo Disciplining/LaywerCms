@@ -12,9 +12,15 @@ public class User
 	private String password;
 	private String loginName;
 	private String realName;
-	private Boolean gender;
+	private String gender;
 	private String userTel;
 	private String email;
 	private String position;
 	private String deleteFlag;
+
+	public static class GenderType
+	{
+		public static final String MAN = "男";
+		public static final String WOMAN = "女";
+	}
 }
