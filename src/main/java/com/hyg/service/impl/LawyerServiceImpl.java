@@ -69,7 +69,7 @@ public class LawyerServiceImpl implements LawyerService
 		lawyer.setIntroduction(lawyerExpand.getIntroduction());
 		String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
 		String lawyerPicDir = allPicDir + PicDir.LAWYER_TABLE_DIR; // 存储律师照片的目录
-		String picUrl = FileUtil.savePicToDisk(lawyerExpand.getLawyerImgExpand(), lawyerPicDir);
+		String picUrl = FileUtil.savePicToDisk(lawyerExpand.getFile(), lawyerPicDir);
 		if (picUrl == null)
 		{
 			return false;
@@ -135,7 +135,7 @@ public class LawyerServiceImpl implements LawyerService
 		lawyer.setIntroduction(lawyerExpand.getIntroduction());
 		String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
 		String lawyerPicDir = allPicDir + PicDir.LAWYER_TABLE_DIR; // 存储律师照片的目录
-		String picUrl = FileUtil.savePicToDisk(lawyerExpand.getLawyerImgExpand(), lawyerPicDir);
+		String picUrl = FileUtil.savePicToDisk(lawyerExpand.getFile(), lawyerPicDir);
 		if (picUrl == null)
 		{
 			return false;
