@@ -30,6 +30,6 @@ public interface MsgBoardMapper
 	 * @param name
 	 * @return
 	 */
-	@Select(" select * from `t_msgBoard` where `customerName` like concat(%,#{name},%) ")
+	@Select(" select * from `t_msgBoard` where `customerName` like concat('%',#{name},'%') ")
 	List<MsgBoard> listMsgByCustomerName(String name);
 }

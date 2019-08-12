@@ -17,4 +17,11 @@ public interface MsgBoardService
 	 * @return
 	 */
 	RespondJson<MsgBoard> listMsgNoRead();
+
+	/**
+	 * 根据客户姓名查找留言
+	 * @param name
+	 * @return
+	 */
+	RespondJson<MsgBoard> listMsgByCustomerName(String name);
 }

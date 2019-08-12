@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -27,10 +28,22 @@ public class MsgBoardController
 		return msgBoardService.getMsgBoardData();
 	}
 
-	@GetMapping("/foo")
+	@GetMapping("/selectData/listMsgNoRead")
 	@ResponseBody
 	public RespondJson<MsgBoard> listMsgNoRead()
 	{
 		return msgBoardService.listMsgNoRead();
+	}
+
+	/**
+	 * 根据客户姓名查找留言
+	 * @param name
+	 * @return
+	 */
+	@GetMapping("/selectData/listMsgByCustomerName")
+	@ResponseBody
+	public RespondJson<MsgBoard> listMsgByCustomerName(@RequestParam(value = "name", defaultValue = "") String name)
+	{
+		return msgBoardService.listMsgByCustomerName(name);
 	}
 }

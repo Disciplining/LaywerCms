@@ -57,4 +57,24 @@ public class MsgBoardServiceImpl implements MsgBoardService
 
 		return json;
 	}
+
+	/**
+	 * 根据客户姓名查找留言
+	 *
+	 * @param name
+	 * @return
+	 */
+	@Override
+	public RespondJson<MsgBoard> listMsgByCustomerName(String name)
+	{
+		List<MsgBoard> list = msgBoardMapper.listMsgByCustomerName(name);
+
+		RespondJson<MsgBoard> json = new RespondJson<>();
+		json.setCode(0);
+		json.setMsg(null);
+		json.setCount(list.size());
+		json.setData(list);
+
+		return json;
+	}
 }
