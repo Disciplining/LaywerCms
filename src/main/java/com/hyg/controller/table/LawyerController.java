@@ -105,11 +105,14 @@ public class LawyerController
 	@GetMapping("/selectData/searchLawyer")
 	@ResponseBody
 	public RespondJson<Lawyer> listLawyersByNameAndLevel
-		(
-				String lawyerName,
-				String lawyerLevel
-		)
+	(
+		@RequestParam(value = "name", defaultValue = "") String lawyerName,
+		@RequestParam(value = "level", defaultValue = "") String lawyerLevel
+	)
 	{
+		System.out.println("名字：" + lawyerName);
+		System.out.println("职称：" + lawyerLevel);
+
 		return lawyerService.listLawyersByNameAndLevel(lawyerName, lawyerLevel);
 	}
 }

@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Service("lawyerMapper")
@@ -53,11 +54,10 @@ public interface LawyerMapper
 
 	/**
 	 * 根据律师姓名与律师职称搜索律师
-	 * @param lawyerName
-	 * @param lawyerLevel
+	 * @param par 参数 携带律师名与职称
 	 * @return
 	 */
 	@Select(" select * from `t_lawyer` " +
-				" where `deleteFlag`!='0' and ( `lawyerName` like concat('%',#{lawyerName},'%') and `lawyerLevel` like concat('%',#{lawyerLevel},'%') ) ")
-	List<Lawyer> listLawyersByNameAndLevel(String lawyerName, String lawyerLevel);
+				" where `deleteFlag`!='1' and ( `lawyerName` like concat('%',#{lawyerName},'%') and `lawyerLevel` like concat('%',#{lawyerLevel},'%') ) ")
+	List<Lawyer> listLawyersByNameAndLevel(Map<String, String> par);
 }

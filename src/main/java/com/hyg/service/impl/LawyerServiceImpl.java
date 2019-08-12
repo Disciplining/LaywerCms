@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("lawyerServiceImpl")
 public class LawyerServiceImpl implements LawyerService
@@ -176,7 +178,12 @@ public class LawyerServiceImpl implements LawyerService
 	@Override
 	public RespondJson<Lawyer> listLawyersByNameAndLevel(String lawyerName, String lawyerLevel)
 	{
-		List<Lawyer> lawyers = lawyerMapper.listLawyersByNameAndLevel(lawyerName, lawyerLevel);
+		Map<String, String> par =  new HashMap<>(2);
+
+		par.put("lawyerName", lawyerName);
+		par.put("lawyerLevel", lawyerLevel);
+
+		List<Lawyer> lawyers = lawyerMapper.listLawyersByNameAndLevel(par);
 
 		RespondJson<Lawyer> json = new RespondJson<>();
 		json.setCode(0);

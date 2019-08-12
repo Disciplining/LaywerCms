@@ -17,3 +17,7 @@ spring:
 
 cbs:
     imagesPath: file:/media/root/my-disk/download/pic-dir/
+
+mybatis:
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印sql语句
