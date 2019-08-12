@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <html>
 
 <head>
@@ -9,6 +10,7 @@
 </head>
 
 <body>
+<input th:value="${res}" id="error">
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md12">
@@ -16,7 +18,7 @@
 				<div class="layui-card-header">团队成员列表</div>
 				<div class="layui-card-body">
 					<div style="margin-top:20px">
-						<form class="layui-form" action="">
+						<form class="layui-form" action="/updateData/article" method="post">
 							<input type="hidden" id="realId" name="articleId">
 							<div class="layui-form-item layui-form-text">
 								<label class="layui-form-label">文集类型</label>
@@ -59,7 +61,7 @@
 								</div>
 							</div>
 						</form>
-						<a style="position: absolute;left: 250px;bottom: 25px;" href="./collectionMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
+						<a style="position: absolute;left: 250px;bottom: 25px;" href="/getPage/base/collectionMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
 					</div>
 				</div>
 			</div>
@@ -70,14 +72,27 @@
 <script src="/layuiadmin/kindeditor/kindeditor-all-min.js"></script>
 <script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
 <script>
-	function filterId(str) {
-		var newStr = str.split('?')[1].split('=')[1]
-		return newStr
+	var href = location.href
+	console.log(href)
+	var flag = false
+	var hrefArr = href.split('')
+	for(var j=0;j<hrefArr.length;j++){
+		console.log(hrefArr[j])
+		if(hrefArr[j]!='?'){
+			flag = true
+			function filterId(str) {
+				var newStr = str.split('?')[1].split('=')[1]
+				return newStr
+			}
+			console.log(flag)
+		}else {
+			flag=false
+			console.log(flag)
+		}
 	}
 	KindEditor.ready(function(K) {
 		window.editor = K.create('#editor_id');
 	});
-	var idr = filterId(location.href)
 	var realId = document.getElementById("realId")
 	var select =document.getElementsByTagName('select');
 	var option =document.getElementsByTagName('option');
@@ -87,32 +102,36 @@
 	var author = document.getElementById('author')
 	var intro = document.getElementById('intro')
 	var editor_id = document.getElementById('editor_id')
-	layui.use(['jquery','form'], function() {
+	layui.use(['jquery','form','layer'], function() {
 		var $ = layui.$, form=layui.form;
-		$.ajax({
-			url: '/getArticleData',
-			type: "get",
-			dataType: "json",
-			success: function(data) {
-				var data = data.data
-				for(var i = 0; i < data.length; i++) {
-					if(data[i].articleId == idr) {
-						realId.value= data[i].articleId
-						articleTitle.value = data[i].articleTitle
-						author.value = data[i].author
-						intro.innerHTML = data[i].intro
-						editor.html(data[i].content)
-						for(var f=0;f<option.length;f++){
-							if(option[f].value==data[i].typeExpand){
-								$("select").val(data[i].typeExpand);
-								form.render("select");
-							}
+			if(flag){
+				var idr = filterId(location.href)
+				$.ajax({
+					url: '/selectData/getArticleData',
+					type: "get",
+					dataType: "json",
+					success: function(data) {
+						var data = data.data
+						for(var i = 0; i < data.length; i++) {
+							if(data[i].articleId == idr) {
+								realId.value= data[i].articleId
+								articleTitle.value = data[i].articleTitle
+								author.value = data[i].author
+								intro.innerHTML = data[i].intro
+								editor.html(data[i].content)
+								for(var f=0;f<option.length;f++){
+									if(option[f].value==data[i].typeExpand){
+										$("select").val(data[i].typeExpand);
+										form.render("select");
+									}
 
+								}
+							}
 						}
 					}
-				}
+				})
 			}
-		})
+
 	})
 </script>
 </body>

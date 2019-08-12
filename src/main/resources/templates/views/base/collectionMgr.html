@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<title>文集</title>
@@ -20,7 +18,7 @@
 				<div class="layui-card-header">事务所介绍</div>
 				<div class="layui-card-body">
                     <div class="demoTable" style="margin-bottom: 20px">
-						author：
+						作者：
                         <div class="layui-inline">
                             <input class="layui-input" name="author" id="demoReload" autocomplete="off">
                         </div>
@@ -60,7 +58,7 @@
 
 		table.render({
 			elem: '#test-table-toolbar',
-			url: '/getArticleData',
+			url: '/selectData/getArticleData',
 			toolbar: '#test-table-toolbar-toolbarDemo',
 			title: '团队文集',
 			cols: [
@@ -112,12 +110,9 @@
                 table.reload('testReload', {
                     page: {
                         curr: 1 //重新从第 1 页开始
-                    }
-                    ,where: {
-                        key: {
-							author : demoReload.val()
-                        }
-                    }
+                    },
+					url:'/selectData/searchArticle?author='+demoReload.val(),
+					method:'get'
                 }, 'data');
             }
         };
@@ -148,9 +143,22 @@
 		table.on('tool(test-table-toolbar)', function(obj) {
 			var data = obj.data;
 			if(obj.event === 'del') {
-				layer.confirm('真的删除行么', function(index) {
-					obj.del();
-					layer.close(index);
+				layer.alert('真的删除行么', function(index) {
+					$.ajax({
+						url: '/deleteData/article?id='+data.articleId,
+						type: "get",
+						success: function(data) {
+							layer.close(index);
+							if(data=="success"){
+								 obj.del();
+								 window.location.href='/getPage/base/collectionMgr';
+								 // console.log(location.href)
+								// location.reload()
+								 // table.reload('zizeng',{page:{curr:1}})//重载表格的数据
+                                 // parent.layui.table.reload('articleId',{page:{curr:1}})
+							}
+						}
+					})
 				});
 			} else if(obj.event === 'edit') {
 				window.location.href="/getPage/base/editCollection.html?id="+data.articleId
