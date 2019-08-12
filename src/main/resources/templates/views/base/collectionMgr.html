@@ -19,10 +19,21 @@
 				<div class="layui-card-body">
                     <div class="demoTable" style="margin-bottom: 20px">
 						作者：
-                        <div class="layui-inline">
-                            <input class="layui-input" name="author" id="demoReload" autocomplete="off">
+                        <div class="layui-inline" style="margin-right: 100px">
+                            <input class="layui-input" name="author" id="demoReloadAuthor" autocomplete="off">
                         </div>
-                        <button class="layui-btn" data-type="reload">搜索</button>
+							<div class="layui-form-item">
+								<label class="layui-form-label">文集类型</label>
+								<div class="layui-input-inline">
+									<select name="typeExpand" id="demoReloadTypeExpand" lay-verify="required">
+										<option value=""></option>
+										<option value="公司法律">公司法律</option>
+										<option value="劳动法律">劳动法律</option>
+										<option value="形式法律">形式法律</option>
+									</select>
+								</div>
+							</div>
+						<button class="layui-btn" data-type="reload">搜索</button>
                     </div>
 					<table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
 					</table>
@@ -104,14 +115,17 @@
 		});
         var $ = layui.$, active = {
             reload: function(){
-                var demoReload = $('#demoReload');
+                var demoReloadAuthor = $('#demoReloadAuthor');
+                var demoReloadTypeExpand=$('#demoReloadTypeExpand');
+                console.log(demoReloadAuthor.val())
+				console.log(demoReloadTypeExpand.val())
 
                 //执行重载
                 table.reload('testReload', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     },
-					url:'/selectData/searchArticle?author='+demoReload.val(),
+					url:'/selectData/searchArticle?author='+demoReloadAuthor.val()+'&typeExpand='+demoReloadTypeExpand.val(),
 					method:'get'
                 }, 'data');
             }
