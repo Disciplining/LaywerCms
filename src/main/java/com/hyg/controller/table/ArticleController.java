@@ -99,7 +99,7 @@ public class ArticleController
 	 * @param author
 	 * @return
 	 */
-	@GetMapping("/selectData/search")
+	@GetMapping("/selectData/searchArticle")
 	@ResponseBody
 	public RespondJson<ArticleExpand> searchArticlesByAuthor(@RequestParam(value = "author", defaultValue = "") String author)
 	{

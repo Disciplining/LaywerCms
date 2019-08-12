@@ -17,7 +17,7 @@ public interface LawyerMapper
 	 * 律师表所有信息（未被删除的）
 	 * @return
 	 */
-	@Select("select * from `t_lawyer` where `deleteFlag`!='1'")
+	@Select("select * from `t_lawyer` where `deleteFlag`!='0'")
 	List<Lawyer> listLawyers();
 
 	/**
@@ -57,6 +57,7 @@ public interface LawyerMapper
 	 * @param lawyerLevel
 	 * @return
 	 */
-	@Select("  ")
+	@Select(" select * from `t_lawyer` " +
+				" where `deleteFlag`!='0' and ( `lawyerName` like concat('%',#{lawyerName},'%') and `lawyerLevel` like concat('%',#{lawyerLevel},'%') ) ")
 	List<Lawyer> listLawyersByNameAndLevel(String lawyerName, String lawyerLevel);
 }

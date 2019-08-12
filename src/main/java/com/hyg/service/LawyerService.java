@@ -32,4 +32,12 @@ public interface LawyerService
 	 * @return
 	 */
 	boolean editOneLawyer(LawyerExpand lawyerExpand);
+
+	/**
+	 * 根据律师名和律师职称查找律师
+	 * @param lawyerName
+	 * @param lawyerLevel
+	 * @return
+	 */
+	RespondJson<Lawyer> listLawyersByNameAndLevel(String lawyerName, String lawyerLevel);
 }

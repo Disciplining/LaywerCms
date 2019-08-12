@@ -95,4 +95,16 @@ public class LawyerController
 			return "页面2";
 		}
 	}
+
+	/**
+	 * 根据律师名和律师职称搜索律师
+	 * @param lawyerName
+	 * @param lawyerLevel
+	 * @return
+	 */
+	@GetMapping("/selectData/searchLawyer")
+	public RespondJson<Lawyer> listLawyersByNameAndLevel(String lawyerName, String lawyerLevel)
+	{
+		return null;
+	}
 }

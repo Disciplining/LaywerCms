@@ -165,4 +165,25 @@ public class LawyerServiceImpl implements LawyerService
 
 		return true;
 	}
+
+	/**
+	 * 根据律师名和律师职称查找律师
+	 *
+	 * @param lawyerName
+	 * @param lawyerLevel
+	 * @return
+	 */
+	@Override
+	public RespondJson<Lawyer> listLawyersByNameAndLevel(String lawyerName, String lawyerLevel)
+	{
+		List<Lawyer> lawyers = lawyerMapper.listLawyersByNameAndLevel(lawyerName, lawyerLevel);
+
+		RespondJson<Lawyer> json = new RespondJson<>();
+		json.setCode(0);
+		json.setMsg("");
+		json.setCode(lawyers.size());
+		json.setData(lawyers);
+
+		return json;
+	}
 }
