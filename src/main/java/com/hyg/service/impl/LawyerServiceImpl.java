@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.util.List;
 
 @Service("lawyerServiceImpl")
@@ -103,6 +105,58 @@ public class LawyerServiceImpl implements LawyerService
 		try
 		{
 			lawyerMapper.deleteOneLawyerById(lawyerId);
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * 编辑一个律师的信息
+	 *
+	 * @param lawyerExpand 前端传过来的律师信息
+	 * @return
+	 */
+	@Override
+	@Transactional
+	public boolean editOneLawyer(LawyerExpand lawyerExpand)
+	{
+		Lawyer lawyer = new Lawyer();
+
+		// 前端传过来的数据
+		lawyer.setLawyerId(lawyerExpand.getLawyerId());
+		lawyer.setLawyerName(lawyerExpand.getLawyerName());
+		lawyer.setLawyerLevel(lawyerExpand.getLawyerLevel());
+		lawyer.setIntroduction(lawyerExpand.getIntroduction());
+		String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
+		String lawyerPicDir = allPicDir + PicDir.LAWYER_TABLE_DIR; // 存储律师照片的目录
+		String picUrl = FileUtil.savePicToDisk(lawyerExpand.getLawyerImgExpand(), lawyerPicDir);
+		if (picUrl == null)
+		{
+			return false;
+		}
+		else
+		{
+			lawyer.setLawyerImg(picUrl);
+		}
+
+		// 删除磁盘中原先的图片
+		String oldUrl = lawyerMapper.getOneLawyerById(lawyer.getLawyerId()).getLawyerImg();
+		String allPicDirNext = oldUrl.substring(8);
+		File oldPic = new File(allPicDir + allPicDirNext);
+
+		if (oldPic.exists())
+		{
+			oldPic.delete();
+		}
+
+		// 更新数据
+		try
+		{
+			lawyerMapper.updateOneLawyerBiId(lawyer);
 		}
 		catch (Exception e)
 		{

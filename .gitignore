@@ -2,6 +2,7 @@
 src/test
 target
 src/main/java/com/hyg/test
-/src/main/resources/static/test.html
+/src/main/resources/static/addLawyer.html
+/src/main/resources/static/updateLawyer.html
 
 *.iml

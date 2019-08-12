@@ -25,4 +25,11 @@ public interface LawyerService
 	 * @return
 	 */
 	boolean deleteOneLawyerById(int lawyerId);
+
+	/**
+	 * 编辑一个律师的信息
+	 * @param lawyerExpand 前端传过来的律师信息
+	 * @return
+	 */
+	boolean editOneLawyer(LawyerExpand lawyerExpand);
 }

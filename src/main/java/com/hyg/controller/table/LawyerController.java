@@ -72,4 +72,27 @@ public class LawyerController
 			return "fail";
 		}
 	}
+
+	/**
+	 * 编辑一个律师
+	 * @param lawyerExpand
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/updateData/lawyer")
+	@ResponseBody
+	public String editOneLawyer(LawyerExpand lawyerExpand, Model model)
+	{
+		boolean success = lawyerService.editOneLawyer(lawyerExpand);
+
+		if (success)
+		{
+			return "页面1";
+		}
+		else
+		{
+			model.addAttribute("res", "更新数据失败");
+			return "页面2";
+		}
+	}
 }

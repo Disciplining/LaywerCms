@@ -14,11 +14,19 @@ import java.util.List;
 public interface LawyerMapper
 {
 	/**
-	 * 律师表
+	 * 律师表所有信息（未被删除的）
 	 * @return
 	 */
 	@Select("select * from `t_lawyer` where `deleteFlag`!='1'")
 	List<Lawyer> listLawyers();
+
+	/**
+	 * 根据id获得一个律师的信息
+	 * @param lawyerId
+	 * @return
+	 */
+	@Select(" select * from `t_lawyer` where `deleteFlag`!='1' and `lawyerId`=#{lawyerId} ")
+	Lawyer getOneLawyerById(int lawyerId);
 
 	/**
 	 * 向律师表中添加一条数据
@@ -34,4 +42,12 @@ public interface LawyerMapper
 	 */
 	@Update(" update `t_lawyer` set `deleteFlag`='1' where `lawyerId`=#{lawyerId} ")
 	void deleteOneLawyerById(int lawyerId);
+
+	/**
+	 * 编辑律师信息
+	 * @param lawyer
+	 */
+	@Update(" update `t_lawyer` set `lawyerName`=#{lawyerName},`lawyerLevel`=#{lawyerLevel},`introduction`=#{introduction},`lawyerImg`=#{lawyerImg} " +
+				" where `lawyerId`=#{lawyerId} ")
+	void updateOneLawyerBiId(Lawyer lawyer);
 }
