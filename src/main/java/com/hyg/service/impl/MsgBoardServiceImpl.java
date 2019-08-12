@@ -36,4 +36,19 @@ public class MsgBoardServiceImpl implements MsgBoardService
 
 		return json;
 	}
+
+	/**
+	 * 返回未读的数据
+	 *
+	 * @return
+	 */
+	@Override
+	public RespondJson<MsgBoard> listMsgNoRead()
+	{
+//		List<MsgBoard> list =
+//
+//		RespondJson<MsgBoard> json = new RespondJson<>();
+
+		return null;
+	}
 }

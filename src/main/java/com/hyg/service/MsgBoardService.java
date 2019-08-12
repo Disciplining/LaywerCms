@@ -11,4 +11,10 @@ public interface MsgBoardService
 	 * @return
 	 */
 	RespondJson<MsgBoard> getMsgBoardData();
+
+	/**
+	 * 返回未读的数据
+	 * @return
+	 */
+	RespondJson<MsgBoard> listMsgNoRead();
 }
