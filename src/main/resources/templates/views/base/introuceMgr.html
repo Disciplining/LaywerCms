@@ -15,8 +15,8 @@
 			<div class="layui-card">
 				<div class="layui-card-header">事务所介绍</div>
 				<div class="layui-card-body" style="margin-left: -60px;">
-					<div class="form">
-						<form class="layui-form" style="margin-top: 20px;">
+					<div class="form" >
+						<form class="layui-form" style="margin-top: 20px;" method="post" action="/getAgencyData">
 							<div class="layui-form-item layui-form-text">
 								<div class="layui-input-block" style="margin-left: 60px;">
 									<textarea id="editor_id" name="content" style="width:100%;height:600px;"></textarea>
@@ -24,7 +24,7 @@
 							</div>
 							<div class="layui-form-item">
 								<div class="layui-input-block">
-									<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+									<button class="layui-btn" type="submit" lay-filter="*">立即提交</button>
 									<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 								</div>
 							</div>

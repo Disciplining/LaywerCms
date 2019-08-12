@@ -23,7 +23,7 @@
 					<div class="demoTable" style="margin-bottom: 20px;">
 						客户姓名:
 						<div class="layui-inline">
-							<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+							<input class="layui-input" name="customerName" id="demoReload" autocomplete="off">
 						</div>
 						<button class="layui-btn" data-type="reload">搜索</button>
 					</div>
@@ -100,7 +100,7 @@
 		})
 		table.on('row(LAY-app-message-notice)', function(obj) {
 			var data = obj.data;
-			window.location.href="./editCarousel.html?id="+data.msgId
+			window.location.href="/getPage/base/editCarousel.html?id="+data.msgId
 		})
 	});
 </script>

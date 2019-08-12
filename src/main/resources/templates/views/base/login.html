@@ -13,8 +13,7 @@
   <link rel="stylesheet" href="/layuiadmin/style/login.css" media="all">
 </head>
 <body>
-    <input th:value="${res}" id="error" style="display: none">
-
+    <input th:value="${res}" id="inp" style="display: none">
   <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
 
     <div class="layadmin-user-login-main">
@@ -64,24 +63,22 @@
 
   <script src="/layuiadmin/layui/layui.js"></script>
     <script>
-      var error = document.getElementById('error').value;
       layui.config({
         base: '../../layuiadmin/' //静态资源所在路径
       }).extend({
         index: 'lib/index' //主入口模块
-      }).use(['index', 'user','layer'], function(){
+      }).use(['index', 'user'], function(){
         var $ = layui.$
-                ,layer=layui.layer
                 ,setter = layui.setter
                 ,admin = layui.admin
                 ,form = layui.form
-                ,router = layui.router()
-                ,search = router.search;
+        var inp =document.getElementById('inp').value;
+        if(inp){
+          layer.alert('密码错误！');
+        }
 
         form.render();
-        if(error){
-          layer.alert('插入失败')
-        }
+
         //提交
         form.on('submit(LAY-user-login-submit)', function(obj){
 
@@ -224,8 +221,15 @@
 
     }
     function  back() {
+      if(flag==false){
+        alert("请验证")
+        return flag;
+      }
+      if(flag==true) {
       return flag
+      }
     }
+
   </script>
 </body>
 </html>

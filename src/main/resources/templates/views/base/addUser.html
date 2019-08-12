@@ -16,37 +16,37 @@
 						<div class="layui-card-header">添加用户</div>
 						<div class="layui-card-body">
 							<div style="margin-top:20px;position: relative" >
-								<form class="layui-form" style="margin-top: 20px;">
+								<form class="layui-form" action="/getUserData" method="post" style="margin-top: 20px;">
 			<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
 			<div class="layui-form-item">
 				<label class="layui-form-label">用户名</label>
 				<div class="layui-input-block">
-					<input type="text" name="" placeholder="请输入" class="layui-input">
+					<input type="text" name="loginName" placeholder="请输入" class="layui-input">
 				</div>
 			</div>
 			
 			<div class="layui-form-item">
 				<label class="layui-form-label">手机</label>
 				<div class="layui-input-block">
-					<input type="text" name="" placeholder="请输入" class="layui-input">
+					<input type="text" name="userTel" placeholder="请输入" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">邮箱</label>
 				<div class="layui-input-block">
-					<input type="email" name="" placeholder="请输入" class="layui-input">
+					<input type="email" name="email" placeholder="请输入" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">性别</label>
 				<div class="layui-input-block">
-					<input type="radio" name="sex" value="0" title="男" checked="checked">
-					<input type="radio" name="sex" value="1" title="女" checked>
+					<input type="radio" name="gender" value="0" title="男" checked="checked">
+					<input type="radio" name="gender" value="1" title="女" checked>
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*" style="">立即提交</button>
+					<button class="layui-btn" type="submit" lay-filter="*" style="">立即提交</button>
 				</div>
 			</div>
 		</form>
