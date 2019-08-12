@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -175,11 +176,15 @@ public class ArticleServiceImpl implements ArticleService
 		// 后端生成的数据
 		article.setEditDate(new Date(System.currentTimeMillis()));
 		article.setCount(0);
-		article.setDeleteFlag("false");
+		article.setDeleteFlag("0");
+
+		// debug
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
 		try
 		{
 			articleMapper.insertOneArticle(article);
+			System.out.println(article);
 		}
 		catch (Exception e)
 		{

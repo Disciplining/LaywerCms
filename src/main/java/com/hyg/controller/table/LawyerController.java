@@ -103,8 +103,13 @@ public class LawyerController
 	 * @return
 	 */
 	@GetMapping("/selectData/searchLawyer")
-	public RespondJson<Lawyer> listLawyersByNameAndLevel(String lawyerName, String lawyerLevel)
+	@ResponseBody
+	public RespondJson<Lawyer> listLawyersByNameAndLevel
+		(
+				String lawyerName,
+				String lawyerLevel
+		)
 	{
-		return null;
+		return lawyerService.listLawyersByNameAndLevel(lawyerName, lawyerLevel);
 	}
 }
