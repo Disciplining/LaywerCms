@@ -18,4 +18,10 @@ public interface AgencyMapper
 	@Select("select * from `t_agency` where `deleteFlag`!='1'")
 	List<Agency> listAgency();
 
+	/**
+	 * 修改事务所介绍
+	 * @param detail
+	 */
+//	@Update(" update  ")
+//	void updateAgencyDetail(String detail);
 }
