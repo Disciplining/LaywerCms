@@ -50,4 +50,13 @@ public interface LawyerMapper
 	@Update(" update `t_lawyer` set `lawyerName`=#{lawyerName},`lawyerLevel`=#{lawyerLevel},`introduction`=#{introduction},`lawyerImg`=#{lawyerImg} " +
 				" where `lawyerId`=#{lawyerId} ")
 	void updateOneLawyerBiId(Lawyer lawyer);
+
+	/**
+	 * 根据律师姓名与律师职称搜索律师
+	 * @param lawyerName
+	 * @param lawyerLevel
+	 * @return
+	 */
+	@Select("  ")
+	List<Lawyer> listLawyersByNameAndLevel(String lawyerName, String lawyerLevel);
 }
