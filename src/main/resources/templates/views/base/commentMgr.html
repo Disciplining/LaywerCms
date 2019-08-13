@@ -25,19 +25,28 @@
 						<div class="layui-inline" style="margin-right: 20px">
 							<input class="layui-input" name="customerName" id="demoReload" autocomplete="off">
 						</div>
-						案例详情:
+						案情描述:
 						<div class="layui-inline">
-							<input class="layui-input" name="customerName" id="demoReloaddetail" autocomplete="off">
+							<input class="layui-input" name="customerName" id="demoReloadAn" autocomplete="off">
 						</div>
 						<button class="layui-btn" data-type="reload">搜索</button>
 					</div>
-					<div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-						<button class="layui-btn layui-btn-primary layui-btn-sm">全部</button>
-						<button class="layui-btn layui-btn-primary layui-btn-sm">未读</button>
-					</div>
+					<script type="text/html" id="test-table-toolbar-toolbarDemo">
+						<div class="layui-btn-container">
+
+							<div class="demoTable"> <button class="layui-btn" data-type="reload">已读</button></div>
+						</div>
+					</script>
+<!--					<div class="LAY-app-message-btns" style="margin-bottom: 10px;">-->
+<!--						<button class="layui-btn layui-btn-primary layui-btn-sm"  lay-event="edit">全部</button>-->
+<!--						<button class="layui-btn layui-btn-primary layui-btn-sm"  data-events="readyAll">未读</button>-->
+<!--					</div>-->
 					<table event="clickA" id="LAY-app-message-notice" lay-filter="LAY-app-message-notice"></table>
 					<script type="text/html" id="zizeng">
 						{{d.LAY_TABLE_INDEX+1}}
+					</script>
+					<script type="text/html" id="test-table-toolbar-barDemo">
+						<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</ a>
 					</script>
 				</div>
 			</div>
@@ -58,6 +67,7 @@
 		table.render({
 			elem: '#LAY-app-message-notice',
 			url: '/selectData/getMsgBoardData',
+			toolbar: '#test-table-toolbar-toolbarDemo',
 			skin: 'line' ,//行边框风格
 			page: {
 				groups: 3 //只显示 1 个连续页码
@@ -86,6 +96,7 @@
 				}, {
 					field: 'caseDetail',
 					title: '案情描述',
+					event:'clickA'
 				}, {
 					field: 'createDate',
 					title: '创建时间',
@@ -98,6 +109,10 @@
 					field:'replyDate',
 					title:'回复时间',
 					width:100
+				},{
+					title: '操作',
+					toolbar: '#test-table-toolbar-barDemo',
+					width: 120
 				}]
 			],
 			id:'testTable'
@@ -113,18 +128,22 @@
 				}, 'data');
 			}
 		};
-		$('.LAY-app-message-btns .layui-btn layui-btn-primary layui-btn-sm').on('click', function(){
+		$('.demoTable .layui-btn').on('click', function(){
 			var type = $(this).data('type');
 			active[type] ? active[type].call(this) : '';
-			alert('你点我了')
+			console.log(active)
 		});
-		table.on('del',function(){
-			alert('yep')
-		})
-		table.on('row(LAY-app-message-notice)', function(obj) {
+		table.on('tool(LAY-app-message-notice)', function(obj) {
 			var data = obj.data;
-			window.location.href="/getPage/base/editCarousel.html?id="+data.msgId
-		})
+			if(obj.event === 'del') {
+				layer.alert('真的删除行么', function(index) {
+					layer.close(index)
+					obj.del()
+				});
+			}else if(obj.event === 'clickA'){
+				window.location.href="/getPage/base/editCarousel.html?id="+data.msgId
+			}
+		});
 	});
 </script>
 </body>
