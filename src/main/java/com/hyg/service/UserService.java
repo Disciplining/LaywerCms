@@ -35,4 +35,12 @@ public interface UserService
 	 * @return
 	 */
 	boolean deleteOneUserById(int id);
+
+	/**
+	 * 编辑一个普通管理员用户的信息
+	 * 前端传过来的信息：用户id、登录名、真实姨名、姓别、电话、邮箱、职务
+	 * @param user
+	 * @return
+	 */
+	boolean updateOneUserById(User user);
 }

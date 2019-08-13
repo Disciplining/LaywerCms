@@ -135,4 +135,28 @@ public class UserServiceImpl implements UserService
 
 		return true;
 	}
+
+	/**
+	 * 编辑一个普通管理员用户的信息
+	 * 前端传过来的信息：用户id、登录名、真实姨名、姓别、电话、邮箱、职务
+	 *
+	 * @param user
+	 * @return
+	 */
+	@Override
+	public boolean updateOneUserById(User user)
+	{
+		try
+		{
+			userMapper.updateOneUserById(user);
+		}
+		catch (Exception e)
+		{
+			System.out.println("++++++++++++++++++++发生了异常++++++++++++++++++++");
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
 }

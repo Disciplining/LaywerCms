@@ -43,4 +43,13 @@ public interface UserMapper
 	 */
 	@Update(" update `t_user` set `deleteFlag`='1' where `id`=#{id} and locate('root_user',`role`)=0 ")
 	void deleteOneUserById(int id);
+
+	/**
+	 * 编辑一个普通管员用户
+	 * @param user
+	 */
+	@Update(" update `t_user` set " +
+				" `loginName`=#{loginName},`realName`=#{realName},`gender`=#{gender},`userTel`=#{userTel},`email`=#{email},`position`=#{position} " +
+				" where `id`=#{id} and `deleteFlag`='0' and locate('root_user',`role`)=0 ")
+	void updateOneUserById(User user);
 }
