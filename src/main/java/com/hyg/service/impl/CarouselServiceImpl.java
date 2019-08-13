@@ -1,15 +1,18 @@
 package com.hyg.service.impl;
 
+import com.hyg.config.PicDir;
 import com.hyg.mapper.CarouselMapper;
 import com.hyg.pojo.Carousel;
 import com.hyg.pojo.CarouselExpand;
 import com.hyg.service.CarouselService;
+import com.hyg.util.FileUtil;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service("carouselServiceImpl")
@@ -52,11 +55,33 @@ public class CarouselServiceImpl implements CarouselService
 	@Override
 	public boolean insertOneCarousel(CarouselExpand carouselExpand)
 	{
-		Carousel carousel = new Carousel();
+		Carousel carousel = new Carousel(); // 组装这个对象
+
+		// 前端传过来的数据
 		carousel.setBannerName(carouselExpand.getBannerName());
-
 		String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
+		String bannerPicDir = allPicDir + PicDir.BANNER_TABLE_DIR; // 存储轮播图图片的目录
+		String picUrl = FileUtil.savePicToDisk(carouselExpand.getFile(), bannerPicDir);
+		if (picUrl != null)
+		{
+			carousel.setImgPath(picUrl);
+		}
 
-		return false;
+		// 其他没有传过来的数据
+		carousel.setEditDate(new Timestamp(System.currentTimeMillis()));
+
+		System.out.println("日期++++++++++++++ " +carousel);
+
+		try
+		{
+			carouselMapper.insertOneCarousel(carousel);
+		}
+		catch (Exception e)
+		{
+			System.out.println("++++++++++出现了异常+++++++++++++");
+			return false;
+		}
+
+		return true;
 	}
 }

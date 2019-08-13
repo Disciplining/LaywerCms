@@ -52,7 +52,7 @@ public class MsgBoardServiceImpl implements MsgBoardService
 		RespondJson<MsgBoard> json = new RespondJson<>();
 		json.setCode(0);
 		json.setMsg(null);
-		json.setCode(list.size());
+		json.setCount(list.size());
 		json.setData(list);
 
 		return json;

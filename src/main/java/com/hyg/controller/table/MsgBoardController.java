@@ -28,6 +28,10 @@ public class MsgBoardController
 		return msgBoardService.getMsgBoardData();
 	}
 
+	/**
+	 * 查找未读消息
+	 * @return
+	 */
 	@GetMapping("/selectData/listMsgNoRead")
 	@ResponseBody
 	public RespondJson<MsgBoard> listMsgNoRead()

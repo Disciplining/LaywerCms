@@ -2,7 +2,7 @@ package com.hyg.pojo;
 
 import lombok.Data;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * 轮播图表
@@ -13,5 +13,5 @@ public class Carousel
 	private Integer id;
 	private String bannerName;
 	private String imgPath;
-	private Date editDate;
+	private Timestamp editDate;
 }
