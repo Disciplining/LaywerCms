@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:shiro="http://www.w3.org/1999/xhtml">
 
 <head>
 	<meta charset="UTF-8">
@@ -28,7 +28,7 @@
 					</script>
 					<script type="text/html" id="test-table-toolbar-toolbarDemo">
 						<div class="layui-btn-container">
-							<a href="/getPage/base/addUser.html"><button class="layui-btn layui-btn-sm" >添加</button></a>
+							<a shiro:hasRole="root_user" href="/getPage/base/addUser"><button class="layui-btn layui-btn-sm" >添加</button></a>
 						</div>
 					</script>
 
