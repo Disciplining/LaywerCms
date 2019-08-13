@@ -18,11 +18,11 @@
 					<div id="dd">
 					</div>
 					<form class="layui-form" action="/root/editOneUser" method="post">
-						<input type="hidden" id="yincang">
+						<input type="hidden" id="yincang" name="id">
 						<div class="layui-form-item layui-form-text">
 							<label class="layui-form-label">用户名</label>
 							<div class="layui-input-block">
-								<input type="text" id="loginName" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+								<input type="text" id="loginName" name="loginName" required lay-verify="required" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item layui-form-text">
@@ -40,7 +40,7 @@
 						<div class="layui-form-item layui-form-text">
 							<label class="layui-form-label">邮箱</label>
 							<div class="layui-input-block">
-								<input type="text" id="email" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+								<input type="text" id="email" name="email" required lay-verify="required" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item">
