@@ -16,14 +16,25 @@
 						<div class="layui-card-header">添加用户</div>
 						<div class="layui-card-body">
 							<div style="margin-top:20px;position: relative" >
-								<form class="layui-form" action="/getUserData" method="post" style="margin-top: 20px;">
-			<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+								<form class="layui-form" action="/root/addOneUser" method="post" style="margin-top: 20px;">
 			<div class="layui-form-item">
 				<label class="layui-form-label">用户名</label>
 				<div class="layui-input-block">
 					<input type="text" name="loginName" placeholder="请输入" class="layui-input">
 				</div>
 			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label">密码</label>
+			    <div class="layui-input-block">
+			    <input type="password" name="password" placeholder="请输入" class="layui-input">
+			    </div>
+            </div>
+                   <div class="layui-form-item">
+                           <label class="layui-form-label">真实姓名</label>
+                                  <div class="layui-input-block">
+                                            <input type="text" name="realName" placeholder="请输入" class="layui-input">
+                                  </div>
+                   </div>
 			
 			<div class="layui-form-item">
 				<label class="layui-form-label">手机</label>
@@ -40,8 +51,8 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">性别</label>
 				<div class="layui-input-block">
-					<input type="radio" name="gender" value="0" title="男" checked="checked">
-					<input type="radio" name="gender" value="1" title="女" checked>
+					<input type="radio" name="gender" value="男" title="男" checked="checked">
+					<input type="radio" name="gender" value="女" title="女" checked>
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -50,7 +61,7 @@
 				</div>
 			</div>
 		</form>
-		<a style="position: absolute;left: 250px;bottom: 0px;" href="./userMgr.html"><button type="reset" class="layui-btn layui-btn-primary">返回上级</button></a>
+		<a style="position: absolute;left: 250px;bottom: 0px;" href="/getPage/base/userMgr.html"><button type="reset" class="layui-btn layui-btn-primary">返回上级</button></a>
 							</div>
 						</div>
 					</div>

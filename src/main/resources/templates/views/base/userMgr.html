@@ -47,8 +47,9 @@
 		base: '../../layuiadmin/' //静态资源所在路径
 	}).extend({
 		index: 'lib/index' //主入口模块
-	}).use(['index', 'table', 'upload'], function() {
+	}).use(['index', 'table', 'upload','jquery'], function() {
 		var admin = layui.admin,
+				$=layui.$,
 				table = layui.table,
 				upload = layui.upload;
 		table.render({
@@ -67,7 +68,7 @@
 			cols: [
 				[{
 					field: 'zizeng',
-					width: 80,
+					width: 150,
 					title: '编号',
 					fixed: 'left',
 					templet: '#zizeng'
@@ -75,11 +76,11 @@
 					{
 						field: 'loginName',
 						title: '用户名',
-						width: 100
+						width: 150
 					}, {
 					field: 'userTel',
 					title: '手机',
-					width: 100,
+					width: 150,
 					edit: true
 				}, {
 					field: 'email',
@@ -87,12 +88,8 @@
 				}, {
 					field: 'gender',
 					title: '性别',
-					width: 100
+					width: 150
 				}, {
-					field: 'position',
-					title: 'IP',
-					width: 100
-				},  {
 					title: '操作',
 					toolbar: '#test-table-toolbar-barDemo',
 					width: 200
@@ -135,8 +132,20 @@
 			var data = obj.data;
 			if(obj.event === 'del') {
 				layer.confirm('真的删除行么', function(index) {
-					obj.del();
-					layer.close(index);
+					$.ajax({
+						url:'/root/deleteOneUserById?id='+data.id,
+						method:'get',
+						success:function(data){
+							if(data=="success"){
+								obj.del();
+								layer.close(index);
+								window.location.href='/getPage/base/userMgr'
+							}
+						},
+						error:function (data) {
+							alert('删除失败')
+						}
+					})
 				});
 			} else if(obj.event === 'edit') {
 				var data = obj.data;
