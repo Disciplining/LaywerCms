@@ -40,14 +40,18 @@ public class MsgBoardController
 	}
 
 	/**
-	 * 根据客户姓名查找留言
+	 * 根据 客户姓名 和 案例详情 查找留言
 	 * @param name
 	 * @return
 	 */
-	@GetMapping("/selectData/listMsgByCustomerName")
+	@GetMapping("/selectData/listMsgByNameAndDetail")
 	@ResponseBody
-	public RespondJson<MsgBoard> listMsgByCustomerName(@RequestParam(value = "name", defaultValue = "") String name)
+	public RespondJson<MsgBoard> listMsgByNameAndDetail
+	(
+		@RequestParam(value = "name", defaultValue = "") String name,
+		@RequestParam(value = "detail", defaultValue = "") String detail
+	)
 	{
-		return msgBoardService.listMsgByCustomerName(name);
+		return msgBoardService.listMsgByNameAndDetail(name, detail);
 	}
 }
