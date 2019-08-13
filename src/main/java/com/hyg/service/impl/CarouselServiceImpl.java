@@ -61,7 +61,7 @@ public class CarouselServiceImpl implements CarouselService
 		carousel.setBannerName(carouselExpand.getBannerName());
 		String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
 		String bannerPicDir = allPicDir + PicDir.BANNER_TABLE_DIR; // 存储轮播图图片的目录
-		String picUrl = FileUtil.savePicToDisk(carouselExpand.getFile(), bannerPicDir);
+		String picUrl = FileUtil.savePicToDisk(carouselExpand.getFile(), bannerPicDir, PicDir.BANNER_TABLE_DIR);
 		if (picUrl != null)
 		{
 			carousel.setImgPath(picUrl);

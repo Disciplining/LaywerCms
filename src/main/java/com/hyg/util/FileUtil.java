@@ -1,6 +1,5 @@
 package com.hyg.util;
 
-import com.hyg.config.PicDir;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -36,9 +35,10 @@ public class FileUtil
 	 * 并返回显示图片的url
 	 * @param multipartFile 图片（图片数据）
 	 * @param picDir 图片的存储目录 绝对路径
+	 * @param nextDir 图片存储总目录下级目录
 	 * @return 显示图片的url 存入失败返回 null
 	 */
-	public static String savePicToDisk(MultipartFile multipartFile, String picDir)
+	public static String savePicToDisk(MultipartFile multipartFile, String picDir, String nextDir)
 	{
 		String fileName = UUID.randomUUID().toString(); // 文件名
 		String fileExtension = FileUtil.getFileExtension(multipartFile.getOriginalFilename()); // 文件扩展名
@@ -60,6 +60,6 @@ public class FileUtil
 			return null;
 		}
 
-		return "/images/" + PicDir.LAWYER_TABLE_DIR + fileName + fileExtension;
+		return "/images/" + nextDir + fileName + fileExtension;
 	}
 }
