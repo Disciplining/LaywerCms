@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -121,7 +121,7 @@ public class ArticleServiceImpl implements ArticleService
 		}
 
 		// 后端生成的数据
-		article.setEditDate(new Date(System.currentTimeMillis()));
+		article.setEditDate(new Timestamp(System.currentTimeMillis()));
 
 		try
 		{
@@ -176,7 +176,7 @@ public class ArticleServiceImpl implements ArticleService
 		}
 
 		// 后端生成的数据
-		article.setEditDate(new Date(System.currentTimeMillis()));
+		article.setEditDate(new Timestamp(System.currentTimeMillis()));
 		article.setCount(0);
 		article.setDeleteFlag("0");
 
