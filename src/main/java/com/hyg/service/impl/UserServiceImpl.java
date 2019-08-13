@@ -108,11 +108,31 @@ public class UserServiceImpl implements UserService
 		}
 		catch (IncorrectCredentialsException e) //抛出这个异常说明密码错误
 		{
-
 			return 1;
 		}
 
 
 		return 2;
+	}
+
+	/**
+	 * 根据id删除一个用户（逻辑删除）
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public boolean deleteOneUserById(int id)
+	{
+		try
+		{
+			userMapper.deleteOneUserById(id);
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+
+		return true;
 	}
 }

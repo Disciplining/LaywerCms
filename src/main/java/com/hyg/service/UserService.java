@@ -28,4 +28,11 @@ public interface UserService
 	 * @return
 	 */
 	int dealUserLogin(User user);
+
+	/**
+	 * 根据id删除一个用户（逻辑删除）
+	 * @param id
+	 * @return
+	 */
+	boolean deleteOneUserById(int id);
 }
