@@ -18,10 +18,17 @@
 					<div id="dd">
 					</div>
 					<form class="layui-form" action="/root/editOneUser" method="post">
+						<input type="hidden" id="yincang">
 						<div class="layui-form-item layui-form-text">
 							<label class="layui-form-label">用户名</label>
 							<div class="layui-input-block">
 								<input type="text" id="loginName" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item layui-form-text">
+							<label class="layui-form-label">真实姓名</label>
+							<div class="layui-input-block">
+								<input type="text" id="realName" name="realName" required lay-verify="required" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item layui-form-text">
@@ -41,6 +48,12 @@
 							<div class="layui-input-block" id="check">
 								<input type="radio" name="gender" value="男" title="男" id="first">
 								<input type="radio" name="gender" value="女" title="女">
+							</div>
+						</div>
+						<div class="layui-form-item layui-form-text">
+							<label class="layui-form-label">职位</label>
+							<div class="layui-input-block">
+								<input type="text" id="posi" name="position" required lay-verify="required" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item">
@@ -64,6 +77,9 @@
 		return newStr
 	}
 	var idr = filterId(window.location.href)
+	var yincang = document.getElementById('yincang')
+	var posi = document.getElementById('posi')
+	var realName = document.getElementById('realName')
 	layui.use(['jquery', 'form', 'upload'], function() {
 		var $ = layui.$,
 				upload = layui.upload,
@@ -81,6 +97,9 @@
 						document.getElementById('loginName').value=data[i].loginName
 						document.getElementById('phone').value=data[i].userTel
 						document.getElementById("email").value=data[i].email
+						yincang.value=data[i].id
+						posi.value=data[i].position
+						realName.value=data[i].realName
 						var nameArr = document.getElementsByName("gender")
 						if(data[i].gender == "男"){
 							nameArr[0].checked="checked"
