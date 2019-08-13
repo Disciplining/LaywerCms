@@ -109,6 +109,11 @@ public class UserController
 		return "base/login";
 	}
 
+	/**
+	 * 删除一个普通管理员用户
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/root/deleteOneUserById")
 	@ResponseBody
 	public String deleteOneUserById(@RequestParam("id") String id)
@@ -120,6 +125,27 @@ public class UserController
 		else
 		{
 			return "fail";
+		}
+	}
+
+	/**
+	 * 编辑一个普通管理员用户
+	 * 前端传过来的信息：用户id、登录名、真实姨名、姓别、电话、邮箱、职务
+	 * @param user
+	 * @return
+	 */
+	@PostMapping("/root/editOneUser")
+	@ResponseBody
+	public String editOneUser(User user, Model model)
+	{
+		if (userService.updateOneUserById(user))
+		{
+			return "base/userMgr";
+		}
+		else
+		{
+			model.addAttribute("res", "编辑失败");
+			return "base/editUser";
 		}
 	}
 }
