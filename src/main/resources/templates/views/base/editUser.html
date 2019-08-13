@@ -17,7 +17,7 @@
 				<div class="layui-card-body">
 					<div id="dd">
 					</div>
-					<form class="layui-form" action="/getUserData">
+					<form class="layui-form" action="/root/editOneUser" method="post">
 						<div class="layui-form-item layui-form-text">
 							<label class="layui-form-label">用户名</label>
 							<div class="layui-input-block">
@@ -69,7 +69,7 @@
 				upload = layui.upload,
 				form = layui.form;
 		$.ajax({
-			url: '/getUserData',
+			url: '/selectData/getUserData',
 			type: "get",
 			dataType: "json",
 			success: function(data) {
@@ -82,7 +82,7 @@
 						document.getElementById('phone').value=data[i].userTel
 						document.getElementById("email").value=data[i].email
 						var nameArr = document.getElementsByName("gender")
-						if(data[i].gender == true){
+						if(data[i].gender == "男"){
 							nameArr[0].checked="checked"
 //									nameArr[0].checked="checked"
 							form.render('radio')
