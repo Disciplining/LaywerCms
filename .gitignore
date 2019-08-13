@@ -5,3 +5,6 @@ target
 **/lyxTest
 
 *.iml
+
+src/main/resources/static/layuiadmin/kindeditor/kindeditor.js
+src/main/resources/static/layuiadmin/kindeditor/Test.js
