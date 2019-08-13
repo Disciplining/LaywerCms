@@ -33,8 +33,6 @@
 					</div>
 					<script type="text/html" id="test-table-toolbar-toolbarDemo">
 						<div class="layui-btn-container">
-
-							<div class="demoTable"> <button class="layui-btn" data-type="reload">已读</button></div>
 						</div>
 					</script>
 <!--					<div class="LAY-app-message-btns" style="margin-bottom: 10px;">-->
@@ -117,13 +115,15 @@
 			],
 			id:'testTable'
 		});
+		var demoReload= document.getElementById('demoReload')
+		var demoReloadAn = document.getElementById('demoReloadAn')
 		var $ = layui.$, active = {
 			reload: function(){
 				table.reload('testTable', {
 					page: {
 						curr: 1 //重新从第 1 页开始
 					},
-					url:'/selectData/listMsgNoRead',
+					url:'/selectData/listMsgByNameAndDetail?name='+demoReload.value+'&detail='+demoReloadAn.value,
 					method:"get"
 				}, 'data');
 			}
@@ -137,8 +137,19 @@
 			var data = obj.data;
 			if(obj.event === 'del') {
 				layer.alert('真的删除行么', function(index) {
-					layer.close(index)
-					obj.del()
+					$.ajax({
+						url:'/deleteData/deleteOneMsgById?id='+data.msgId,
+						method:'get',
+						success:function(data){
+							if(data=='success'){
+								layer.close(index)
+								obj.del()
+								window.location.href='/getPage/base/commentMgr'
+							}
+						}
+					})
+					// layer.close(index)
+					// obj.del()
 				});
 			}else if(obj.event === 'clickA'){
 				window.location.href="/getPage/base/editCarousel.html?id="+data.msgId
