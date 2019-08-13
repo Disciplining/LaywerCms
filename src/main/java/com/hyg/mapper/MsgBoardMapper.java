@@ -1,6 +1,7 @@
 package com.hyg.mapper;
 
 import com.hyg.pojo.MsgBoard;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
@@ -34,4 +35,11 @@ public interface MsgBoardMapper
 	@Select(" select * from `t_msgBoard` " +
 				" where `customerName` like concat('%',#{name},'%') and `caseDetail` like concat('%',#{detail},'%') ")
 	List<MsgBoard> listMsgByNameAndDetail(Map map);
+
+	/**
+	 * 根据id删除一条留言
+	 * @param id
+	 */
+	@Delete(" delete from `t_msgBoard` where `msgId`=#{id} ")
+	void deleteOneMsgById(int id);
 }

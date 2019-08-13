@@ -82,4 +82,27 @@ public class MsgBoardServiceImpl implements MsgBoardService
 
 		return json;
 	}
+
+	/**
+	 * 根据id删除一条留言
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public boolean deleteOneMsgById(int id)
+	{
+		try
+		{
+			msgBoardMapper.deleteOneMsgById(id);
+		}
+		catch (Exception e)
+		{
+			System.out.println("+++++++++++出现了异常++++++++++++");
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
 }

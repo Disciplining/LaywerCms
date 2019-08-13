@@ -135,7 +135,6 @@ public class UserController
 	 * @return
 	 */
 	@PostMapping("/root/editOneUser")
-	@ResponseBody
 	public String editOneUser(User user, Model model)
 	{
 		if (userService.updateOneUserById(user))

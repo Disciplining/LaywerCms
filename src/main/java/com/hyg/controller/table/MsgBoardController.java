@@ -54,4 +54,18 @@ public class MsgBoardController
 	{
 		return msgBoardService.listMsgByNameAndDetail(name, detail);
 	}
+
+	@GetMapping("/deleteData/deleteOneMsgById")
+	@ResponseBody
+	public String deleteOneMsgById(@RequestParam(value = "id") int id)
+	{
+		if (msgBoardService.deleteOneMsgById(id))
+		{
+			return "success";
+		}
+		else
+		{
+			return "fail";
+		}
+	}
 }

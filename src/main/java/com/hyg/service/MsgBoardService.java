@@ -24,4 +24,11 @@ public interface MsgBoardService
 	 * @return
 	 */
 	RespondJson<MsgBoard> listMsgByNameAndDetail(String name, String detail);
+
+	/**
+	 * 根据id删除一条留言
+	 * @param id
+	 * @return
+	 */
+	boolean deleteOneMsgById(int id);
 }
