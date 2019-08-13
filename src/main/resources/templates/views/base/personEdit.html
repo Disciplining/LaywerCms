@@ -41,7 +41,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">律师照片</label>
                         <div class="layui-input-block">
-                            <div  id="colla_img"  style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
+                            <div   id="colla_img"  style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
                             <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
                                 <i class="layui-icon">&#xe67c;</i>上传图片
                             </button>
@@ -85,7 +85,6 @@
                 //预读本地文件
                 obj.preview(function (index, file, result) {
                     $('#loadinput').val(file.name); //展示文件名
-                    $('#colla_img').style.background='';
                     $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a>');
                 })
             }
@@ -107,6 +106,7 @@
                         lawerIntro.value=data[i].introduction;
                         lawerPro.value=data[i].lawyerLevel;
                         colla_img.style.background='url('+data[i].lawyerImg+')';
+                        colla_img.style.backgroundSize= '100%';
                         ida.value=data[i].lawyerId;
                         console.log(data[i].lawyerId);
                     }

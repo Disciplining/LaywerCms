@@ -159,4 +159,25 @@ public class UserServiceImpl implements UserService
 
 		return true;
 	}
+
+	/**
+	 * 根据用户名查找用户用
+	 * 模糊搜索
+	 *
+	 * @param name
+	 * @return
+	 */
+	@Override
+	public RespondJson<User> listUsersByLoginName(String name)
+	{
+		List<User> list = userMapper.listUsersByLoginName(name);
+
+		RespondJson<User> json = new RespondJson<>();
+		json.setCode(0);
+		json.setMsg(null);
+		json.setCount(list.size());
+		json.setData(list);
+
+		return json;
+	}
 }

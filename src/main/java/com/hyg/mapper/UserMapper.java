@@ -52,4 +52,13 @@ public interface UserMapper
 				" `loginName`=#{loginName},`realName`=#{realName},`gender`=#{gender},`userTel`=#{userTel},`email`=#{email},`position`=#{position} " +
 				" where `id`=#{id} and `deleteFlag`='0' and locate('root_user',`role`)=0 ")
 	void updateOneUserById(User user);
+
+	/**
+	 * 根据用户名查询用户
+	 * 模糊搜索
+	 * @param name
+	 * @return
+	 */
+	@Select(" select * from `t_user` where `loginName` like concat('%',#{name},'%') and `deleteFlag`='0' and locate('root_user',`role`)=0 ")
+	List<User> listUsersByLoginName(String name);
 }

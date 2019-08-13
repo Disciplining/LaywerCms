@@ -43,4 +43,12 @@ public interface UserService
 	 * @return
 	 */
 	boolean updateOneUserById(User user);
+
+	/**
+	 * 根据用户名查找用户用
+	 * 模糊搜索
+	 * @param name
+	 * @return
+	 */
+	RespondJson<User> listUsersByLoginName(String name);
 }
