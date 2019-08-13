@@ -33,7 +33,7 @@ public class UserController
 	}
 
 	/**
-	 * 用户注册接口
+	 * 用户添加接口 接口json数据
 	 * 使用这个接口向数据库中添加用户 不提供前端页面
 	 * 后期注释掉这个接口
 	 * @param jsonData 用户数据包含明文密码
@@ -48,18 +48,26 @@ public class UserController
 		return userService.dealUserReg(user);
 	}
 
-//	/**
-//	 * 用户添加
-//	 * 前端传过来的数据：用户名、密码、手机、邮箱、性别
-//	 * @param user 用户数据包含明文密码
-//	 * @return
-//	 */
-//	@PostMapping("/insertData/addOneUser")
-//	@ResponseBody
-//	public boolean addOneUser(User user)
-//	{
-//		return userService.dealUserReg(user);
-//	}
+	/**
+	 * 普通管理员用户添加接口 接收表单数据
+	 * 超级管理员才有权限添加用户
+	 * 前端传过来的数据：密码、登录名、真实姓名、性别、手机、邮箱、职位
+	 * @param user 用户数据包含明文密码
+	 * @return
+	 */
+	@PostMapping("/root/addOneUser")
+	public String addOneUser(User user, Model model)
+	{
+		if (userService.dealUserReg(user))
+		{
+			return "base/userMgr";
+		}
+		else
+		{
+			model.addAttribute("res", "添加用户失败");
+			return "base/addUser";
+		}
+	}
 
 	/**
 	 * 用户登录接口

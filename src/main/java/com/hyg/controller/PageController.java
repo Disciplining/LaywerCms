@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 页面控制器
@@ -61,5 +62,16 @@ public class PageController
 	)
 	{
 		return secondDir + "/" + thirdDir + "/" + page;
+	}
+
+	/**
+	 * 授权失败时访问的请求
+	 * @return
+	 */
+	@GetMapping("/noPermission")
+	@ResponseBody
+	public String noPermission()
+	{
+		return "你没有权限访问这个页面";
 	}
 }

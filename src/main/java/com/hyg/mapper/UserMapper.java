@@ -23,8 +23,8 @@ public interface UserMapper
 	 * 向用户表中插入一条数据
 	 * @param user
 	 */
-	@Insert("insert into `t_user` (`password`,`loginName`,`realName`,`gender`,`userTel`,`email`,`deleteFlag`,`role`) " +
-				"values (#{password},#{loginName},#{realName},#{gender},#{userTel},#{email},#{deleteFlag},#{role})")
+	@Insert("insert into `t_user` (`password`,`loginName`,`realName`,`gender`,`userTel`,`email`,`deleteFlag`,`role`,`position`) " +
+				"values (#{password},#{loginName},#{realName},#{gender},#{userTel},#{email},#{deleteFlag},#{role},#{position})")
 	void insertOneUser(User user);
 
 	/**

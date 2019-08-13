@@ -32,12 +32,12 @@ public class ShiroConfig
 		map.put("/insertData/*", "authc");
 		map.put("/updateData/*", "authc");
 		map.put("/deleteData/*", "authc");
+
+		map.put("/root/*","roles[" + UserRole.ROOT_USER + "]");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
-		/**
-		 * 设置未认证时发给controller的请求
-		 */
-		shiroFilterFactoryBean.setLoginUrl("/");
+		shiroFilterFactoryBean.setLoginUrl("/"); // 认证失败发送的请求
+		shiroFilterFactoryBean.setUnauthorizedUrl("/noPermission"); // 授权失败发送的请求
 
 		return  shiroFilterFactoryBean;
 	}

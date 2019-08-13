@@ -63,11 +63,8 @@ public class UserServiceImpl implements UserService
 		// 加密用户密码
 		user.setPassword(UserUtil.getEncryptPassword(user.getPassword()));
 
-		if (user.getDeleteFlag() == null)
-		{
-			user.setDeleteFlag("0");
-		}
-
+		// 前端没人传过来的数据
+		user.setDeleteFlag("0");
 		user.setRole(UserRole.COMMON_USER);
 
 		try

@@ -33,8 +33,7 @@ public class UserRealm extends AuthorizingRealm
 		User user = (User) subject.getPrincipal(); //获得当前登录的用户
 
 		//获得当前登录用户的角色并处理成一个集合
-		String[] roleArr = user.getRole().split(" ");
-		System.out.println("数组长度：" + roleArr.length);
+		String[] roleArr = user.getRole().split("\\s+");
 
 		Collection<String> roles = new HashSet<>(roleArr.length);
 		for (String role : roleArr)
