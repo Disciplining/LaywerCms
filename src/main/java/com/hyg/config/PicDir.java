@@ -10,4 +10,9 @@ public class PicDir
 	 * 律师表中的图片
 	 */
 	public final static String LAWYER_TABLE_DIR = "lawyer-pic/";
+
+	/**
+	 * 轮播图表中的图片
+	 */
+	public final static String BANNER_TABLE_DIR = "banner-pic/";
 }

@@ -148,4 +148,16 @@ public class UserController
 			return "base/editUser";
 		}
 	}
+
+	/**
+	 * 根据用户名查找用户
+	 * @param name
+	 * @return
+	 */
+	@GetMapping("/selectData/searchByName")
+	@ResponseBody
+	public RespondJson<User> searchByName(@RequestParam(value = "name", defaultValue = "") String name)
+	{
+		return userService.listUsersByLoginName(name);
+	}
 }
