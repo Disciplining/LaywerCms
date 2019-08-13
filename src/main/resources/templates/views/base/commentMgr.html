@@ -22,14 +22,18 @@
 				<div class="layui-tab-item-show">
 					<div class="demoTable" style="margin-bottom: 20px;">
 						客户姓名:
-						<div class="layui-inline">
+						<div class="layui-inline" style="margin-right: 20px">
 							<input class="layui-input" name="customerName" id="demoReload" autocomplete="off">
+						</div>
+						案例详情:
+						<div class="layui-inline">
+							<input class="layui-input" name="customerName" id="demoReloaddetail" autocomplete="off">
 						</div>
 						<button class="layui-btn" data-type="reload">搜索</button>
 					</div>
 					<div class="LAY-app-message-btns" style="margin-bottom: 10px;">
-						<button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="ready">全部</button>
-						<button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-events="readyAll">未读</button>
+						<button class="layui-btn layui-btn-primary layui-btn-sm">全部</button>
+						<button class="layui-btn layui-btn-primary layui-btn-sm">未读</button>
 					</div>
 					<table event="clickA" id="LAY-app-message-notice" lay-filter="LAY-app-message-notice"></table>
 					<script type="text/html" id="zizeng">
@@ -47,8 +51,10 @@
 		base: '../../layuiadmin/' //静态资源所在路径
 	}).extend({
 		index: 'lib/index' //主入口模块
-	}).use(['index', 'message', 'table'], function() {
-		var table = layui.table;
+	}).use(['index', 'message', 'table','jquery'], function() {
+		var table = layui.table,
+		$ = layui.$
+		;
 		table.render({
 			elem: '#LAY-app-message-notice',
 			url: '/selectData/getMsgBoardData',
@@ -94,6 +100,23 @@
 					width:100
 				}]
 			],
+			id:'testTable'
+		});
+		var $ = layui.$, active = {
+			reload: function(){
+				table.reload('testTable', {
+					page: {
+						curr: 1 //重新从第 1 页开始
+					},
+					url:'/selectData/listMsgNoRead',
+					method:"get"
+				}, 'data');
+			}
+		};
+		$('.LAY-app-message-btns .layui-btn layui-btn-primary layui-btn-sm').on('click', function(){
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+			alert('你点我了')
 		});
 		table.on('del',function(){
 			alert('yep')
