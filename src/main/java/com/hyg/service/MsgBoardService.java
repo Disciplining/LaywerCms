@@ -31,4 +31,12 @@ public interface MsgBoardService
 	 * @return
 	 */
 	boolean deleteOneMsgById(int id);
+
+	/**
+	 * 回复留言
+	 * 前端传过来的数据有：msgId、replyId、replyMsg
+	 * @param msgBoard
+	 * @return
+	 */
+	boolean updateReplyMsg(MsgBoard msgBoard);
 }

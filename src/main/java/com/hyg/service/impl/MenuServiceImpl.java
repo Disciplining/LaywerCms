@@ -41,13 +41,23 @@ public class MenuServiceImpl implements MenuService
 	/**
 	 * 添加一个父级菜单
 	 * 前端传过来的数据：menuName、router
-	 *
 	 * @param menu
 	 * @return
 	 */
 	@Override
 	public boolean insertOneFatherMenu(Menu menu)
 	{
-		return false;
+		menu.setParentId(0);
+
+		try
+		{
+			menuMapper.insertOneFatherMenu(menu);
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+
+		return true;
 	}
 }

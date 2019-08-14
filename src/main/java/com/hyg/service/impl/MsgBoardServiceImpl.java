@@ -1,6 +1,8 @@
 package com.hyg.service.impl;
 
+import com.hyg.mapper.LawyerMapper;
 import com.hyg.mapper.MsgBoardMapper;
+import com.hyg.pojo.Lawyer;
 import com.hyg.pojo.MsgBoard;
 import com.hyg.service.MsgBoardService;
 import com.hyg.util.RespondJson;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +21,10 @@ public class MsgBoardServiceImpl implements MsgBoardService
 	@Autowired
 	@Qualifier("msgBoardMapper")
 	private MsgBoardMapper msgBoardMapper;
+
+	@Autowired
+	@Qualifier("lawyerMapper")
+	private LawyerMapper lawyerMapper;
 
 	/**
 	 * 获得符合前端格式的
@@ -102,6 +109,30 @@ public class MsgBoardServiceImpl implements MsgBoardService
 			e.printStackTrace();
 			return false;
 		}
+
+		return true;
+	}
+
+	/**
+	 * 回复留言
+	 * 前端传过来的数据有：msgId、replyId、replyMsg
+	 *
+	 * @param msgBoard
+	 * @return
+	 */
+	@Override
+	public boolean updateReplyMsg(MsgBoard msgBoard)
+	{
+		Lawyer lawyer = lawyerMapper.getOneLawyerById(msgBoard.getReplyId()); // 根据前端传过来的工号查找律师
+
+		if (lawyer == null)
+		{
+			return false;
+		}
+
+		msgBoard.setReplyName(lawyer.getLawyerName());
+		msgBoard.setReplyDate(new Timestamp(System.currentTimeMillis()));
+		msgBoard.setReadFlag("1");
 
 		return true;
 	}

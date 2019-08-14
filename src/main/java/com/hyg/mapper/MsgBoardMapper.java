@@ -4,6 +4,7 @@ import com.hyg.pojo.MsgBoard;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,4 +43,12 @@ public interface MsgBoardMapper
 	 */
 	@Delete(" delete from `t_msgBoard` where `msgId`=#{id} ")
 	void deleteOneMsgById(int id);
+
+	/**
+	 * 回复留言
+	 * @param msgBoard
+	 */
+	@Update(" update `t_msgBoard` set `replyId`=#{replyId},`replyName`=#{replyName},`replyDate`=#{replyDate},`readFlag`=#{readFlag},`replyMsg`=#{replyMsg} " +
+				" where `msgId`=#{msgId} ")
+	void updateReplyMsg(MsgBoard msgBoard);
 }

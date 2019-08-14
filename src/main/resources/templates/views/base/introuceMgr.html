@@ -38,7 +38,7 @@
 	</div>
 </div>
 <script src="/layuiadmin/layui/layui.js"></script>
-<script src="/layuiadmin/kindeditor/kindeditor-all-min.js"></script>
+<script src="/layuiadmin/kindeditor/kindeditor-all.js"></script>
 <script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
 <script>
 	function filterId(str) {
@@ -46,10 +46,9 @@
 		return newStr
 	}
 	KindEditor.ready(function(K) {
-		window.editor = K.create('#editor_id');
-		if (url.substr(0, host.length) === host) {
-			url = url.substr(host.length);
-		}
+		window.editor = K.create('#editor_id',function () {
+            uploadJson: '/insertData/uploadAgencyDetailPic'
+        });
 
 	});
 	var inp= document.getElementById('inp');
