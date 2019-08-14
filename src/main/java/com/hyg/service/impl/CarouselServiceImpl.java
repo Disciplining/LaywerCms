@@ -84,4 +84,24 @@ public class CarouselServiceImpl implements CarouselService
 
 		return true;
 	}
+
+	/**
+	 * 根据id删除一个轮播图
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public boolean deleteOneCarouseById(int id)
+	{
+		try
+		{
+			carouselMapper.deleteOneCarouseById(id);
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+		return true;
+	}
 }

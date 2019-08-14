@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -41,6 +42,25 @@ public class CarouselController
 		{
 			model.addAttribute("res", "添加轮播图失败");
 			return "base/upload";
+		}
+	}
+
+	/**
+	 * 根据id删除一个轮播图
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/deleteData/deleteOneCarouseById")
+	@ResponseBody
+	public String deleteOneCarouseById(@RequestParam(name = "id") int id)
+	{
+		if (carouselService.deleteOneCarouseById(id))
+		{
+			return "success";
+		}
+		else
+		{
+			return "fail";
 		}
 	}
 }

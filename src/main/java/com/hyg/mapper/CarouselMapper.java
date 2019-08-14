@@ -1,6 +1,7 @@
 package com.hyg.mapper;
 
 import com.hyg.pojo.Carousel;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -25,4 +26,11 @@ public interface CarouselMapper
 	 */
 	@Insert("insert into `t_carousel` (`bannerName`,`imgPath`,`editDate`) values(#{bannerName},#{imgPath},#{editDate})")
 	void insertOneCarousel(Carousel carousel);
+
+	/**
+	 * 根据id删除一个轮播图片
+	 * @param id
+	 */
+	@Delete(" delete from `t_carousel` where `id`=#{id} ")
+	void deleteOneCarouseById(int id);
 }

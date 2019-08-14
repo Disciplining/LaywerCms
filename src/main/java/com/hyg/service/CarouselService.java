@@ -20,4 +20,11 @@ public interface CarouselService
 	 * @return
 	 */
 	boolean insertOneCarousel(CarouselExpand carouselExpand);
+
+	/**
+	 * 根据id删除一个轮播图
+	 * @param id
+	 * @return
+	 */
+	boolean deleteOneCarouseById(int id);
 }
