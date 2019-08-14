@@ -1,6 +1,7 @@
 package com.hyg.controller;
 
 import com.hyg.config.PicDir;
+import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.FileUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -39,13 +40,10 @@ public class CommonController
 	 * @param imgFile
 	 * @return
 	 */
-	@PostMapping("/insertData/richTextPic")
+	@PostMapping("/" + PermissionPrefix.INSERT_DATA + "/richTextPic")
 	@ResponseBody
 	public Map<String, Object> uploadAgencyDetailPic(MultipartFile imgFile)
 	{
-		System.out.println(imgFile);
-		System.out.println(imgFile.getOriginalFilename());
-
 		String savePath = picDirSetting.substring(picDirSetting.indexOf(':')+1) + PicDir.AGENCY_DETAIL_DIR; // 图片存储目录
 		String saveUrl = FileUtil.savePicToDisk(imgFile, savePath, PicDir.AGENCY_DETAIL_DIR); // 将图片存入硬盘并返回显示用的url
 

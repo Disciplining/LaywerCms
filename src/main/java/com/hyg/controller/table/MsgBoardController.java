@@ -2,6 +2,7 @@ package com.hyg.controller.table;
 
 import com.hyg.pojo.MsgBoard;
 import com.hyg.service.MsgBoardService;
+import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,7 +25,7 @@ public class MsgBoardController
 	 * @param name
 	 * @return
 	 */
-	@GetMapping("/selectData/listMsgByNameAndDetail")
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/listMsgByNameAndDetail")
 	@ResponseBody
 	public RespondJson<MsgBoard> listMsgByNameAndDetail
 	(
@@ -40,7 +41,7 @@ public class MsgBoardController
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/deleteData/deleteOneMsgById")
+	@GetMapping("/" + PermissionPrefix.DELETE_DATA + "/deleteOneMsgById")
 	@ResponseBody
 	public String deleteOneMsgById(@RequestParam(value = "id") int id)
 	{

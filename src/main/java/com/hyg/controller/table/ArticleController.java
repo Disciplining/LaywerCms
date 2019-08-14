@@ -2,6 +2,7 @@ package com.hyg.controller.table;
 
 import com.hyg.pojo.ArticleExpand;
 import com.hyg.service.ArticleService;
+import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,7 +28,7 @@ public class ArticleController
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/deleteData/article")
+	@GetMapping("/" + PermissionPrefix.DELETE_DATA + "/article")
 	@ResponseBody
 	public String deleteOneArticleById(@RequestParam("id") String id)
 	{
@@ -47,7 +48,7 @@ public class ArticleController
 	 * @param model
 	 * @return
 	 */
-	@PostMapping("/insertData/article")
+	@PostMapping("/" + PermissionPrefix.INSERT_DATA + "/article")
 	public String insertArticle(ArticleExpand articleExpand, Model model)
 	{
 		boolean insertFlag = articleService.insertOneArticle(articleExpand);
@@ -69,7 +70,7 @@ public class ArticleController
 	 * @param model
 	 * @return
 	 */
-	@PostMapping("/updateData/article")
+	@PostMapping("/" + PermissionPrefix.UPDATE_DATA + "/article")
 	public String editOneArticle(ArticleExpand articleExpand, Model model)
 	{
 		boolean success = articleService.editOneArticle(articleExpand);
@@ -91,7 +92,7 @@ public class ArticleController
 	 * @param author
 	 * @return
 	 */
-	@GetMapping("/selectData/articlePageData")
+	@GetMapping("/" + PermissionPrefix.UPDATE_DATA + "/articlePageData")
 	@ResponseBody
 	public RespondJson<ArticleExpand> articlePageData
 	(

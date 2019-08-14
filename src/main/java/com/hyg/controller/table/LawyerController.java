@@ -3,6 +3,7 @@ package com.hyg.controller.table;
 import com.hyg.pojo.Lawyer;
 import com.hyg.pojo.LawyerExpand;
 import com.hyg.service.LawyerService;
+import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,7 +29,7 @@ public class LawyerController
 	 * @param model
 	 * @return
 	 */
-	@PostMapping("/insertData/lawyer")
+	@PostMapping("/" + PermissionPrefix.INSERT_DATA + "/lawyer")
 	public String insertOneLawyer(LawyerExpand lawyerExpand, Model model)
 	{
 		boolean successFlag = lawyerService.insertOneLawyer(lawyerExpand);
@@ -49,7 +50,7 @@ public class LawyerController
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/deleteData/lawyer")
+	@GetMapping("/" + PermissionPrefix.DELETE_DATA + "/lawyer")
 	@ResponseBody
 	public String deleteOneLawyerById(@RequestParam("id") String id)
 	{
@@ -69,7 +70,7 @@ public class LawyerController
 	 * @param model
 	 * @return
 	 */
-	@PostMapping("/updateData/lawyer")
+	@PostMapping("/" + PermissionPrefix.UPDATE_DATA + "/lawyer")
 	public String editOneLawyer(LawyerExpand lawyerExpand, Model model)
 	{
 		boolean success = lawyerService.editOneLawyer(lawyerExpand);
@@ -91,7 +92,7 @@ public class LawyerController
 	 * @param lawyerLevel
 	 * @return
 	 */
-	@GetMapping("/selectData/lawyerPageData")
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/lawyerPageData")
 	@ResponseBody
 	public RespondJson<Lawyer> lawyerPageData
 	(

@@ -3,6 +3,7 @@ package com.hyg.controller.table;
 import com.alibaba.fastjson.JSON;
 import com.hyg.pojo.User;
 import com.hyg.service.UserService;
+import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.RespondJson;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class UserController
 	 * 获得用户表中的所有数据
 	 * @return
 	 */
-	@GetMapping("/selectData/getUserData")
+	@GetMapping("/"  + PermissionPrefix.SELECT_DATA +  "/getUserData")
 	@ResponseBody
 	public RespondJson<User> getUserData()
 	{
@@ -153,7 +154,7 @@ public class UserController
 	 * @param name
 	 * @return
 	 */
-	@GetMapping("/selectData/searchByName")
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/searchByName")
 	@ResponseBody
 	public RespondJson<User> searchByName(@RequestParam(value = "name", defaultValue = "") String name)
 	{

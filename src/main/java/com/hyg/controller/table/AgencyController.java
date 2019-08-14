@@ -3,6 +3,7 @@ package com.hyg.controller.table;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyg.pojo.Agency;
 import com.hyg.service.AgencyService;
+import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,7 +26,7 @@ public class AgencyController
 	 * 获得事务所表中的所有数据
 	 * @return
 	 */
-	@GetMapping("/selectData/getAgencyData")
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getAgencyData")
 	@ResponseBody
 	public RespondJson<Agency> getAgencyData()
 	{
@@ -36,7 +37,7 @@ public class AgencyController
 	 * 更新律师事务所介绍
 	 * @return
 	 */
-	@PostMapping("/updateData/agencyDetail")
+	@PostMapping("/" + PermissionPrefix.UPDATE_DATA + "/agencyDetail")
 	public String updateAgencyDetail(String content, Model model)
 	{
 		System.out.println(content);

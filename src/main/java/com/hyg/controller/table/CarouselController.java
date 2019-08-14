@@ -3,6 +3,7 @@ package com.hyg.controller.table;
 import com.hyg.pojo.Carousel;
 import com.hyg.pojo.CarouselExpand;
 import com.hyg.service.CarouselService;
+import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,7 +25,7 @@ public class CarouselController
 	 * 获得轮播图表中的所有数据
 	 * @return
 	 */
-	@GetMapping("/selectData/getCarouselData")
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getCarouselData")
 	@ResponseBody
 	public RespondJson<Carousel> getCarouselData()
 	{
@@ -37,7 +38,7 @@ public class CarouselController
 	 * @param model
 	 * @return
 	 */
-	@PostMapping("/insertData/insertOneCarousel")
+	@PostMapping("/" + PermissionPrefix.INSERT_DATA + "/insertOneCarousel")
 	public String insertOneCarousel(CarouselExpand carouselExpand, Model model)
 	{
 		if (carouselService.insertOneCarousel(carouselExpand))
@@ -56,7 +57,7 @@ public class CarouselController
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/deleteData/deleteOneCarouseById")
+	@GetMapping("/" + PermissionPrefix.INSERT_DATA + "/deleteOneCarouseById")
 	@ResponseBody
 	public String deleteOneCarouseById(@RequestParam(name = "id") int id)
 	{
