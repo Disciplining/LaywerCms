@@ -17,4 +17,6 @@ public interface MenuMapper
 	 */
 	@Select("select * from `t_menu`")
 	List<Menu> listMenus();
+
+//	void insert
 }
