@@ -47,8 +47,9 @@
 		base: '../../layuiadmin/' //静态资源所在路径
 	}).extend({
 		index: 'lib/index' //主入口模块
-	}).use(['index', 'table', 'upload'], function() {
+	}).use(['index', 'table', 'upload','jquery'], function() {
 		var admin = layui.admin,
+				$=layui.$,
 				table = layui.table,
 				upload = layui.upload;
 		table.render({
@@ -87,31 +88,6 @@
 		});
 		//头工具栏事件
 		table.on('toolbar(test-table-toolbar)', function(obj) {
-			var checkStatus = table.checkStatus(obj.config.id);
-			switch(obj.event) {
-				case 'getCheckData':
-					var data = checkStatus.data;
-					layer.alert(JSON.stringify(data));
-					break;
-				case 'getCheckLength':
-					var data = checkStatus.data;
-					layer.msg('选中了：' + data.length + ' 个');
-					break;
-				case 'add':
-					layer.open({
-						title: '设置轮播图',
-						type: 1,
-						area: ['500px', '300px'],
-						content: "<html><body>" +
-								"<button type='button' class='layui-btn' id='test1'>" +
-								"<i class='layui-icon'>&#xe67c;</i>" +
-								"上传图片" +
-								"</button>" +
-								"<script>" +
-								"alert('hhh')" +
-								"</scrip" + "t>"
-					});
-			};
 		});
 		var uploadInst = upload.render({
 			elem: '#test1' //绑定元素
@@ -134,18 +110,17 @@
 			var data = obj.data;
 			if(obj.event === 'del') {
 				layer.confirm('真的删除行么', function(index) {
-					obj.del();
-					layer.close(index);
-				});
-			} else if(obj.event === 'edit') {
-				layer.prompt({
-					formType: 2,
-					value: data.email
-				}, function(value, index) {
-					obj.update({
-						email: value
-					});
-					layer.close(index);
+					$.ajax({
+						url:'/deleteData/deleteOneCarouseById?id='+data.id,
+						method:'get',
+						success:function(data){
+							if(data=='success'){
+								layer.close(index);
+								obj.del();
+								window.location.href='/getPage/base/bannerMgr'
+							}
+						}
+					})
 				});
 			}
 		});
