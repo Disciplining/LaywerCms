@@ -11,4 +11,12 @@ public interface MenuService
 	 * @return
 	 */
 	RespondJson<Menu> getMenuData();
+
+	/**
+	 * 添加一个父级菜单
+	 * 前端传过来的数据：menuName、router
+	 * @param menu
+	 * @return
+	 */
+	boolean insertOneFatherMenu(Menu menu);
 }
