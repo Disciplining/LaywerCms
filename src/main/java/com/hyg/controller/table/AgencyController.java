@@ -1,6 +1,7 @@
 package com.hyg.controller.table;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hyg.config.PicDir;
 import com.hyg.pojo.Agency;
 import com.hyg.service.AgencyService;
 import com.hyg.util.RespondJson;
@@ -22,11 +23,9 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
+import java.util.UUID;
 
 @Controller
 public class AgencyController
@@ -96,51 +95,47 @@ public class AgencyController
 		if (!file.isEmpty())
 		{
 			System.out.println(file.getOriginalFilename()); // 获取到文件的原名 例如 XXX.jpg
-			String originalFilename = file.getOriginalFilename(); // 获取到后缀
+			String originalFilename = file.getOriginalFilename();
 
-			String[] exts = originalFilename.split("\\.");
+			String[] exts = originalFilename.split("\\."); // 获取到后缀
 			String ext = exts[exts.length - 1];
 
 			ServletContext application = request.getSession().getServletContext();
-			// 路径为/upload
-			String savePath = application.getRealPath("/") + "/upload/";
-			// 文件保存目录URL
-			String saveUrl = request.getContextPath() + "/upload/";
-			// 检查目录（不存在就添加）
-			File uploadDir = new File(savePath);
-			if (!uploadDir.exists()) {
+//			// 路径为/upload
+//			String savePath = application.getRealPath("/") + "/upload/";
+//			// 文件保存目录URL
+//			String saveUrl = request.getContextPath() + "/upload/";
+
+			String savePath = picDirSetting.substring(picDirSetting.indexOf(':')+1) + PicDir.AGENCY_DETAIL_DIR;
+			String saveUrl = "/images/" + PicDir.AGENCY_DETAIL_DIR;
+
+			File uploadDir = new File(savePath); // 检查目录（不存在就添加）
+			if (!uploadDir.exists())
+			{
 				uploadDir.mkdirs();
 			}
 			if (!uploadDir.isDirectory()) {
 				writer.println(objectMapper.writeValueAsString("上传目录不存在。"));
 				return;
 			}
-			// 检查目录写权限
-			if (!uploadDir.canWrite()) {
-				writer.println(objectMapper.writeValueAsString("上传目录没有写权限。"));
-				return;
-			}
+
 			String dirName = request.getParameter("dir");
 			if (dirName == null) {
 				dirName = "image";
 			}
-			// 路径为/upload/image
-			savePath += dirName + "/";
-			saveUrl += dirName + "/";
+
 			File saveDirFile = new File(savePath);
 			if (!saveDirFile.exists()) {
 				saveDirFile.mkdirs();
 			}
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			String ymd = sdf.format(new Date());
-			savePath += ymd + "/";
-			saveUrl += ymd + "/";
+
+
 			// 路径为/upload/image/20181207
 			File dirFile = new File(savePath);
 			if (!dirFile.exists()) {
 				dirFile.mkdirs();
 			}
-			String fileName = sdf.format(new Date()) + new Random().nextInt(1000) + "." + ext;
+			String fileName = UUID.randomUUID() +  "." + ext;
 			String filePath = savePath + fileName;
 			File fileFile = new File(filePath);
 			// 路径为/YucaiAdmin/target/YucaiAdmin/upload/image/20181207/20181207879.png
@@ -160,6 +155,7 @@ public class AgencyController
 				writer.println(objectMapper.writeValueAsString("上传文件失败。") + e.getMessage());
 				e.printStackTrace();
 			}
+
 			return;
 		}
 	}

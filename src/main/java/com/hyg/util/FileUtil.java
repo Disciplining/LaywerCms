@@ -12,9 +12,9 @@ import java.util.UUID;
 public class FileUtil
 {
 	/**
-	 * 获得文件扩展名
+	 * 获得文件扩展名 包括"."
 	 * @param fileName 文件的原名
-	 * @return
+	 * @return 例如 ".jpg"、".png"、""
 	 */
 	public static String getFileExtension(final String fileName)
 	{
