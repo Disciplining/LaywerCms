@@ -50,53 +50,45 @@
 </div>
 <script src="/layuiadmin/layui/layui.js"></script>
 <script>
-	layui.config({
-		base: '../../layuiadmin/' //静态资源所在路径
-	}).extend({
-		index: 'lib/index' //主入口模块
-	}).use(['index', 'table', 'upload','jquery'], function() {
-		var admin = layui.admin,
-				table = layui.table,
-            $ = layui.$,
-				upload = layui.upload;
-		table.render({
+	layui.config
+    (
+        {
+		    base: '../../layuiadmin/' //静态资源所在路径
+	    }
+	).extend
+    (
+        {
+		    index: 'lib/index' //主入口模块
+        }
+	).use
+    (
+        ['index', 'table', 'upload','jquery'],
+        function()
+        {
+		    var admin = layui.admin;
+			var	table = layui.table;
+            var $ = layui.$;
+            var upload = layui.upload;
+		table.render
+        ({
 			elem: '#test-table-toolbar',
-			url: '/selectData/getLawyerData',
+			url: '/selectData/lawyerPageData',
 			toolbar: '#test-table-toolbar-toolbarDemo',
 			title: '用户数据表',
-			page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+			page:
+            { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
 				layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
-				groups: 1 ,//只显示 1 个连续页码,
-				first: false, //不显示首页,
-				last: false ,//不显示尾页
-				limit:5
-
+				groups: 3 ,//只显示 1 个连续页码,
+				limit: 10
 			},
-			cols: [
-				[{
-					field:'zizeng',
-					width:200,
-					title: '编号',
-					fixed: 'left',
-					templet:'#zizeng'
-				}
-					,
-					{
-						field: 'lawyerName',
-						title: '律师名',
-						width: 200
-					}, {
-					field: 'lawyerLevel',
-					title: '律师职级',
-					width: 200
-				}, {
-					field: 'introduction',
-					title: '律师简介',
-				},  {
-					title: '操作',
-					toolbar: '#test-table-toolbar-barDemo',
-					width: 200
-				}],
+			cols:
+            [
+				[
+				    {field:'zizeng', width:200, title: '编号', fixed: 'left', templet:'#zizeng'},
+					{field: 'lawyerName', title: '律师名', width: 200},
+                    {field: 'lawyerLevel', title: '律师职级', width: 200},
+                    {field: 'introduction', title: '律师简介'},
+                    {title: '操作', toolbar: '#test-table-toolbar-barDemo', width: 200}],
 			],
             id:'testReload'
 		});
@@ -110,7 +102,7 @@
                     page: {
                         curr: 1 //重新从第 1 页开始
                     },
-                    url:'/selectData/searchLawyer?name='+demoReloadLaywer.val()+'&level='+demoReloadlawyerLevel.val(),
+                    url:'/selectData/lawyerPageData?name='+demoReloadLaywer.val()+'&level='+demoReloadlawyerLevel.val(),
                     method:"get"
                 }, 'data');
             }
@@ -150,11 +142,11 @@
 			}
 		});
 
-		//监听行工具事件
+		// 监听行工具事件
 		table.on('tool(test-table-toolbar)', function(obj) {
 			var data = obj.data;
 			if(obj.event === 'del') {
-				layer.confirm('真的删除行么', function(index) {
+				layer.confirm('确定删除？', function(index) {
 				    $.ajax({
                         url:'/deleteData/lawyer?id='+data.lawyerId,
                         method:'get',
@@ -162,7 +154,7 @@
                             if(data=="success"){
                                 obj.del();
                                 layer.close(index);
-                                window.location.href="/getPage/base/personMgr"
+                                window.location.href="/getPage/base/personMgr";
                             }
                         }
                     })

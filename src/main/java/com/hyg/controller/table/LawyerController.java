@@ -96,8 +96,8 @@ public class LawyerController
 	@ResponseBody
 	public RespondJson<Lawyer> lawyerPageData
 	(
-		@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
-		@RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
+		@RequestParam(value = "page", defaultValue = "1") int pageNum,
+		@RequestParam(value = "limit", defaultValue = "5") int pageSize,
 		@RequestParam(value = "name", defaultValue = "") String lawyerName,
 		@RequestParam(value = "level", defaultValue = "") String lawyerLevel
 	)

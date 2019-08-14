@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
@@ -13,6 +12,7 @@
 <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all" />
 <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all" />
 <body>
+<input type="text" th:value="${id}" />
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -90,25 +90,27 @@
             }
         });
         $.ajax({
-            url: '/selectData/getLawyerData',
+            url: '/selectData/lawyerPageData',
             type: "get",
             dataType: "json",
-            success: function(data) {
+            success: function(data)
+            {
                 var data = data.data;
                 var lawerName=document.getElementById('lawerName');
                 var lawerIntro=document.getElementById('lawerIntro');
                 var ida = document.getElementById("ida");
                 var lawerPro = document.getElementById("lawerPro");
                 console.log(location.href)
-                for(var i = 0; i < data.length; i++) {
-                    if(data[i].lawyerId == idr) {
+                for(var i = 0; i < data.length; i++)
+                {
+                    if(data[i].lawyerId == idr)
+                    {
                         lawerName.value=data[i].lawyerName;
                         lawerIntro.value=data[i].introduction;
                         lawerPro.value=data[i].lawyerLevel;
                         colla_img.style.background='url('+data[i].lawyerImg+')';
                         colla_img.style.backgroundSize= '100%';
                         ida.value=data[i].lawyerId;
-                        console.log(data[i].lawyerId);
                     }
                 }
             }
