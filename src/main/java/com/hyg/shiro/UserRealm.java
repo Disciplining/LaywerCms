@@ -59,7 +59,7 @@ public class UserRealm extends AuthorizingRealm
 		UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 
 		String intpuLoginName = token.getUsername(); // 用户输入的用户名
-		User userInDatabase = userMapper.getOneUser(intpuLoginName); // 数据库中的用户（可能为空）
+		User userInDatabase = userMapper.getOneUserByName(intpuLoginName); // 数据库中的用户（可能为空）
 
 		if (userInDatabase == null)
 		{

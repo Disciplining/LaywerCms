@@ -1,122 +1,148 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <style>
-        #colla_img{
-            background-size: 100%;
-        }
-    </style>
-</head>
-<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all" />
-<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all" />
-<body>
-<input type="text" th:value="${id}" />
-<div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
-            <div class="layui-card" style="position: relative;padding-bottom: 10px;">
-                <div class="layui-card-header">团队成员编辑</div>
-                <form class="layui-form" action="/updateData/lawyer"  method="post" enctype="multipart/form-data" style="margin: 20px 0 0 28px;">
-                    <input name="lawyerId" id="ida" type="hidden" />
-                    <div class="layui-form-item">
-                        <label class="layui-form-label" >律师姓名</label>
-                        <div class="layui-input-block">
-                            <input type="text"  name="lawyerName" required lay-verify="required"  autocomplete="off" id="lawerName" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label" >律师职级</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="lawyerLevel"  required lay-verify="required"  autocomplete="off" id="lawerPro" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">律师简介</label>
-                        <div class="layui-input-block">
-                            <textarea name="introduction" placeholder="请输入内容" class="layui-textarea" id="lawerIntro"></textarea>
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">律师照片</label>
-                        <div class="layui-input-block">
-                            <div   id="colla_img"  style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
-                            <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
-                                <i class="layui-icon">&#xe67c;</i>上传图片
-                            </button>
-                        </div>
-                    </div>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            #colla_img{
+                background-size: 100%;
+            }
+        </style>
+    </head>
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all" />
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 
-                    <div class="layui-form-item">
-                        <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+    <body>
+    <input id="temp-id" type="text" th:value="${id}" />
+    <div>这是页面测试</div>
+
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card" style="position: relative;padding-bottom: 10px;">
+                    <div class="layui-card-header">团队成员编辑</div>
+                    <form class="layui-form" action="/updateData/lawyer"  method="post" enctype="multipart/form-data" style="margin: 20px 0 0 28px;">
+                        <input name="lawyerId" id="hidden-id" type="hidden" />
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" >律师姓名</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lawyerName" required lay-verify="required"  autocomplete="off" id="lawyerName" class="layui-input">
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <a style="position: absolute;left: 250px;bottom: 25px;" href="./personMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" >律师职级</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lawyerLevel"  required lay-verify="required"  autocomplete="off" id="lawyerLevel" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">律师简介</label>
+                            <div class="layui-input-block">
+                                <textarea name="introduction" placeholder="请输入内容" class="layui-textarea" id="introduction"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">律师照片</label>
+                            <div class="layui-input-block">
+                                <div   id="colla_img"  style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
+                                <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
+                                    <i class="layui-icon">&#xe67c;</i>上传图片
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                    <a style="position: absolute;left: 250px;bottom: 25px;" href="./personMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-<script src="/layuiadmin/layui/layui.js"></script>
-<script>
-    var dd = document.getElementById('dd');
-    var time = document.getElementById('time');
-    var colla_img = document.getElementById("colla_img")
-    function filterId(str) {
-        var newStr = str.split('?')[1].split('=')[1];
-        return newStr
-    }
-    var idr = filterId(location.href)
-    layui.use(['layer', 'jquery','form','upload'], function() {
-        var layer = layui.layer,
-            form=layui.form,
-            upload=layui.upload,
-            $ = layui.$;
-        upload.render({
-            elem: '#test1'
-            ,url: 'upload',
-            size:2048
-            ,auto: false //选择文件后不自动上传
-            ,bindAction: '#save' //指向一个按钮触发上传
-            ,choose: function (obj) {
-                //预读本地文件
-                obj.preview(function (index, file, result) {
-                    $('#loadinput').val(file.name); //展示文件名
-                    $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a>');
-                })
-            }
-        });
-        $.ajax({
-            url: '/selectData/lawyerPageData',
-            type: "get",
-            dataType: "json",
-            success: function(data)
+
+    <script src="/layuiadmin/layui/layui.js"></script>
+    <script>
+        var colla_img = document.getElementById("colla_img");
+
+        $.ajax
+        (
             {
-                var data = data.data;
-                var lawerName=document.getElementById('lawerName');
-                var lawerIntro=document.getElementById('lawerIntro');
-                var ida = document.getElementById("ida");
-                var lawerPro = document.getElementById("lawerPro");
-                console.log(location.href)
-                for(var i = 0; i < data.length; i++)
+                url: '/selectData/getOneLawyerById?id=' + document.getElementById('temp-id').value,
+                type: "get",
+                dataType: "json",
+                success: function(data)
                 {
-                    if(data[i].lawyerId == idr)
+                    if (data.code === 0)
                     {
-                        lawerName.value=data[i].lawyerName;
-                        lawerIntro.value=data[i].introduction;
-                        lawerPro.value=data[i].lawyerLevel;
-                        colla_img.style.background='url('+data[i].lawyerImg+')';
+                        document.getElementById('lawyerName').value = data.data[0].lawyerName;
+                        document.getElementById('introduction').value = data.data[0].introduction;
+                        document.getElementById('hidden-id').value = data.data[0].lawyerId;
+                        document.getElementById('lawyerLevel').value = data.data[0].lawyerLevel;
+
+                        colla_img.style.background='url(' + data.data[0].lawyerImg + ')';
                         colla_img.style.backgroundSize= '100%';
-                        ida.value=data[i].lawyerId;
                     }
+
+                    // var data = data.data;
+                    // var lawerName=document.getElementById('lawerName');
+                    // var lawerIntro=document.getElementById('lawerIntro');
+                    // var ida = document.getElementById("ida");
+                    // var lawerPro = document.getElementById("lawerPro");
+                    // console.log(location.href)
+                    // for(var i = 0; i < data.length; i++)
+                    // {
+                    //     if(data[i].lawyerId == idr)
+                    //     {
+                    //         lawerName.value=data[i].lawyerName;
+                    //         lawerIntro.value=data[i].introduction;
+                    //         lawerPro.value=data[i].lawyerLevel;
+                    //         colla_img.style.background='url('+data[i].lawyerImg+')';
+                    //         colla_img.style.backgroundSize= '100%';
+                    //         ida.value=data[i].lawyerId;
+                    //     }
+                    // }
                 }
             }
-        });
-    })
-</script>
-</body>
+        );
+
+        // var dd = document.getElementById('dd').value; // 隐藏的id
+        // var time = document.getElementById('time');
+        // var colla_img = document.getElementById("colla_img");
+
+        layui.use
+        (
+            ['layer', 'jquery','form','upload'],
+            function()
+            {
+                var layer = layui.layer;
+                var form=layui.form;
+                var upload=layui.upload;
+                var $ = layui.$;
+                upload.render
+                (
+                    {
+                        elem: '#test1',
+                        url: 'upload',
+                        size:2048,
+                        auto: false, //选择文件后不自动上传
+                        bindAction: '#save', //指向一个按钮触发上传
+                        choose: function (obj)
+                        {
+                            //预读本地文件
+                            obj.preview(function (index, file, result) {
+                                $('#loadinput').val(file.name); //展示文件名
+                                $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a>');
+                            })
+                        }
+                    }
+                );
+            }
+        )
+    </script>
+    </body>
 
 </html>

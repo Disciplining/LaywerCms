@@ -87,7 +87,7 @@ public class LawyerController
 	}
 
 	/**
-	 * 根据律师名和律师职称搜索律师
+	 * 分页数据
 	 * @param lawyerName
 	 * @param lawyerLevel
 	 * @return
@@ -103,5 +103,17 @@ public class LawyerController
 	)
 	{
 		return lawyerService.listPageData(pageNum, pageSize, lawyerName, lawyerLevel);
+	}
+
+	/**
+	 * 根据id获得一个律师
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneLawyerById")
+	@ResponseBody
+	public RespondJson<Lawyer> getOneLawyerById(@RequestParam("id") int id)
+	{
+		return lawyerService.getOneLawyerById(id);
 	}
 }

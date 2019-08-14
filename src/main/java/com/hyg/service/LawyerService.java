@@ -33,4 +33,11 @@ public interface LawyerService
 	 * @return
 	 */
 	RespondJson<Lawyer> listPageData(int pageNum, int pageSize, String lawyerName, String lawyerLevel);
+
+	/**
+	 * 根据id获得一个个律师
+	 * @param id
+	 * @return
+	 */
+	RespondJson<Lawyer> getOneLawyerById(int id);
 }

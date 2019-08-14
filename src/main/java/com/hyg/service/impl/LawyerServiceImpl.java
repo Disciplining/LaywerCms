@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,7 +114,7 @@ public class LawyerServiceImpl implements LawyerService
 		lawyer.setLawyerLevel(lawyerExpand.getLawyerLevel());
 		lawyer.setIntroduction(lawyerExpand.getIntroduction());
 
-		if (lawyerExpand.getFile().getOriginalFilename().isEmpty()) // 用户没选新的图片
+		if (lawyerExpand.getFile().getOriginalFilename().isEmpty() || lawyerExpand.getFile() == null) // 用户没选新的图片
 		{
 			Lawyer oldLawyer = lawyerMapper.getOneLawyerById(lawyer.getLawyerId());
 			lawyer.setLawyerImg(oldLawyer.getLawyerImg()); // 还是设置原来的url
@@ -182,6 +183,29 @@ public class LawyerServiceImpl implements LawyerService
 		json.setMsg("");
 		json.setCount(length.size());
 		json.setData(lawyers);
+
+		return json;
+	}
+
+	/**
+	 * 根据id获得一个个律师
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public RespondJson<Lawyer> getOneLawyerById(int id)
+	{
+		Lawyer lawyer = lawyerMapper.getOneLawyerById(id);
+
+		List<Lawyer> list = new ArrayList<>(1);
+		list.add(lawyer);
+
+		RespondJson<Lawyer> json = new RespondJson<>();
+		json.setCode(0);
+		json.setCount(1);
+		json.setMsg("");
+		json.setData(list);
 
 		return json;
 	}
