@@ -22,6 +22,11 @@
 						<button class="layui-btn" data-type="reload">搜索</button>
 					</div>
 					<table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
+						<thead>
+						<tr>
+							<th shiro:hasRole="root_user" lay-data="{field:'wealth', sort: true,fixed:'right'}">财富</th>
+						</tr>
+						</thead>
 					</table>
 					<script type="text/html" id="zizeng">
 						{{d.LAY_TABLE_INDEX+1}}
