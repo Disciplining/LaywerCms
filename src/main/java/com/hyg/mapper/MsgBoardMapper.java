@@ -4,7 +4,6 @@ import com.hyg.pojo.MsgBoard;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,20 +13,6 @@ import java.util.Map;
 @Service("msgBoardMapper")
 public interface MsgBoardMapper
 {
-	/**
-	 * 留言表
-	 * @return
-	 */
-	@Select("select * from `t_msgBoard`")
-	List<MsgBoard> listMsgBoards();
-
-	/**
-	 * 查询所有未读的留言
-	 * @return
-	 */
-	@Select(" select * from `t_msgBoard` where `readFlag`='0' ")
-	List<MsgBoard> listMsgNoRead();
-
 	/**
 	 * 根据 客户姓名 和 案例描述 查找留言
 	 * @param map name detail
@@ -43,12 +28,4 @@ public interface MsgBoardMapper
 	 */
 	@Delete(" delete from `t_msgBoard` where `msgId`=#{id} ")
 	void deleteOneMsgById(int id);
-
-	/**
-	 * 回复留言
-	 * @param msgBoard
-	 */
-	@Update(" update `t_msgBoard` set `replyId`=#{replyId},`replyName`=#{replyName},`replyDate`=#{replyDate},`readFlag`=#{readFlag},`replyMsg`=#{replyMsg} " +
-				" where `msgId`=#{msgId} ")
-	void updateReplyMsg(MsgBoard msgBoard);
 }

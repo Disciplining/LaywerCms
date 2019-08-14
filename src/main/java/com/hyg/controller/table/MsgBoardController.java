@@ -17,27 +17,7 @@ public class MsgBoardController
 	@Qualifier("msgBoardServiceImpl")
 	private MsgBoardService msgBoardService;
 
-	/**
-	 * 获得留言表中的所有数据
-	 * @return
-	 */
-	@GetMapping("/selectData/getMsgBoardData")
-	@ResponseBody
-	public RespondJson<MsgBoard> getMsgBoardData()
-	{
-		return msgBoardService.getMsgBoardData();
-	}
-
-	/**
-	 * 查找未读消息
-	 * @return
-	 */
-	@GetMapping("/selectData/listMsgNoRead")
-	@ResponseBody
-	public RespondJson<MsgBoard> listMsgNoRead()
-	{
-		return msgBoardService.listMsgNoRead();
-	}
+	/*==============================================*/
 
 	/**
 	 * 根据 客户姓名 和 案例详情 查找留言
@@ -55,6 +35,11 @@ public class MsgBoardController
 		return msgBoardService.listMsgByNameAndDetail(name, detail);
 	}
 
+	/**
+	 * 删除留言
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/deleteData/deleteOneMsgById")
 	@ResponseBody
 	public String deleteOneMsgById(@RequestParam(value = "id") int id)
