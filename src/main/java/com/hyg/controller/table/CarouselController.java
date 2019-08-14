@@ -31,6 +31,12 @@ public class CarouselController
 		return carouselService.getCarouselData();
 	}
 
+	/**
+	 * 添加一个轮播图
+	 * @param carouselExpand
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/insertData/insertOneCarousel")
 	public String insertOneCarousel(CarouselExpand carouselExpand, Model model)
 	{
