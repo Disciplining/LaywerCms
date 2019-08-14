@@ -20,16 +20,7 @@ public class LawyerController
 	@Qualifier("lawyerServiceImpl")
 	private LawyerService lawyerService;
 
-	/**
-	 * 获得律师表中的所有数据
-	 * @return
-	 */
-	@GetMapping("/selectData/getLawyerData")
-	@ResponseBody
-	public RespondJson<Lawyer> getLawyerData()
-	{
-		return lawyerService.getLawyerData();
-	}
+	/*===================================================*/
 
 	/**
 	 * 添加一个律师
@@ -100,14 +91,16 @@ public class LawyerController
 	 * @param lawyerLevel
 	 * @return
 	 */
-	@GetMapping("/selectData/searchLawyer")
+	@GetMapping("/selectData/lawyerPageData")
 	@ResponseBody
-	public RespondJson<Lawyer> listLawyersByNameAndLevel
+	public RespondJson<Lawyer> lawyerPageData
 	(
+		@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+		@RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
 		@RequestParam(value = "name", defaultValue = "") String lawyerName,
 		@RequestParam(value = "level", defaultValue = "") String lawyerLevel
 	)
 	{
-		return lawyerService.listLawyersByNameAndLevel(lawyerName, lawyerLevel);
+		return lawyerService.listPageData(pageNum, pageSize, lawyerName, lawyerLevel);
 	}
 }

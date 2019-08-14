@@ -14,12 +14,6 @@ import java.util.Map;
 @Service("lawyerMapper")
 public interface LawyerMapper
 {
-	/**
-	 * 律师表所有信息（未被删除的）
-	 * @return
-	 */
-	@Select("select * from `t_lawyer` where `deleteFlag`!='1'")
-	List<Lawyer> listLawyers();
 
 	/**
 	 * 根据id获得一个律师的信息

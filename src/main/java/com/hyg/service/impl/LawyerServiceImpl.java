@@ -1,5 +1,6 @@
 package com.hyg.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hyg.config.PicDir;
 import com.hyg.mapper.LawyerMapper;
 import com.hyg.pojo.Lawyer;
@@ -31,27 +32,6 @@ public class LawyerServiceImpl implements LawyerService
 	// 那么显示的路径就是：/images/aa/bb/test.png
 	@Value("${cbs.imagesPath}")
 	private String picDirSetting; //全局配置文件中设置的图片的路径
-
-	/**
-	 * 获得符合前端格式的
-	 * 留言表的数据
-	 *
-	 * @return
-	 */
-	@Override
-	public RespondJson<Lawyer> getLawyerData()
-	{
-		List<Lawyer> list = lawyerMapper.listLawyers();
-
-		RespondJson<Lawyer> json = new RespondJson<>();
-
-		json.setCode(0);
-		json.setMsg(null);
-		json.setCount(list.size());
-		json.setData(list);
-
-		return json;
-	}
 
 	/**
 	 * 添加一个律师
@@ -185,19 +165,22 @@ public class LawyerServiceImpl implements LawyerService
 	 * @return
 	 */
 	@Override
-	public RespondJson<Lawyer> listLawyersByNameAndLevel(String lawyerName, String lawyerLevel)
+	public RespondJson<Lawyer> listPageData(int pageNum, int pageSize, String lawyerName, String lawyerLevel)
 	{
 		Map<String, String> par =  new HashMap<>(2);
 
 		par.put("lawyerName", lawyerName);
 		par.put("lawyerLevel", lawyerLevel);
 
+		List<Lawyer> length = lawyerMapper.listLawyersByNameAndLevel(par); // 获取开启分页前的长度
+
+		PageHelper.startPage(pageNum, pageSize);
 		List<Lawyer> lawyers = lawyerMapper.listLawyersByNameAndLevel(par);
 
 		RespondJson<Lawyer> json = new RespondJson<>();
 		json.setCode(0);
 		json.setMsg("");
-		json.setCount(lawyers.size());
+		json.setCount(length.size());
 		json.setData(lawyers);
 
 		return json;

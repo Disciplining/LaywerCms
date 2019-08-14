@@ -91,9 +91,9 @@ public class ArticleController
 	 * @param author
 	 * @return
 	 */
-	@GetMapping("/selectData/pageData")
+	@GetMapping("/selectData/articlePageData")
 	@ResponseBody
-	public RespondJson<ArticleExpand> pageData
+	public RespondJson<ArticleExpand> articlePageData
 	(
 		@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
 		@RequestParam(value = "pageSize", defaultValue = "5") int pageSize,

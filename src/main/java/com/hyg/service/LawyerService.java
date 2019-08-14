@@ -7,13 +7,6 @@ import com.hyg.util.RespondJson;
 public interface LawyerService
 {
 	/**
-	 * 获得符合前端格式的
-	 * 留言表的数据
-	 * @return
-	 */
-	RespondJson<Lawyer> getLawyerData();
-
-	/**
 	 * 添加一个律师
 	 * @param lawyerExpand
 	 */
@@ -39,5 +32,5 @@ public interface LawyerService
 	 * @param lawyerLevel
 	 * @return
 	 */
-	RespondJson<Lawyer> listLawyersByNameAndLevel(String lawyerName, String lawyerLevel);
+	RespondJson<Lawyer> listPageData(int pageNum, int pageSize, String lawyerName, String lawyerLevel);
 }
