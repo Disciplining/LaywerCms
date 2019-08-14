@@ -4,145 +4,128 @@
         <meta charset="UTF-8">
         <title></title>
         <style>
-            #colla_img{
+            #colla_img
+            {
                 background-size: 100%;
             }
         </style>
+
+        <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all" />
+        <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all" />
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     </head>
-    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all" />
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 
     <body>
-    <input id="temp-id" type="text" th:value="${id}" />
-    <div>这是页面测试</div>
+        <input id="temp-id" type="hidden" th:value="${id}" />
 
-    <div class="layui-fluid">
-        <div class="layui-row layui-col-space15">
-            <div class="layui-col-md12">
-                <div class="layui-card" style="position: relative;padding-bottom: 10px;">
-                    <div class="layui-card-header">团队成员编辑</div>
-                    <form class="layui-form" action="/updateData/lawyer"  method="post" enctype="multipart/form-data" style="margin: 20px 0 0 28px;">
-                        <input name="lawyerId" id="hidden-id" type="hidden" />
-                        <div class="layui-form-item">
-                            <label class="layui-form-label" >律师姓名</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="lawyerName" required lay-verify="required"  autocomplete="off" id="lawyerName" class="layui-input">
+        <!-- 表单开始 -->
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card" style="position: relative;padding-bottom: 10px;">
+                        <div class="layui-card-header">团队成员编辑</div>
+                        <form class="layui-form" action="/updateData/lawyer"  method="post" enctype="multipart/form-data" style="margin: 20px 0 0 28px;">
+                            <input name="lawyerId" id="hidden-id" type="hidden" />
+                            <div class="layui-form-item">
+                                <label class="layui-form-label" >律师姓名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="lawyerName" required lay-verify="required"  autocomplete="off" id="lawyerName" class="layui-input">
+                                </div>
                             </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label" >律师职级</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="lawyerLevel"  required lay-verify="required"  autocomplete="off" id="lawyerLevel" class="layui-input">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label" >律师职级</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="lawyerLevel"  required lay-verify="required"  autocomplete="off" id="lawyerLevel" class="layui-input">
+                                </div>
                             </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">律师简介</label>
-                            <div class="layui-input-block">
-                                <textarea name="introduction" placeholder="请输入内容" class="layui-textarea" id="introduction"></textarea>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">律师简介</label>
+                                <div class="layui-input-block">
+                                    <textarea name="introduction" placeholder="请输入内容" class="layui-textarea" id="introduction"></textarea>
+                                </div>
                             </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">律师照片</label>
-                            <div class="layui-input-block">
-                                <div   id="colla_img"  style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
-                                <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
-                                    <i class="layui-icon">&#xe67c;</i>上传图片
-                                </button>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">律师照片</label>
+                                <div class="layui-input-block">
+                                    <div   id="colla_img"  style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
+                                    <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
+                                        <i class="layui-icon">&#xe67c;</i>上传图片
+                                    </button>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="layui-form-item">
-                            <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                    <a style="position: absolute;left: 250px;bottom: 25px;" href="./personMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
+                        </form>
+                        <a style="position: absolute;left: 250px;bottom: 25px;" href="/getPage/base/personMgr"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- 表单结束 -->
 
-    <script src="/layuiadmin/layui/layui.js"></script>
-    <script>
-        var colla_img = document.getElementById("colla_img");
+        <script src="/layuiadmin/layui/layui.js"></script>
+        <script>
+            var colla_img = document.getElementById("colla_img");
 
-        $.ajax
-        (
-            {
-                url: '/selectData/getOneLawyerById?id=' + document.getElementById('temp-id').value,
-                type: "get",
-                dataType: "json",
-                success: function(data)
+            // ajax回填数据
+            $.ajax
+            (
                 {
-                    if (data.code === 0)
+                    url: '/selectData/getOneLawyerById?id=' + document.getElementById('temp-id').value,
+                    type: "get",
+                    dataType: "json",
+                    success: function(data)
                     {
-                        document.getElementById('lawyerName').value = data.data[0].lawyerName;
-                        document.getElementById('introduction').value = data.data[0].introduction;
-                        document.getElementById('hidden-id').value = data.data[0].lawyerId;
-                        document.getElementById('lawyerLevel').value = data.data[0].lawyerLevel;
-
-                        colla_img.style.background='url(' + data.data[0].lawyerImg + ')';
-                        colla_img.style.backgroundSize= '100%';
-                    }
-
-                    // var data = data.data;
-                    // var lawerName=document.getElementById('lawerName');
-                    // var lawerIntro=document.getElementById('lawerIntro');
-                    // var ida = document.getElementById("ida");
-                    // var lawerPro = document.getElementById("lawerPro");
-                    // console.log(location.href)
-                    // for(var i = 0; i < data.length; i++)
-                    // {
-                    //     if(data[i].lawyerId == idr)
-                    //     {
-                    //         lawerName.value=data[i].lawyerName;
-                    //         lawerIntro.value=data[i].introduction;
-                    //         lawerPro.value=data[i].lawyerLevel;
-                    //         colla_img.style.background='url('+data[i].lawyerImg+')';
-                    //         colla_img.style.backgroundSize= '100%';
-                    //         ida.value=data[i].lawyerId;
-                    //     }
-                    // }
-                }
-            }
-        );
-
-        // var dd = document.getElementById('dd').value; // 隐藏的id
-        // var time = document.getElementById('time');
-        // var colla_img = document.getElementById("colla_img");
-
-        layui.use
-        (
-            ['layer', 'jquery','form','upload'],
-            function()
-            {
-                var layer = layui.layer;
-                var form=layui.form;
-                var upload=layui.upload;
-                var $ = layui.$;
-                upload.render
-                (
-                    {
-                        elem: '#test1',
-                        url: 'upload',
-                        size:2048,
-                        auto: false, //选择文件后不自动上传
-                        bindAction: '#save', //指向一个按钮触发上传
-                        choose: function (obj)
+                        if (data.code === 0)
                         {
-                            //预读本地文件
-                            obj.preview(function (index, file, result) {
-                                $('#loadinput').val(file.name); //展示文件名
-                                $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a>');
-                            })
+                            document.getElementById('lawyerName').value = data.data[0].lawyerName;
+                            document.getElementById('introduction').value = data.data[0].introduction;
+                            document.getElementById('hidden-id').value = data.data[0].lawyerId;
+                            document.getElementById('lawyerLevel').value = data.data[0].lawyerLevel;
+
+                            colla_img.style.background='url(' + data.data[0].lawyerImg + ')';
+                            colla_img.style.backgroundSize= '100%';
                         }
                     }
-                );
-            }
-        )
-    </script>
+                }
+            );
+
+            layui.use
+            (
+                ['layer', 'jquery','form','upload'],
+                function()
+                {
+                    var upload=layui.upload;
+                    var $ = layui.$;
+                    upload.render
+                    (
+                        {
+                            elem: '#test1',
+                            url: 'upload',
+                            size:2048,
+                            auto: false, //选择文件后不自动上传
+                            bindAction: '#save', //指向一个按钮触发上传
+                            choose: function (obj)
+                            {
+                                //预读本地文件
+                                obj.preview
+                                (
+                                    function (index, file, result)
+                                    {
+                                        $('#loadinput').val(file.name); //展示文件名
+                                        $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a>');
+                                    }
+                                )
+                            }
+                        }
+                    );
+                }
+            )
+        </script>
     </body>
 
 </html>
