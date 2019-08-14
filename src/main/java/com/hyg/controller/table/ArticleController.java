@@ -19,16 +19,7 @@ public class ArticleController
 	@Qualifier("articleServiceImpl")
 	private ArticleService articleService;
 
-	/**
-	 * 获得团队文集表中的所有数据
-	 * @return
-	 */
-	@GetMapping("/selectData/getArticleData")
-	@ResponseBody
-	public RespondJson<ArticleExpand> getArticleData()
-	{
-		return articleService.getArticleData();
-	}
+	/*==========================================================================*/
 
 	/**
 	 * 根据id
@@ -51,7 +42,7 @@ public class ArticleController
 	}
 
 	/**
-	 * 新建团队文集
+	 * 添加一篇文章
 	 * @param articleExpand
 	 * @param model
 	 * @return
@@ -73,7 +64,7 @@ public class ArticleController
 	}
 
 	/**
-	 * 编辑团队文集
+	 * 编辑一篇文章
 	 * @param articleExpand
 	 * @param model
 	 * @return
@@ -95,18 +86,21 @@ public class ArticleController
 	}
 
 	/**
-	 * 根据作者名和文章类型查找作者
+	 * 分页数据
+	 * 包括刚进页面的初始数据也是走这个接口
 	 * @param author
 	 * @return
 	 */
-	@GetMapping("/selectData/searchArticle")
+	@GetMapping("/selectData/pageData")
 	@ResponseBody
-	public RespondJson<ArticleExpand> searchArticlesByAuthor
+	public RespondJson<ArticleExpand> pageData
 	(
+		@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+		@RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
 		@RequestParam(value = "author", defaultValue = "") String author,
 		@RequestParam(value = "typeExpand", defaultValue = "") String typeExpand
 	)
 	{
-		return articleService.listArticlesByAuthor(author, typeExpand);
+		return articleService.listPageData(pageNum, pageSize, author, typeExpand);
 	}
 }

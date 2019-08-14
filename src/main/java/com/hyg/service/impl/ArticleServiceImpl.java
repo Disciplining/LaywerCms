@@ -1,5 +1,6 @@
 package com.hyg.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hyg.mapper.ArticleMapper;
 import com.hyg.pojo.Article;
 import com.hyg.pojo.ArticleExpand;
@@ -22,63 +23,6 @@ public class ArticleServiceImpl implements ArticleService
 	@Autowired
 	@Qualifier("articleMapper")
 	private ArticleMapper articleMapper;
-
-	/**
-	 * 获得前端需要的格式的
-	 * 团队文集表的所有数据
-	 * @return
-	 */
-	@Override
-	public RespondJson<ArticleExpand> getArticleData()
-	{
-		List<Article> articles = articleMapper.listArticles(); // 文集数据
-		List<ArticleExpand> list = new ArrayList<>(articles.size());
-
-		// 将拿到的数据转换为前端的形式
-		for (Article foo : articles)
-		{
-			ArticleExpand temp = new ArticleExpand();
-			temp.setArticleId(foo.getArticleId());
-			temp.setType(foo.getType());
-			temp.setArticleTitle(foo.getArticleTitle());
-			temp.setAuthor(foo.getAuthor());
-			temp.setIntro(foo.getIntro());
-			temp.setContent(foo.getContent());
-			temp.setEditDate(foo.getEditDate());
-			temp.setCount(foo.getCount());
-			temp.setDeleteFlag(foo.getDeleteFlag());
-
-			switch (foo.getType())
-			{
-				case Article.ArticleType.COMPANY_LAW:
-				{
-					temp.setTypeExpand("公司法律");
-					break;
-				}
-				case Article.ArticleType.LABOUR_LAW:
-				{
-					temp.setTypeExpand("劳动法律");
-					break;
-				}
-				case Article.ArticleType.FORMAL_LAW:
-				{
-					temp.setTypeExpand("形式法律");
-					break;
-				}
-			}
-
-			list.add(temp);
-		}
-
-		RespondJson<ArticleExpand> json = new RespondJson<>();
-
-		json.setCode(0);
-		json.setCount(list.size());
-		json.setMsg(null);
-		json.setData(list);
-
-		return json;
-	}
 
 	/**
 	 * 编辑团队文集
@@ -218,12 +162,12 @@ public class ArticleServiceImpl implements ArticleService
 	}
 
 	/**
-	 * 根据作者与文章类型查找文章
+	 * 分页数据
 	 * @param author
 	 * @return
 	 */
 	@Override
-	public RespondJson<ArticleExpand> listArticlesByAuthor(String author, String typeExpand)
+	public RespondJson<ArticleExpand> listPageData(int pageNum, int pageSize, String author, String typeExpand)
 	{
 		Map<String, Object> par = new HashMap<>(2);
 		par.put("author", author);
@@ -251,6 +195,7 @@ public class ArticleServiceImpl implements ArticleService
 			}
 		}
 
+		PageHelper.startPage(pageNum, pageSize);
 		List<Article> articles = articleMapper.listArticlesByAuthor(par);
 
 		List<ArticleExpand> list = new ArrayList<>(articles.size());
@@ -294,7 +239,7 @@ public class ArticleServiceImpl implements ArticleService
 		RespondJson<ArticleExpand> json = new RespondJson<>();
 
 		json.setCode(0);
-		json.setCount(list.size());
+		json.setCount(articleMapper.countArticleSum());
 		json.setMsg(null);
 		json.setData(list);
 

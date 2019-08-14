@@ -13,13 +13,6 @@ public interface ArticleService
 	boolean editOneArticle(ArticleExpand articleExpand);
 
 	/**
-	 * 获得前端需要的格式的
-	 * 团队文集表的所有数据
-	 * @return
-	 */
-	RespondJson<ArticleExpand> getArticleData();
-
-	/**
 	 * 新增一条团队文集数据
 	 * @param articleExpand
 	 * @return
@@ -34,9 +27,9 @@ public interface ArticleService
 	boolean deleteOneArticleById(int id);
 
 	/**
-	 * 根据作者与文章类型查找文章
+	 * 分页数据
 	 * @param author
 	 * @return
 	 */
-	RespondJson<ArticleExpand> listArticlesByAuthor(String author, String typeExpand);
+	RespondJson<ArticleExpand> listPageData(int pageNum, int pageSize, String author, String typeExpand);
 }
