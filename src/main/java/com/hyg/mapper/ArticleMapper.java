@@ -12,13 +12,6 @@ import java.util.Map;
 public interface ArticleMapper
 {
 	/**
-	 * 获取未被删除的文章总数
-	 * @return
-	 */
-	@Select(" select count(*) from `t_article` where `deleteFlag`!='1' ")
-	int countArticleSum();
-
-	/**
 	 * 根据id删除一个团队文集
 	 * @param articleId
 	 */

@@ -195,6 +195,8 @@ public class ArticleServiceImpl implements ArticleService
 			}
 		}
 
+		List<Article> length = articleMapper.listArticlesByAuthor(par); // 开始分页前获取一次 为了长度
+
 		PageHelper.startPage(pageNum, pageSize);
 		List<Article> articles = articleMapper.listArticlesByAuthor(par);
 
@@ -239,7 +241,7 @@ public class ArticleServiceImpl implements ArticleService
 		RespondJson<ArticleExpand> json = new RespondJson<>();
 
 		json.setCode(0);
-		json.setCount(articleMapper.countArticleSum());
+		json.setCount(length.size());
 		json.setMsg(null);
 		json.setData(list);
 
