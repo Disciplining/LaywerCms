@@ -31,19 +31,12 @@
 						</div>
 						<button class="layui-btn" data-type="reload">搜索</button>
 					</div>
-					<script type="text/html" id="test-table-toolbar-toolbarDemo">
-						<div class="layui-btn-container">
+					<table style="position: relative" event="clickA" id="LAY-app-message-notice" lay-filter="LAY-app-message-notice">
+						<div class="search" style="position: absolute;z-index: 1000;top:143px;left:40px">
+							<button class="layui-btn layui-btn-primary layui-btn-sm" data-type="reload"  id="all">全部</button>
+							<button class="layui-btn layui-btn-primary layui-btn-sm" data-type="reload"  id="other">未读</button>
 						</div>
-					</script>
-                    <div class="selec">
-                        <button class="layui-btn layui-btn-primary layui-btn-sm">全部</button>
-<!--                        <button class="layui-btn layui-btn-primary layui-btn-sm">部分</button>-->
-                    </div>
-<!--					<div class="LAY-app-message-btns" style="margin-bottom: 10px;">-->
-<!--						<button class="layui-btn layui-btn-primary layui-btn-sm"  lay-event="edit">全部</button>-->
-<!--						<button class="layui-btn layui-btn-primary layui-btn-sm"  data-events="readyAll">未读</button>-->
-<!--					</div>-->
-					<table event="clickA" id="LAY-app-message-notice" lay-filter="LAY-app-message-notice"></table>
+					</table>
 					<script type="text/html" id="zizeng">
 						{{d.LAY_TABLE_INDEX+1}}
 					</script>
@@ -80,13 +73,12 @@
 			cols: [
 				[
 					{
-						field:'zizeng',
-						width:80,
+						field: 'zizeng',
+						width: 80,
 						title: '编号',
 						fixed: 'left',
-						templet:'#zizeng'
-					}
-					,
+						templet: '#zizeng'
+					},
 					{
 						field: 'customerName',
 						title: '客户姓名',
@@ -121,13 +113,14 @@
 		});
 		var demoReload= document.getElementById('demoReload')
 		var demoReloadAn = document.getElementById('demoReloadAn')
+		var flag = 0
 		var $ = layui.$, active = {
 			reload: function(){
 				table.reload('testTable', {
 					page: {
 						curr: 1 //重新从第 1 页开始
 					},
-					url:'/selectData/listMsgByNameAndDetail?name='+demoReload.value+'&detail='+demoReloadAn.value,
+					url:'/selectData/listMsgByNameAndDetail?name='+demoReload.value+'&detail='+demoReloadAn.value+'&',
 					method:"get"
 				}, 'data');
 			}
@@ -135,7 +128,23 @@
 		$('.demoTable .layui-btn').on('click', function(){
 			var type = $(this).data('type');
 			active[type] ? active[type].call(this) : '';
-			console.log(active)
+		});
+		$('#all').on('click', function(){
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+			console.log(type)
+		//	这是点击全部的按钮清空这时的input的value
+		// 	demoReload.value='';
+		// 	demoReloadAn.value='';
+			console.log('你点击了全部')
+		});
+		$('#other').on('click', function(){
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+		//	这是请求其他的接口
+			demoReload.value='';
+			demoReloadAn.value='';
+			flag=1
 		});
 		table.on('tool(LAY-app-message-notice)', function(obj) {
 			var data = obj.data;
@@ -152,8 +161,6 @@
 							}
 						}
 					})
-					// layer.close(index)
-					// obj.del()
 				});
 			}else if(obj.event === 'clickA'){
 				window.location.href="/getPage/base/editCarousel.html?id="+data.msgId
