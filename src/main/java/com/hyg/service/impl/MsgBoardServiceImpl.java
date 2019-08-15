@@ -47,8 +47,6 @@ public class MsgBoardServiceImpl implements MsgBoardService
 			length = msgBoardMapper.listNoReadMsgByNameAndDetail(map);
 			PageHelper.startPage(pageNum, pageSize);
 			msgBoards = msgBoardMapper.listNoReadMsgByNameAndDetail(map);
-
-			System.out.println("查询未读：" + msgBoards);
 		}
 		else
 		{
