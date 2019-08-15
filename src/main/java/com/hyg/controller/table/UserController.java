@@ -163,6 +163,11 @@ public class UserController
 		return userService.listPageData(pageNum, pageSize, loginName);
 	}
 
+	/**
+	 * 根据id获取一个普通管理员
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneUserById")
 	@ResponseBody
 	public RespondJson<User> getOneUserById(@RequestParam("id") int id)
