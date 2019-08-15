@@ -32,4 +32,11 @@ public interface ArticleService
 	 * @return
 	 */
 	RespondJson<ArticleExpand> listPageData(int pageNum, int pageSize, String author, String typeExpand);
+
+	/**
+	 * 根据id获得一篇文章
+	 * @param id
+	 * @return
+	 */
+	RespondJson<ArticleExpand> getOneArticleById(int id);
 }

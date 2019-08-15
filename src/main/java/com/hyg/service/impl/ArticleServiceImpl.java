@@ -55,7 +55,7 @@ public class ArticleServiceImpl implements ArticleService
 			}
 			case "形式法律":
 			{
-				article.setType(Article.ArticleType.FORMAL_LAW);
+				article.setType(Article.ArticleType.CRIMINAL_LAW);
 				break;
 			}
 			default:
@@ -110,7 +110,7 @@ public class ArticleServiceImpl implements ArticleService
 			}
 			case "形式法律":
 			{
-				article.setType(Article.ArticleType.FORMAL_LAW);
+				article.setType(Article.ArticleType.CRIMINAL_LAW);
 				break;
 			}
 			default:
@@ -183,9 +183,9 @@ public class ArticleServiceImpl implements ArticleService
 				par.put("type", Article.ArticleType.LABOUR_LAW);
 				break;
 			}
-			case ArticleExpand.TypeExpand.FORMAL_LAW_STRING:
+			case ArticleExpand.TypeExpand.CRIMINAL_LAW_STRING:
 			{
-				par.put("type", Article.ArticleType.FORMAL_LAW);
+				par.put("type", Article.ArticleType.CRIMINAL_LAW);
 				break;
 			}
 			case "": // 没有传类型
@@ -220,17 +220,17 @@ public class ArticleServiceImpl implements ArticleService
 			{
 				case Article.ArticleType.COMPANY_LAW:
 				{
-					temp.setTypeExpand("公司法律");
+					temp.setTypeExpand(ArticleExpand.TypeExpand.COMPANY_LAW_STRING);
 					break;
 				}
 				case Article.ArticleType.LABOUR_LAW:
 				{
-					temp.setTypeExpand("劳动法律");
+					temp.setTypeExpand(ArticleExpand.TypeExpand.LABOUR_LAW_STRING);
 					break;
 				}
-				case Article.ArticleType.FORMAL_LAW:
+				case Article.ArticleType.CRIMINAL_LAW:
 				{
-					temp.setTypeExpand("形式法律");
+					temp.setTypeExpand(ArticleExpand.TypeExpand.CRIMINAL_LAW_STRING);
 					break;
 				}
 			}
@@ -242,6 +242,63 @@ public class ArticleServiceImpl implements ArticleService
 
 		json.setCode(0);
 		json.setCount(length.size());
+		json.setMsg(null);
+		json.setData(list);
+
+		return json;
+	}
+
+	/**
+	 * 根据id获得一篇文章
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public RespondJson<ArticleExpand> getOneArticleById(int id)
+	{
+		Article article = articleMapper.getOneArticleById(id);
+
+		ArticleExpand articleExpand = new ArticleExpand();
+		articleExpand.setArticleId(article.getArticleId());
+		switch (article.getType())
+		{
+			case Article.ArticleType.COMPANY_LAW:
+			{
+				articleExpand.setTypeExpand(ArticleExpand.TypeExpand.COMPANY_LAW_STRING);
+				break;
+			}
+			case Article.ArticleType.LABOUR_LAW:
+			{
+				articleExpand.setTypeExpand(ArticleExpand.TypeExpand.LABOUR_LAW_STRING);
+				break;
+			}
+			case Article.ArticleType.CRIMINAL_LAW:
+			{
+				articleExpand.setTypeExpand(ArticleExpand.TypeExpand.CRIMINAL_LAW_STRING);
+				break;
+			}
+			default:
+			{
+				articleExpand.setTypeExpand("");
+				break;
+			}
+		}
+		articleExpand.setArticleTitle(article.getArticleTitle());
+		articleExpand.setAuthor(article.getAuthor());
+		articleExpand.setIntro(article.getIntro());
+		articleExpand.setContent(article.getContent());
+		articleExpand.setEditDate(article.getEditDate());
+		articleExpand.setCount(article.getCount());
+		articleExpand.setDeleteFlag(article.getDeleteFlag());
+
+
+		List<ArticleExpand> list = new ArrayList<>(1);
+		list.add(articleExpand);
+
+		RespondJson<ArticleExpand> json = new RespondJson<>();
+		json.setCode(0);
+		json.setCount(1);
 		json.setMsg(null);
 		json.setData(list);
 
