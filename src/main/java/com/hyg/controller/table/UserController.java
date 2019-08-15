@@ -6,6 +6,7 @@ import com.hyg.service.UserService;
 import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.RespondJson;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -79,6 +80,11 @@ public class UserController
 		}
 		else if (flag == 2) // 登录成功
 		{
+			// 获得登录用户
+			Subject subject = SecurityUtils.getSubject();
+			User loginUser = (User) subject.getPrincipal(); //需要强转
+
+			model.addAttribute("loginName", loginUser.getLoginName());
 			return "index";
 		}
 		else
