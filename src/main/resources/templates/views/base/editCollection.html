@@ -1,139 +1,146 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<html>
 
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
-	<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+        <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    </head>
 
-<body>
-<input th:value="${res}" id="error">
-<div class="layui-fluid">
-	<div class="layui-row layui-col-space15">
-		<div class="layui-col-md12">
-			<div class="layui-card" style="position: relative;">
-				<div class="layui-card-header">团队成员列表</div>
-				<div class="layui-card-body">
-					<div style="margin-top:20px">
-						<form class="layui-form" action="/updateData/article" method="post">
-							<input type="hidden" id="realId" name="articleId">
-							<div class="layui-form-item layui-form-text">
-								<label class="layui-form-label">文集类型</label>
-								<div class="layui-input-block">
-									<select name="typeExpand" lay-verify="required">
-										<option value=""></option>
-										<option value="公司法律">公司法律</option>
-										<option value="劳动法律">劳动法律</option>
-										<option value="刑事法律">刑事法律</option>
-									</select>
-								</div>
-							</div>
-							<div class="layui-form-item layui-form-text">
-								<label class="layui-form-label">文章名字</label>
-								<div class="layui-input-block">
-									<input type="text" id="articleTitle" name="articleTitle" required lay-verify="required" autocomplete="off" class="layui-input">
-								</div>
-							</div>
-							<div class="layui-form-item layui-form-text">
-								<label class="layui-form-label">作者名字</label>
-								<div class="layui-input-block">
-									<input type="text" id="author" name="author" required lay-verify="required" autocomplete="off" class="layui-input">
-								</div>
-							</div>
-							<div class="layui-form-item layui-form-text">
-								<label class="layui-form-label">文集简介</label>
-								<div class="layui-input-block">
-									<textarea name="intro" id="intro" class="layui-textarea"></textarea>
-								</div>
-							</div>
-							<div class="layui-form-item layui-form-text">
-								<label class="layui-form-label">文章内容</label>
-								<div class="layui-input-block">
-									<textarea id="editor_id" name="content" style="width: 100%;height: 500px"></textarea>
-								</div>
-							</div>
-							<div class="layui-form-item">
-								<div class="layui-input-block">
-									<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-								</div>
-							</div>
-						</form>
-						<a style="position: absolute;left: 250px;bottom: 25px;" href="/getPage/base/collectionMgr.html"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<script src="/layuiadmin/layui/layui.js"></script>
-<script src="/layuiadmin/kindeditor/kindeditor-all-min.js"></script>
-<script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
-<script>
-	var href = location.href
-	console.log(href)
-	var flag = false
-	var hrefArr = href.split('')
-	for(var j=0;j<hrefArr.length;j++){
-		console.log(hrefArr[j])
-		if(hrefArr[j]!='?'){
-			flag = true
-			function filterId(str) {
-				var newStr = str.split('?')[1].split('=')[1]
-				return newStr
-			}
-			console.log(flag)
-		}else {
-			flag=false
-			console.log(flag)
-		}
-	}
-	KindEditor.ready(function(K) {
-		window.editor = K.create('#editor_id');
-	});
-	var realId = document.getElementById("realId")
-	var select =document.getElementsByTagName('select');
-	var option =document.getElementsByTagName('option');
-	var type = document.getElementById('type')
-	var agencyDetail = document.getElementById('agencyDetail')
-	var id = document.getElementById('id')
-	var author = document.getElementById('author')
-	var intro = document.getElementById('intro')
-	var editor_id = document.getElementById('editor_id')
-	layui.use(['jquery','form','layer'], function() {
-		var $ = layui.$, form=layui.form;
-			if(flag){
-				var idr = filterId(location.href)
-				$.ajax({
-					url: '/selectData/getArticleData',
-					type: "get",
-					dataType: "json",
-					success: function(data) {
-						var data = data.data
-						for(var i = 0; i < data.length; i++) {
-							if(data[i].articleId == idr) {
-								realId.value= data[i].articleId
-								articleTitle.value = data[i].articleTitle
-								author.value = data[i].author
-								intro.innerHTML = data[i].intro
-								editor.html(data[i].content)
-								for(var f=0;f<option.length;f++){
-									if(option[f].value==data[i].typeExpand){
-										$("select").val(data[i].typeExpand);
-										form.render("select");
-									}
+    <body>
 
-								}
-							}
-						}
-					}
-				})
-			}
+        <input th:value="${id}" />
+        <input th:value="${res}" id="error"/>
 
-	})
-</script>
-</body>
+        <!-- 表单开始 -->
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card" style="position: relative;">
+                        <div class="layui-card-header">团队成员列表</div>
+                        <div class="layui-card-body">
+                            <div style="margin-top:20px">
+                                <form class="layui-form" action="/updateData/article" method="post">
+                                    <input type="hidden" id="realId" name="articleId">
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">文集类型</label>
+                                        <div class="layui-input-block">
+                                            <select name="typeExpand" lay-verify="required">
+                                                <option value=""></option>
+                                                <option value="公司法律">公司法律</option>
+                                                <option value="劳动法律">劳动法律</option>
+                                                <option value="刑事法律">刑事法律</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">文章名字</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" id="articleTitle" name="articleTitle" required lay-verify="required" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">作者名字</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" id="author" name="author" required lay-verify="required" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">文集简介</label>
+                                        <div class="layui-input-block">
+                                            <textarea name="intro" id="intro" class="layui-textarea"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">文章内容</label>
+                                        <div class="layui-input-block">
+                                            <textarea id="editor_id" name="content" style="width: 100%;height: 500px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <a style="position: absolute;left: 250px;bottom: 25px;" href="/getPage/base/collectionMgr"><button class="layui-btn layui-btn-primary">返回上一页</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 表单结束 -->
+
+        <script src="/layuiadmin/layui/layui.js"></script>
+        <script src="/layuiadmin/kindeditor/kindeditor-all-min.js"></script>
+        <script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
+
+        <script>
+        var href = location.href
+        console.log(href)
+        var flag = false
+        var hrefArr = href.split('')
+        for(var j=0;j<hrefArr.length;j++){
+            console.log(hrefArr[j])
+            if(hrefArr[j]!='?'){
+                flag = true
+                function filterId(str) {
+                    var newStr = str.split('?')[1].split('=')[1]
+                    return newStr
+                }
+                console.log(flag)
+            }else {
+                flag=false
+                console.log(flag)
+            }
+        }
+        KindEditor.ready(function(K) {
+            window.editor = K.create('#editor_id');
+        });
+        var realId = document.getElementById("realId")
+        var select =document.getElementsByTagName('select');
+        var option =document.getElementsByTagName('option');
+        var type = document.getElementById('type')
+        var agencyDetail = document.getElementById('agencyDetail')
+        var id = document.getElementById('id')
+        var author = document.getElementById('author')
+        var intro = document.getElementById('intro')
+        var editor_id = document.getElementById('editor_id')
+        layui.use(['jquery','form','layer'], function() {
+            var $ = layui.$, form=layui.form;
+                if(flag){
+                    var idr = filterId(location.href)
+                    $.ajax({
+                        url: '/selectData/getArticleData',
+                        type: "get",
+                        dataType: "json",
+                        success: function(data) {
+                            var data = data.data
+                            for(var i = 0; i < data.length; i++) {
+                                if(data[i].articleId == idr) {
+                                    realId.value= data[i].articleId
+                                    articleTitle.value = data[i].articleTitle
+                                    author.value = data[i].author
+                                    intro.innerHTML = data[i].intro
+                                    editor.html(data[i].content)
+                                    for(var f=0;f<option.length;f++){
+                                        if(option[f].value==data[i].typeExpand){
+                                            $("select").val(data[i].typeExpand);
+                                            form.render("select");
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+
+        })
+    </script>
+
+    </body>
 
 </html>

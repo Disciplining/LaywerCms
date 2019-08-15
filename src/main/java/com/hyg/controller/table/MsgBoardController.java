@@ -29,7 +29,7 @@ public class MsgBoardController
 	@ResponseBody
 	public RespondJson<MsgBoard> msgBoardPageData
 	(
-		@RequestParam(value = "type", defaultValue = "0") int type, // 0表示全部 1表示未读
+		@RequestParam(value = "flag", defaultValue = "0") int type, // 0表示全部 1表示未读
 		@RequestParam(value = "page", defaultValue = "1") int pageNum, // 页码
 		@RequestParam(value = "limit", defaultValue = "10") int pageSize, // 每页的条数
 		@RequestParam(value = "name", defaultValue = "") String name, // 客户姓名
