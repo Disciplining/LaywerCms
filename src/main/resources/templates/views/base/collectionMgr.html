@@ -58,38 +58,30 @@
 
 <script src="/layuiadmin/layui/layui.js"></script>
 <script>
-	layui.config({
-		base: '../../layuiadmin/' //静态资源所在路径
-	}).extend({
-		index: 'lib/index' //主入口模块
-	}).use(['index', 'table','jquery'], function() {
-		var admin = layui.admin,
-				$=layui.$,
-				table = layui.table;
+	layui.config( { base: '../../layuiadmin/'} )
+        .extend( {index: 'lib/index'} )
+        .use
+        (
+            ['index', 'table','jquery'],
+            function()
+            {
+		        var admin = layui.admin;
+				var $=layui.$;
+				var table = layui.table;
 
-		table.render({
+		table.render
+        ({
 			elem: '#test-table-toolbar',
 			url: '/selectData/getArticleData',
 			toolbar: '#test-table-toolbar-toolbarDemo',
 			title: '团队文集',
-			cols: [
+			cols:
+            [
 				[
-					{
-						field:'zizeng',
-						width:80,
-						title: '编号',
-						fixed: 'left',
-						templet:'#zizeng'
-					}
-					,{
-					field: 'typeExpand',
-					title: '文集类型',
-					width: 100,
-				}, {
-					field: 'articleTitle',
-					title: '文章名字',
-					width: 100,
-				}, {
+					{field:'zizeng', width:80, title: '编号', fixed: 'left', templet:'#zizeng'},
+                    {field: 'typeExpand', title: '文集类型', width: 100,},
+                    {field: 'articleTitle', title: '文章名字', width: 100},
+                    {
 					field:'author',
 					title:'作者名字',
 					width:100
