@@ -1,5 +1,6 @@
 package com.hyg.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hyg.mapper.UserMapper;
 import com.hyg.pojo.User;
 import com.hyg.service.UserService;
@@ -24,27 +25,6 @@ public class UserServiceImpl implements UserService
 	@Autowired
 	@Qualifier("userMapper")
 	private UserMapper userMapper;
-
-	/**
-	 * 获得符合前端格式的
-	 * 用户表的数据
-	 *
-	 * @return
-	 */
-	@Override
-	public RespondJson<User> getUserData()
-	{
-		List<User> list = userMapper.listUsers();
-
-		RespondJson<User> json = new RespondJson<>();
-
-		json.setCode(0);
-		json.setMsg(null);
-		json.setCount(list.size());
-		json.setData(list);
-
-		return json;
-	}
 
 	/**
 	 * 用户注册逻辑
@@ -161,22 +141,26 @@ public class UserServiceImpl implements UserService
 	}
 
 	/**
-	 * 根据用户名查找用户用
-	 * 模糊搜索
+	 * 分页数据
 	 *
-	 * @param name
+	 * @param pageNum
+	 * @param pageSize
+	 * @param loginName
 	 * @return
 	 */
 	@Override
-	public RespondJson<User> listUsersByLoginName(String name)
+	public RespondJson<User> listPageData(int pageNum, int pageSize, String loginName)
 	{
-		List<User> list = userMapper.listUsersByLoginName(name);
+		List<User> list = userMapper.listUsersByLoginName(loginName); // 开启分页前查询，获取长度
+
+		PageHelper.startPage(pageNum, pageSize);
+		List<User> users = userMapper.listUsersByLoginName(loginName);
 
 		RespondJson<User> json = new RespondJson<>();
 		json.setCode(0);
-		json.setMsg(null);
+		json.setMsg("");
 		json.setCount(list.size());
-		json.setData(list);
+		json.setData(users);
 
 		return json;
 	}

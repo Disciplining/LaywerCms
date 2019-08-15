@@ -13,13 +13,6 @@ import java.util.List;
 @Repository("userMapper")
 public interface UserMapper
 {
-	/**
-	 * 查询所有的普通管理用户
-	 * @return
-	 */
-	@Select(" select * from `t_user` where `deleteFlag`!='1' and locate('root_user',`role`)=0 ")
-	List<User> listUsers();
-
 //	/**
 //	 * 根据id获得一个普通管理员用户
 //	 * @param id

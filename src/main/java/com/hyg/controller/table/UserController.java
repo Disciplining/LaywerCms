@@ -20,17 +20,6 @@ public class UserController
 	private UserService userService;
 
 	/**
-	 * 获得用户表中的所有数据
-	 * @return
-	 */
-	@GetMapping("/"  + PermissionPrefix.SELECT_DATA +  "/getUserData")
-	@ResponseBody
-	public RespondJson<User> getUserData()
-	{
-		return userService.getUserData();
-	}
-
-	/**
 	 * 用户添加接口 接口json数据
 	 * 使用这个接口向数据库中添加用户 不提供前端页面
 	 * 后期注释掉这个接口
@@ -150,14 +139,21 @@ public class UserController
 	}
 
 	/**
-	 * 根据用户名查找用户
-	 * @param name
+	 * 分页数据
+	 * @param pageNum
+	 * @param pageSize
+	 * @param loginName
 	 * @return
 	 */
-	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/searchByName")
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/userPageData")
 	@ResponseBody
-	public RespondJson<User> searchByName(@RequestParam(value = "name", defaultValue = "") String name)
+	public RespondJson<User> userPageData
+	(
+		@RequestParam(value = "page", defaultValue = "1") int pageNum,
+		@RequestParam(value = "limit", defaultValue = "10") int pageSize,
+		@RequestParam(value = "loginName", defaultValue = "") String loginName
+	)
 	{
-		return userService.listUsersByLoginName(name);
+		return userService.listPageData(pageNum, pageSize, loginName);
 	}
 }
