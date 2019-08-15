@@ -10,6 +10,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
 	<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+	<style>
+		.pointer{
+			cursor: pointer;
+		}
+	</style>
 </head>
 
 <body>
@@ -67,6 +72,9 @@
 		var table = layui.table,
 		$ = layui.$
 		;
+		var ha = $("td[data-field='caseDetail']")
+		console.log(ha)
+		// addClass("pointer")
 		//1表示全部
 		$('.demoTable .layui-btn').on('click', function(){
 			demoReloadHi.value='0'
@@ -132,7 +140,7 @@
 				}, {
 					field: 'caseDetail',
 					title: '案情描述',
-					event:'clickA'
+					event:'clickA',
 				}, {
 					field: 'createDate',
 					title: '创建时间',

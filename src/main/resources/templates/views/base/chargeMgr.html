@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<div class="layui-fluid">
+<div class="layui-fluid" style="margin-top: 20px">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
@@ -31,7 +31,7 @@
                     </script>
                     <script type="text/html" id="test-table-toolbar-toolbarDemo">
                         <div class="layui-btn-container">
-                            <a href="/getPage/base/addLwyer"><button class="layui-btn layui-btn-sm" >添加</button></a>
+                            <a href="/getPage/base/addCharge"><button class="layui-btn layui-btn-sm" >添加</button></a>
                         </div>
                     </script>
 
@@ -180,7 +180,7 @@
                 });
             } else if(obj.event === 'edit') {
                 var data = obj.data;
-                window.location.href = "/getPage/base/editUser.html?id=" + data.id
+                window.location.href = "/getPage/base/editChargeMgr.html?id=" + data.id
             }
         });
 

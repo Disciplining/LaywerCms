@@ -59,7 +59,7 @@
 				upload = layui.upload;
 		table.render({
 			elem: '#test-table-toolbar',
-			url: '/selectData/getUserData',
+			url: '/selectData/userPageData',
 			toolbar: '#test-table-toolbar-toolbarDemo',
 			title: '用户数据表',
 			page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
@@ -111,7 +111,7 @@
 					page: {
 						curr: 1 //重新从第 1 页开始
 					},
-					url:'/selectData/searchByName?name='+demoReload.value,
+					url:'/selectData/userPageData?loginName='+demoReload.value,
 					method:"get"
 				}, 'data');
 			}

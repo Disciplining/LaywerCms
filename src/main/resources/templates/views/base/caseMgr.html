@@ -3,28 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>用户列表</title>
+    <title>案例表</title>
     <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css"/>
 </head>
 
 <body>
-<div class="layui-fluid"  style="margin-top: 20px">
+<div class="layui-fluid" style="margin-top: 20px">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">罪名分类表</div>
+                <div class="layui-card-header">案例表</div>
                 <div class="layui-card-body">
                     <table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
                     </table>
-                    <!--					<script type="text/html" id="imgTpl">-->
-                    <!--						<img src="{{ d.lawyerImg }}">-->
-                    <!--					</script>-->
                     <script type="text/html" id="zizeng">
                         {{d.LAY_TABLE_INDEX+1}}
                     </script>
                     <script type="text/html" id="test-table-toolbar-toolbarDemo">
                         <div class="layui-btn-container">
-                            <a href="/getPage/base/addclassificationMgr"><button class="layui-btn layui-btn-sm" >添加</button></a>
+                            <a href="/getPage/base/addCharge"><button class="layui-btn layui-btn-sm" >添加</button></a>
                         </div>
                     </script>
 
@@ -50,7 +47,7 @@
             upload = layui.upload;
         table.render({
             elem: '#test-table-toolbar',
-            url: '/package.json',
+            url: '/case.json',
             toolbar: '#test-table-toolbar-toolbarDemo',
             title: '用户数据表',
             page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
@@ -64,27 +61,28 @@
             cols: [
                 [{
                     field: 'zizeng',
-                    width: 150,
+                    width: 100,
                     title: '编号',
                     fixed: 'left',
                     templet: '#zizeng'
                 },
                     {
-                        field: 'name',
-                        title: '罪名分类名称',
+                        field: 'title',
+                        title: '案例标题',
+                        width:120
                     }, {
-                    field: 'editDate',
-                    title: '编辑时间',
-                    width: 150,
+                    field: 'desc',
+                    title: '案例介绍',
+                    width: 120,
                 }, {
-                    field: 'count',
-                    title: '浏览次数',
-                    width: 150
-                }, {
-                    title: '操作',
-                    toolbar: '#test-table-toolbar-barDemo',
-                    width: 200
-                }
+                    field: 'process',
+                    title: '办案过程',
+                },
+                    {
+                        title: '操作',
+                        toolbar: '#test-table-toolbar-barDemo',
+                        width: 200
+                    }
                 ]
             ],
             id:'testTable'
@@ -105,6 +103,19 @@
         $('.demoTable .layui-btn').on('click', function(){
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
+        });
+        table.on('toolbar(test-table-toolbar)', function(obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event) {
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：' + data.length + ' 个');
+                    break;
+            };
         });
         var uploadInst = upload.render({
             elem: '#test1' //绑定元素
@@ -127,24 +138,24 @@
             var data = obj.data;
             if(obj.event === 'del') {
                 layer.confirm('真的删除行么', function(index) {
-                    $.ajax({
-                        url:'/root/deleteOneUserById?id='+data.id,
-                        method:'get',
-                        success:function(data){
-                            if(data=="success"){
-                                obj.del();
-                                layer.close(index);
-                                window.location.href='/getPage/base/userMgr'
-                            }
-                        },
-                        error:function (data) {
-                            alert('删除失败')
-                        }
-                    })
+                    // $.ajax({
+                    //     url:'/root/deleteOneUserById?id='+data.id,
+                    //     method:'get',
+                    //     success:function(data){
+                    //         if(data=="success"){
+                    //             obj.del();
+                    //             layer.close(index);
+                    //             window.location.href='/getPage/base/userMgr'
+                    //         }
+                    //     },
+                    //     error:function (data) {
+                    //         alert('删除失败')
+                    //     }
+                    // })
                 });
             } else if(obj.event === 'edit') {
                 var data = obj.data;
-                window.location.href = "/getPage/base/editclassificationMgr?id=" + data.id
+                window.location.href = "/getPage/base/editChargeMgr.html?id=" + data.id
             }
         });
 

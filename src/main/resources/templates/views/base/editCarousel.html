@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 	<meta charset="UTF-8">
@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
 
 <body>
+<input th:value="${id}" id="temp-id" name="msgId" type="hidden"/>
+<input th:value="${res}" id="error" type="hidden"/>
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md12">
@@ -20,16 +22,16 @@
 				<div class="layui-card-body">
 					<div id="dd">
 					</div>
-					<form style="margin:30px 0 20px 0;" method="post" action="/getMsgBoardData">
+					<form style="margin:30px 0 20px 0;" method="post" action="/updateData/replyMsg">
 						<input type="hidden" id="comHidden">
 						<div class="layui-form-item">
-							<label class="layui-form-label">回复律师工号</label>
+							<label class="layui-form-label" style="width:100px">回复律师工号</label>
 							<div class="layui-input-block">
-								<input type="text" required lay-verify="required" name="replyName" autocomplete="off" class="layui-input">
+								<input type="text" id="reply" style="width: 97%" required lay-verify="required" name="replyId" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div>
-							<textarea id="editor_id" name="" style="width:100%;height:300px;"></textarea>
+							<textarea id="editor_id" name="replyMsg" style="width:100%;height:300px;"></textarea>
 						</div>
 						<div style="margin-top:20px">
 							<button class="layui-btn" lay-submit lay-filter="formDemo">回复</button>
@@ -45,6 +47,8 @@
 <script src="/layuiadmin/kindeditor/kindeditor-all.js"></script>
 <script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
 <script>
+	var temp = document.getElementById('temp-id').value
+	console.log(temp)
 	var dd = document.getElementById('dd');
 	var time = document.getElementById('time')
 	var hname = document.getElementById("hname")
@@ -52,32 +56,24 @@
 	KindEditor.ready(function(K) {
 		window.editor = K.create('#editor_id');
 	});
-
-	function filterId(str) {
-		var newStr = str.split('?')[1].split('=')[1]
-		return newStr
-	}
-	var idr = filterId(location.href)
 	layui.use(['layer', 'jquery'], function() {
 		var layer = layui.layer,
 				$ = layui.$;
 		$.ajax({
-			url: '/selectData/getMsgBoardData',
+			url: '/selectData/getOneMsgById?id='+temp,
 			type: "get",
 			dataType: "json",
 			success: function(data) {
-				var data = data.data
-				for(var i = 0; i < data.length; i++) {
-					if(data[i].msgId == idr) {
-						hname.innerHTML=data[i].customerName
-						spane.innerHTML=data[i].createDate
-						dd.innerHTML = "<div id='main'>" +
-								"<p style='text-indent:25px'>" +
-								"" + data[i].caseDetail + "" +
-								"</p>" +
-								"</div>"
-					}
-				}
+				var data = data.data[0]
+				console.log(data)
+				hname.innerHTML=data.customerName
+				spane.innerHTML=data.createDate
+				dd.innerHTML = "<div id='main'>" +
+						"<p style='text-indent:25px'>" +
+						"" + data.caseDetail + "" +
+						"</p>" +
+						"</div>"
+
 			}
 		})
 	})
