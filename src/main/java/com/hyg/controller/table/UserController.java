@@ -156,4 +156,11 @@ public class UserController
 	{
 		return userService.listPageData(pageNum, pageSize, loginName);
 	}
+
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneUserById")
+	@ResponseBody
+	public RespondJson<User> getOneUserById(@RequestParam("id") int id)
+	{
+		return userService.getOneUserById(id);
+	}
 }

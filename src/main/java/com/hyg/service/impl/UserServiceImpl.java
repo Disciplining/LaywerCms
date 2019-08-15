@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("userServiceImpl")
@@ -161,6 +161,38 @@ public class UserServiceImpl implements UserService
 		json.setMsg("");
 		json.setCount(list.size());
 		json.setData(users);
+
+		return json;
+	}
+
+	/**
+	 * 根据id获得一个普通管理员用户
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public RespondJson<User> getOneUserById(int id)
+	{
+		User user = userMapper.getOneUserById(id);
+
+		RespondJson<User> json = new RespondJson<>();
+		json.setCount(0);
+		json.setMsg(null);
+
+		if (user != null)
+		{
+			List<User> list = new ArrayList<>();
+			list.add(user);
+
+			json.setCount(list.size());
+			json.setData(list);
+		}
+		else
+		{
+			json.setCount(0);
+			json.setData(null);
+		}
 
 		return json;
 	}

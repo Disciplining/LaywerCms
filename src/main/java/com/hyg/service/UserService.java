@@ -45,4 +45,11 @@ public interface UserService
 	 * @return
 	 */
 	RespondJson<User> listPageData(int pageNum, int pageSize, String userName);
+
+	/**
+	 * 根据id获得一个普通管理员用户
+	 * @param id
+	 * @return
+	 */
+	RespondJson<User> getOneUserById(int id);
 }

@@ -13,13 +13,13 @@ import java.util.List;
 @Repository("userMapper")
 public interface UserMapper
 {
-//	/**
-//	 * 根据id获得一个普通管理员用户
-//	 * @param id
-//	 * @return
-//	 */
-//	@Select(" select * from `t_user` where `deleteFlag`!='1' and locate('root_user',`role`)=0 and `lawyerId`=#{id} ")
-//	Lawyer getOneUserById(int id);
+	/**
+	 * 根据id获得一个普通管理员用户
+	 * @param id
+	 * @return
+	 */
+	@Select(" select * from `t_user` where `deleteFlag`!='1' and locate('root_user',`role`)=0 and `id`=#{id} ")
+	User getOneUserById(int id);
 
 	/**
 	 * 向用户表中插入一条数据
