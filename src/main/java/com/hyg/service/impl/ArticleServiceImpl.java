@@ -257,51 +257,64 @@ public class ArticleServiceImpl implements ArticleService
 	@Override
 	public RespondJson<ArticleExpand> getOneArticleById(int id)
 	{
-		Article article = articleMapper.getOneArticleById(id);
+		Article article = articleMapper.getOneArticleById(id); // 查询文章
 
-		ArticleExpand articleExpand = new ArticleExpand();
-		articleExpand.setArticleId(article.getArticleId());
-		switch (article.getType())
+		if (article != null) // 有这篇文章
 		{
-			case Article.ArticleType.COMPANY_LAW:
+			ArticleExpand articleExpand = new ArticleExpand();
+			articleExpand.setArticleId(article.getArticleId());
+			switch (article.getType())
 			{
-				articleExpand.setTypeExpand(ArticleExpand.TypeExpand.COMPANY_LAW_STRING);
-				break;
+				case Article.ArticleType.COMPANY_LAW:
+				{
+					articleExpand.setTypeExpand(ArticleExpand.TypeExpand.COMPANY_LAW_STRING);
+					break;
+				}
+				case Article.ArticleType.LABOUR_LAW:
+				{
+					articleExpand.setTypeExpand(ArticleExpand.TypeExpand.LABOUR_LAW_STRING);
+					break;
+				}
+				case Article.ArticleType.CRIMINAL_LAW:
+				{
+					articleExpand.setTypeExpand(ArticleExpand.TypeExpand.CRIMINAL_LAW_STRING);
+					break;
+				}
+				default:
+				{
+					articleExpand.setTypeExpand("");
+					break;
+				}
 			}
-			case Article.ArticleType.LABOUR_LAW:
-			{
-				articleExpand.setTypeExpand(ArticleExpand.TypeExpand.LABOUR_LAW_STRING);
-				break;
-			}
-			case Article.ArticleType.CRIMINAL_LAW:
-			{
-				articleExpand.setTypeExpand(ArticleExpand.TypeExpand.CRIMINAL_LAW_STRING);
-				break;
-			}
-			default:
-			{
-				articleExpand.setTypeExpand("");
-				break;
-			}
+			articleExpand.setArticleTitle(article.getArticleTitle());
+			articleExpand.setAuthor(article.getAuthor());
+			articleExpand.setIntro(article.getIntro());
+			articleExpand.setContent(article.getContent());
+			articleExpand.setEditDate(article.getEditDate());
+			articleExpand.setCount(article.getCount());
+			articleExpand.setDeleteFlag(article.getDeleteFlag());
+
+
+			List<ArticleExpand> list = new ArrayList<>(1);
+			list.add(articleExpand);
+
+			RespondJson<ArticleExpand> json = new RespondJson<>();
+			json.setCode(0);
+			json.setCount(1);
+			json.setMsg(null);
+			json.setData(list);
+
+			return json;
 		}
-		articleExpand.setArticleTitle(article.getArticleTitle());
-		articleExpand.setAuthor(article.getAuthor());
-		articleExpand.setIntro(article.getIntro());
-		articleExpand.setContent(article.getContent());
-		articleExpand.setEditDate(article.getEditDate());
-		articleExpand.setCount(article.getCount());
-		articleExpand.setDeleteFlag(article.getDeleteFlag());
+		else // 没有这篇文章
+		{
+			RespondJson<ArticleExpand> json = new RespondJson<>();
+			json.setCode(0);
+			json.setCount(0);
+			json.setMsg(null);
+			json.setData(null);
 
-
-		List<ArticleExpand> list = new ArrayList<>(1);
-		list.add(articleExpand);
-
-		RespondJson<ArticleExpand> json = new RespondJson<>();
-		json.setCode(0);
-		json.setCount(1);
-		json.setMsg(null);
-		json.setData(list);
-
-		return json;
+			return json;
+		}
 	}
 }

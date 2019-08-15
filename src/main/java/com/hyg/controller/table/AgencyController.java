@@ -1,6 +1,5 @@
 package com.hyg.controller.table;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyg.pojo.Agency;
 import com.hyg.service.AgencyService;
 import com.hyg.shiro.PermissionPrefix;
@@ -20,10 +19,8 @@ public class AgencyController
 	@Qualifier("agencyServiceImpl")
 	private AgencyService agencyService;
 
-	private static final ObjectMapper objectMapper = new ObjectMapper();
-
 	/**
-	 * 获得事务所表中的所有数据
+	 * 获得事务所的数据，只有一条数据
 	 * @return
 	 */
 	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getAgencyData")
