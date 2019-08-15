@@ -92,12 +92,12 @@ public class ArticleController
 	 * @param author
 	 * @return
 	 */
-	@GetMapping("/" + PermissionPrefix.UPDATE_DATA + "/articlePageData")
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/articlePageData")
 	@ResponseBody
 	public RespondJson<ArticleExpand> articlePageData
 	(
-		@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
-		@RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
+		@RequestParam(value = "page", defaultValue = "1") int pageNum,
+		@RequestParam(value = "limit", defaultValue = "10") int pageSize,
 		@RequestParam(value = "author", defaultValue = "") String author,
 		@RequestParam(value = "typeExpand", defaultValue = "") String typeExpand
 	)

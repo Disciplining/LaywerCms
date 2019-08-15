@@ -69,84 +69,82 @@
 				var $=layui.$;
 				var table = layui.table;
 
-		table.render
-        ({
-			elem: '#test-table-toolbar',
-			url: '/selectData/getArticleData',
-			toolbar: '#test-table-toolbar-toolbarDemo',
-			title: '团队文集',
-			cols:
-            [
-				[
-					{field:'zizeng', width:80, title: '编号', fixed: 'left', templet:'#zizeng'},
-                    {field: 'typeExpand', title: '文集类型', width: 100,},
-                    {field: 'articleTitle', title: '文章名字', width: 100},
+                table.render
+                (
                     {
-					field:'author',
-					title:'作者名字',
-					width:100
-				},{
-					field:'intro',
-					title:'文集简介',
-				},{
-					field:'editDate',
-					title:'编辑时间',
-					width:100
-				},{
-					field:'count',
-					title:'浏览次数',
-					width:100
-				},{
-					title: '操作',
-					toolbar: '#test-table-toolbar-barDemo',
-					width: 120
-				}]
-			]
-			,id: 'testReload'
+                        elem: '#test-table-toolbar',
+                        url: '/selectData/articlePageData',
+                        toolbar: '#test-table-toolbar-toolbarDemo',
+                        title: '团队文集',
+                        page:
+                        {
+                            layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
+                            groups: 3 ,//只显示 1 个连续页码,
+                            limit: 10
+                        },
+                        cols:
+                        [
+                            [
+                                {field:'zizeng', width:80, title: '编号', fixed: 'left', templet:'#zizeng'},
+                                {field: 'typeExpand', title: '文集类型', width: 100,},
+                                {field: 'articleTitle', title: '文章名字', width: 100},
+                                {field:'author', title:'作者名字', width:100},
+                                {field:'intro', title:'文集简介'},
+                                {field:'editDate', title:'编辑时间', width:100},
+                                {field:'count', title:'浏览次数', width:100},
+                                {title: '操作', toolbar: '#test-table-toolbar-barDemo', width: 120}
+                            ]
+                        ]
+                        ,id: 'testReload'
+                    }
+                );
 
-		});
-		var $ = layui.$, active = {
-			reload: function(){
-				var demoReloadAuthor = $('#demoReloadAuthor');
-				var demoReloadTypeExpand=$('#demoReloadTypeExpand');
-				console.log(demoReloadAuthor.val())
-				console.log(demoReloadTypeExpand.val())
+            var $ = layui.$;
+            var active =
+            {
+                reload: function()
+                {
+                    var demoReloadAuthor = $('#demoReloadAuthor');
+                    var demoReloadTypeExpand=$('#demoReloadTypeExpand');
 
-				//执行重载
-				table.reload('testReload', {
-					page: {
-						curr: 1 //重新从第 1 页开始
-					},
-					url:'/selectData/searchArticle?author='+demoReloadAuthor.val()+'&typeExpand='+demoReloadTypeExpand.val(),
-					method:'get'
-				}, 'data');
-			}
-		};
+                    //执行重载
+                    table.reload
+                    (
+                        'testReload',
+                        {
+                            page: {curr: 1}, //重新从第 1 页开始
+                            url:'/selectData/articlePageData?author='+demoReloadAuthor.val()+'&typeExpand='+demoReloadTypeExpand.val(),
+                            method:'get'
+                        },
+                        'data'
+                    );
+                }
+            };
 
-		$('.demoTable .layui-btn').on('click', function(){
-			var type = $(this).data('type');
-			console.log(type)
-			active[type] ? active[type].call(this) : '';
-		});
+            $('.demoTable .layui-btn').on('click', function(){
+                var type = $(this).data('type');
+                console.log(type)
+                active[type] ? active[type].call(this) : '';
+            });
 
-		//头工具栏事件
-		table.on('toolbar(test-table-toolbar)', function(obj) {
-			var checkStatus = table.checkStatus(obj.config.id);
-			switch(obj.event) {
-				case 'getCheckData':
-					var data = checkStatus.data;
-					layer.alert(JSON.stringify(data));
-					break;
-				case 'getCheckLength':
-					var data = checkStatus.data;
-					layer.msg('选中了：' + data.length + ' 个');
-					break;
+            //头工具栏事件
+            table.on('toolbar(test-table-toolbar)', function(obj) {
+                var checkStatus = table.checkStatus(obj.config.id);
+                switch(obj.event) {
+                    case 'getCheckData':
+                        var data = checkStatus.data;
+                        layer.alert(JSON.stringify(data));
+                        break;
+                    case 'getCheckLength':
+                        var data = checkStatus.data;
+                        layer.msg('选中了：' + data.length + ' 个');
+                        break;
 
-			};
-		});
+                };
+            });
 
-		//监听行工具事件
-		table.on('tool(test-table-toolbar)', function(obj) {
+            //监听行工具事件
+            table.on('tool(test-table-toolbar)', function(obj) {
 			var data = obj.data;
 			if(obj.event === 'del') {
 				layer.alert('真的删除行么', function(index) {
@@ -170,7 +168,8 @@
 				window.location.href="/getPage/base/editCollection.html?id="+data.articleId
 			}
 		});
-	});
+	    }
+	);
 </script>
 </body>
 
