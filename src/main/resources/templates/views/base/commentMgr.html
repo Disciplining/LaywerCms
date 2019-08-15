@@ -23,13 +23,16 @@
 					<div class="demoTable" style="margin-bottom: 20px;">
 						客户姓名:
 						<div class="layui-inline" style="margin-right: 20px">
-							<input class="layui-input" name="customerName" id="demoReload" autocomplete="off">
+							<input class="layui-input" name="customerName" placeholder="不填写默认显示全部" id="demoReload" autocomplete="off">
 						</div>
 						案情描述:
 						<div class="layui-inline">
-							<input class="layui-input" name="desc" id="demoReloadAn" autocomplete="off">
+							<input class="layui-input" name="desc" id="demoReloadAn" placeholder="不填写默认显示全部" autocomplete="off">
 						</div>
 						<button class="layui-btn" data-type="reload">搜索</button>
+						<div class="layui-inline">
+							<input type="hidden" value="0" class="layui-input" name="hiddenFlag" id="demoReloadHi" autocomplete="off">
+						</div>
 					</div>
 					<table style="position: relative" event="clickA" id="LAY-app-message-notice" lay-filter="LAY-app-message-notice">
 						<div class="search" style="position: absolute;z-index: 1000;top:143px;left:40px">
@@ -51,6 +54,11 @@
 
 <script src="/layuiadmin/layui/layui.js"></script>
 <script>
+	var demoReloadHi = document.getElementById('demoReloadHi')
+	var demoReload= document.getElementById('demoReload')
+	var demoReloadAn = document.getElementById('demoReloadAn')
+	var all = document.getElementById('all');
+	var other = document.getElementById('other');
 	layui.config({
 		base: '../../layuiadmin/' //静态资源所在路径
 	}).extend({
@@ -59,16 +67,61 @@
 		var table = layui.table,
 		$ = layui.$
 		;
+		//1表示全部
+		$('.demoTable .layui-btn').on('click', function(){
+			demoReloadHi.value='0'
+			all.style.background=''
+			other.style.background=''
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+		});
+		$('#all').on('click', function(){
+			all.style.background='blue'
+			all.style.border=0
+			other.style.background=''
+			demoReload.value=''
+			demoReloadAn.value=''
+			demoReloadHi.value='0'
+			console.log('你点击了全部')
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+
+		});
+		$('#other').on('click', function(){
+			other.style.background='blue'
+			all.style.background=''
+			other.style.border=0
+			demoReload.value=''
+			demoReloadAn.value=''
+			demoReloadHi.value='1'
+			console.log('点击了局部')
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+
+
+		});
+		var $ = layui.$, active = {
+			reload: function(){
+				table.reload('testTable', {
+					page: {
+						curr: 1 //重新从第 1 页开始
+					},
+					url:'/selectData/msgBoardPageData?name='+demoReload.value+'&detail='+demoReloadAn.value+'&flag='+demoReloadHi.value,
+					method:"get"
+				}, 'data');
+			}
+		};
 		table.render({
 			elem: '#LAY-app-message-notice',
-			url: '/selectData/getMsgBoardData',
+			url: '/selectData/msgBoardPageData',
 			toolbar: '#test-table-toolbar-toolbarDemo',
 			skin: 'line' ,//行边框风格
-			page: {
-				groups: 3 //只显示 1 个连续页码
-				,first: false //不显示首页
-				,last: false //不显示尾页
-			},
+			page:
+					{ //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+						layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
+						groups: 3 ,//只显示 1 个连续页码,
+						limit: 10
+					},
 			title: '留言管理',
 			cols: [
 				[
@@ -109,43 +162,10 @@
 					width: 120
 				}]
 			],
-			id:'testTable'
+			id:'testTable',
+			limit:10
 		});
-		var demoReload= document.getElementById('demoReload')
-		var demoReloadAn = document.getElementById('demoReloadAn')
-		var flag = 0
-		var $ = layui.$, active = {
-			reload: function(){
-				table.reload('testTable', {
-					page: {
-						curr: 1 //重新从第 1 页开始
-					},
-					url:'/selectData/listMsgByNameAndDetail?name='+demoReload.value+'&detail='+demoReloadAn.value+'&',
-					method:"get"
-				}, 'data');
-			}
-		};
-		$('.demoTable .layui-btn').on('click', function(){
-			var type = $(this).data('type');
-			active[type] ? active[type].call(this) : '';
-		});
-		$('#all').on('click', function(){
-			var type = $(this).data('type');
-			active[type] ? active[type].call(this) : '';
-			console.log(type)
-		//	这是点击全部的按钮清空这时的input的value
-		// 	demoReload.value='';
-		// 	demoReloadAn.value='';
-			console.log('你点击了全部')
-		});
-		$('#other').on('click', function(){
-			var type = $(this).data('type');
-			active[type] ? active[type].call(this) : '';
-		//	这是请求其他的接口
-			demoReload.value='';
-			demoReloadAn.value='';
-			flag=1
-		});
+
 		table.on('tool(LAY-app-message-notice)', function(obj) {
 			var data = obj.data;
 			if(obj.event === 'del') {
