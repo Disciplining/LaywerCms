@@ -14,13 +14,23 @@ import java.util.Map;
 public interface MsgBoardMapper
 {
 	/**
-	 * 根据 客户姓名 和 案例描述 查找留言
+	 * 根据 客户姓名 和 案例描述 查找全部留言
 	 * @param map name detail
 	 * @return
 	 */
 	@Select(" select * from `t_msgBoard` " +
 				" where `customerName` like concat('%',#{name},'%') and `caseDetail` like concat('%',#{detail},'%') ")
-	List<MsgBoard> listMsgByNameAndDetail(Map map);
+	List<MsgBoard> listAllMsgByNameAndDetail(Map map);
+
+	/**
+	 * 根据 客户姓名 和 案例描述 查找未读留言
+	 * @param map
+	 * @return
+	 */
+	@Select(" select * from `t_msgBoard` " +
+			" where `customerName` like concat('%',#{name},'%') and `caseDetail` like concat('%',#{detail},'%') " +
+				" and `readFlag`='0' ")
+	List<MsgBoard> listNoReadMsgByNameAndDetail(Map map);
 
 	/**
 	 * 根据id删除一条留言

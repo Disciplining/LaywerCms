@@ -6,11 +6,11 @@ import com.hyg.util.RespondJson;
 public interface MsgBoardService
 {
 	/**
-	 * 根据客户姓名查 和案情描述 查找留言
+	 * 分页数据
 	 * @param name
 	 * @return
 	 */
-	RespondJson<MsgBoard> listMsgByNameAndDetail(String name, String detail);
+	RespondJson<MsgBoard> listPageData(int type, int pageNum, int pageSize, String name, String detail);
 
 	/**
 	 * 根据id删除一条留言

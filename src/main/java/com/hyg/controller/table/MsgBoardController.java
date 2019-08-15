@@ -21,19 +21,22 @@ public class MsgBoardController
 	/*==============================================*/
 
 	/**
-	 * 根据 客户姓名 和 案例详情 查找留言
+	 * 分页数据
 	 * @param name
 	 * @return
 	 */
-	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/listMsgByNameAndDetail")
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/msgBoardPageData")
 	@ResponseBody
-	public RespondJson<MsgBoard> listMsgByNameAndDetail
+	public RespondJson<MsgBoard> msgBoardPageData
 	(
-		@RequestParam(value = "name", defaultValue = "") String name,
-		@RequestParam(value = "detail", defaultValue = "") String detail
+		@RequestParam(value = "type", defaultValue = "0") int type, // 0表示全部 1表示未读
+		@RequestParam(value = "page", defaultValue = "1") int pageNum, // 页码
+		@RequestParam(value = "limit", defaultValue = "10") int pageSize, // 每页的条数
+		@RequestParam(value = "name", defaultValue = "") String name, // 客户姓名
+		@RequestParam(value = "detail", defaultValue = "") String detail // 案情描述
 	)
 	{
-		return msgBoardService.listMsgByNameAndDetail(name, detail);
+		return msgBoardService.listPageData(type, pageNum, pageSize, name, detail);
 	}
 
 	/**
