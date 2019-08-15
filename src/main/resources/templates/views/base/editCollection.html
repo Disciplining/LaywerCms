@@ -99,6 +99,7 @@
                         document.getElementById('author').value = data.data[0].author; // 作者名字
                         document.getElementById('intro').value = data.data[0].intro; // 文集简介
                         editor.html(data.data[0].content); // 文章内容
+                        layui.form.render("select");
                     }
                 }
             );
