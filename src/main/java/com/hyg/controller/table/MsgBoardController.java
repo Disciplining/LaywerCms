@@ -57,4 +57,11 @@ public class MsgBoardController
 			return "fail";
 		}
 	}
+
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneMsgById")
+	@ResponseBody
+	public RespondJson<MsgBoard> getOneMsgById(@RequestParam("id") int id)
+	{
+		return msgBoardService.getOneMsgById(id);
+	}
 }

@@ -38,4 +38,12 @@ public interface MsgBoardMapper
 	 */
 	@Delete(" delete from `t_msgBoard` where `msgId`=#{id} ")
 	void deleteOneMsgById(int id);
+
+	/**
+	 * 根据id获得一条留言
+	 * @param id
+	 * @return
+	 */
+	@Select(" select * from `t_msgBoard` where `msgId`=#{id} ")
+	MsgBoard getOneMsgById(int id);
 }

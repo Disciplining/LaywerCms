@@ -18,4 +18,11 @@ public interface MsgBoardService
 	 * @return
 	 */
 	boolean deleteOneMsgById(int id);
+
+	/**
+	 * 根据id获得一条留言
+	 * @param id
+	 * @return
+	 */
+	RespondJson<MsgBoard> getOneMsgById(int id);
 }

@@ -85,4 +85,35 @@ public class MsgBoardServiceImpl implements MsgBoardService
 
 		return true;
 	}
+
+	/**
+	 * 根据id获得一条留言
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public RespondJson<MsgBoard> getOneMsgById(int id)
+	{
+		RespondJson<MsgBoard> json = new RespondJson<>();
+		json.setCount(0);
+		json.setMsg(null);
+
+		MsgBoard msgBoard = msgBoardMapper.getOneMsgById(id);
+		if (msgBoard != null)
+		{
+			List<MsgBoard> list = new ArrayList<>(1);
+			list.add(msgBoard);
+
+			json.setData(list);
+			json.setCount(list.size());
+		}
+		else
+		{
+			json.setData(null);
+			json.setCount(0);
+		}
+
+		return json;
+	}
 }
