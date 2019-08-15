@@ -25,4 +25,12 @@ public interface MsgBoardService
 	 * @return
 	 */
 	RespondJson<MsgBoard> getOneMsgById(int id);
+
+	/**
+	 * 回复留言
+	 * 前端传过来的数据：masId、replyId、replyMsg
+	 * @param msgBoard
+	 * @return
+	 */
+	boolean updateReplyMsg(MsgBoard msgBoard);
 }

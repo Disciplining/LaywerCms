@@ -1,7 +1,9 @@
 package com.hyg.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.hyg.mapper.LawyerMapper;
 import com.hyg.mapper.MsgBoardMapper;
+import com.hyg.pojo.Lawyer;
 import com.hyg.pojo.MsgBoard;
 import com.hyg.service.MsgBoardService;
 import com.hyg.util.RespondJson;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +23,11 @@ public class MsgBoardServiceImpl implements MsgBoardService
 	@Autowired
 	@Qualifier("msgBoardMapper")
 	private MsgBoardMapper msgBoardMapper;
+
+	@Autowired
+	@Qualifier("lawyerMapper")
+	private LawyerMapper lawyerMapper;
+
 
 	/**
 	 * 分页数据
@@ -115,5 +123,33 @@ public class MsgBoardServiceImpl implements MsgBoardService
 		}
 
 		return json;
+	}
+
+	/**
+	 * 回复留言
+	 * 前端传过来的字段：masId、replyId、replyMsg
+	 * 需要更新的字段：replyId、replyName、replyDate、replyFlag、replyMsg
+	 * @param msgBoard
+	 * @return
+	 */
+	@Override
+	public boolean updateReplyMsg(MsgBoard msgBoard)
+	{
+		// 需要更新但前端没有传过来的数据
+		Lawyer lawyer = lawyerMapper.getOneLawyerById(msgBoard.getReplyId());
+		if (lawyer == null)
+		{
+			return false;
+		}
+		else
+		{
+			msgBoard.setReplyName(lawyer.getLawyerName());
+		}
+		msgBoard.setReplyDate(new Timestamp(System.currentTimeMillis()));
+		msgBoard.setReadFlag("1");
+
+		msgBoardMapper.updateReplyMsg(msgBoard);
+
+		return true;
 	}
 }

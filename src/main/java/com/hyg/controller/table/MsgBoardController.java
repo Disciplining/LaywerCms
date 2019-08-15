@@ -7,7 +7,9 @@ import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -63,5 +65,26 @@ public class MsgBoardController
 	public RespondJson<MsgBoard> getOneMsgById(@RequestParam("id") int id)
 	{
 		return msgBoardService.getOneMsgById(id);
+	}
+
+	/**
+	 * 回复留言
+	 * 前端传过来的字段：masId、replyId、replyMsg
+	 * 需要更新的字段：replyId、replyName、replyDate、replyFlag、replyMsg
+	 * @param msgBoard
+	 * @return
+	 */
+	@PostMapping("/" + PermissionPrefix.UPDATE_DATA + "/replyMsg")
+	public String replyMsg(MsgBoard msgBoard, Model model)
+	{
+		if (msgBoardService.updateReplyMsg(msgBoard))
+		{
+			return "base/commentMgr";
+		}
+		else
+		{
+			model.addAttribute("res", "回得失败，请检查工号是否正确");
+			return "base/editCarousel";
+		}
 	}
 }
