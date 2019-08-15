@@ -6,12 +6,14 @@
         <title></title>
         <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
         <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     </head>
 
     <body>
 
-        <input th:value="${id}" />
-        <input th:value="${res}" id="error"/>
+        <input th:value="${id}" id="temp-id" type="hidden"/>
+        <input th:value="${res}" id="error" type="hidden"/>
 
         <!-- 表单开始 -->
         <div class="layui-fluid">
@@ -23,17 +25,19 @@
                             <div style="margin-top:20px">
                                 <form class="layui-form" action="/updateData/article" method="post">
                                     <input type="hidden" id="realId" name="articleId">
+
                                     <div class="layui-form-item layui-form-text">
                                         <label class="layui-form-label">文集类型</label>
                                         <div class="layui-input-block">
-                                            <select name="typeExpand" lay-verify="required">
+                                            <select id="typeExpand" name="typeExpand" lay-verify="required">
                                                 <option value=""></option>
+                                                <option value="刑事法律">刑事法律</option>
                                                 <option value="公司法律">公司法律</option>
                                                 <option value="劳动法律">劳动法律</option>
-                                                <option value="刑事法律">刑事法律</option>
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="layui-form-item layui-form-text">
                                         <label class="layui-form-label">文章名字</label>
                                         <div class="layui-input-block">
@@ -49,13 +53,13 @@
                                     <div class="layui-form-item layui-form-text">
                                         <label class="layui-form-label">文集简介</label>
                                         <div class="layui-input-block">
-                                            <textarea name="intro" id="intro" class="layui-textarea"></textarea>
+                                            <textarea id="intro" name="intro" class="layui-textarea"></textarea>
                                         </div>
                                     </div>
                                     <div class="layui-form-item layui-form-text">
                                         <label class="layui-form-label">文章内容</label>
                                         <div class="layui-input-block">
-                                            <textarea id="editor_id" name="content" style="width: 100%;height: 500px"></textarea>
+                                            <textarea id="content" name="content" style="width: 100%;height: 500px"></textarea>
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
@@ -74,30 +78,56 @@
         <!-- 表单结束 -->
 
         <script src="/layuiadmin/layui/layui.js"></script>
-        <script src="/layuiadmin/kindeditor/kindeditor-all-min.js"></script>
+        <script src="/layuiadmin/kindeditor/kindeditor-all.js"></script>
         <script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
 
         <script>
-        var href = location.href
-        console.log(href)
-        var flag = false
-        var hrefArr = href.split('')
-        for(var j=0;j<hrefArr.length;j++){
-            console.log(hrefArr[j])
-            if(hrefArr[j]!='?'){
-                flag = true
-                function filterId(str) {
-                    var newStr = str.split('?')[1].split('=')[1]
+
+            $.ajax
+            (
+                {
+                    url: '/selectData/getOneArticleById?id=' + $('#temp-id').val(),
+                    type: "get",
+                    dataType: "json",
+                    success: function(data)
+                    {
+                        console.log(data.data[0]);
+
+                        document.getElementById("realId").value = data.data[0].articleId;
+                        document.getElementById('typeExpand').value = data.data[0].typeExpand; // 文章类型
+                        document.getElementById('articleTitle').value = data.data[0].articleTitle; // 文章名字
+                        document.getElementById('author').value = data.data[0].author; // 作者名字
+                        document.getElementById('intro').value = data.data[0].intro; // 文集简介
+                        editor.html(data.data[0].content); // 文章内容
+                    }
+                }
+            );
+
+        var href = location.href;
+        console.log(href);
+        var flag = false;
+        var hrefArr = href.split('');
+        for(var j=0;j<hrefArr.length;j++)
+        {
+            console.log(hrefArr[j]);
+            if(hrefArr[j]!='?')
+            {
+                flag = true;
+                function filterId(str)
+                {
+                    var newStr = str.split('?')[1].split('=')[1];
                     return newStr
                 }
                 console.log(flag)
-            }else {
+            }
+            else
+            {
                 flag=false
                 console.log(flag)
             }
         }
         KindEditor.ready(function(K) {
-            window.editor = K.create('#editor_id');
+            window.editor = K.create('#content');
         });
         var realId = document.getElementById("realId")
         var select =document.getElementsByTagName('select');
@@ -107,35 +137,12 @@
         var id = document.getElementById('id')
         var author = document.getElementById('author')
         var intro = document.getElementById('intro')
-        var editor_id = document.getElementById('editor_id')
+        var editor_id = document.getElementById('content')
         layui.use(['jquery','form','layer'], function() {
             var $ = layui.$, form=layui.form;
                 if(flag){
-                    var idr = filterId(location.href)
-                    $.ajax({
-                        url: '/selectData/getArticleData',
-                        type: "get",
-                        dataType: "json",
-                        success: function(data) {
-                            var data = data.data
-                            for(var i = 0; i < data.length; i++) {
-                                if(data[i].articleId == idr) {
-                                    realId.value= data[i].articleId
-                                    articleTitle.value = data[i].articleTitle
-                                    author.value = data[i].author
-                                    intro.innerHTML = data[i].intro
-                                    editor.html(data[i].content)
-                                    for(var f=0;f<option.length;f++){
-                                        if(option[f].value==data[i].typeExpand){
-                                            $("select").val(data[i].typeExpand);
-                                            form.render("select");
-                                        }
+                    var idr = filterId(location.href);
 
-                                    }
-                                }
-                            }
-                        }
-                    })
                 }
 
         })

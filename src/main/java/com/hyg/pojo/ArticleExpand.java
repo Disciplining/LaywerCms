@@ -18,8 +18,8 @@ public class ArticleExpand extends Article
 
 	public class TypeExpand
 	{
-		public static final String COMPANY_LAW_STRING = "公司法律";
-		public static final String LABOUR_LAW_STRING = "劳动法律";
-		public static final String FORMAL_LAW_STRING = "形式法律";
+		public static final String COMPANY_LAW_STRING = "公司法律"; // 1
+		public static final String LABOUR_LAW_STRING = "劳动法律"; // 2
+		public static final String CRIMINAL_LAW_STRING = "刑事法律"; // 3
 	}
 }

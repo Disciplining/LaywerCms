@@ -19,6 +19,14 @@ public interface ArticleMapper
 	boolean deleteOneArticleById(int articleId);
 
 	/**
+	 * 根据id获得一篇文章
+	 * @param articleId
+	 * @return
+	 */
+	@Select(" select * from `t_article` where `deleteFlag`!='1' and `articleId`=#{articleId} ")
+	Article getOneArticleById(int articleId);
+
+	/**
 	 * 向团队文集表中新增一条数据
 	 * @param article
 	 */

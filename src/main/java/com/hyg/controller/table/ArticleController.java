@@ -104,4 +104,16 @@ public class ArticleController
 	{
 		return articleService.listPageData(pageNum, pageSize, author, typeExpand);
 	}
+
+	/**
+	 * 根据id获取一篇文章
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneArticleById")
+	@ResponseBody
+	public RespondJson<ArticleExpand> getOneArticleById(@RequestParam("id") int id)
+	{
+		return articleService.getOneArticleById(id);
+	}
 }
