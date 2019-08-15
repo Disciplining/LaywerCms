@@ -70,15 +70,10 @@
 		//1表示全部
 		$('.demoTable .layui-btn').on('click', function(){
 			demoReloadHi.value='0'
-			all.style.background=''
-			other.style.background=''
 			var type = $(this).data('type');
 			active[type] ? active[type].call(this) : '';
 		});
 		$('#all').on('click', function(){
-			all.style.background='blue'
-			all.style.border=0
-			other.style.background=''
 			demoReload.value=''
 			demoReloadAn.value=''
 			demoReloadHi.value='0'
@@ -88,17 +83,11 @@
 
 		});
 		$('#other').on('click', function(){
-			other.style.background='blue'
-			all.style.background=''
-			other.style.border=0
-			demoReload.value=''
-			demoReloadAn.value=''
+			//未读的
 			demoReloadHi.value='1'
 			console.log('点击了局部')
 			var type = $(this).data('type');
 			active[type] ? active[type].call(this) : '';
-
-
 		});
 		var $ = layui.$, active = {
 			reload: function(){
