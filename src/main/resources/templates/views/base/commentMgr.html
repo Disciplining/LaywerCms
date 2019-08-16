@@ -72,7 +72,7 @@
 		var table = layui.table,
 		$ = layui.$
 		;
-		var ha = $("td[data-field='caseDetail']")
+		var ha = $(".layui-table-cell laytable-cell-4-0-3")
 		console.log(ha)
 		// addClass("pointer")
 		//1表示全部
@@ -141,6 +141,7 @@
 					field: 'caseDetail',
 					title: '案情描述',
 					event:'clickA',
+					style:"cursor: pointer"
 				}, {
 					field: 'createDate',
 					title: '创建时间',
