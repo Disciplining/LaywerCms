@@ -102,6 +102,11 @@ public class ArticleController
 		@RequestParam(value = "typeExpand", defaultValue = "") String typeExpand
 	)
 	{
+		if ("请选择".equals(typeExpand))
+		{
+			typeExpand = "";
+		}
+
 		return articleService.listPageData(pageNum, pageSize, author, typeExpand);
 	}
 
