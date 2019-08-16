@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <title></title>
         <style>
-            #colla_img
-            {
-                background-size: 100%;
+            #colla_img img{
+                width: 300px;
+                height: 200px
             }
         </style>
 
@@ -112,6 +112,11 @@
                             choose: function (obj)
                             {
                                 //预读本地文件
+                                var number = $('#colla_img').children().length
+                                console.log(number)
+                                if(number>0){
+                                    $('#showImg').remove()
+                                }
                                 obj.preview
                                 (
                                     function (index, file, result)
