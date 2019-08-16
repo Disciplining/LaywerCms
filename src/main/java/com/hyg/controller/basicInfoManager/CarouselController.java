@@ -1,4 +1,4 @@
-package com.hyg.controller.table;
+package com.hyg.controller.basicInfoManager;
 
 import com.hyg.pojo.Carousel;
 import com.hyg.pojo.CarouselExpand;

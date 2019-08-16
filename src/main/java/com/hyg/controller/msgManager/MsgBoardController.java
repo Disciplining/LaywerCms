@@ -1,4 +1,4 @@
-package com.hyg.controller.table;
+package com.hyg.controller.msgManager;
 
 import com.hyg.pojo.MsgBoard;
 import com.hyg.service.MsgBoardService;

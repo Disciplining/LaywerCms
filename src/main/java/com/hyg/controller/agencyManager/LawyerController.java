@@ -1,4 +1,4 @@
-package com.hyg.controller.table;
+package com.hyg.controller.agencyManager;
 
 import com.hyg.pojo.Lawyer;
 import com.hyg.pojo.LawyerExpand;

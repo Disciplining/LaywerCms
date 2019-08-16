@@ -1,4 +1,4 @@
-package com.hyg.controller.table;
+package com.hyg.controller.criminalLawServer;
 
 import com.hyg.pojo.ChargeType;
 import com.hyg.service.ChargeTypeService;

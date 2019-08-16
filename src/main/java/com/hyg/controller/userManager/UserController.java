@@ -1,4 +1,4 @@
-package com.hyg.controller.table;
+package com.hyg.controller.userManager;
 
 import com.alibaba.fastjson.JSON;
 import com.hyg.pojo.User;
