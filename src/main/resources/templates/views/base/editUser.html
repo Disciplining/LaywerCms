@@ -10,7 +10,7 @@
 
 <body>
 <input th:value="${id}" id="temp-id" type="hidden"/>
-<input th:value="${res}" id="error" type="hidden"/>
+<input th:value="${res}" id="error"/>
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md12">
@@ -24,7 +24,7 @@
 						<div class="layui-form-item layui-form-text">
 							<label class="layui-form-label">用户名</label>
 							<div class="layui-input-block">
-								<input type="text" id="loginName" name="loginName" required lay-verify="required" autocomplete="off" class="layui-input">
+								<input type="text"  id="loginName" name="loginName" required lay-verify="required" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item layui-form-text">
@@ -74,11 +74,16 @@
 <script src="/layuiadmin/kindeditor/kindeditor-all-min.js"></script>
 <script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
 <script>
+	var error = document.getElementById('error')
 	var temp = document.getElementById('temp-id').value;
-	layui.use(['jquery', 'form', 'upload'], function() {
+	layui.use(['jquery', 'form', 'upload','layer'], function() {
 		var $ = layui.$,
 				upload = layui.upload,
+				$=layui.$,
 				form = layui.form;
+		if(error!=''){
+			layer.alert('编辑失败')
+		}
 		$.ajax({
 			url: '/selectData/getOneUserById?id='+temp,
 			type: "get",

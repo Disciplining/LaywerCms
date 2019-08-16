@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<input th:value="${res}" id="error" type="hidden"/>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -47,11 +48,15 @@
     <script src="/layuiadmin/modules/jquery.js" type="text/javascript" charset="utf-8"></script>
     <script>
         //Demo
-        layui.use(['form', 'upload', 'jquery'], function() {
+        var error = document.getElementById('error').value
+        layui.use(['form', 'upload', 'jquery','layer'], function() {
             var form = layui.form,
                 upload = layui.upload,
+                layer=layui.layer,
                 $ = layui.$;
-
+            if(error!=''){
+                layer.alert('添加失败')
+            }
             upload.render({
                 elem: '#test1',
                 url: 'upload',
