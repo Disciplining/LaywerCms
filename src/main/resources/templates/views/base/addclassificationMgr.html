@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<input th:value="${res}" id="error" type="hidden">
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -16,11 +17,11 @@
                 <div class="layui-card-header">罪名分类添加表</div>
                 <div class="layui-card-body">
                     <div style="margin-top:20px">
-                        <form class="layui-form" style="margin-top: 20px;" method="post" action=""  enctype="multipart/form-data">
+                        <form class="layui-form" style="margin-top: 20px;" method="post" action="/insertData/insertOneChargeType">
                             <div class="layui-form-item">
                                 <label class="layui-form-label" style="width: 100px">罪名分类名称</label>
                                 <div class="layui-input-block">
-                                    <input style="width: 930px" type="text" name="lawyerName" placeholder="请输入" class="layui-input">
+                                    <input style="width: 930px" type="text" name="chargeTypeName" placeholder="请输入" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -38,10 +39,15 @@
 </div>
 <script src="/layuiadmin/layui/layui.js"></script>
 <script>
-    layui.use(['form', 'upload', 'jquery'], function() {
+    layui.use(['form', 'upload', 'jquery','layer'], function() {
         var form = layui.form,
             $ = layui.$,
+            layer=layui.layer,
             upload = layui.upload;
+        var error = $('#error').val()
+        if(error!=''){
+            layer.alert(error)
+        }
     });
 </script>
 </body>
