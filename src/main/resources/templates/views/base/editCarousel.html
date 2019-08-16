@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
 
 <body>
-<input th:value="${id}" id="temp-id" name="msgId" type="hidden"/>
-<input th:value="${res}" id="error" type="hidden"/>
+<input th:value="${res}" id="error" name="msgId"/>
+
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md12">
@@ -23,7 +23,7 @@
 					<div id="dd">
 					</div>
 					<form style="margin:30px 0 20px 0;" method="post" action="/updateData/replyMsg">
-						<input type="hidden" id="comHidden">
+                        <input th:value="${id}" id="temp-id" name="msgId" type="hidden"/>
 						<div class="layui-form-item">
 							<label class="layui-form-label" style="width:100px;padding: 0px">回复律师工号</label>
 							<div class="layui-input-block">

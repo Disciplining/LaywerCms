@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
     <style>
         #colla_img img{
-         width: 300px;
-            height: 200px;
+            width: 300px;
+            height: 200px
         }
     </style>
 </head>
@@ -54,6 +54,7 @@
     <script src="/layuiadmin/modules/jquery.js" type="text/javascript" charset="utf-8"></script>
     <script>
         //Demo
+        var colla_img = document.getElementById('colla_img')
         var error = document.getElementById('error').value
         layui.use(['form', 'upload', 'jquery','layer'], function() {
             var form = layui.form,
@@ -69,10 +70,14 @@
                 size: 2048,
                 auto: false //选择文件后不自动上传
                 ,
-                bindAction: '#save' //指向一个按钮触发上传
-                ,
+                // bindAction: '#save' //指向一个按钮触发上传
                 choose: function(obj) {
                     //预读本地文件
+                    var number = $('#colla_img').children().length
+                    console.log(number)
+                    if(number>0){
+                        $('#showImg').remove()
+                    }
                     obj.preview(function(index, file, result) {
                         $('#loadinput').val(file.name); //展示文件名
                         $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a> ');

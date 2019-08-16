@@ -6,6 +6,12 @@
 	<title>添加用户</title>
 	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
 	<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    <style>
+        #colla_img img{
+            width: 300px;
+            height: 200px
+        }
+    </style>
 </head>
 
 <body>
@@ -80,6 +86,11 @@
 			bindAction: '#save' //指向一个按钮触发上传
 			,
 			choose: function(obj) {
+                var number = $('#colla_img').children().length
+                console.log(number)
+                if(number>0){
+                    $('#showImg').remove()
+                }
 				//预读本地文件
 				obj.preview(function(index, file, result) {
 					$('#loadinput').val(file.name); //展示文件名
