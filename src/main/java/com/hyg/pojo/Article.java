@@ -12,15 +12,22 @@ import java.sql.Timestamp;
 public class Article
 {
 	private Integer articleId;
+
 	private Integer type;
+
 	private String articleTitle;
+
 	private String author;
+
 	private String intro;
+
 	private String content;
 
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	private Timestamp editDate;
+
 	private Integer count;
+
 	private String deleteFlag;
 
 	public static class ArticleType
