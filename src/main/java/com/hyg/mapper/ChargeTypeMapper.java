@@ -3,7 +3,10 @@ package com.hyg.mapper;
 import com.hyg.pojo.ChargeType;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * 罪名分类表 mapper
@@ -19,4 +22,11 @@ public interface ChargeTypeMapper
 	@Insert(" insert into `t_chargeType` (`chargeTypeName`,`editDate`,`count`,`deleteFlag`) " +
 				" values (#{chargeTypeName},#{editDate},#{count},#{deleteFlag}) ")
 	void insertOneChargeType(ChargeType chargeType);
+
+	/**
+	 * 获得所有罪名
+	 * @return
+	 */
+	@Select(" select * from `t_chargeType` where `deleteFlag`!='1' ")
+	List<ChargeType> listAllChargeType();
 }

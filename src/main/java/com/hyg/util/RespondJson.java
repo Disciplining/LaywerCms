@@ -11,4 +11,14 @@ public class RespondJson<T>
 	private String msg;
 	private Integer count;
 	private List<T> data;
+
+	public RespondJson() {}
+
+	public RespondJson(Integer code, String msg, Integer count, List<T> data)
+	{
+		this.code = code;
+		this.msg = msg;
+		this.count = count;
+		this.data = data;
+	}
 }

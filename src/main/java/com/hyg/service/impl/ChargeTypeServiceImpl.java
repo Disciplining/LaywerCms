@@ -1,13 +1,16 @@
 package com.hyg.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hyg.mapper.ChargeTypeMapper;
 import com.hyg.pojo.ChargeType;
 import com.hyg.service.ChargeTypeService;
+import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * 罪名分类表 service
@@ -45,5 +48,23 @@ public class ChargeTypeServiceImpl implements ChargeTypeService
 		}
 
 		return true;
+	}
+
+	/**
+	 * 罪名分类表 分页数据
+	 *
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@Override
+	public RespondJson<ChargeType> charTypePageData(int pageNum, int pageSize)
+	{
+		List<ChargeType> list = chargeTypeMapper.listAllChargeType(); // 分页前查询，为了长度
+
+		PageHelper.startPage(pageNum, pageSize);
+		List<ChargeType> chargeTypes = chargeTypeMapper.listAllChargeType();
+
+		return new RespondJson<ChargeType>(0, null, list.size(), chargeTypes);
 	}
 }

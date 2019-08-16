@@ -1,8 +1,7 @@
 package com.hyg.service;
 
 import com.hyg.pojo.ChargeType;
-
-import java.util.List;
+import com.hyg.util.RespondJson;
 
 /**
  * 罪名分类表 service
@@ -19,8 +18,10 @@ public interface ChargeTypeService
 	boolean insertOneChargeType(ChargeType chargeType);
 
 	/**
-	 * 获得所有
+	 * 罪名分类表 分页数据
+	 * @param pageNum
+	 * @param pageSize
 	 * @return
 	 */
-	List<ChargeType> listAllChargeType();
+	RespondJson<ChargeType> charTypePageData(int pageNum, int pageSize);
 }
