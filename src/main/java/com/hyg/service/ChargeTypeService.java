@@ -2,6 +2,8 @@ package com.hyg.service;
 
 import com.hyg.pojo.ChargeType;
 
+import java.util.List;
+
 /**
  * 罪名分类表 service
  */
@@ -15,4 +17,10 @@ public interface ChargeTypeService
 	 * @return
 	 */
 	boolean insertOneChargeType(ChargeType chargeType);
+
+	/**
+	 * 获得所有
+	 * @return
+	 */
+	List<ChargeType> listAllChargeType();
 }
