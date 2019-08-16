@@ -41,12 +41,12 @@ public class AgencyController
 
 		if (agencyService.updateAgencyDetail(content))
 		{
-			model.addAttribute("res", "更新数据成功");
+			model.addAttribute("res", "更新成功");
 			return "base/introuceMgr";
 		}
 		else
 		{
-			model.addAttribute("res", "更新数据失败");
+			model.addAttribute("res", "更新失败");
 			return "base/introuceMgr";
 		}
 	}
