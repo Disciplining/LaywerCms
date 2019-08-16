@@ -40,4 +40,11 @@ public interface ChargeTypeService
 	 * @return
 	 */
 	boolean editChargeType(ChargeType chargeType);
+
+	/**
+	 * 根据id删除一个罪名分类
+	 * @param id
+	 * @return
+	 */
+	boolean deleteOneChargeType(int id);
 }

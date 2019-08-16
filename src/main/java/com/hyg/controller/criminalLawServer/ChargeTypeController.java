@@ -91,4 +91,16 @@ public class ChargeTypeController
 			return "base/editclassificationMgr";
 		}
 	}
+
+	/**
+	 * 根据id删除一个罪名类型
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.DELETE_DATA + "/deleteOneChargeType")
+	@ResponseBody
+	public boolean deleteOneChargeType(@RequestParam("id") int id)
+	{
+		return chargeTypeService.deleteOneChargeType(id);
+	}
 }

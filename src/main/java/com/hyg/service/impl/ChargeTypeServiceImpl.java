@@ -115,4 +115,26 @@ public class ChargeTypeServiceImpl implements ChargeTypeService
 
 		return true;
 	}
+
+	/**
+	 * 根据id删除一个罪名分类
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public boolean deleteOneChargeType(int id)
+	{
+		try
+		{
+			chargeTypeMapper.deleteOneChargeType(id);
+		}
+		catch (Exception e)
+		{
+			System.out.println("出现异常：" + e.getMessage());
+			return false;
+		}
+
+		return true;
+	}
 }

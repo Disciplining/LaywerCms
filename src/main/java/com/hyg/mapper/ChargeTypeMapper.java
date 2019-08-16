@@ -45,4 +45,7 @@ public interface ChargeTypeMapper
 	 */
 	@Update(" update `t_chargeType` set `chargeTypeName`=#{chargeTypeName} where `deleteFlag`!='1' and `id`=#{id} ")
 	void updateChargeTypeNameById(ChargeType chargeType);
+
+	@Update(" update `t_chargeType` set `deleteFlag`='1' where `id`=#{id} ")
+	void deleteOneChargeType(int id);
 }
