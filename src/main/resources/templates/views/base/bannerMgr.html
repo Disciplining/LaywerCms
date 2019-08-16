@@ -110,10 +110,12 @@
 			var data = obj.data;
 			if(obj.event === 'del') {
 				layer.confirm('真的删除行么', function(index) {
+				    console.log(data.id)
 					$.ajax({
 						url:'/deleteData/deleteOneCarouseById?id='+data.id,
 						method:'get',
 						success:function(data){
+						    console.log(data);
 							if(data=='success'){
 								layer.close(index);
 								obj.del();

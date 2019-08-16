@@ -57,7 +57,7 @@ public class CarouselController
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/" + PermissionPrefix.INSERT_DATA + "/deleteOneCarouseById")
+	@GetMapping("/" + PermissionPrefix.DELETE_DATA + "/deleteOneCarouseById")
 	@ResponseBody
 	public String deleteOneCarouseById(@RequestParam(name = "id") int id)
 	{
