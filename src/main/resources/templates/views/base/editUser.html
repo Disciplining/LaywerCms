@@ -10,7 +10,7 @@
 
 <body>
 <input th:value="${id}" id="temp-id" type="hidden"/>
-<input th:value="${res}" id="error"/>
+<input th:value="${res}" id="error" type="hidden"/>
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md12">
@@ -74,7 +74,7 @@
 <script src="/layuiadmin/kindeditor/kindeditor-all-min.js"></script>
 <script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
 <script>
-	var error = document.getElementById('error')
+	var error = document.getElementById('error').value
 	var temp = document.getElementById('temp-id').value;
 	layui.use(['jquery', 'form', 'upload','layer'], function() {
 		var $ = layui.$,
@@ -82,7 +82,7 @@
 				$=layui.$,
 				form = layui.form;
 		if(error!=''){
-			layer.alert('编辑失败')
+			layer.alert(error)
 		}
 		$.ajax({
 			url: '/selectData/getOneUserById?id='+temp,

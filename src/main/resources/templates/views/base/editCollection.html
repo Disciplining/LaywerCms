@@ -82,6 +82,7 @@
         <script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
 
         <script>
+            var error = document.getElementById('error').value
 
             $.ajax
             (
@@ -140,11 +141,14 @@
         var intro = document.getElementById('intro')
         var editor_id = document.getElementById('content')
         layui.use(['jquery','form','layer'], function() {
-            var $ = layui.$, form=layui.form;
-                if(flag){
-                    var idr = filterId(location.href);
-
-                }
+            var $ = layui.$, form=layui.form,layer=layui.layer;
+            if(error!=''){
+                layer.alert(error)
+            }
+                // if(flag){
+                //     var idr = filterId(location.href);
+                //
+                // }
 
         })
     </script>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 		<title>添加用户</title>
@@ -8,6 +8,7 @@
 	</head>
 
 	<body>
+	<input th:value="${res}" id="error" type="hidden">
 		<form class="layui-form" style="margin-top: 20px;">
 			<div class="layui-form-item">
 				<label class="layui-form-label">ID</label>
@@ -42,10 +43,14 @@
 		</form>
 		<script src="/layuiadmin/layui/layui.js"></script>
 		<script>
-			var
-			layui.use(['form', 'upload'], function() {
+			var error = document.getElementById('error').value
+			layui.use(['form', 'upload','layer'], function() {
 				var form = layui.form,
+						layer=layui.layer,
 					upload = layui.upload;
+				if(error!=''){
+					layer.alert(error)
+				}
 				var uploadInst = upload.render({
 					elem: '#test1' //绑定元素
 						,

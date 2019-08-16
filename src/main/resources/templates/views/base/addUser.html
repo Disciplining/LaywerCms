@@ -83,7 +83,7 @@
 						$=layui.$,
 					upload = layui.upload;
 				if(error!=''){
-					layer.alert('插入失败')
+					layer.alert(error)
 				}
 				var uploadInst = upload.render({
 					elem: '#test1' //绑定元素

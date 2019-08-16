@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<head>
+<head xmlns:th="http://www.w3.org/1999/xhtml">
 	<meta charset="utf-8">
 	<title></title>
 	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
@@ -7,6 +7,7 @@
 </head>
 
 <body>
+<input th:value="${res}" id="error" type="hidden"/>
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md12">
@@ -100,6 +101,9 @@
 		layui.use(['form', 'upload', 'jquery','layer'], function() {
 			var form = layui.form,
 					layer=layui.layer;
+			if(error!=''){
+				layer.alert(error)
+			}
 		});
 	</script>
 </body>

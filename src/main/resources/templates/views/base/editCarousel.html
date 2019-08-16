@@ -60,7 +60,7 @@
 		var layer = layui.layer,
 				$ = layui.$;
 		if(error!=''){
-			layer.alert('编辑失败')
+			layer.alert(error)
 		}
 		$.ajax({
 			url: '/selectData/getOneMsgById?id='+temp,
