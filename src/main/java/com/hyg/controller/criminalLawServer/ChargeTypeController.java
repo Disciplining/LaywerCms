@@ -30,7 +30,6 @@ public class ChargeTypeController
 	 * @return
 	 */
 	@PostMapping("/" + PermissionPrefix.INSERT_DATA + "/insertOneChargeType")
-	@ResponseBody
 	public String insertOneChargeType(ChargeType chargeType, Model model)
 	{
 		if (chargeTypeService.insertOneChargeType(chargeType))
@@ -59,5 +58,37 @@ public class ChargeTypeController
 	)
 	{
 		return chargeTypeService.charTypePageData(pageNum, pageSize);
+	}
+
+	/**
+	 * 根据id获得一个罪名类型
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneChargeTypeById")
+	@ResponseBody
+	public RespondJson<ChargeType> getOneChargeTypeById(@RequestParam("id") int id)
+	{
+		return chargeTypeService.getOneChargeTypeById(id);
+	}
+
+	/**
+	 * 编辑一个罪名类型
+	 * 前端需要传过来的数据：id、chargeTypeName
+	 * @param chargeType
+	 * @return
+	 */
+	@PostMapping("/" + PermissionPrefix.UPDATE_DATA + "/editChargeType")
+	public String editChargeType(ChargeType chargeType, Model model)
+	{
+		if (chargeTypeService.editChargeType(chargeType))
+		{
+			return "base/classificationMgr";
+		}
+		else
+		{
+			model.addAttribute("msg", "更新数据失败");
+			return "base/editclassificationMgr";
+		}
 	}
 }

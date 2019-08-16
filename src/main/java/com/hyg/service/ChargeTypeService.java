@@ -24,4 +24,20 @@ public interface ChargeTypeService
 	 * @return
 	 */
 	RespondJson<ChargeType> charTypePageData(int pageNum, int pageSize);
+
+	/**
+	 * 根据id获得一个罪名分类
+	 * @param id
+	 * @return
+	 */
+	RespondJson<ChargeType> getOneChargeTypeById(int id);
+
+	/**
+	 * 编辑一个罪名类型
+	 * 前端需要传过来的数据：id、chargeTypeName
+	 * 需要更新的数据：chargeTypeName
+	 * @param chargeType
+	 * @return
+	 */
+	boolean editChargeType(ChargeType chargeType);
 }
