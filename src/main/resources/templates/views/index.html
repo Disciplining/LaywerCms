@@ -13,7 +13,7 @@
 
 </head>
 <body class="layui-layout-body">
-  
+<input th:value="${loginName}" id="name" type="hidden"/>
   <div id="LAY_app">
     <div class="layui-layout layui-layout-admin">
       <div class="layui-header">
@@ -63,12 +63,9 @@
           </li>
           <li class="layui-nav-item" lay-unselect>
             <a href="javascript:;">
-              <cite>贤心</cite>
+              <cite id="relName"></cite>
             </a>
             <dl class="layui-nav-child">
-              <dd><a lay-href="set/user/info.html">基本资料</a></dd>
-              <dd><a lay-href="set/user/password.html">修改密码</a></dd>
-              <hr>
               <dd layadmin-event="logout" style="text-align: center;" ><a href="/userLogout">退出</a></dd>
             </dl>
           </li>
@@ -170,7 +167,7 @@
                   <a lay-href="/getPage/base/introductionArgument">刑辩介绍表</a>
                 </dd>
                 <dd data-name="base">
-                  <a lay-href="">形辩优势表</a>
+                  <a lay-href="getPage/base/criminalAdvantageMgr">形辩优势表</a>
                 </dd>
               </dl>
             </li>
@@ -533,6 +530,10 @@
 
   <script src="/layuiadmin/layui/layui.js"></script>
   <script>
+    var name = document.getElementById('name').value
+    if(name!=''){
+      var relName = document.getElementById('relName').innerHTML=name
+    }
   layui.config({
     base: '../layuiadmin/' //静态资源所在路径
   }).extend({

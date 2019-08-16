@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>刑事介绍</title>
+    <title>刑事优势表</title>
     <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css"/>
 </head>
 
@@ -12,7 +12,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">刑事介绍表</div>
+                <div class="layui-card-header">刑事优势表</div>
                 <div class="layui-card-body">
                     <table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar">
                     </table>
@@ -21,7 +21,7 @@
                     </script>
                     <script type="text/html" id="test-table-toolbar-toolbarDemo">
                         <div class="layui-btn-container">
-                            <a href="/getPage/base/addIntroductionArgument"><button class="layui-btn layui-btn-sm" >添加</button></a>
+                            <a href="/getPage/base/addCriminalAdvantageMgr"><button class="layui-btn layui-btn-sm" >添加</button></a>
                         </div>
                     </script>
 
@@ -47,7 +47,7 @@
             upload = layui.upload;
         table.render({
             elem: '#test-table-toolbar',
-            url: '/intro.json',
+            url: '/cri.json',
             toolbar: '#test-table-toolbar-toolbarDemo',
             title: '用户数据表',
             page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
@@ -67,17 +67,22 @@
                     templet: '#zizeng'
                 },
                     {
-                        field: 'desc',
-                        title: '团队优势介绍',
+                        field: 'title',
+                        title: '标题',
                     },
-                   {
-                    field: 'editDate',
-                    title: '编辑时间',
-                    width: 120
-                },
                     {
-                        field: 'count',
-                        title: '浏览次数',
+                        field: 'content',
+                        title: '内容',
+                        width: 120
+                    },
+                    {
+                        field: 'icon',
+                        title: '形辩图标',
+                        width:120
+                    },
+                    {
+                        field: 'editDate',
+                        title: '编辑时间',
                         width:120
                     },
                     {
