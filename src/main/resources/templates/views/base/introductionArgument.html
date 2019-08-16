@@ -56,16 +56,16 @@
         var $ = layui.$,
             layer=layui.layer;
         if(inp.value!=''){
-            layer.alert('修改失败')
+            layer.alert(inp.value)
         }
-        $.ajax({
-            url: '/selectData/getAgencyData',
-            type: "get",
-            dataType: "json",
-            success: function(data) {
-                editor.html(data.data[0].agencyDetail)
-            }
-        })
+        // $.ajax({
+        //     url: '/selectData/getAgencyData',
+        //     type: "get",
+        //     dataType: "json",
+        //     success: function(data) {
+        //         editor.html(data.data[0].agencyDetail)
+        //     }
+        // })
     })
 </script>
 </body>

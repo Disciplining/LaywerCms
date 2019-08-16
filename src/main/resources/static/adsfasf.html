@@ -1,0 +1,30 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css">
+    <!--  <link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all">-->
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<select name=""  id="selecta" onchange="test()">
+</select>
+<script src="/layuiadmin/layui/layui.js"></script>
+<script>
+    layui.use(['jquery','form'],function () {
+        var $= layui.$,
+            form=layui.form;
+        $.ajax({
+            url:'/test.json',
+            method:'get',
+            success:function (data) {
+                console.log(data)
+                for(var i=0;i<data.length;i++){
+                    console.log(data[i].children)
+                    $('select').append("<option>"+data[i].name+"</option>")
+                    form.render('select')
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
