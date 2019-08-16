@@ -52,7 +52,7 @@ public class UserController
 		}
 		else
 		{
-			model.addAttribute("res", "添加用户失败");
+			model.addAttribute("res", "添加用户失败，用户名可能已存在");
 			return "base/addUser";
 		}
 	}
