@@ -24,9 +24,9 @@
                         <form class="layui-form" action="/updateData/editChargeType" method="post">
                             <input name="id" th:value="${id}" id="temp-id" type="hidden"/>
                             <div class="layui-form-item layui-form-text">
-                                <label class="layui-form-label">罪名分类名称</label>
+                                <label class="layui-form-label" style="width: 100px;">罪名分类名称</label>
                                 <div class="layui-input-block">
-                                    <input type="text" id="classification" name="chargeTypeName" required lay-verify="required" autocomplete="off" class="layui-input">
+                                    <input type="text" style="width: 930px" id="classification" name="chargeTypeName" required lay-verify="required" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -42,7 +42,6 @@
         </div>
     </div>
 </div>
-<!-- 表单结束 -->
 
 <script src="/layuiadmin/layui/layui.js"></script>
 

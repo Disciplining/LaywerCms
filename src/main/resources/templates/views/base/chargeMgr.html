@@ -57,15 +57,15 @@
             upload = layui.upload;
         table.render({
             elem: '#test-table-toolbar',
-            url: '/charge.json',
+            url: '/selectData/chargePageData',
             toolbar: '#test-table-toolbar-toolbarDemo',
             title: '用户数据表',
             page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
-                groups: 1, //只显示 1 个连续页码,
+                groups: 3, //只显示 1 个连续页码,
                 first: false, //不显示首页,
                 last: false, //不显示尾页
-                limit: 5
+                limit: 10
 
             },
             cols: [
@@ -77,11 +77,11 @@
                     templet: '#zizeng'
                 },
                     {
-                        field: 'name',
+                        field: 'chargeName',
                         title: '罪名名称',
                         width:120
                     }, {
-                    field: 'law',
+                    field: 'lawContent',
                     title: '法律规定',
                     width: 120,
                 }, {
@@ -90,7 +90,7 @@
                     width: 120
                 },
                     {
-                        field: 'defence',
+                        field: 'defense',
                         title: '辩护流程与方案',
                     },
                     {
@@ -120,7 +120,7 @@
                     page: {
                         curr: 1 //重新从第 1 页开始
                     },
-                    url:'/selectData/searchByName?name='+demoReload.value,
+                    url:'/selectData/chargePageData?chargeName='+demoReload.value,
                     method:"get"
                 }, 'data');
             }
@@ -163,24 +163,24 @@
             var data = obj.data;
             if(obj.event === 'del') {
                 layer.confirm('真的删除行么', function(index) {
-                    // $.ajax({
-                    //     url:'/root/deleteOneUserById?id='+data.id,
-                    //     method:'get',
-                    //     success:function(data){
-                    //         if(data=="success"){
-                    //             obj.del();
-                    //             layer.close(index);
-                    //             window.location.href='/getPage/base/userMgr'
-                    //         }
-                    //     },
-                    //     error:function (data) {
-                    //         alert('删除失败')
-                    //     }
-                    // })
+                    $.ajax({
+                        url:'/deleteData/deleteOneChargeById?id='+data.id,
+                        method:'get',
+                        success:function(data){
+                            if(data == true){
+                                obj.del();
+                                layer.close(index);
+                                window.location.href='/getPage/base/chargeMgr'
+                            }
+                        },
+                        error:function (data) {
+                            alert('删除失败')
+                        }
+                    })
                 });
             } else if(obj.event === 'edit') {
                 var data = obj.data;
-                window.location.href = "/getPage/base/editChargeMgr.html?id=" + data.id
+                window.location.href = "/getPage/base/editChargeMgr.html?id=" + data.chargeTypeId
             }
         });
 
