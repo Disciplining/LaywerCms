@@ -21,4 +21,11 @@ public interface ChargeService
 	 * @return
 	 */
 	RespondJson<Charge> chargePageData(int pageNum, int pageSize, String chargeName);
+
+	/**
+	 * 根据id删除一个罪名
+	 * @param id
+	 * @return
+	 */
+	boolean deleteOneChargeById(int id);
 }

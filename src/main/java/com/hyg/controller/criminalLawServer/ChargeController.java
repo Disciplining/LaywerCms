@@ -73,4 +73,16 @@ public class ChargeController
 	{
 		return chargeService.chargePageData(pageNum, pageSize, chargeName);
 	}
+
+	/**
+	 * 根据id删除一个罪名
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.DELETE_DATA + "/deleteOneChargeById")
+	@ResponseBody
+	public boolean deleteOneChargeById(@RequestParam("id") int id)
+	{
+		return chargeService.deleteOneChargeById(id);
+	}
 }

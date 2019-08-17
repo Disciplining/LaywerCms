@@ -81,4 +81,27 @@ public class ChargeServiceImpl implements ChargeService
 
 		return new RespondJson<>(0, null, list.size(), charges);
 	}
+
+	/**
+	 * 根据id删除一个罪名
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public boolean deleteOneChargeById(int id)
+	{
+		try
+		{
+			chargeMapper.deleteOneChargeById(id);
+		}
+		catch (Exception e)
+		{
+			System.out.println("发异常：" + e.getMessage());
+
+			return false;
+		}
+
+		return true;
+	}
 }
