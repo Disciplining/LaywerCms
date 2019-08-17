@@ -1,6 +1,7 @@
 package com.hyg.service;
 
 import com.hyg.pojo.ChargeTypeQuestion;
+import com.hyg.util.RespondJson;
 
 public interface ChargeTypeQuestionService
 {
@@ -11,4 +12,12 @@ public interface ChargeTypeQuestionService
 	 * @return
 	 */
 	boolean insertOneChargeTypeQuestion(ChargeTypeQuestion question, String chargeTypeName);
+
+	/**
+	 * 分页数据
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	RespondJson<ChargeTypeQuestion> pageData(int pageNum, int pageSize);
 }

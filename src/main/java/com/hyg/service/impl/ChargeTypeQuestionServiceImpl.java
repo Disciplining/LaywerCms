@@ -1,14 +1,17 @@
 package com.hyg.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hyg.mapper.ChargeTypeMapper;
 import com.hyg.mapper.ChargeTypeQuestionMapper;
 import com.hyg.pojo.ChargeTypeQuestion;
 import com.hyg.service.ChargeTypeQuestionService;
+import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Service("chargeTypeQuestionServiceImpl")
 public class ChargeTypeQuestionServiceImpl implements ChargeTypeQuestionService
@@ -58,5 +61,23 @@ public class ChargeTypeQuestionServiceImpl implements ChargeTypeQuestionService
 		}
 
 		return true;
+	}
+
+	/**
+	 * 分页数据
+	 *
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@Override
+	public RespondJson<ChargeTypeQuestion> pageData(int pageNum, int pageSize)
+	{
+		List<ChargeTypeQuestion> list = mapper.listAllQuestion(); // 分页前查询，为了长度
+
+		PageHelper.startPage(pageNum, pageSize);
+		List<ChargeTypeQuestion> questions = mapper.listAllQuestion();
+
+		return new RespondJson<>(0, null, list.size(), questions);
 	}
 }
