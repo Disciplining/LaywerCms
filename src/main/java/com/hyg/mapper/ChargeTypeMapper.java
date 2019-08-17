@@ -25,7 +25,7 @@ public interface ChargeTypeMapper
 	ChargeType getOneChargeTypeById(int id);
 
 	/**
-	 * 根据罪名分类名称获得一个罪名分类
+	 * 根据 罪名分类名称 获得 一个罪名分类
 	 * @param name
 	 * @return
 	 */

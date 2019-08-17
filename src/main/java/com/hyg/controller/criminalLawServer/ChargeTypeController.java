@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * 罪名分类表控制器
  */
@@ -102,5 +104,16 @@ public class ChargeTypeController
 	public boolean deleteOneChargeType(@RequestParam("id") int id)
 	{
 		return chargeTypeService.deleteOneChargeType(id);
+	}
+
+	/**
+	 * 获得所有的罪名分类名称
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/listChargeTypeName")
+	@ResponseBody
+	public List<String> listChargeTypeName()
+	{
+		return chargeTypeService.listChargeTypeName();
 	}
 }

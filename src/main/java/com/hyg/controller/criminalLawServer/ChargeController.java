@@ -2,7 +2,6 @@ package com.hyg.controller.criminalLawServer;
 
 import com.hyg.pojo.Charge;
 import com.hyg.service.ChargeService;
-import com.hyg.service.ChargeTypeService;
 import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-
 /**
  * 罪名表控制器
  */
@@ -23,23 +20,8 @@ import java.util.List;
 public class ChargeController
 {
 	@Autowired
-	@Qualifier("chargeTypeServiceImpl")
-	private ChargeTypeService chargeTypeService;
-
-	@Autowired
 	@Qualifier("chargeServiceImpl")
 	private ChargeService chargeService;
-
-	/**
-	 * 获得所有的罪名分类名称
-	 * @return
-	 */
-	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/listChargeTypeName")
-	@ResponseBody
-	public List<String> listChargeTypeName()
-	{
-		return chargeTypeService.listChargeTypeName();
-	}
 
 	/**
 	 * 添加一个罪名
