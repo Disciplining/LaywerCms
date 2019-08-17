@@ -27,4 +27,11 @@ public interface ChargeTypeQuestionService
 	 * @return
 	 */
 	boolean deleteOneQuestionById(int id);
+
+	/**
+	 * 根据id获得一条数据
+	 * @param id
+	 * @return
+	 */
+	RespondJson<ChargeTypeQuestion> getOneQuestionById(int id);
 }

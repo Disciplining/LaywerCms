@@ -37,4 +37,12 @@ public interface ChargeTypeQuestionMapper
 	 */
 	@Update(" update `t_chargeTypeQuestion` set `deleteFlag`='1' where `id`=#{id} ")
 	void deleteOneQuestionById(int id);
+
+	/**
+	 * 根据id获得一条数据
+	 * @param id
+	 * @return
+	 */
+	@Select(" select * from `t_chargeTypeQuestion` where `id`=#{id} and `deleteFlag`!='1' ")
+	ChargeTypeQuestion getOneQuestionById(int id);
 }

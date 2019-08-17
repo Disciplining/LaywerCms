@@ -69,4 +69,16 @@ public class ChargeTypeQuestionController
 	{
 		return service.deleteOneQuestionById(id);
 	}
+
+	/**
+	 * 根据id获得一条数据
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneQuestionById")
+	@ResponseBody
+	public RespondJson<ChargeTypeQuestion> getOneQuestionById(@RequestParam("id") int id)
+	{
+		return service.getOneQuestionById(id);
+	}
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("chargeTypeQuestionServiceImpl")
@@ -101,5 +102,29 @@ public class ChargeTypeQuestionServiceImpl implements ChargeTypeQuestionService
 		}
 
 		return true;
+	}
+
+	/**
+	 * 根据id获得一条数据
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public RespondJson<ChargeTypeQuestion> getOneQuestionById(int id)
+	{
+		ChargeTypeQuestion question = mapper.getOneQuestionById(id);
+
+		if (question != null)
+		{
+			List<ChargeTypeQuestion> list = new ArrayList<>(1);
+			list.add(question);
+
+			return new RespondJson<>(0, null, list.size(), list);
+		}
+		else
+		{
+			return new RespondJson<>(0, null, 0, new ArrayList<>(0));
+		}
 	}
 }
