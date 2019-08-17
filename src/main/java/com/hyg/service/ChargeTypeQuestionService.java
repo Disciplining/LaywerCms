@@ -34,4 +34,12 @@ public interface ChargeTypeQuestionService
 	 * @return
 	 */
 	RespondJson<ChargeTypeQuestion> getOneQuestionById(int id);
+
+	/**
+	 * 编辑一个问答
+	 * 前端传：id、question、answer
+	 * @param question
+	 * @return
+	 */
+	boolean editOneQuestion(ChargeTypeQuestion question);
 }

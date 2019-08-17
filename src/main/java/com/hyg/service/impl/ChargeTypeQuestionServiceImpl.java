@@ -127,4 +127,29 @@ public class ChargeTypeQuestionServiceImpl implements ChargeTypeQuestionService
 			return new RespondJson<>(0, null, 0, new ArrayList<>(0));
 		}
 	}
+
+	/**
+	 * 编辑一个问答
+	 * 前端传过来的数据：id、question、answer
+	 *
+	 * @param question
+	 * @return
+	 */
+	@Override
+	public boolean editOneQuestion(ChargeTypeQuestion question)
+	{
+		question.setEditDate(new Timestamp(System.currentTimeMillis()));
+
+		try
+		{
+			mapper.updateEditOneQuestion(question);
+		}
+		catch (Exception e)
+		{
+			System.out.println("发生了异常：" + e.getMessage());
+			return false;
+		}
+
+		return true;
+	}
 }

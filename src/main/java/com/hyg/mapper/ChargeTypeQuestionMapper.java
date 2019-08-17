@@ -45,4 +45,13 @@ public interface ChargeTypeQuestionMapper
 	 */
 	@Select(" select * from `t_chargeTypeQuestion` where `id`=#{id} and `deleteFlag`!='1' ")
 	ChargeTypeQuestion getOneQuestionById(int id);
+
+	/**
+	 * 编辑一个问答
+	 *  更新字段：question、answer、editDate
+	 * @param question
+	 */
+	@Update(" update `t_chargeTypeQuestion` set `question`=#{question},`answer`=#{answer},`editDate`=#{editDate} " +
+				" where `id`=#{id} and `deleteFlag`!='1' ")
+	void updateEditOneQuestion(ChargeTypeQuestion question);
 }

@@ -81,4 +81,24 @@ public class ChargeTypeQuestionController
 	{
 		return service.getOneQuestionById(id);
 	}
+
+	/**
+	 * 编辑一个问答
+	 * 前端传过来的数据：id、question、answer
+	 * @param question
+	 * @return
+	 */
+	@PostMapping("/" + PermissionPrefix.UPDATE_DATA + "/editOneQuestion")
+	public String editOneQuestion(ChargeTypeQuestion question, Model model)
+	{
+		if (service.editOneQuestion(question))
+		{
+			return "/base/answerLawMgr";
+		}
+		else
+		{
+			model.addAttribute("msg", "更新数据失败");
+			return "base/editAnswerLawMgr";
+		}
+	}
 }
