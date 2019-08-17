@@ -48,4 +48,11 @@ public interface ChargeTypeMapper
 
 	@Update(" update `t_chargeType` set `deleteFlag`='1' where `id`=#{id} ")
 	void deleteOneChargeType(int id);
+
+	/**
+	 * 获得所有罪名分类
+	 * @return
+	 */
+	@Select(" select `chargeTypeName` from `t_chargeType` where `deleteFlag`!='1' ")
+	List<String> listChargeTypeName();
 }

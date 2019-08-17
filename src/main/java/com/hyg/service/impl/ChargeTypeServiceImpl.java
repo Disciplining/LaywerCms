@@ -137,4 +137,15 @@ public class ChargeTypeServiceImpl implements ChargeTypeService
 
 		return true;
 	}
+
+	/**
+	 * 获得所有罪名分类
+	 *
+	 * @return
+	 */
+	@Override
+	public List<String> listChargeTypeName()
+	{
+		return chargeTypeMapper.listChargeTypeName();
+	}
 }

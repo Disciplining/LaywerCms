@@ -3,6 +3,8 @@ package com.hyg.service;
 import com.hyg.pojo.ChargeType;
 import com.hyg.util.RespondJson;
 
+import java.util.List;
+
 /**
  * 罪名分类表 service
  */
@@ -47,4 +49,10 @@ public interface ChargeTypeService
 	 * @return
 	 */
 	boolean deleteOneChargeType(int id);
+
+	/**
+	 * 获得所有罪名分类
+	 * @return
+	 */
+	List<String> listChargeTypeName();
 }
