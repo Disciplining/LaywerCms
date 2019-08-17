@@ -25,6 +25,15 @@ public interface ChargeTypeMapper
 	ChargeType getOneChargeTypeById(int id);
 
 	/**
+	 * 根据罪名分类名称获得一个罪名分类
+	 * @param name
+	 * @return
+	 */
+	@Select(" select * from `t_chargeType` where `deleteFlag`!='1' and `chargeTypeName`=#{name} ")
+	ChargeType getOneChargeTypeByName(String name);
+
+
+	/**
 	 * 添加一个 罪名分类
 	 * @param chargeType
 	 */
