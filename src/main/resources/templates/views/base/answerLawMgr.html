@@ -47,15 +47,15 @@
             upload = layui.upload;
         table.render({
             elem: '#test-table-toolbar',
-            url: '/answer.json',
+            url: '/selectData/questionsPageData',
             toolbar: '#test-table-toolbar-toolbarDemo',
             title: '用户数据表',
-            page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
-                groups: 1, //只显示 1 个连续页码,
+            page: {
+                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'],
+                groups: 3, //只显示 1 个连续页码,
                 first: false, //不显示首页,
                 last: false, //不显示尾页
-                limit: 5
+                limit: 10
 
             },
             cols: [
@@ -144,20 +144,20 @@
             var data = obj.data;
             if(obj.event === 'del') {
                 layer.confirm('真的删除行么', function(index) {
-                    // $.ajax({
-                    //     url:'/root/deleteOneUserById?id='+data.id,
-                    //     method:'get',
-                    //     success:function(data){
-                    //         if(data=="success"){
-                    //             obj.del();
-                    //             layer.close(index);
-                    //             window.location.href='/getPage/base/userMgr'
-                    //         }
-                    //     },
-                    //     error:function (data) {
-                    //         alert('删除失败')
-                    //     }
-                    // })
+                    $.ajax({
+                        url:'/deleteData/deleteOneQuestionById?id='+data.id,
+                        method:'get',
+                        success:function(data){
+                            if(data == true){
+                                obj.del();
+                                layer.close(index);
+                                window.location.href='/getPage/base/answerLawMgr'
+                            }
+                        },
+                        error:function (data) {
+                            alert('删除失败')
+                        }
+                    })
                 });
             } else if(obj.event === 'edit') {
                 var data = obj.data;

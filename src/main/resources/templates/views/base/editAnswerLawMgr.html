@@ -12,7 +12,6 @@
 
 <body>
 
-<input th:value="${id}" id="temp-id" type="hidden"/>
 <input th:value="${res}" id="error" type="hidden"/>
 
 <!-- 表单开始 -->
@@ -23,18 +22,18 @@
                 <div class="layui-card-header">编辑罪名分类问答表</div>
                 <div class="layui-card-body">
                     <div style="margin-top:20px">
-                        <form class="layui-form" action="" method="post">
-                            <input type="hidden" id="realId" name="articleId">
+                        <form class="layui-form" action="/updateData/editOneQuestion" method="post">
+                            <input th:value="${id}" name="id" id="temp-id" type="hidden"/>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">问题</label>
                                 <div class="layui-input-block">
-                                    <textarea  placeholder="请输入" name="question" class="layui-textarea"></textarea>
+                                    <textarea  placeholder="请输入" id="question" name="question" class="layui-textarea"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">回答</label>
                                 <div class="layui-input-block">
-                                    <textarea  placeholder="请输入" name="answer" class="layui-textarea"></textarea>
+                                    <textarea  placeholder="请输入" id="answer" name="answer" class="layui-textarea"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -61,65 +60,22 @@
     $.ajax
     (
         {
-            url: '/selectData/getOneArticleById?id=' + $('#temp-id').val(),
+            url: '/selectData/getOneQuestionById?id=' + $('#temp-id').val(),
             type: "get",
             dataType: "json",
             success: function(data)
             {
-                console.log(data.data[0]);
-
-                document.getElementById("realId").value = data.data[0].articleId;
-                document.getElementById('typeExpand').value = data.data[0].typeExpand; // 文章类型
-                document.getElementById('articleTitle').value = data.data[0].articleTitle; // 文章名字
-                document.getElementById('author').value = data.data[0].author; // 作者名字
-                document.getElementById('intro').value = data.data[0].intro; // 文集简介
-                editor.html(data.data[0].content); // 文章内容
+                document.getElementById("question").value = data.data[0].question;
+                document.getElementById('answer').value = data.data[0].answer;
             }
         }
     );
-
-    var href = location.href;
-    console.log(href);
-    var flag = false;
-    var hrefArr = href.split('');
-    for(var j=0;j<hrefArr.length;j++)
-    {
-        console.log(hrefArr[j]);
-        if(hrefArr[j]!='?')
-        {
-            flag = true;
-            function filterId(str)
-            {
-                var newStr = str.split('?')[1].split('=')[1];
-                return newStr
-            }
-            console.log(flag)
-        }
-        else
-        {
-            flag=false
-            console.log(flag)
-        }
-    }
-    KindEditor.ready(function(K) {
-        window.editor = K.create('#content');
-    });
-    var realId = document.getElementById("realId")
-    var select =document.getElementsByTagName('select');
-    var option =document.getElementsByTagName('option');
-    var type = document.getElementById('type')
-    var agencyDetail = document.getElementById('agencyDetail')
-    var id = document.getElementById('id')
-    var author = document.getElementById('author')
-    var intro = document.getElementById('intro')
-    var editor_id = document.getElementById('content')
     layui.use(['jquery','form','layer'], function() {
-        var $ = layui.$, form=layui.form;
-        if(flag){
-            var idr = filterId(location.href);
-
+        var $ = layui.$, form=layui.form,layer=layui.layer;
+        var error = $('#error').val()
+        if(error!=''){
+            layer.alert(error)
         }
-
     })
 </script>
 
