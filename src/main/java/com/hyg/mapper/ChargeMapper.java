@@ -38,4 +38,15 @@ public interface ChargeMapper
 	 */
 	@Update(" update `t_charge` set `deleteFlag`='1' where `id`=#{id} ")
 	void deleteOneChargeById(int id);
+
+	@Select(" select * from `t_charge` where `id`=#{id} and `deleteFlag`!='1' ")
+	Charge getOneChargeById(int id);
+
+	/**
+	 * 根据id编辑一个罪名
+	 * @param charge
+	 */
+	@Update(" update `t_charge` set `chargeName`=#{chargeName},`lawContent`=#{lawContent},`sentenceRange`=#{sentenceRange},`defense`=#{defense},`editDate`=#{editDate} " +
+				" where `id`=#{id} ")
+	void updateEditChargeById(Charge charge);
 }

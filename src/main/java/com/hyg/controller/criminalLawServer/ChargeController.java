@@ -85,4 +85,35 @@ public class ChargeController
 	{
 		return chargeService.deleteOneChargeById(id);
 	}
+
+	/**
+	 * 根据id获取一个罪名
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneChargeById")
+	@ResponseBody
+	public RespondJson<Charge> getOneChargeById(@RequestParam("id") int id)
+	{
+		return chargeService.getOneChargeById(id);
+	}
+
+	/**
+	 * 编辑
+	 * @param charge
+	 * @return
+	 */
+	@PostMapping("/" + PermissionPrefix.UPDATE_DATA + "/editChargeById")
+	public String editChargeById(Charge charge, Model model)
+	{
+		if (chargeService.updateEditChargeById(charge))
+		{
+			return "base/chargeMgr";
+		}
+		else
+		{
+			model.addAttribute("msg", "更新数据失败");
+			return "base/editChargeMgr";
+		}
+	}
 }

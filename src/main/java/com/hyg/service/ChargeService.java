@@ -28,4 +28,18 @@ public interface ChargeService
 	 * @return
 	 */
 	boolean deleteOneChargeById(int id);
+
+	/**
+	 * 根据id获取一个罪名
+	 * @param id
+	 * @return
+	 */
+	RespondJson<Charge> getOneChargeById(int id);
+
+	/**
+	 * 根据id编辑一个罪名
+	 * @param charge
+	 * @return
+	 */
+	boolean updateEditChargeById(Charge charge);
 }

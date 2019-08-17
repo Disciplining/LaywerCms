@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("chargeServiceImpl")
@@ -99,6 +100,54 @@ public class ChargeServiceImpl implements ChargeService
 		{
 			System.out.println("发异常：" + e.getMessage());
 
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * 根据id获取一个罪名
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public RespondJson<Charge> getOneChargeById(int id)
+	{
+		Charge charge = chargeMapper.getOneChargeById(id);
+
+		if (charge != null)
+		{
+			List<Charge> list = new ArrayList<>();
+			list.add(charge);
+
+			return new RespondJson<>(0, null, 1, list);
+		}
+		else
+		{
+			return new RespondJson<>(0, null, 0, new ArrayList<>(0));
+		}
+	}
+
+	/**
+	 * 根据id编辑一个罪名
+	 *
+	 * @param charge
+	 * @return
+	 */
+	@Override
+	public boolean updateEditChargeById(Charge charge)
+	{
+		charge.setEditDate(new Timestamp(System.currentTimeMillis()));
+
+		try
+		{
+			chargeMapper.updateEditChargeById(charge);
+		}
+		catch (Exception e)
+		{
+			System.out.println("发生了异常：" + e.getMessage());
 			return false;
 		}
 
