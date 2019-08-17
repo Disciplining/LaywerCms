@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<input th:value="${res}" id="error" type="hidden"/>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -16,24 +17,24 @@
                 <div class="layui-card-header">添加罪名</div>
                 <div class="layui-card-body">
                     <div style="margin-top:20px">
-                        <form class="layui-form" style="margin-top: 20px;" method="post" action=""  enctype="multipart/form-data">
+                        <form class="layui-form" style="margin-top: 20px;" method="post" action="/insertData/insertOneCharge">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">罪名分类</label>
                                 <div class="layui-input-block">
-                                    <select name="typeExpand" lay-verify="required" id="select">
+                                    <select name="chargeTypeName" lay-verify="required" id="select">
                                     </select>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">罪名名称</label>
                                 <div class="layui-input-block">
-                                    <input type="text" required lay-verify="required" name="name" autocomplete="off" class="layui-input">
+                                    <input type="text" required lay-verify="required" name="chargeName" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">法律规定</label>
                                 <div class="layui-input-block">
-                                    <input type="text" required lay-verify="required" name="law" autocomplete="off" class="layui-input">
+                                    <input type="text" required lay-verify="required" name="lawContent" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -45,13 +46,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">辩护流程与方案</label>
                                 <div class="layui-input-block">
-                                    <input type="text" required lay-verify="required" name="defence" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">法律规定</label>
-                                <div class="layui-input-block">
-                                    <input type="text" required lay-verify="required" name="author" autocomplete="off" class="layui-input">
+                                    <input type="text" required lay-verify="required" name="defense" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -70,18 +65,22 @@
 <script src="/layuiadmin/layui/layui.js"></script>
 <script>
     var select = document.getElementById('select')
-    layui.use(['form', 'upload', 'jquery'], function() {
+    layui.use(['form', 'upload', 'jquery','layer'], function() {
         var form = layui.form,
             $ = layui.$,
+            layer=layui.layer,
             upload = layui.upload;
+        var error = $('#error').val()
+        if(error!=''){
+            layer.alert(error)
+        }
         $.ajax({
-            url:'/package.json',
+            url:'/selectData/listChargeTypeName',
             method:'get',
             success:function(data){
-                console.log(data.data)
-                var data = data.data
+                // console.log(data)
                 for(var i=0;i<data.length;i++){
-                    $('#select').append("<option>"+data[i].name+"</option>")
+                    $('#select').append("<option>"+data[i]+"</option>")
                     form.render('select')
                 }
             },

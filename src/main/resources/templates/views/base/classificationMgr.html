@@ -50,7 +50,7 @@
             url: '/selectData/charTypePageData',
             toolbar: '#test-table-toolbar-toolbarDemo',
             title: '用户数据表',
-            page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+            page: {
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
                 groups: 3, //只显示 1 个连续页码,
                 first: false, //不显示首页,
@@ -86,7 +86,6 @@
             ],
             id:'testTable'
         });
-        //头工具栏事件
         var demoReload = document.getElementById('demoReload')
         var $ = layui.$, active = {
             reload: function(){
