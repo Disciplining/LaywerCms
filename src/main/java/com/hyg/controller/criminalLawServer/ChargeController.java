@@ -83,6 +83,7 @@ public class ChargeController
 	@ResponseBody
 	public boolean deleteOneChargeById(@RequestParam("id") int id)
 	{
+		System.out.println("+++++++++++++++++++++++++++执行了+++++++++++++");
 		return chargeService.deleteOneChargeById(id);
 	}
 
