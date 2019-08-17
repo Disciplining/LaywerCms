@@ -57,4 +57,16 @@ public class ChargeTypeQuestionController
 	{
 		return service.pageData(pageNum, pageSize);
 	}
+
+	/**
+	 * 根据id删除一个问答
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.DELETE_DATA + "/deleteOneQuestionById")
+	@ResponseBody
+	public boolean deleteOneQuestionById(@RequestParam("id") int id)
+	{
+		return service.deleteOneQuestionById(id);
+	}
 }

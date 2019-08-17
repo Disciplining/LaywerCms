@@ -80,4 +80,26 @@ public class ChargeTypeQuestionServiceImpl implements ChargeTypeQuestionService
 
 		return new RespondJson<>(0, null, list.size(), questions);
 	}
+
+	/**
+	 * 根据id删除一个问答
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public boolean deleteOneQuestionById(int id)
+	{
+		try
+		{
+			mapper.deleteOneQuestionById(id);
+		}
+		catch (Exception e)
+		{
+			System.out.println("发生异常：" + e.getMessage());
+			return false;
+		}
+
+		return true;
+	}
 }

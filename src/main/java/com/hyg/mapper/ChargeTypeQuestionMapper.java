@@ -4,6 +4,7 @@ import com.hyg.pojo.ChargeTypeQuestion;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,4 +30,11 @@ public interface ChargeTypeQuestionMapper
 	 */
 	@Select(" select * from `t_chargeTypeQuestion` where `deleteFlag`!='1' ")
 	List<ChargeTypeQuestion> listAllQuestion();
+
+	/**
+	 * 根据id删除一条数据
+	 * @param id
+	 */
+	@Update(" update `t_chargeTypeQuestion` set `deleteFlag`='1' where `id`=#{id} ")
+	void deleteOneQuestionById(int id);
 }

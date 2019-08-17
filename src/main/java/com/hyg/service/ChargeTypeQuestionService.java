@@ -20,4 +20,11 @@ public interface ChargeTypeQuestionService
 	 * @return
 	 */
 	RespondJson<ChargeTypeQuestion> pageData(int pageNum, int pageSize);
+
+	/**
+	 * 根据id删除一个问答
+	 * @param id
+	 * @return
+	 */
+	boolean deleteOneQuestionById(int id);
 }
