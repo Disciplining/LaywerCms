@@ -39,6 +39,11 @@ public interface ChargeMapper
 	@Update(" update `t_charge` set `deleteFlag`='1' where `id`=#{id} ")
 	void deleteOneChargeById(int id);
 
+	/**
+	 * 根据id获取一条数据
+	 * @param id
+	 * @return
+	 */
 	@Select(" select * from `t_charge` where `id`=#{id} and `deleteFlag`!='1' ")
 	Charge getOneChargeById(int id);
 
@@ -49,4 +54,11 @@ public interface ChargeMapper
 	@Update(" update `t_charge` set `chargeName`=#{chargeName},`lawContent`=#{lawContent},`sentenceRange`=#{sentenceRange},`defense`=#{defense},`editDate`=#{editDate} " +
 				" where `id`=#{id} ")
 	void updateEditChargeById(Charge charge);
+
+	/**
+	 * 获得 某个罪名分类id 下的 所有罪名
+	 * @return
+	 */
+	@Select(" select `chargeName` from `t_charge` where `chargeTypeId`=#{chargeTypeId} and `deleteFlag`!='1' ")
+	List<String> listChargeNameByChargeTypeId(int chargeTypeId);
 }
