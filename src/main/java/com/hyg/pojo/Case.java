@@ -25,9 +25,10 @@ public class Case
 
 	private String lessions;
 
-	private String publishDate;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+	private Timestamp publishDate;
 
-	private Integer isSuccess;
+	private Integer successFlag;
 
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	private Timestamp editDate;

@@ -48,6 +48,14 @@ public interface ChargeMapper
 	Charge getOneChargeById(int id);
 
 	/**
+	 * 根据 罪名名称 获得一条数据
+	 * @param chargeName
+	 * @return
+	 */
+	@Select(" select * from `t_charge` where `chargeName`=#{chargeName} and `deleteFlag`!='1' ")
+	Charge getOneChargeByChargeName(String chargeName);
+
+	/**
 	 * 根据id编辑一个罪名
 	 * @param charge
 	 */
