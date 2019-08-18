@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -60,5 +61,22 @@ public class CaseController
 			model.addAttribute("msg", "添加数据失败");
 			return "base/addCaseMgr";
 		}
+	}
+
+	/**
+	 * 分页数据
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/casePageDate")
+	@ResponseBody
+	public RespondJson<Case> casePageDate
+	(
+		@RequestParam(value = "page", defaultValue = "1") int pageNum,
+		@RequestParam(value = "limit", defaultValue = "10") int pageSize
+	)
+	{
+		return service.pageDate(pageNum, pageSize);
 	}
 }

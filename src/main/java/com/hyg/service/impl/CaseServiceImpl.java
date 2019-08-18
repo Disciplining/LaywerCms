@@ -1,5 +1,6 @@
 package com.hyg.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hyg.mapper.CaseMapper;
 import com.hyg.mapper.ChargeMapper;
 import com.hyg.mapper.ChargeTypeMapper;
@@ -120,5 +121,23 @@ public class CaseServiceImpl implements CaseService
 		}
 
 		return true;
+	}
+
+	/**
+	 * 分页数据
+	 *
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@Override
+	public RespondJson<Case> pageDate(int pageNum, int pageSize)
+	{
+		List<Case> list = mapper.listAllCase(); // 分页前查询，为了长度
+
+		PageHelper.startPage(pageNum, pageSize);
+		List<Case> cases = mapper.listAllCase();
+
+		return new RespondJson<>(0, null, list.size(), cases);
 	}
 }

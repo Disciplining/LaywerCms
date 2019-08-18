@@ -27,4 +27,12 @@ public interface CaseService
 	 * @return
 	 */
 	boolean insertOneCase(Case onCase, String chargeName);
+
+	/**
+	 * 分页数据
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	RespondJson<Case> pageDate(int pageNum, int pageSize);
 }
