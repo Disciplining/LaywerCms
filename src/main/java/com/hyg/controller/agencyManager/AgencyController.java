@@ -3,7 +3,7 @@ package com.hyg.controller.agencyManager;
 import com.hyg.pojo.Agency;
 import com.hyg.service.AgencyService;
 import com.hyg.shiro.PermissionPrefix;
-import com.hyg.util.RespondJson;
+import com.hyg.util.respond.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

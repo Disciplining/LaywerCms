@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.hyg.pojo.User;
 import com.hyg.service.UserService;
 import com.hyg.shiro.PermissionPrefix;
-import com.hyg.util.RespondJson;
+import com.hyg.util.respond.RespondJson;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;

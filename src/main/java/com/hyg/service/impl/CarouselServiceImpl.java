@@ -6,7 +6,7 @@ import com.hyg.pojo.Carousel;
 import com.hyg.pojo.CarouselExpand;
 import com.hyg.service.CarouselService;
 import com.hyg.util.FileUtil;
-import com.hyg.util.RespondJson;
+import com.hyg.util.respond.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

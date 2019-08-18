@@ -2,7 +2,7 @@ package com.hyg.service;
 
 import com.hyg.pojo.Lawyer;
 import com.hyg.pojo.LawyerExpand;
-import com.hyg.util.RespondJson;
+import com.hyg.util.respond.RespondJson;
 
 public interface LawyerService
 {

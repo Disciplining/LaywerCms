@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.hyg.mapper.ChargeTypeMapper;
 import com.hyg.pojo.ChargeType;
 import com.hyg.service.ChargeTypeService;
-import com.hyg.util.RespondJson;
+import com.hyg.util.respond.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

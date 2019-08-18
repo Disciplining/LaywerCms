@@ -5,7 +5,7 @@ import com.hyg.mapper.ChargeMapper;
 import com.hyg.mapper.ChargeTypeMapper;
 import com.hyg.pojo.Charge;
 import com.hyg.service.ChargeService;
-import com.hyg.util.RespondJson;
+import com.hyg.util.respond.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

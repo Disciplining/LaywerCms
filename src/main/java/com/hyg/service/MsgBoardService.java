@@ -1,7 +1,7 @@
 package com.hyg.service;
 
 import com.hyg.pojo.MsgBoard;
-import com.hyg.util.RespondJson;
+import com.hyg.util.respond.RespondJson;
 
 public interface MsgBoardService
 {

@@ -1,7 +1,7 @@
 package com.hyg.service;
 
 import com.hyg.pojo.ChargeType;
-import com.hyg.util.RespondJson;
+import com.hyg.util.respond.RespondJson;
 
 import java.util.List;
 

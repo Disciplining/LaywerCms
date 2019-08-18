@@ -7,7 +7,7 @@ import com.hyg.pojo.Lawyer;
 import com.hyg.pojo.LawyerExpand;
 import com.hyg.service.LawyerService;
 import com.hyg.util.FileUtil;
-import com.hyg.util.RespondJson;
+import com.hyg.util.respond.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

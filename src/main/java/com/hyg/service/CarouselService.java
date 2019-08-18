@@ -2,7 +2,7 @@ package com.hyg.service;
 
 import com.hyg.pojo.Carousel;
 import com.hyg.pojo.CarouselExpand;
-import com.hyg.util.RespondJson;
+import com.hyg.util.respond.RespondJson;
 
 public interface CarouselService
 {
