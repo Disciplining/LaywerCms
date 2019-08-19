@@ -12,7 +12,7 @@
 <input th:value="${res}" id="error" type="hidden"/>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
+        <div  class="layui-col-md12">
             <div class="layui-card" style="position: relative;">
                 <div class="layui-card-header">罪名分类问答</div>
                 <div class="layui-card-body">
@@ -66,6 +66,7 @@
             method:'get',
             success:function(data){
                 // console.log(data)
+                $('#select').append("<option value></option>")
                 for(var i=0;i<data.length;i++){
                     $('#select').append("<option>"+data[i]+"</option>")
                     form.render('select')

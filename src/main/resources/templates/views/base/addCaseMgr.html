@@ -104,10 +104,10 @@
                 var html = '';
                 console.log(data)
                 var len = data.data.length;
+                $('#selectT').append('<option value="请选择">请选择</option>')
                 for(var i = 0 ; i< len;i++){
-                    html = html + '<option value="'+ data.data[i].chargeTypeName +'">'+ data.data[i].chargeTypeName +'</option>';
+                    $('#selectT').append('<option value="'+ data.data[i].chargeTypeName +'">'+ data.data[i].chargeTypeName +'</option>')
                 }
-                $('#selectT').html('').append(html)
                 form.render('select')
                 form.on('select(test)', function(realData){
                     $("#selectName").empty();
