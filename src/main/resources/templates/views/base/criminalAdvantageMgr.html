@@ -145,24 +145,24 @@
             var data = obj.data;
             if(obj.event === 'del') {
                 layer.confirm('真的删除行么', function(index) {
-                    // $.ajax({
-                    //     url:'/root/deleteOneUserById?id='+data.id,
-                    //     method:'get',
-                    //     success:function(data){
-                    //         if(data=="success"){
-                    //             obj.del();
-                    //             layer.close(index);
-                    //             window.location.href='/getPage/base/userMgr'
-                    //         }
-                    //     },
-                    //     error:function (data) {
-                    //         alert('删除失败')
-                    //     }
-                    // })
+                    $.ajax({
+                        url:'/deleteData/deleteOneDefenseAdvantageById?id='+data.id,
+                        method:'get',
+                        success:function(data){
+                            if(data==true){
+                                obj.del();
+                                layer.close(index);
+                                window.location.href='/getPage/base/criminalAdvantageMgr'
+                            }
+                        },
+                        error:function (data) {
+                            alert('删除失败')
+                        }
+                    })
                 });
             } else if(obj.event === 'edit') {
                 var data = obj.data;
-                window.location.href = "/getPage/base/editIntroductionArgument.html?id=" + data.id
+                window.location.href = "/getPage/base/editCriminalAdvantageMgr.html?id="+data.id
             }
         });
 

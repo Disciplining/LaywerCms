@@ -17,7 +17,7 @@
 
 <body>
 
-<input th:value="${res}" id="error" type="hidden"/>
+<input th:value="${msg}" id="error" type="hidden"/>
 
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
@@ -26,7 +26,7 @@
                 <div class="layui-card-header">刑事优势表</div>
                 <div class="layui-card-body">
                     <div style="margin-top:20px">
-                        <form class="layui-form" method="post" action="/insertData/insertOneAdvantage">
+                        <form class="layui-form" method="post" action="/insertData/insertOneAdvantage" enctype="multipart/form-data">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">标题</label>
                                 <div class="layui-input-block">
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label">形辩图标</label>
+                                <label class="layui-form-label">轮播图片</label>
                                 <div class="layui-input-block">
                                     <div id="colla_img" style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
                                     <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
@@ -72,17 +72,23 @@
         window.editor = K.create('#content');
     });
     var editor_id = document.getElementById('content')
-    layui.use(['jquery','form','layer'], function() {
-        var $ = layui.$, form=layui.form,upload=layui.upload;
+    layui.use(['form', 'upload', 'jquery','layer'], function() {
+        var form = layui.form,
+            upload = layui.upload,
+            layer=layui.layer,
+            $ = layui.$;
+        if($('#error').val()!=''){
+            layer.alert('添加失败')
+        }
         upload.render({
             elem: '#test1',
             url: 'upload',
             size: 2048,
             auto: false //选择文件后不自动上传
             ,
-            bindAction: '#save' //指向一个按钮触发上传
-            ,
+            bindAction: '#save',
             choose: function(obj) {
+                //预读本地文件
                 var number = $('#colla_img').children().length
                 console.log(number)
                 if(number>0){
@@ -94,7 +100,8 @@
                 })
             }
         });
-    })
+
+    });
 </script>
 
 </body>
