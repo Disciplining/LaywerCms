@@ -5,6 +5,8 @@ import com.hyg.mapper.CaseMapper;
 import com.hyg.mapper.ChargeMapper;
 import com.hyg.mapper.ChargeTypeMapper;
 import com.hyg.pojo.Case;
+import com.hyg.pojo.CaseExpand;
+import com.hyg.pojo.Charge;
 import com.hyg.service.CaseService;
 import com.hyg.util.respond.CaseLinkageData;
 import com.hyg.util.respond.RespondJson;
@@ -148,14 +150,30 @@ public class CaseServiceImpl implements CaseService
 	 * @return
 	 */
 	@Override
-	public RespondJson<Case> getOneCaseById(int id)
+	public RespondJson<CaseExpand> getOneCaseById(int id)
 	{
-		Case oneCase = mapper.getOneCaseById(id);
+		Case oneCase = mapper.getOneCaseById(id); // 根据案例id获取一个案例
+		Charge charge = chargeMapper.getOneChargeById(oneCase.getChargeId()); // 根据案例id的 chargeId 获取它对应的罪名
 
-		if (oneCase != null)
+		if (oneCase != null && charge != null)
 		{
-			List<Case> list = new ArrayList<>(1);
-			list.add(oneCase);
+			CaseExpand expand = new CaseExpand();
+			expand.setId(oneCase.getId());
+			expand.setChargeId(oneCase.getChargeId());
+			expand.setTitle(oneCase.getTitle());
+			expand.setDesc(oneCase.getDesc());
+			expand.setProcess(oneCase.getProcess());
+			expand.setResult(oneCase.getResult());
+			expand.setLessions(oneCase.getLessions());
+			expand.setPublishDate(oneCase.getPublishDate());
+			expand.setSuccessFlag(oneCase.getSuccessFlag());
+			expand.setEditDate(oneCase.getEditDate());
+			expand.setCount(oneCase.getCount());
+			expand.setDeleteFlag(oneCase.getDeleteFlag());
+			expand.setChargeName(charge.getChargeName());
+
+			List<CaseExpand> list = new ArrayList<>(1);
+			list.add(expand);
 
 			return new RespondJson<>(0, null, list.size(), list);
 		}

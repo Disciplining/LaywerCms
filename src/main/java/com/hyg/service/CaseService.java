@@ -1,6 +1,7 @@
 package com.hyg.service;
 
 import com.hyg.pojo.Case;
+import com.hyg.pojo.CaseExpand;
 import com.hyg.util.respond.CaseLinkageData;
 import com.hyg.util.respond.RespondJson;
 
@@ -41,7 +42,7 @@ public interface CaseService
 	 * @param id
 	 * @return
 	 */
-	RespondJson<Case> getOneCaseById(int id);
+	RespondJson<CaseExpand> getOneCaseById(int id);
 
 	/**
 	 * 根据id删除一个案例

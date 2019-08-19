@@ -1,6 +1,7 @@
 package com.hyg.controller.criminalLawServer;
 
 import com.hyg.pojo.Case;
+import com.hyg.pojo.CaseExpand;
 import com.hyg.service.CaseService;
 import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.respond.CaseLinkageData;
@@ -87,7 +88,7 @@ public class CaseController
 	 */
 	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneCaseById")
 	@ResponseBody
-	public RespondJson<Case> getOneCaseById(@RequestParam("id") int id)
+	public RespondJson<CaseExpand> getOneCaseById(@RequestParam("id") int id)
 	{
 		return service.getOneCaseById(id);
 	}
