@@ -41,10 +41,6 @@
 <script src="/layuiadmin/kindeditor/kindeditor-all.js"></script>
 <script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
 <script>
-	function filterId(str) {
-		var newStr = str.split('?')[1].split('=')[1]
-		return newStr
-	}
 	KindEditor.ready(function(K) {
 		window.editor = K.create('#editor_id',function () {
             uploadJson: '/insertData/uploadAgencyDetailPic'

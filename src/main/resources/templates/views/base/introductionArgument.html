@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
 </head>
 <body>
-<input th:value="${res}" id="inp" style="display: none">
+<input th:value="${msg}" id="inp" style="display: none">
 <div class="layui-fluid">
     <div class="layui-row">
         <div>
             <div class="layui-card">
-                <div class="layui-card-header">刑事辩护介绍</div>
+                <div class="layui-card-header">事务所介绍</div>
                 <div class="layui-card-body" style="margin-left: -60px;">
                     <div class="form" >
-                        <form class="layui-form" style="margin-top: 20px;" method="post" action="/updateData/agencyDetail">
+                        <form class="layui-form" style="margin-top: 20px;" method="post" action="/updateData/updateDesc">
                             <div class="layui-form-item layui-form-text">
                                 <div class="layui-input-block" style="margin-left: 60px;">
-                                    <textarea id="editor_id" name="content" style="width:100%;height:600px;"></textarea>
+                                    <textarea id="editor_id" name="desc" style="width:100%;height:600px;"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -41,10 +41,6 @@
 <script src="/layuiadmin/kindeditor/kindeditor-all.js"></script>
 <script src="/layuiadmin/kindeditor/lang/zh-CN.js"></script>
 <script>
-    function filterId(str) {
-        var newStr = str.split('?')[1].split('=')[1]
-        return newStr
-    }
     KindEditor.ready(function(K) {
         window.editor = K.create('#editor_id',function () {
             uploadJson: '/insertData/uploadAgencyDetailPic'
@@ -58,14 +54,14 @@
         if(inp.value!=''){
             layer.alert(inp.value)
         }
-        // $.ajax({
-        //     url: '/selectData/getAgencyData',
-        //     type: "get",
-        //     dataType: "json",
-        //     success: function(data) {
-        //         editor.html(data.data[0].agencyDetail)
-        //     }
-        // })
+        $.ajax({
+            url: '/selectData/listDefenseDesc',
+            type: "get",
+            dataType: "json",
+            success: function(data) {
+                editor.html(data.data[0].desc)
+            }
+        })
     })
 </script>
 </body>
