@@ -24,5 +24,5 @@ public class PicDir
 	/**
 	 * 刑变优势表中的图片
 	 */
-	public final static String DEFENSE_ADVANTAGE = "defense-advantage-pic/";
+	public final static String DEFENSE_ADVANTAGE_DIR = "defense-advantage-pic/";
 }
