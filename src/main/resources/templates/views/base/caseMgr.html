@@ -47,15 +47,15 @@
             upload = layui.upload;
         table.render({
             elem: '#test-table-toolbar',
-            url: '/case.json',
+            url: '/selectData/casePageDate',
             toolbar: '#test-table-toolbar-toolbarDemo',
             title: '用户数据表',
             page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
-                groups: 1, //只显示 1 个连续页码,
+                groups: 3, //只显示 1 个连续页码,
                 first: false, //不显示首页,
                 last: false, //不显示尾页
-                limit: 5
+                limit: 10
 
             },
             cols: [
@@ -69,19 +69,33 @@
                     {
                         field: 'title',
                         title: '案例标题',
-                        width:120
+                        width:100
                     }, {
                     field: 'desc',
                     title: '案例介绍',
-                    width: 120,
+                    width: 100,
                 }, {
                     field: 'process',
                     title: '办案过程',
+                },{
+                    field: 'result',
+                    title: '结果',
+                    width:100,
                 },
+                    {
+                        field: 'lessions',
+                        title: '经验心得',
+                        width:100,
+                    },
+                    {
+                        field: 'successFlag',
+                        title: '是否成功',
+                        width:100,
+                    },
                     {
                         title: '操作',
                         toolbar: '#test-table-toolbar-barDemo',
-                        width: 200
+                        width: 120
                     }
                 ]
             ],
@@ -89,73 +103,45 @@
         });
         //头工具栏事件
         var demoReload = document.getElementById('demoReload')
-        var $ = layui.$, active = {
-            reload: function(){
-                table.reload('testTable', {
-                    page: {
-                        curr: 1 //重新从第 1 页开始
-                    },
-                    url:'/selectData/searchByName?name='+demoReload.value,
-                    method:"get"
-                }, 'data');
-            }
-        };
-        $('.demoTable .layui-btn').on('click', function(){
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
-        });
-        table.on('toolbar(test-table-toolbar)', function(obj) {
-            var checkStatus = table.checkStatus(obj.config.id);
-            switch(obj.event) {
-                case 'getCheckData':
-                    var data = checkStatus.data;
-                    layer.alert(JSON.stringify(data));
-                    break;
-                case 'getCheckLength':
-                    var data = checkStatus.data;
-                    layer.msg('选中了：' + data.length + ' 个');
-                    break;
-            };
-        });
-        var uploadInst = upload.render({
-            elem: '#test1' //绑定元素
-            ,
-            url: '' //上传接口
-            ,
-            auto: false //选择文件后不自动上传
-            ,
-            bindAction: '#testListAction',
-            done: function(res) {
-                //上传完毕回调
-            },
-            error: function() {
-                //请求异常回调
-            }
-        });
+        // var $ = layui.$, active = {
+        //     reload: function(){
+        //         table.reload('testTable', {
+        //             page: {
+        //                 curr: 1 //重新从第 1 页开始
+        //             },
+        //             url:'/selectData/searchByName?name='+demoReload.value,
+        //             method:"get"
+        //         }, 'data');
+        //     }
+        // };
+        // $('.demoTable .layui-btn').on('click', function(){
+        //     var type = $(this).data('type');
+        //     active[type] ? active[type].call(this) : '';
+        // });
 
         //监听行工具事件
         table.on('tool(test-table-toolbar)', function(obj) {
             var data = obj.data;
             if(obj.event === 'del') {
                 layer.confirm('真的删除行么', function(index) {
-                    // $.ajax({
-                    //     url:'/root/deleteOneUserById?id='+data.id,
-                    //     method:'get',
-                    //     success:function(data){
-                    //         if(data=="success"){
-                    //             obj.del();
-                    //             layer.close(index);
-                    //             window.location.href='/getPage/base/userMgr'
-                    //         }
-                    //     },
-                    //     error:function (data) {
-                    //         alert('删除失败')
-                    //     }
-                    // })
+                    $.ajax({
+                        url:'/deleteData/deleteOneCaseById?id='+data.id,
+                        method:'get',
+                        success:function(data){
+                            if(data==true){
+                                obj.del();
+                                layer.close(index);
+                                window.location.href='/getPage/base/caseMgr'
+                            }
+                        },
+                        error:function (data) {
+                            alert('删除失败')
+                        }
+                    })
                 });
             } else if(obj.event === 'edit') {
                 var data = obj.data;
-                window.location.href = "/getPage/base/editChargeMgr.html?id=" + data.id
+                window.location.href = "/getPage/base/editCaseMgr.html?id=" + data.id
             }
         });
 

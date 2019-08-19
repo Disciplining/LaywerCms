@@ -3,21 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>案例添加</title>
+    <title>案例表</title>
     <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 </head>
 
 <body>
-<input th:value="${msg}" id="error" type="hidden"/>
+
+<input th:value="${res}" id="error" type="hidden"/>
+
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card" style="position: relative;">
-                <div class="layui-card-header">案例添加</div>
+                <div class="layui-card-header">案例表编辑</div>
                 <div class="layui-card-body">
                     <div style="margin-top:20px">
-                        <form class="layui-form" style="margin-top: 20px;" method="post" action="/insertData/insertOneCase">
+                        <form class="layui-form" action="/updateData/editChargeById" method="post">
+                            <input th:value="${id}" name="id" id="temp-id" type="hidden" />
                             <div class="layui-form-item">
                                 <label class="layui-form-label">罪名分类</label>
                                 <div class="layui-input-block" >
@@ -35,38 +40,38 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">案例标题</label>
                                 <div class="layui-input-block">
-                                    <input type="text"  required lay-verify="required" name="title" autocomplete="off" class="layui-input">
+                                    <input type="text" id="title"  required lay-verify="required" name="title" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item layui-form-text">
                                 <label class="layui-form-label">案例介绍</label>
                                 <div class="layui-input-block">
-                                    <textarea required name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                    <textarea required name="desc" id="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">办案过程</label>
                                 <div class="layui-input-block">
-                                    <textarea required name="process" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                    <textarea required name="process" id="process" placeholder="请输入内容" class="layui-textarea"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">结果</label>
                                 <div class="layui-input-block">
-                                    <textarea required name="result" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                    <textarea required name="result" id="result" placeholder="请输入内容" class="layui-textarea"></textarea>
 
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">经验心得</label>
                                 <div class="layui-input-block">
-                                    <textarea required name="lessions" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                    <textarea required name="lessions" id="lessions" placeholder="请输入内容" class="layui-textarea"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">是否成功</label>
                                 <div class="layui-input-block">
-                                    <select  name="successFlag" lay-verify="required" id="isSuccess">
+                                    <select  name="successFlag" id="successFlag" lay-verify="required">
                                         <option value=""></option>
                                         <option value="1">成功</option>
                                         <option value="0">失败</option>
@@ -75,7 +80,7 @@
                             </div>
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
-                                    <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
                                 </div>
                             </div>
                         </form>
@@ -86,14 +91,15 @@
         </div>
     </div>
 </div>
+<!-- 表单结束 -->
+
 <script src="/layuiadmin/layui/layui.js"></script>
+
 <script>
-    layui.use(['form', 'upload', 'jquery'], function() {
-        var form = layui.form,
-            layer=layui.layer,
-            $ = layui.$,
-            upload = layui.upload;
-        var error =$('#error').val()
+    var error = $('#error').val()
+    var value = $('#temp-id').val()
+    layui.use(['jquery','form','layer'], function() {
+        var $ = layui.$, form=layui.form,layer=layui.layer;
         if(error!=''){
             layer.alert(error)
         }
@@ -128,8 +134,28 @@
                 alert(data)
             }
         })
-    });
+        $.ajax
+        (
+            {
+                url: '/selectData/getOneCaseById?id=' + value,
+                type: "get",
+                dataType: "json",
+                success: function(data)
+                {
+                    document.getElementById("title").value = data.data[0].title;
+                    document.getElementById('desc').value = data.data[0].desc;
+                    document.getElementById('process').value = data.data[0].process;
+                    document.getElementById('result').value = data.data[0].result;
+                    document.getElementById('lessions').value = data.data[0].lessions;
+                    document.getElementById('successFlag').value = data.data[0].successFlag;
+                    form.render(select)
+                }
+            }
+        );
+
+    })
 </script>
+
 </body>
 
 </html>
