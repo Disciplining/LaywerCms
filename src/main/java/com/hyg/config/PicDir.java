@@ -20,4 +20,9 @@ public class PicDir
 	 * 事务所简介中的图片
 	 */
 	public final static String AGENCY_DETAIL_DIR = "agency-detail-pic/";
+
+	/**
+	 * 刑变优势表中的图片
+	 */
+	public final static String DEFENSE_ADVANTAGE = "defense-advantage-pic/";
 }
