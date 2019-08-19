@@ -79,4 +79,50 @@ public class CaseController
 	{
 		return service.pageDate(pageNum, pageSize);
 	}
+
+	/**
+	 * 根据id获得一个案例
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneCaseById")
+	@ResponseBody
+	public RespondJson<Case> getOneCaseById(@RequestParam("id") int id)
+	{
+		return service.getOneCaseById(id);
+	}
+
+	/**
+	 * 根据id删除一个案例
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/" + PermissionPrefix.DELETE_DATA + "/deleteOneCaseById")
+	@ResponseBody
+	public boolean deleteOneCaseById(@RequestParam("id") int id)
+	{
+		return service.deleteOneCaseById(id);
+	}
+
+	/**
+	 * 编辑一个案例
+	 * 前端传过来的数据：chargeName， id title desc process result lessions successFlag
+	 * 后端需要的数据： id* chargeId title* desc* process* result* lessions* successFlag* editDate
+	 * @param oneCase
+	 * @param chargeName
+	 * @return
+	 */
+	@PostMapping("/" + PermissionPrefix.UPDATE_DATA + "/editOneCase")
+	public String editOneCase(Case oneCase, String chargeName, Model model)
+	{
+		if (service.editOneCase(oneCase, chargeName))
+		{
+			return "base/caseMgr";
+		}
+		else
+		{
+			model.addAttribute("msg", "更新数据失败");
+			return "base/editChargeMgr";
+		}
+	}
 }

@@ -35,4 +35,27 @@ public interface CaseService
 	 * @return
 	 */
 	RespondJson<Case> pageDate(int pageNum, int pageSize);
+
+	/**
+	 * 根据id获得一个案例
+	 * @param id
+	 * @return
+	 */
+	RespondJson<Case> getOneCaseById(int id);
+
+	/**
+	 * 根据id删除一个案例
+	 * @param id
+	 * @return
+	 */
+	boolean deleteOneCaseById(int id);
+
+	/**
+	 * 编辑一个案例
+	 * 前端传过来的数据：chargeName， id title desc process result lessions successFlag
+	 * 后端需要的数据： id* chargeId title* desc* process* result* lessions* successFlag* editDate
+	 * @param oneCase
+	 * @return
+	 */
+	boolean editOneCase(Case oneCase, String chargeName);
 }

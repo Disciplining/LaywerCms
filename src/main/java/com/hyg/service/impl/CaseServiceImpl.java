@@ -140,4 +140,87 @@ public class CaseServiceImpl implements CaseService
 
 		return new RespondJson<>(0, null, list.size(), cases);
 	}
+
+	/**
+	 * 根据id获得一个案例
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public RespondJson<Case> getOneCaseById(int id)
+	{
+		Case oneCase = mapper.getOneCaseById(id);
+
+		if (oneCase != null)
+		{
+			List<Case> list = new ArrayList<>(1);
+			list.add(oneCase);
+
+			return new RespondJson<>(0, null, list.size(), list);
+		}
+		else
+		{
+			return new RespondJson<>(0, null, 0, new ArrayList<>(0));
+		}
+	}
+
+	/**
+	 * 根据id删除一个案例
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public boolean deleteOneCaseById(int id)
+	{
+		try
+		{
+			mapper.deleteOneCaseById(id);
+		}
+		catch (Exception e)
+		{
+			System.out.println("出现异常：" + e.getMessage());
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * 编辑一个案例
+	 * 前端传过来的数据：chargeName， id title desc process result lessions successFlag
+	 * 后端需要的数据： id* chargeId title* desc* process* result* lessions* successFlag* editDate
+	 * @param oneCase
+	 * @return
+	 */
+	@Override
+	public boolean editOneCase(Case oneCase, String chargeName)
+	{
+		int chargeId;
+
+		try
+		{
+			chargeId  = chargeMapper.getOneChargeByChargeName(chargeName).getId();
+		}
+		catch (Exception e)
+		{
+			System.out.println("发生异常：" + e.getMessage());
+			return false;
+		}
+
+		oneCase.setChargeId(chargeId);
+		oneCase.setEditDate(new Timestamp(System.currentTimeMillis()));
+
+		try
+		{
+			mapper.updateEditOneCase(oneCase);
+		}
+		catch (Exception e)
+		{
+			System.out.println("发生了异常：" + e.getMessage());
+		}
+
+		return true;
+	}
 }
