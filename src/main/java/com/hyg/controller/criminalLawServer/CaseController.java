@@ -1,10 +1,10 @@
 package com.hyg.controller.criminalLawServer;
 
 import com.hyg.pojo.Case;
-import com.hyg.pojo.CaseExpand;
 import com.hyg.service.CaseService;
 import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.respond.CaseLinkageData;
+import com.hyg.util.respond.GetOneCaseJson;
 import com.hyg.util.respond.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -87,8 +87,10 @@ public class CaseController
 	 */
 	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/getOneCaseById")
 	@ResponseBody
-	public RespondJson<CaseExpand> getOneCaseById(@RequestParam("id") int id)
+	public GetOneCaseJson getOneCaseById(@RequestParam("id") int id)
 	{
+		System.out.println(id);
+
 		return service.getOneCaseById(id);
 	}
 

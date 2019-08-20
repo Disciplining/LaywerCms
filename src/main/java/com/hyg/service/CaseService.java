@@ -1,8 +1,8 @@
 package com.hyg.service;
 
 import com.hyg.pojo.Case;
-import com.hyg.pojo.CaseExpand;
 import com.hyg.util.respond.CaseLinkageData;
+import com.hyg.util.respond.GetOneCaseJson;
 import com.hyg.util.respond.RespondJson;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,7 +50,7 @@ public interface CaseService
 	 * @param id
 	 * @return
 	 */
-	RespondJson<CaseExpand> getOneCaseById(int id);
+	GetOneCaseJson getOneCaseById(int id);
 
 	/**
 	 * 根据id删除一个案例

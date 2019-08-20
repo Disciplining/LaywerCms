@@ -11,6 +11,7 @@ import com.hyg.pojo.Charge;
 import com.hyg.service.CaseService;
 import com.hyg.util.FileUtil;
 import com.hyg.util.respond.CaseLinkageData;
+import com.hyg.util.respond.GetOneCaseJson;
 import com.hyg.util.respond.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -157,13 +158,12 @@ public class CaseServiceImpl implements CaseService
 	 * @return
 	 */
 	@Override
-	public RespondJson<CaseExpand> getOneCaseById(int id)
+	public GetOneCaseJson getOneCaseById(int id)
 	{
-		Case oneCase = mapper.getOneCaseById(id); // 根据案例id获取一个案例
-		Charge charge = chargeMapper.getOneChargeById(oneCase.getChargeId()); // 根据案例id的 chargeId 获取它对应的罪名
-
-		if (oneCase != null && charge != null)
+		try
 		{
+			Case oneCase = mapper.getOneCaseById(id); // 根据案例id获取一个案例
+			Charge charge = chargeMapper.getOneChargeById(oneCase.getChargeId()); // 根据案例id的 chargeId 获取它对应的罪名
 			CaseExpand expand = new CaseExpand();
 			expand.setId(oneCase.getId());
 			expand.setChargeId(oneCase.getChargeId());
@@ -180,16 +180,36 @@ public class CaseServiceImpl implements CaseService
 			expand.setChargeName(charge.getChargeName());
 			expand.setPicUrl(oneCase.getPicUrl());
 			expand.setChargeTypeName(chargeTypeMapper.getOneChargeTypeById(charge.getChargeTypeId()).getChargeTypeName());
+			// 案例数据
+			List<CaseExpand> caseList = new ArrayList<>(1);
+			caseList.add(expand);
 
-			List<CaseExpand> list = new ArrayList<>(1);
-			list.add(expand);
+			// 联动数据
+			List<CaseLinkageData> linkageData = new ArrayList<>();
+			List<String> allTypeName = chargeTypeMapper.listChargeTypeName();
+			for (String typeName : allTypeName)
+			{
+				CaseLinkageData temp = new CaseLinkageData();
+				temp.setChargeTypeName(typeName);
 
-			return new RespondJson<>(0, null, list.size(), list);
+				int chargeTypeId = chargeTypeMapper.getOneChargeTypeByName(typeName).getId();
+				List chargeNames = chargeMapper.listChargeNameByChargeTypeId(chargeTypeId);
+				if (chargeNames.size() > 0)
+				{
+					temp.setChargeNames(chargeNames);
+
+					linkageData.add(temp);
+				}
+			}
+
+			return new GetOneCaseJson(0, linkageData, caseList);
 		}
-		else
+		catch (Exception e)
 		{
-			return new RespondJson<>(0, null, 0, new ArrayList<>(0));
+			System.out.println("出现异常：" + e.getMessage());
 		}
+
+		return new GetOneCaseJson(1, null, null);
 	}
 
 	/**
