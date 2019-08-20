@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="layui-form-item" style="margin-bottom: 20px;">
-          <input type="checkbox" name="remember" lay-skin="primary" title="记住密码">
+          <input type="checkbox" id="remeberme" name="remember" lay-skin="primary" title="记住密码">
         </div>
         <div class="layui-form-item">
             <button class="layui-btn layui-btn-fluid" type="submit">登录</button>
@@ -62,6 +62,14 @@
 
   <script src="/layuiadmin/layui/layui.js"></script>
     <script>
+      // remeberme.addEventListener('click',function (ev) {
+      //   console.log('点击了我')
+      // })
+      var username = document.getElementById('LAY-user-login-username')
+      var pwd = document.getElementById('LAY-user-login-password').value
+      username.addEventListener('click',function () {
+        document.getElementById('LAY-user-login-password').blur()
+      })
       layui.config({
         base: '../../layuiadmin/' //静态资源所在路径
       }).extend({

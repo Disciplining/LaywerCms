@@ -113,6 +113,7 @@
     var error = $('#error').val()
     var colla_img = document.getElementById("colla_img");
     var value = $('#temp-id').val()
+    var flag = ''
     layui.use(['jquery','form','layer','upload'], function() {
         var $ = layui.$, form=layui.form,layer=layui.layer,upload=layui.upload;
         if(error!=''){
@@ -138,41 +139,6 @@
                 })
             }
         });
-        $.ajax({
-            url:'/selectData/getLinkageDate',
-            method:'get',
-            success:function(data){
-                var html = '';
-                console.log(data)
-                var len = data.data.length;
-                for(var i = 0 ; i< len;i++){
-                    html = html + '<option value="'+ data.data[i].chargeTypeName +'">'+ data.data[i].chargeTypeName +'</option>';
-                }
-                $('#selectT').html('').append(html)
-                console.log(data.data[0].chargeNames)
-                data.data[0].chargeNames.forEach(function (item,index) {
-                    $('#selectName').append('<option   value="'+ item +'">'+ item +'</option>')
-                })
-                form.render('select')
-                form.on('select(test)', function(realData){
-                    $("#selectName").empty();
-                    form.render('select')
-                    console.log(realData.value)
-                    for(var k = 0 ; k< len;k++){
-                        if(data.data[k].chargeTypeName == realData.value) {
-                            data.data[k].chargeNames.forEach(function(item,index){
-                                var selectName = $('#selectName')
-                                selectName.append('<option   value="'+ item +'">'+ item +'</option>')
-                            });
-                            form.render('select')
-                        }
-                    }
-                });
-            },
-            error:function(data){
-                alert(data)
-            }
-        })
         $.ajax
         (
             {
@@ -181,15 +147,55 @@
                 dataType: "json",
                 success: function(data)
                 {
+                    var html = '';
+                    var selechargeTypeName = data.data[0].chargeTypeName
+                    console.log(data.data[0].chargeTypeName)
+                    var len = data.linkageDate.length;
+                    for(var i = 0 ; i< len;i++){
+                        if(selechargeTypeName == data.linkageDate[i].chargeTypeName ){
+                            $('#selectT').append('<option selected="selected" value="'+ data.linkageDate[i].chargeTypeName +'">'+ data.linkageDate[i].chargeTypeName +'</option>')
+                        }else {
+                            $('#selectT').append('<option value="'+ data.linkageDate[i].chargeTypeName +'">'+ data.linkageDate[i].chargeTypeName +'</option>')
+                        }
+                    }
+                    console.log(data.linkageDate[0].chargeNames)
+                    console.log(data.data[0].chargeName)
+                    for(var j = 0 ; j< len;j++){
+                        data.linkageDate[j].chargeNames.find(function(value){
+
+                            if(value==data.data[0].chargeName){
+                                data.linkageDate[j].chargeNames.forEach(function (item,index) {
+                                    $('#selectName').append('<option   value="'+ item +'">'+ item +'</option>')
+                                })
+                            }
+
+                        })
+                    }
+                    form.render('select')
+                    form.on('select(test)', function(realData){
+                        $("#selectName").empty();
+                        form.render('select')
+                        console.log(realData.value)
+                        for(var k = 0 ; k< len;k++){
+                            if(data.linkageDate[k].chargeTypeName == realData.value) {
+                                data.linkageDate[k].chargeNames.forEach(function(item,index){
+                                    var selectName = $('#selectName')
+                                    selectName.append('<option   value="'+ item +'">'+ item +'</option>')
+                                });
+                                form.render('select')
+                            }
+                        }
+                    });
                     document.getElementById("title").value = data.data[0].title;
                     document.getElementById('desc').value = data.data[0].desc;
                     document.getElementById('process').value = data.data[0].process;
                     document.getElementById('result').value = data.data[0].result;
                     document.getElementById('lessions').value = data.data[0].lessions;
                     document.getElementById('successFlag').value = data.data[0].successFlag;
+                    form.render('select')
+                    flag=data.data[0].chargeTypeName
                     colla_img.style.background='url(' + data.data[0].picUrl + ')';
                     colla_img.style.backgroundSize= '100%';
-                    form.render(select)
                 }
             }
         );
