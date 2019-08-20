@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -213,36 +214,63 @@ public class CaseServiceImpl implements CaseService
 
 	/**
 	 * 编辑一个案例
-	 * 前端传过来的数据：chargeName， id title desc process result lessions successFlag
-	 * 后端需要的数据： id* chargeId title* desc* process* result* lessions* successFlag* editDate
+	 * 前端传过来的数据：chargeName file(可能有也可能没有)， id title desc process result lessions successFlag
+	 * 后端需要的数据： id* chargeId title* desc* process* result* lessions* successFlag* editDate picUrl
 	 * @param oneCase
+	 * @param chargeName
+	 * @param file
 	 * @return
 	 */
 	@Override
-	public boolean editOneCase(Case oneCase, String chargeName)
+	public boolean editOneCase(Case oneCase, String chargeName, MultipartFile file)
 	{
-		int chargeId;
-
 		try
 		{
-			chargeId  = chargeMapper.getOneChargeByChargeName(chargeName).getId();
+			int chargeId = chargeMapper.getIdByChargeName(chargeName);
+			oneCase.setChargeId(chargeId);
+
+			oneCase.setEditDate(new Timestamp(System.currentTimeMillis()));
+
+			if (file == null || file.getOriginalFilename().isEmpty()) // 用户没有选择新的图片
+			{
+				String oldUrl = mapper.getOneCaseById(oneCase.getChargeId()).getPicUrl(); // 获得要更新的案例的原先的图片url
+				oneCase.setPicUrl(oldUrl); // 使用原来的图片url
+			}
+			else // 用户选择了新的图片
+			{
+				// 将新的图片存入硬盘 并设置新的url
+				String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
+				String casePicDir = allPicDir + PicDir.CASE_DIR;
+				String picUrl = FileUtil.savePicToDisk(file, casePicDir, PicDir.CASE_DIR);
+				if (picUrl == null)
+				{
+					return false;
+				}
+				else
+				{
+					oneCase.setPicUrl(picUrl);
+				}
+
+				// 删除原先的图片
+				String oldUrl = mapper.getOneCaseById(oneCase.getId()).getPicUrl(); // 获得要更新的案例的原先的图片url
+				if (oldUrl != null && !oldUrl.isEmpty())
+				{
+					String allPicDirNext = oldUrl.substring(8);
+					File oldPic = new File(allPicDir + allPicDirNext);
+					if (oldPic.exists())
+					{
+						oldPic.delete();
+					}
+				}
+			}
+
+			mapper.updateEditOneCase(oneCase); // 插入数据
 		}
 		catch (Exception e)
 		{
-			System.out.println("发生异常：" + e.getMessage());
+			System.out.println("出现异常：" + e.getMessage());
+			e.printStackTrace();
 			return false;
-		}
-
-		oneCase.setChargeId(chargeId);
-		oneCase.setEditDate(new Timestamp(System.currentTimeMillis()));
-
-		try
-		{
-			mapper.updateEditOneCase(oneCase);
-		}
-		catch (Exception e)
-		{
-			System.out.println("发生了异常：" + e.getMessage());
 		}
 
 		return true;

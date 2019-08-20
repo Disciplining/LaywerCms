@@ -106,16 +106,18 @@ public class CaseController
 
 	/**
 	 * 编辑一个案例
-	 * 前端传过来的数据：chargeName， id title desc process result lessions successFlag
-	 * 后端需要的数据： id* chargeId title* desc* process* result* lessions* successFlag* editDate
+	 * 前端传过来的数据：chargeName file(可能有也可能没有)， id title desc process result lessions successFlag
+	 * 后端需要的数据： id* chargeId title* desc* process* result* lessions* successFlag* editDate picUrl
 	 * @param oneCase
 	 * @param chargeName
 	 * @return
 	 */
 	@PostMapping("/" + PermissionPrefix.UPDATE_DATA + "/editOneCase")
-	public String editOneCase(Case oneCase, String chargeName, Model model)
+	public String editOneCase(Case oneCase, String chargeName, MultipartFile file, Model model)
 	{
-		if (service.editOneCase(oneCase, chargeName))
+		System.out.println("控制器中的对象：" + oneCase);
+
+		if (service.editOneCase(oneCase, chargeName, file))
 		{
 			return "base/caseMgr";
 		}
