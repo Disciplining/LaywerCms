@@ -114,6 +114,15 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- 打包-->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.hyg.LawyerCmsApplication</mainClass> <!-- 入口主类 -->
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
