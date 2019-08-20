@@ -6,6 +6,12 @@
     <title>案例添加</title>
     <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    <style>
+        #colla_img img{
+            width: 300px;
+            height: 200px
+        }
+    </style>
 </head>
 
 <body>
@@ -74,6 +80,15 @@
                                 </div>
                             </div>
                             <div class="layui-form-item">
+                                <label class="layui-form-label">案例图片</label>
+                                <div class="layui-input-block">
+                                    <div id="colla_img" style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
+                                    <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
+                                        <i class="layui-icon">&#xe67c;</i>上传图片
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
                                 <div class="layui-input-block">
                                     <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
                                 </div>
@@ -97,6 +112,26 @@
         if(error!=''){
             layer.alert(error)
         }
+        upload.render({
+            elem: '#test1',
+            url: 'upload',
+            size: 2048,
+            auto: false //选择文件后不自动上传
+            ,
+            // bindAction: '#save' //指向一个按钮触发上传
+            choose: function(obj) {
+                //预读本地文件
+                var number = $('#colla_img').children().length
+                console.log(number)
+                if(number>0){
+                    $('#showImg').remove()
+                }
+                obj.preview(function(index, file, result) {
+                    $('#loadinput').val(file.name); //展示文件名
+                    $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a> ');
+                })
+            }
+        });
         $.ajax({
             url:'/selectData/getLinkageDate',
             method:'get',
