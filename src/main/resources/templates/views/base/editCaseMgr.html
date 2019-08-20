@@ -149,6 +149,10 @@
                     html = html + '<option value="'+ data.data[i].chargeTypeName +'">'+ data.data[i].chargeTypeName +'</option>';
                 }
                 $('#selectT').html('').append(html)
+                console.log(data.data[0].chargeNames)
+                data.data[0].chargeNames.forEach(function (item,index) {
+                    $('#selectName').append('<option   value="'+ item +'">'+ item +'</option>')
+                })
                 form.render('select')
                 form.on('select(test)', function(realData){
                     $("#selectName").empty();
@@ -158,7 +162,7 @@
                         if(data.data[k].chargeTypeName == realData.value) {
                             data.data[k].chargeNames.forEach(function(item,index){
                                 var selectName = $('#selectName')
-                                selectName.append('<option  id="hahah" value="'+ item +'">'+ item +'</option>')
+                                selectName.append('<option   value="'+ item +'">'+ item +'</option>')
                             });
                             form.render('select')
                         }
