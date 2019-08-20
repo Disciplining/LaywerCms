@@ -17,6 +17,7 @@ public class CaseExpand extends Case
 //	private Timestamp editDate;
 //	private Integer count;
 //	private String deleteFlag;
+//	private String picUrl;
 
 	private String chargeName;
 }

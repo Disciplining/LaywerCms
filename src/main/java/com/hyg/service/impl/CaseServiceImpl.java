@@ -1,6 +1,7 @@
 package com.hyg.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.hyg.config.PicDir;
 import com.hyg.mapper.CaseMapper;
 import com.hyg.mapper.ChargeMapper;
 import com.hyg.mapper.ChargeTypeMapper;
@@ -8,11 +9,14 @@ import com.hyg.pojo.Case;
 import com.hyg.pojo.CaseExpand;
 import com.hyg.pojo.Charge;
 import com.hyg.service.CaseService;
+import com.hyg.util.FileUtil;
 import com.hyg.util.respond.CaseLinkageData;
 import com.hyg.util.respond.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -21,7 +25,6 @@ import java.util.List;
 @Service("caseServiceImpl")
 public class CaseServiceImpl implements CaseService
 {
-
 	@Autowired
 	@Qualifier("chargeTypeMapper")
 	private ChargeTypeMapper chargeTypeMapper;
@@ -33,6 +36,9 @@ public class CaseServiceImpl implements CaseService
 	@Autowired
 	@Qualifier("caseMapper")
 	private CaseMapper mapper;
+
+	@Value("${cbs.imagesPath}")
+	private String picDirSetting; //全局配置文件中设置的图片的路径
 
 	/**
 	 * 获得添加案例时的联运数据
@@ -75,45 +81,45 @@ public class CaseServiceImpl implements CaseService
 	/**
 	 * 添加一个案例
 	 * 前端传过来的数据：
-	 *
-	 * chargeName 罪名名称
+	 * chargeName   罪名名称 根据这个获得 chargeId
+	 * file			图片文件 根据这人获得picUrl
 	 *
 	 * title        案例标题
 	 * desc         案例介绍
 	 * process      办案过程
-	 * result       结果
-	 * lessions     经验心得
-	 * successFlag  是否成功 1:0
+	 * result	    结果
+	 * lessions	    经验心得
+	 * successFlag  是否成功
+	 *
+	 * 后端需要的数据：chargeId、title*、desc*、process*、result*、lessions*、publishDate、successFlag*、editDate、count、deleteFlag、picUrl
 	 *
 	 * @param oneCase
-	 * @param chargeName
 	 * @return
 	 */
 	@Override
-	public boolean insertOneCase(Case oneCase, String chargeName)
+	public boolean insertOneCase(Case oneCase, String chargeName, MultipartFile file)
 	{
-		int chargeId;
-
 		try
 		{
-			chargeId  = chargeMapper.getOneChargeByChargeName(chargeName).getId();
-		}
-		catch (Exception e)
-		{
-			System.out.println("发生异常：" + e.getMessage());
-			return false;
-		}
+			int chargeId = chargeMapper.getIdByChargeName(chargeName);
+			oneCase.setChargeId(chargeId);
+			oneCase.setPublishDate(new Timestamp(System.currentTimeMillis())); // 发布时间，就是添加数据时的时间
+			oneCase.setEditDate(new Timestamp(System.currentTimeMillis()));
+			oneCase.setCount(0);
+			oneCase.setDeleteFlag("0");
 
-		/*--------------------前端没有传过来的数据-------------------------*/
-		oneCase.setChargeId(chargeId);
-		oneCase.setPublishDate(new Timestamp(System.currentTimeMillis())); // 发布时间，就是添加数据时的时间
-		oneCase.setEditDate(new Timestamp(System.currentTimeMillis()));
-		oneCase.setCount(0);
-		oneCase.setDeleteFlag("0");
-		/*--------------------------------------------------------------*/
+			String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
+			String casePicDir = allPicDir + PicDir.CASE_DIR;
+			String picUrl = FileUtil.savePicToDisk(file, casePicDir, PicDir.CASE_DIR);
+			if (picUrl == null)
+			{
+				return false;
+			}
+			else
+			{
+				oneCase.setPicUrl(picUrl);
+			}
 
-		try
-		{
 			mapper.insertOneDate(oneCase);
 		}
 		catch (Exception e)

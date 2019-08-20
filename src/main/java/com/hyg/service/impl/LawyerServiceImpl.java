@@ -49,8 +49,8 @@ public class LawyerServiceImpl implements LawyerService
 		lawyer.setLawyerLevel(lawyerExpand.getLawyerLevel());
 		lawyer.setIntroduction(lawyerExpand.getIntroduction());
 		String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
-		String lawyerPicDir = allPicDir + PicDir.LAWYER_TABLE_DIR; // 存储律师照片的目录
-		String picUrl = FileUtil.savePicToDisk(lawyerExpand.getFile(), lawyerPicDir, PicDir.LAWYER_TABLE_DIR);
+		String lawyerPicDir = allPicDir + PicDir.LAWYER_DIR; // 存储律师照片的目录
+		String picUrl = FileUtil.savePicToDisk(lawyerExpand.getFile(), lawyerPicDir, PicDir.LAWYER_DIR);
 		if (picUrl == null)
 		{
 			return false;
@@ -123,8 +123,8 @@ public class LawyerServiceImpl implements LawyerService
 		{
 			// 存入新的图片
 			String allPicDir = picDirSetting.substring(picDirSetting.indexOf(':')+1); //存储图片的总目录
-			String lawyerPicDir = allPicDir + PicDir.LAWYER_TABLE_DIR; // 存储律师照片的目录
-			String picUrl = FileUtil.savePicToDisk(lawyerExpand.getFile(), lawyerPicDir, PicDir.LAWYER_TABLE_DIR); // 将图片存入磁盘
+			String lawyerPicDir = allPicDir + PicDir.LAWYER_DIR; // 存储律师照片的目录
+			String picUrl = FileUtil.savePicToDisk(lawyerExpand.getFile(), lawyerPicDir, PicDir.LAWYER_DIR); // 将图片存入磁盘
 			if (picUrl == null) // 为null说明存入磁盘失败
 			{
 				return false;

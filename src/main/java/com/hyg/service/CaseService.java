@@ -4,6 +4,7 @@ import com.hyg.pojo.Case;
 import com.hyg.pojo.CaseExpand;
 import com.hyg.util.respond.CaseLinkageData;
 import com.hyg.util.respond.RespondJson;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 案例表
@@ -11,7 +12,7 @@ import com.hyg.util.respond.RespondJson;
 public interface CaseService
 {
 	/**
-	 * 获得添加案例时的联运数据
+	 * 获得添加案例时的联动数据
 	 * @return
 	 */
 	RespondJson<CaseLinkageData> getLinkageDate();
@@ -19,15 +20,22 @@ public interface CaseService
 	/**
 	 * 添加一个案例
 	 * 前端传过来的数据：
-	 * chargeName 罪名名称
+	 * chargeName   罪名名称 根据这个获得 chargeId
+	 * file			图片文件 根据这人获得picUrl
 	 *
-	 * title      案例标题
-	 * desc       案例介绍
-	 * process    办案过程
+	 * title        案例标题
+	 * desc         案例介绍
+	 * process      办案过程
+	 * result	    结果
+	 * lessions	    经验心得
+	 * successFlag  是否成功
+	 *
+	 * 后端需要的数据：chargeId、title*、desc*、process*、result*、lessions*、publishDate、successFlag*、editDate、count、deleteFlag、picUrl
+	 *
 	 * @param onCase
 	 * @return
 	 */
-	boolean insertOneCase(Case onCase, String chargeName);
+	boolean insertOneCase(Case onCase, String chargeName, MultipartFile file);
 
 	/**
 	 * 分页数据

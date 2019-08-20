@@ -36,4 +36,6 @@ public class Case
 	private Integer count;
 
 	private String deleteFlag;
+
+	private String picUrl;
 }

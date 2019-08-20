@@ -69,4 +69,14 @@ public interface ChargeMapper
 	 */
 	@Select(" select `chargeName` from `t_charge` where `chargeTypeId`=#{chargeTypeId} and `deleteFlag`!='1' ")
 	List<String> listChargeNameByChargeTypeId(int chargeTypeId);
+
+	/**
+	 * 通过罪名名称获得罪名的id
+	 * 罪名名称有唯一约束，所以只会查询到一个
+	 * @param name
+	 * @return
+	 */
+	@Select(" select `id` from `t_charge` " +
+				" where `chargeName`='杀人' ")
+	int getIdByChargeName(String name);
 }

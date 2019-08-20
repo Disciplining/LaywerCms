@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class CaseController
@@ -36,24 +37,22 @@ public class CaseController
 	/**
 	 * 添加一个案例
 	 * 前端传过来的数据：
-	 *
-	 * chargeName 罪名名称
+	 * chargeName   罪名名称 根据这个获得 chargeId
+	 * file			图片文件 根据这人获得picUrl
 	 *
 	 * title        案例标题
 	 * desc         案例介绍
 	 * process      办案过程
-	 * result       结果
-	 * lessions     经验心得
-	 * successFlag  是否成功 1:0
-	 *
+	 * result	    结果
+	 * lessions	    经验心得
+	 * successFlag  是否成功
 	 * @param oneCase
-	 * @param chargeName
 	 * @return
 	 */
 	@PostMapping("/" + PermissionPrefix.INSERT_DATA + "/insertOneCase")
-	public String insertOneCase(Case oneCase, String chargeName, Model model)
+	public String insertOneCase(Case oneCase, String chargeName, MultipartFile file, Model model)
 	{
-		if (service.insertOneCase(oneCase, chargeName))
+		if (service.insertOneCase(oneCase, chargeName, file))
 		{
 			return "base/caseMgr";
 		}
