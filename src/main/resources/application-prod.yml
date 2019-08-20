@@ -4,7 +4,7 @@ server:
 spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://www.liyanxing.top:3306/lawyer?serverTimezone=Asia/Shanghai
+        url: jdbc:mysql://127.0.0.1/lawyer?serverTimezone=Asia/Shanghai
         username: root
         password: root123
         type: com.alibaba.druid.pool.DruidDataSource
@@ -16,8 +16,4 @@ spring:
         cache: false
 
 cbs:
-     imagesPath: file:/media/root/my-disk/download/pic-dir/ # 图片存储总目录，最后有一人 "/"
-
-mybatis:
-    configuration:
-        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印sql语句
+     imagesPath: file:/lawyer-pic-upload/ # 图片存储总目录 最后有一人 "/"
