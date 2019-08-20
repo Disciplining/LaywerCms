@@ -178,6 +178,8 @@ public class CaseServiceImpl implements CaseService
 			expand.setCount(oneCase.getCount());
 			expand.setDeleteFlag(oneCase.getDeleteFlag());
 			expand.setChargeName(charge.getChargeName());
+			expand.setPicUrl(oneCase.getPicUrl());
+			expand.setChargeTypeName(chargeTypeMapper.getOneChargeTypeById(charge.getChargeTypeId()).getChargeTypeName());
 
 			List<CaseExpand> list = new ArrayList<>(1);
 			list.add(expand);
@@ -233,7 +235,7 @@ public class CaseServiceImpl implements CaseService
 
 			if (file == null || file.getOriginalFilename().isEmpty()) // 用户没有选择新的图片
 			{
-				String oldUrl = mapper.getOneCaseById(oneCase.getChargeId()).getPicUrl(); // 获得要更新的案例的原先的图片url
+				String oldUrl = mapper.getOneCaseById(oneCase.getId()).getPicUrl(); // 获得要更新的案例的原先的图片url
 				oneCase.setPicUrl(oldUrl); // 使用原来的图片url
 			}
 			else // 用户选择了新的图片

@@ -20,4 +20,6 @@ public class CaseExpand extends Case
 //	private String picUrl;
 
 	private String chargeName;
+
+	private String chargeTypeName;
 }
