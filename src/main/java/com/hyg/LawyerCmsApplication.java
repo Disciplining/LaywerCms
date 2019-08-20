@@ -17,6 +17,10 @@ public class LawyerCmsApplication
 		SpringApplication.run(LawyerCmsApplication.class, args);
 	}
 
+	/**
+	 * 允许跨域
+	 * @return
+	 */
 	private CorsConfiguration buildConfig()
 	{
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -26,6 +30,10 @@ public class LawyerCmsApplication
 		return corsConfiguration;
 	}
 
+	/**
+	 * 允许跨域
+	 * @return
+	 */
 	@Bean
 	public CorsFilter corsFilter()
 	{
