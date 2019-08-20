@@ -77,6 +77,6 @@ public interface ChargeMapper
 	 * @return
 	 */
 	@Select(" select `id` from `t_charge` " +
-				" where `chargeName`='杀人' ")
+				" where `chargeName`=#{name} ")
 	int getIdByChargeName(String name);
 }
