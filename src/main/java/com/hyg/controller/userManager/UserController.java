@@ -85,6 +85,7 @@ public class UserController
 			User loginUser = (User) subject.getPrincipal(); //需要强转
 
 			model.addAttribute("loginName", loginUser.getLoginName());
+
 			return "index";
 		}
 		else
