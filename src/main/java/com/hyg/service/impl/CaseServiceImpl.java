@@ -286,7 +286,7 @@ public class CaseServiceImpl implements CaseService
 				}
 			}
 
-			mapper.updateEditOneCase(oneCase); // 插入数据
+			mapper.updateEditOneCase(oneCase); // 更新数据
 		}
 		catch (Exception e)
 		{

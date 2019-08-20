@@ -117,8 +117,6 @@ public class CaseController
 	@PostMapping("/" + PermissionPrefix.UPDATE_DATA + "/editOneCase")
 	public String editOneCase(Case oneCase, String chargeName, MultipartFile file, Model model)
 	{
-		System.out.println("控制器中的对象：" + oneCase);
-
 		if (service.editOneCase(oneCase, chargeName, file))
 		{
 			return "base/caseMgr";

@@ -45,7 +45,7 @@ public interface CaseMapper
 	 * 更新的字段：chargeId title desc process result lessions successFlag editDate
 	 * @param oneCase
 	 */
-	@Update(" update `t_case` set `chargeId`=#{chargeId},`title`=#{title},`desc`=#{desc},`process`=#{process},`result`=#{result},`lessions`=#{lessions},`successFlag`=#{successFlag},`editDate`=#{editDate} " +
+	@Update(" update `t_case` set `chargeId`=#{chargeId},`title`=#{title},`desc`=#{desc},`process`=#{process},`result`=#{result},`lessions`=#{lessions},`successFlag`=#{successFlag},`editDate`=#{editDate},`picUrl`=#{picUrl} " +
 				" where `id`=#{id} and `deleteFlag`!='1' ")
 	void updateEditOneCase(Case oneCase);
 }
