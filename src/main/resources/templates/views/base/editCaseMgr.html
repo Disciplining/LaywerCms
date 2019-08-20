@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <style>
+        #colla_img img{
+            width: 300px;
+            height: 200px
+        }
+    </style>
 </head>
 
 <body>
@@ -21,7 +27,7 @@
                 <div class="layui-card-header">案例表编辑</div>
                 <div class="layui-card-body">
                     <div style="margin-top:20px">
-                        <form class="layui-form" action="/updateData/editOneCase" method="post">
+                        <form class="layui-form" action="/updateData/editOneCase" enctype="multipart/form-data" method="post">
                             <input th:value="${id}" name="id" id="temp-id" type="hidden" />
                             <div class="layui-form-item">
                                 <label class="layui-form-label">罪名分类</label>
@@ -96,6 +102,7 @@
 <script src="/layuiadmin/layui/layui.js"></script>
 
 <script>
+    var colla_img = document.getElementById("colla_img");
     var error = $('#error').val()
     var value = $('#temp-id').val()
     layui.use(['jquery','form','layer'], function() {
@@ -103,6 +110,26 @@
         if(error!=''){
             layer.alert(error)
         }
+        upload.render({
+            elem: '#test1',
+            url: 'upload',
+            size: 2048,
+            auto: false //选择文件后不自动上传
+            ,
+            // bindAction: '#save' //指向一个按钮触发上传
+            choose: function(obj) {
+                //预读本地文件
+                var number = $('#colla_img').children().length
+                console.log(number)
+                if(number>0){
+                    $('#showImg').remove()
+                }
+                obj.preview(function(index, file, result) {
+                    $('#loadinput').val(file.name); //展示文件名
+                    $('#colla_img').append('<a href="#" onclick="openImg()"><img id="showImg" src="' + result + '" width="370px"></a> ');
+                })
+            }
+        });
         $.ajax({
             url:'/selectData/getLinkageDate',
             method:'get',
@@ -148,6 +175,8 @@
                     document.getElementById('result').value = data.data[0].result;
                     document.getElementById('lessions').value = data.data[0].lessions;
                     document.getElementById('successFlag').value = data.data[0].successFlag;
+                    colla_img.style.background='url(' + data.data[0].file + ')';
+                    colla_img.style.backgroundSize= '100%';
                     form.render(select)
                 }
             }
