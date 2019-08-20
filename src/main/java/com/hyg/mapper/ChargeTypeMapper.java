@@ -59,7 +59,7 @@ public interface ChargeTypeMapper
 	void deleteOneChargeType(int id);
 
 	/**
-	 * 获得所有罪名分类
+	 * 获得所有罪名分类的名称
 	 * @return
 	 */
 	@Select(" select `chargeTypeName` from `t_chargeType` where `deleteFlag`!='1' ")
