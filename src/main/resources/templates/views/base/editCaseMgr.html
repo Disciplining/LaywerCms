@@ -6,7 +6,6 @@
     <title>案例表</title>
     <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
-
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <style>
         #colla_img img{
@@ -85,6 +84,15 @@
                                 </div>
                             </div>
                             <div class="layui-form-item">
+                                <label class="layui-form-label">案例照片</label>
+                                <div class="layui-input-block">
+                                    <div   id="colla_img"  style="width: 300px; height: 200px; border: 1px solid #E0E0E0;"></div>
+                                    <button type="button" class="layui-btn" id="test1" style="margin-top: 10px;">
+                                        <i class="layui-icon">&#xe67c;</i>上传图片
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
                                 <div class="layui-input-block">
                                     <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
                                 </div>
@@ -102,11 +110,11 @@
 <script src="/layuiadmin/layui/layui.js"></script>
 
 <script>
-    var colla_img = document.getElementById("colla_img");
     var error = $('#error').val()
+    var colla_img = document.getElementById("colla_img");
     var value = $('#temp-id').val()
-    layui.use(['jquery','form','layer'], function() {
-        var $ = layui.$, form=layui.form,layer=layui.layer;
+    layui.use(['jquery','form','layer','upload'], function() {
+        var $ = layui.$, form=layui.form,layer=layui.layer,upload=layui.upload;
         if(error!=''){
             layer.alert(error)
         }
