@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.hyg.mapper.ChargeMapper;
 import com.hyg.mapper.ChargeTypeMapper;
 import com.hyg.pojo.Charge;
+import com.hyg.pojo.extend.ChargeExtend;
 import com.hyg.service.ChargeService;
 import com.hyg.util.respond.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,14 +74,22 @@ public class ChargeServiceImpl implements ChargeService
 	 * @return
 	 */
 	@Override
-	public RespondJson<Charge> chargePageData(int pageNum, int pageSize, String chargeName)
+	public RespondJson<ChargeExtend> chargePageData(int pageNum, int pageSize, String chargeName)
 	{
 		List<Charge> list = chargeMapper.listChargeByChargeName(chargeName); // 分页前查询，为了长度
 
 		PageHelper.startPage(pageNum, pageSize);
 		List<Charge> charges = chargeMapper.listChargeByChargeName(chargeName); // 分页数据
 
-		return new RespondJson<>(0, null, list.size(), charges);
+		// 将 Charge 对象转换为 ChargeExtend对象
+		List<ChargeExtend> extendList = new ArrayList<>(charges.size());
+		for (Charge foo : charges)
+		{
+			ChargeExtend temp = new ChargeExtend(foo, chargeMapper.getChargetypenameByChargetypeid(foo.getChargeTypeId()));
+			extendList.add(temp);
+		}
+
+		return new RespondJson<>(0, null, list.size(), extendList);
 	}
 
 	/**

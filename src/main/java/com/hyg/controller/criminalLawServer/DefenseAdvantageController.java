@@ -1,7 +1,7 @@
 package com.hyg.controller.criminalLawServer;
 
 import com.hyg.pojo.DefenseAdvantage;
-import com.hyg.pojo.DefenseAdvantageExpand;
+import com.hyg.pojo.extend.DefenseAdvantageExpand;
 import com.hyg.service.DefenseAdvantageService;
 import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.respond.RespondJson;

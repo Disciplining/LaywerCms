@@ -1,7 +1,7 @@
 package com.hyg.controller.agencyManager;
 
 import com.hyg.pojo.Lawyer;
-import com.hyg.pojo.LawyerExpand;
+import com.hyg.pojo.extend.LawyerExpand;
 import com.hyg.service.LawyerService;
 import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.respond.RespondJson;

@@ -1,6 +1,6 @@
 package com.hyg.util.respond;
 
-import com.hyg.pojo.CaseExpand;
+import com.hyg.pojo.extend.CaseExpand;
 import lombok.Data;
 
 import java.util.List;

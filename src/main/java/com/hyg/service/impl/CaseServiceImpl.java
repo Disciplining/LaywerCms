@@ -6,7 +6,7 @@ import com.hyg.mapper.CaseMapper;
 import com.hyg.mapper.ChargeMapper;
 import com.hyg.mapper.ChargeTypeMapper;
 import com.hyg.pojo.Case;
-import com.hyg.pojo.CaseExpand;
+import com.hyg.pojo.extend.CaseExpand;
 import com.hyg.pojo.Charge;
 import com.hyg.service.CaseService;
 import com.hyg.util.FileUtil;

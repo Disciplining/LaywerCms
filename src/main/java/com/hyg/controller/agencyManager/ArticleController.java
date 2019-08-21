@@ -1,6 +1,6 @@
 package com.hyg.controller.agencyManager;
 
-import com.hyg.pojo.ArticleExpand;
+import com.hyg.pojo.extend.ArticleExpand;
 import com.hyg.service.ArticleService;
 import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.respond.RespondJson;

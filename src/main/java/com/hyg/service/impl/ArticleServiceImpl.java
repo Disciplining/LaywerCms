@@ -3,7 +3,7 @@ package com.hyg.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.hyg.mapper.ArticleMapper;
 import com.hyg.pojo.Article;
-import com.hyg.pojo.ArticleExpand;
+import com.hyg.pojo.extend.ArticleExpand;
 import com.hyg.service.ArticleService;
 import com.hyg.util.respond.RespondJson;
 import org.springframework.beans.factory.annotation.Autowired;

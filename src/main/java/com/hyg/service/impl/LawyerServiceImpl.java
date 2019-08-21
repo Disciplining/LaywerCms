@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.hyg.config.PicDir;
 import com.hyg.mapper.LawyerMapper;
 import com.hyg.pojo.Lawyer;
-import com.hyg.pojo.LawyerExpand;
+import com.hyg.pojo.extend.LawyerExpand;
 import com.hyg.service.LawyerService;
 import com.hyg.util.FileUtil;
 import com.hyg.util.respond.RespondJson;

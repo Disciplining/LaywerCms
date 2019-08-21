@@ -32,11 +32,9 @@ public class Charge
 
 	public Charge() {}
 
-	/**
-	 * 构造方法 没有id
-	 */
-	public Charge(Integer chargeTypeId, String chargeName, String lawContent, String sentenceRange, String defense, Timestamp editDate, Integer count, String deleteFlag)
+	public Charge(Integer id, Integer chargeTypeId, String chargeName, String lawContent, String sentenceRange, String defense, Timestamp editDate, Integer count, String deleteFlag)
 	{
+		this.id = id;
 		this.chargeTypeId = chargeTypeId;
 		this.chargeName = chargeName;
 		this.lawContent = lawContent;

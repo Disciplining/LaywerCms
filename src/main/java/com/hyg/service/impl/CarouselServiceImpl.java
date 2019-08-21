@@ -3,7 +3,7 @@ package com.hyg.service.impl;
 import com.hyg.config.PicDir;
 import com.hyg.mapper.CarouselMapper;
 import com.hyg.pojo.Carousel;
-import com.hyg.pojo.CarouselExpand;
+import com.hyg.pojo.extend.CarouselExpand;
 import com.hyg.service.CarouselService;
 import com.hyg.util.FileUtil;
 import com.hyg.util.respond.RespondJson;

@@ -1,6 +1,6 @@
 package com.hyg.service;
 
-import com.hyg.pojo.ArticleExpand;
+import com.hyg.pojo.extend.ArticleExpand;
 import com.hyg.util.respond.RespondJson;
 
 public interface ArticleService

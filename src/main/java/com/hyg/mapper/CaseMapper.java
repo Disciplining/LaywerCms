@@ -22,7 +22,7 @@ public interface CaseMapper
 	 * 查询所有数据
 	 * @return
 	 */
-	@Select(" select * from `t_case` where `deleteFlag`!='1' ")
+	@Select(" select * from `t_case` ")
 	List<Case> listAllCase();
 
 	/**
@@ -30,7 +30,7 @@ public interface CaseMapper
 	 * @param id
 	 * @return
 	 */
-	@Select(" select * from `t_case` where `deleteFlag`!='1' and `id`=#{id} ")
+	@Select(" select * from `t_case` where `id`=#{id} ")
 	Case getOneCaseById(int id);
 
 	/**
@@ -46,6 +46,6 @@ public interface CaseMapper
 	 * @param oneCase
 	 */
 	@Update(" update `t_case` set `chargeId`=#{chargeId},`title`=#{title},`desc`=#{desc},`process`=#{process},`result`=#{result},`lessions`=#{lessions},`successFlag`=#{successFlag},`editDate`=#{editDate},`picUrl`=#{picUrl} " +
-				" where `id`=#{id} and `deleteFlag`!='1' ")
+				" where `id`=#{id} ")
 	void updateEditOneCase(Case oneCase);
 }

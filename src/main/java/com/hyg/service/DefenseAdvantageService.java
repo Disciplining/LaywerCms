@@ -1,7 +1,7 @@
 package com.hyg.service;
 
 import com.hyg.pojo.DefenseAdvantage;
-import com.hyg.pojo.DefenseAdvantageExpand;
+import com.hyg.pojo.extend.DefenseAdvantageExpand;
 import com.hyg.util.respond.RespondJson;
 
 public interface DefenseAdvantageService

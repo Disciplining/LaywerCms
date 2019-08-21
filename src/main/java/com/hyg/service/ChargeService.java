@@ -1,6 +1,7 @@
 package com.hyg.service;
 
 import com.hyg.pojo.Charge;
+import com.hyg.pojo.extend.ChargeExtend;
 import com.hyg.util.respond.RespondJson;
 
 public interface ChargeService
@@ -20,7 +21,7 @@ public interface ChargeService
 	 * @param chargeName
 	 * @return
 	 */
-	RespondJson<Charge> chargePageData(int pageNum, int pageSize, String chargeName);
+	RespondJson<ChargeExtend> chargePageData(int pageNum, int pageSize, String chargeName);
 
 	/**
 	 * 根据id删除一个罪名

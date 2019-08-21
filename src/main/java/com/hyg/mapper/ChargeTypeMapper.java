@@ -18,7 +18,7 @@ public interface ChargeTypeMapper
 	 * @param id
 	 * @return
 	 */
-	@Select(" select * from `t_chargeType` where `deleteFlag`!='1' and `id`=#{id} ")
+	@Select(" select * from `t_chargeType` where `id`=#{id} ")
 	ChargeType getOneChargeTypeById(int id);
 
 	/**
@@ -26,7 +26,7 @@ public interface ChargeTypeMapper
 	 * @param name
 	 * @return
 	 */
-	@Select(" select * from `t_chargeType` where `deleteFlag`!='1' and `chargeTypeName`=#{name} ")
+	@Select(" select * from `t_chargeType` where `chargeTypeName`=#{name} ")
 	ChargeType getOneChargeTypeByName(String name);
 
 
@@ -42,14 +42,14 @@ public interface ChargeTypeMapper
 	 * 获得所有罪名
 	 * @return
 	 */
-	@Select(" select * from `t_chargeType` where `deleteFlag`!='1' ")
+	@Select(" select * from `t_chargeType` ")
 	List<ChargeType> listAllChargeType();
 
 	/**
 	 * 根据id更新罪名分类名称
 	 * @param chargeType
 	 */
-	@Update(" update `t_chargeType` set `chargeTypeName`=#{chargeTypeName} where `deleteFlag`!='1' and `id`=#{id} ")
+	@Update(" update `t_chargeType` set `chargeTypeName`=#{chargeTypeName} where `id`=#{id} ")
 	void updateChargeTypeNameById(ChargeType chargeType);
 
 	@Delete(" delete from `t_chargeType` where `id`=#{id} ")
@@ -59,6 +59,6 @@ public interface ChargeTypeMapper
 	 * 获得所有罪名分类的名称
 	 * @return
 	 */
-	@Select(" select `chargeTypeName` from `t_chargeType` where `deleteFlag`!='1' ")
+	@Select(" select `chargeTypeName` from `t_chargeType` ")
 	List<String> listChargeTypeName();
 }

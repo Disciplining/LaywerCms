@@ -29,7 +29,7 @@ public interface ChargeMapper
 	 * @param chargeName
 	 * @return
 	 */
-	@Select(" select * from `t_charge` where `chargeName` like concat('%',#{chargeName},'%') and `deleteFlag`!='1' ")
+	@Select(" select * from `t_charge` where `chargeName` like concat('%',#{chargeName},'%')")
 	List<Charge> listChargeByChargeName(String chargeName);
 
 	/**
@@ -44,7 +44,7 @@ public interface ChargeMapper
 	 * @param id
 	 * @return
 	 */
-	@Select(" select * from `t_charge` where `id`=#{id} and `deleteFlag`!='1' ")
+	@Select(" select * from `t_charge` where `id`=#{id} ")
 	Charge getOneChargeById(int id);
 
 	/**
@@ -52,7 +52,7 @@ public interface ChargeMapper
 	 * @param chargeName
 	 * @return
 	 */
-	@Select(" select * from `t_charge` where `chargeName`=#{chargeName} and `deleteFlag`!='1' ")
+	@Select(" select * from `t_charge` where `chargeName`=#{chargeName} ")
 	Charge getOneChargeByChargeName(String chargeName);
 
 	/**
@@ -67,7 +67,7 @@ public interface ChargeMapper
 	 * 获得 某个罪名分类id 下的 所有罪名
 	 * @return
 	 */
-	@Select(" select `chargeName` from `t_charge` where `chargeTypeId`=#{chargeTypeId} and `deleteFlag`!='1' ")
+	@Select(" select `chargeName` from `t_charge` where `chargeTypeId`=#{chargeTypeId} ")
 	List<String> listChargeNameByChargeTypeId(int chargeTypeId);
 
 	/**
@@ -79,4 +79,23 @@ public interface ChargeMapper
 	@Select(" select `id` from `t_charge` " +
 				" where `chargeName`=#{name} ")
 	int getIdByChargeName(String name);
+
+	/**
+	 * 根据 罪名名称
+	 * 获得这个 罪名名称 对应 罪名分类名称
+	 * @param name
+	 * @return
+	 */
+	@Select(" select `chargeTypeName` from `t_chargeType` where " +
+				" `id`=(select `chargeTypeId` from `t_charge` where `chargeName`=#{name}) ")
+	String getChargetypenameByChargename(String name);
+
+	/**
+	 * 根据 罪名对应的 罪名分类的id
+	 * 获得这个 罪名名称 对应 罪名分类名称
+	 * @param chargeTypeId
+	 * @return
+	 */
+	@Select(" select `chargeTypeName` from `t_chargeType` where `id`=#{chargeTypeId} ")
+	String getChargetypenameByChargetypeid(int chargeTypeId);
 }

@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.hyg.config.PicDir;
 import com.hyg.mapper.DefenseAdvantageMapper;
 import com.hyg.pojo.DefenseAdvantage;
-import com.hyg.pojo.DefenseAdvantageExpand;
+import com.hyg.pojo.extend.DefenseAdvantageExpand;
 import com.hyg.service.DefenseAdvantageService;
 import com.hyg.util.FileUtil;
 import com.hyg.util.respond.RespondJson;

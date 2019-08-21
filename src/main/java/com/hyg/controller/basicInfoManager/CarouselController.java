@@ -1,7 +1,7 @@
 package com.hyg.controller.basicInfoManager;
 
 import com.hyg.pojo.Carousel;
-import com.hyg.pojo.CarouselExpand;
+import com.hyg.pojo.extend.CarouselExpand;
 import com.hyg.service.CarouselService;
 import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.respond.RespondJson;

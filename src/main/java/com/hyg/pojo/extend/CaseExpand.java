@@ -1,5 +1,6 @@
-package com.hyg.pojo;
+package com.hyg.pojo.extend;
 
+import com.hyg.pojo.Case;
 import lombok.Data;
 
 @Data
