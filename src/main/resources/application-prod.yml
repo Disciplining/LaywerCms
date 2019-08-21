@@ -16,4 +16,4 @@ spring:
         cache: false
 
 cbs:
-     imagesPath: file:/my-dir/download/lawyer-pic-upload/ # 图片存储总目录 最后有一人 "/"
+     imagesPath: file:/my-dir/download/lawyer-pic-upload/ # 图片存储总目录 最后有一个 "/"
