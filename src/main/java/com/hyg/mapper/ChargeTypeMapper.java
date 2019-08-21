@@ -1,10 +1,7 @@
 package com.hyg.mapper;
 
 import com.hyg.pojo.ChargeType;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -55,7 +52,7 @@ public interface ChargeTypeMapper
 	@Update(" update `t_chargeType` set `chargeTypeName`=#{chargeTypeName} where `deleteFlag`!='1' and `id`=#{id} ")
 	void updateChargeTypeNameById(ChargeType chargeType);
 
-	@Update(" update `t_chargeType` set `deleteFlag`='1' where `id`=#{id} ")
+	@Delete(" delete from `t_chargeType` where `id`=#{id} ")
 	void deleteOneChargeType(int id);
 
 	/**

@@ -37,7 +37,7 @@ public interface CaseMapper
 	 * 根据id删除一个案例
 	 * @param id
 	 */
-	@Update(" update `t_case` set `deleteFlag`='1' where `id`=#{id} ")
+	@Update(" delete from `t_case` where `id`=#{id} ")
 	void deleteOneCaseById(int id);
 
 	/**

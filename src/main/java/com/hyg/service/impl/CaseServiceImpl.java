@@ -163,7 +163,12 @@ public class CaseServiceImpl implements CaseService
 		try
 		{
 			Case oneCase = mapper.getOneCaseById(id); // 根据案例id获取一个案例
-			Charge charge = chargeMapper.getOneChargeById(oneCase.getChargeId()); // 根据案例id的 chargeId 获取它对应的罪名
+			Charge charge = chargeMapper.getOneChargeById(oneCase.getChargeId()); // 根据案例的 chargeId 获取它对应的罪名
+
+			System.out.println("++++++++++++++++++++++" + oneCase);
+			System.out.println("++++++++++++++++++++++" + oneCase.getChargeId());
+			System.out.println("++++++++++++++++++++++" + chargeMapper.getOneChargeById(oneCase.getId()));
+
 			CaseExpand expand = new CaseExpand();
 			expand.setId(oneCase.getId());
 			expand.setChargeId(oneCase.getChargeId());
@@ -177,8 +182,9 @@ public class CaseServiceImpl implements CaseService
 			expand.setEditDate(oneCase.getEditDate());
 			expand.setCount(oneCase.getCount());
 			expand.setDeleteFlag(oneCase.getDeleteFlag());
-			expand.setChargeName(charge.getChargeName());
 			expand.setPicUrl(oneCase.getPicUrl());
+
+			expand.setChargeName(charge.getChargeName());
 			expand.setChargeTypeName(chargeTypeMapper.getOneChargeTypeById(charge.getChargeTypeId()).getChargeTypeName());
 			// 案例数据
 			List<CaseExpand> caseList = new ArrayList<>(1);
@@ -207,6 +213,7 @@ public class CaseServiceImpl implements CaseService
 		catch (Exception e)
 		{
 			System.out.println("出现异常：" + e.getMessage());
+			e.printStackTrace();
 		}
 
 		return new GetOneCaseJson(1, null, null);

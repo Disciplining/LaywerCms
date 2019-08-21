@@ -36,7 +36,7 @@ public interface ChargeMapper
 	 * 根据id删除一个罪名名称
 	 * @param id
 	 */
-	@Update(" update `t_charge` set `deleteFlag`='1' where `id`=#{id} ")
+	@Update(" delete from `t_charge` where `id`=#{id} ")
 	void deleteOneChargeById(int id);
 
 	/**
