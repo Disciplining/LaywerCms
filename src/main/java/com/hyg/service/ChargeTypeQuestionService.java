@@ -1,6 +1,7 @@
 package com.hyg.service;
 
 import com.hyg.pojo.ChargeTypeQuestion;
+import com.hyg.pojo.extend.ChargeTypeQuestionExtend;
 import com.hyg.util.respond.RespondJson;
 
 public interface ChargeTypeQuestionService
@@ -19,7 +20,7 @@ public interface ChargeTypeQuestionService
 	 * @param pageSize
 	 * @return
 	 */
-	RespondJson<ChargeTypeQuestion> pageData(int pageNum, int pageSize);
+	RespondJson<ChargeTypeQuestionExtend> pageData(int pageNum, int pageSize);
 
 	/**
 	 * 根据id删除一个问答

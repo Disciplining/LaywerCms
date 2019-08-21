@@ -16,10 +16,10 @@
 	</parent>
 
 	<groupId>com.hyg</groupId>
-	<artifactId>laywercms</artifactId>
+	<artifactId>lawyercms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>LawyerCms</name>
-	<description>LawyerCms POject</description>
+	<description>LawyerCms Project</description>
 
 	<properties>
 		<java.version>1.8</java.version>

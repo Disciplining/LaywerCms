@@ -25,4 +25,17 @@ public class ChargeTypeQuestion
 	private Integer count;
 
 	private String deleteFlag;
+
+	public ChargeTypeQuestion() {}
+
+	public ChargeTypeQuestion(Integer id, Integer chargeTypeId, String question, String answer, Timestamp editDate, Integer count, String deleteFlag)
+	{
+		this.id = id;
+		this.chargeTypeId = chargeTypeId;
+		this.question = question;
+		this.answer = answer;
+		this.editDate = editDate;
+		this.count = count;
+		this.deleteFlag = deleteFlag;
+	}
 }

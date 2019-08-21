@@ -1,6 +1,7 @@
 package com.hyg.controller.criminalLawServer;
 
 import com.hyg.pojo.ChargeTypeQuestion;
+import com.hyg.pojo.extend.ChargeTypeQuestionExtend;
 import com.hyg.service.ChargeTypeQuestionService;
 import com.hyg.shiro.PermissionPrefix;
 import com.hyg.util.respond.RespondJson;
@@ -49,7 +50,7 @@ public class ChargeTypeQuestionController
 	 */
 	@GetMapping("/" + PermissionPrefix.SELECT_DATA + "/questionsPageData")
 	@ResponseBody
-	public RespondJson<ChargeTypeQuestion> questionsPageData
+	public RespondJson<ChargeTypeQuestionExtend> questionsPageData
 	(
 		@RequestParam(value = "page", defaultValue = "1") int pageNum,
 		@RequestParam(value = "limit", defaultValue = "10") int pageSize
