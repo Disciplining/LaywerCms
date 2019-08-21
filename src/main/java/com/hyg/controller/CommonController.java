@@ -44,8 +44,8 @@ public class CommonController
 	@ResponseBody
 	public Map<String, Object> uploadAgencyDetailPic(MultipartFile imgFile)
 	{
-		String savePath = picDirSetting.substring(picDirSetting.indexOf(':')+1) + PicDir.AGENCY_DETAIL_DIR; // 图片存储目录
-		String saveUrl = FileUtil.savePicToDisk(imgFile, savePath, PicDir.AGENCY_DETAIL_DIR); // 将图片存入硬盘并返回显示用的url
+		String savePath = picDirSetting.substring(picDirSetting.indexOf(':')+1) + PicDir.Rich_TEXT_DIR; // 图片存储目录
+		String saveUrl = FileUtil.savePicToDisk(imgFile, savePath, PicDir.Rich_TEXT_DIR); // 将图片存入硬盘并返回显示用的url
 
 		Map<String, Object> msg = new HashMap<>(); // 返回给前端的json数据
 
