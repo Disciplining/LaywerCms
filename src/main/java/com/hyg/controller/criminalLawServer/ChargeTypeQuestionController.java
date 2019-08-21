@@ -32,7 +32,7 @@ public class ChargeTypeQuestionController
 	{
 		if (service.insertOneChargeTypeQuestion(question, chargeTypeName))
 		{
-			return "/base/answerLawMgr";
+			return "base/answerLawMgr";
 		}
 		else
 		{
@@ -93,7 +93,7 @@ public class ChargeTypeQuestionController
 	{
 		if (service.editOneQuestion(question))
 		{
-			return "/base/answerLawMgr";
+			return "base/answerLawMgr";
 		}
 		else
 		{
