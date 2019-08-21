@@ -17,7 +17,7 @@
                     <div class="demoTable" style="margin-bottom: 20px;margin-left: 10px">
                         罪名名称:
                         <div class="layui-inline" style="margin-right: 20px">
-                            <input class="layui-input" name="customerName" placeholder="不填写默认显示全部" id="demoReload" autocomplete="off">
+                            <input class="layui-input" name="customerName"  id="demoReload" autocomplete="off">
                         </div>
                         <button class="layui-btn" data-type="reload">搜索</button>
                         <div class="layui-inline">
@@ -162,7 +162,7 @@
         table.on('tool(test-table-toolbar)', function(obj) {
             var data = obj.data;
             if(obj.event === 'del') {
-                layer.confirm('真的删除行么', function(index) {
+                layer.confirm('罪名对应的所有案例会一并删除', function(index) {
                     $.ajax({
                         url:'/deleteData/deleteOneChargeById?id='+data.id,
                         method:'get',

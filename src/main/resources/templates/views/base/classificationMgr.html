@@ -122,7 +122,7 @@
         table.on('tool(test-table-toolbar)', function(obj) {
             var data = obj.data;
             if(obj.event === 'del') {
-                layer.confirm('真的删除行么', function(index) {
+                layer.confirm('罪名分类对应的罪名跟案例会一并删除', function(index) {
                     $.ajax({
                         url:'/deleteData/deleteOneChargeType?id='+data.id,
                         method:'get',
