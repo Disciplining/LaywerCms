@@ -18,9 +18,9 @@ public class PicDir
 	public final static String BANNER_DIR = "banner-pic/";
 
 	/**
-	 * 事务所简介中的图片
+	 * 富文本编辑器中的图片
 	 */
-	public final static String AGENCY_DETAIL_DIR = "agency-detail-pic/";
+	public final static String Rich_TEXT_DIR = "rich-text-pic/";
 
 	/**
 	 * 刑变优势表中的图片
