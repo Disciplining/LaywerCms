@@ -28,12 +28,12 @@ public class ShiroConfig
 		 * 设置拦截URL
 		 */
 		Map<String, String> map = new LinkedHashMap<>();
-		map.put("/selectData/*", "authc");
-		map.put("/insertData/*", "authc");
-		map.put("/updateData/*", "authc");
-		map.put("/deleteData/*", "authc");
+		map.put("/" + PermissionPrefix.SELECT_DATA + "/*", "authc");
+		map.put("/" + PermissionPrefix.INSERT_DATA + "/*", "authc");
+		map.put("/" + PermissionPrefix.UPDATE_DATA + "/*", "authc");
+		map.put("/" + PermissionPrefix.DELETE_DATA + "/*", "authc");
 
-		map.put("/root/*","roles[" + UserRole.ROOT_USER + "]");
+		map.put("/" + PermissionPrefix.ROOT + "/*","roles[" + UserRole.ROOT_USER + "]");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
 		shiroFilterFactoryBean.setLoginUrl("/"); // 认证失败发送的请求

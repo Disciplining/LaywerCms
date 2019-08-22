@@ -111,7 +111,7 @@ public class UserController
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/root/deleteOneUserById")
+	@GetMapping("/" + PermissionPrefix.ROOT + "/deleteOneUserById")
 	@ResponseBody
 	public String deleteOneUserById(@RequestParam("id") String id)
 	{
@@ -131,7 +131,7 @@ public class UserController
 	 * @param user
 	 * @return
 	 */
-	@PostMapping("/root/editOneUser")
+	@PostMapping("/" + PermissionPrefix.ROOT + "/editOneUser")
 	public String editOneUser(User user, Model model)
 	{
 		if (userService.updateOneUserById(user))

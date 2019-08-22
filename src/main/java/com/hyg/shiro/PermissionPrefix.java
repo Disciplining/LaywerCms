@@ -2,6 +2,7 @@ package com.hyg.shiro;
 
 /**
  * 方便权限管理
+ * url中的 前缀
  */
 public class PermissionPrefix
 {
@@ -12,4 +13,9 @@ public class PermissionPrefix
 	public static final String INSERT_DATA = "insertData";
 	public static final String UPDATE_DATA = "updateData";
 	public static final String DELETE_DATA = "deleteData";
+
+	/**
+	 * 只有拥有root 角色的用户才可以访问
+	 */
+	public static final String ROOT = "root";
 }
