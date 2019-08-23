@@ -38,7 +38,7 @@ CREATE TABLE `t_agency` (
 
 LOCK TABLES `t_agency` WRITE;
 /*!40000 ALTER TABLE `t_agency` DISABLE KEYS */;
-INSERT INTO `t_agency` VALUES (1,'chongjie','http://xxxx','<p>\r\n	部署测试就是这家决胜\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	北国风光\r\n</p>\r\n<p>\r\n	111\r\n</p>','0');
+INSERT INTO `t_agency` VALUES (1,'chongjie','http://xxxx','<p>\r\n	测试\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<img src=\"/images/rich-text-pic/a9ad923e-7005-42fe-b718-22d839c0656f.jpeg\" alt=\"\" />\r\n</p>\r\n<p>\r\n	这是一个很好的测试\r\n</p>\r\n<p>\r\n	<img src=\"/images/rich-text-pic/cb228086-f72b-4cf7-80c4-c6b5bbad7ef5.jpg\" alt=\"\" />\r\n</p>','0');
 /*!40000 ALTER TABLE `t_agency` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ CREATE TABLE `t_article` (
   `count` int(10) NOT NULL,
   `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`articleId`)
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `t_article` (
 
 LOCK TABLES `t_article` WRITE;
 /*!40000 ALTER TABLE `t_article` DISABLE KEYS */;
-INSERT INTO `t_article` VALUES (64,1,'律师事务所入围ALB \"年度中国西部事务所\" 大奖','李艳兴111','法律咨询服务有限公司是岛城一家专业法律咨询服务机构，主要提供：经济纠纷、刑事纠纷、劳动、离婚、合同、房地产纠纷、商业纠纷、建筑工程纠纷、交通事故、医疗等法律咨询法律咨询服务有限公司是岛城一家专业法律咨询服务机构，主要提供：经济纠纷、刑事纠纷、劳动、离婚、合同、房地产纠纷、商业纠纷、建筑工程纠纷、交通事故、医疗等法律咨询','这个死刑该怎么判','2019-08-12 00:00:00',0,'0'),(65,1,'title------88888888','提提拖拖拖','法律咨询服务有限公司是岛城一家专业法律咨询服务机构，主要提供：经济纠纷、刑事纠纷、劳动、离婚、合同、房地产纠纷、商业纠纷、建筑工程纠纷、交通事故、医疗等法律咨询法律咨询服务有限公司是岛城一家专业法律咨询服务机构，主要提供：经济纠纷、刑事纠纷、劳动、离婚、合同、房地产纠纷、商业纠纷、建筑工程纠纷、交通事故、医疗等法律咨询','哈哈哈哈哈哈哈哈哈哈哈','2019-08-15 11:19:32',0,'0'),(66,1,'题目','张伟','这是简介','这是内容','2019-08-11 00:00:00',0,'1'),(67,1,'文章名字','作者名字','简介','内容','2019-08-11 00:00:00',0,'1'),(68,1,'aaa6666666','bbb','不不不不不不不不','<p>\r\n	asdasd\r\n</p>\r\n<p>\r\n	<img src=\"/images/agency-detail-pic/52118344-e5de-4abb-92b0-07e3eb3b4da8.jpeg\" alt=\"\" />\r\n</p>','2019-08-16 14:18:48',0,'1'),(69,1,'aaa','bbb','ccc','<p>\r\n	asdasd\r\n</p>\r\n<p>\r\n	<img src=\"/images/agency-detail-pic/01572428-4973-4ddc-a963-ca3c07fdf136.jpeg\" alt=\"\" />\r\n</p>','2019-08-15 11:19:21',0,'1'),(70,1,'666','子','顶戴','要','1970-01-01 00:00:00',0,'1'),(71,1,'2019','111','666','666','2019-08-12 00:00:00',0,'0'),(72,1,'这是一个文章的名字','123-a','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(73,1,'这是一个文章的名字-1','123-b','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(74,2,'这是一个文章的名字-2','123-c','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(75,2,'这是一个文章的名字-3','123-d','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(76,2,'这是一个文章的名字-31','123-e','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(77,2,'这是一个文章的名字-32','123-f','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(78,2,'这是一个文章的名字-33','123-g','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(79,2,'这是一个文章的名字-34','123-h','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(80,2,'这是一个文章的名字-35','123-i','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(81,2,'这是一个文章的名字-36','123-j','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(82,2,'这是一个文章的名字-37','123-k','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(83,2,'这是一个文章的名字-38','123-l','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(84,2,'这是一个文章的名字-39','123-m','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(85,2,'这是一个文章的名字-30','123-n','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(86,2,'这是一个文章的名字-311','123-o','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(87,3,'这是一个文章的名字-312','123-p','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(88,3,'这是一个文章的名字-313','123-q','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(89,3,'这是一个文章的名字-314','123-r','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(90,3,'这是一个文章的名字-315','123-s','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(91,3,'这是一个文章的名字-316','123-t','11111','aaasdasd','2019-08-14 08:33:33',0,'0'),(92,3,'哈哈哈哈哈哈','李艳兴-a-1','这个好啊末aaa','<p>\r\n	<img src=\"http://127.0.0.1/layuiadmin/kindeditor/plugins/emoticons/images/20.gif\" alt=\"\" border=\"0\" /> \r\n</p>\r\n<p>\r\n	<img src=\"/images/agency-detail-pic/32d82ae2-e395-4cdb-8d30-e98e5ab5a2fc.jpeg\" alt=\"\" /> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	adsf\r\n</p>\r\n<p>\r\n	<img src=\"http://127.0.0.1/layuiadmin/kindeditor/plugins/emoticons/images/20.gif\" alt=\"\" border=\"0\" /> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>','2019-08-16 08:49:14',0,'0'),(93,3,'safd111111','asdf','sadf','这是测试内容<br />','2019-08-16 10:00:03',0,'0'),(94,3,'刘金鹏啊啊啊啊啊啊啊啊啊啊啊啊啊','对对对','顶顶顶顶','的点点滴滴','2019-08-16 10:36:20',0,'0'),(95,3,'ssssq-=qq','sss=','aaa=','<p>\r\n	====\r\n</p>\r\n<p>\r\n	这是内容<img src=\"/images/agency-detail-pic/f345e091-3ce4-4b17-b1a9-ffeb327527e6.jpg\" alt=\"\" />\r\n</p>','2019-08-16 14:19:10',0,'0');
+INSERT INTO `t_article` VALUES (1,1,'律师事务所入围ALB“年度中国西部律师事务所”','李凯','2019年3月25日,场森路透旗下国际法律媒体(亚洲法律杂志》(ALB )欣然宣布2019年中国法律大奖的入圈名单。永嘉信律师事务所凭借在各个专业领域的出色表现，行业口碳和市场评价,获“年度西部律师事务所大奖”提名!\r\n\r\nALB -律界奥断长\r\n\r\nALB中国法律大奖旨在表彰业界领先的律师事务所和忧秀的的企业法务团队，以及上一年度的突出交易案例， 得益于其评选过程公正透明和高效原则，设立奎 今已成为中国法律界最具影响力的奖项之- - .增称法律界的“奥斯卡”。\r\n\r\n永嘉信一致力于成为一流的推 际化律师事务所\r\n\r\n永磊信律师事务所2001年创立于西安;总投资额7600万5 ,在高新核心CBD聘4500平米的办公场所，2013年加入中世律所联盟，立足西部,辐射全国.为客户提供全方位、跨区域跨国境的综合法律服\r\n','2019年3月25日,场森路透旗下国际法律媒体(亚洲法律杂志》(ALB )欣然宣布2019年中国法律大奖的入圈名单。永嘉信律师事务所凭借在各个专业领域的出色表现，行业口碳和市场评价,获“年度西部律师事务所大奖”提名!<br />\r\n<br />\r\nALB -律界奥断长<br />\r\n<br />\r\nALB中国法律大奖旨在表彰业界领先的律师事务所和忧秀的的企业法务团队，以及上一年度的突出交易案例， 得益于其评选过程公正透明和高效原则，设立奎 今已成为中国法律界最具影响力的奖项之- - .增称法律界的“奥斯卡”。<br />\r\n<br />\r\n永嘉信一致力于成为一流的推 际化律师事务所<br />\r\n<br />\r\n永磊信律师事务所2001年创立于西安;总投资额7600万5 ,在高新核心CBD聘4500平米的办公场所，2013年加入中世律所联盟，立足西部,辐射全国.为客户提供全方位、跨区域跨国境的综合法律服<br />\r\n<br />\r\n务。律所拥有一支高学历高素质纳业经验丰富的律师队伍.经过多年的发展I永嘉他已成为西部地区规模强大.卖力雄厚的综合性律所。伴随着市场经济的下断发展,基于在各个行业的深耕细作,水嘉信律师事务所在法律服务市场中已经覆盖了经济社会的方方面面,并不断在延伸法律股务的深度和广度,寻找挖蝴新的服务点创新点.在全方位满足客户需求的基础上，探索法律服务新高地,致力法律服务再升级。<br />\r\n<br />\r\n入围即是肯定。永嘉信律师事务所始终保持深刻的觉解.将不要不亢,持之以恒地优化提升律所的人员结构，专业水平，服务能力，市场评价,使软硬实力向更高水平迈进,全力实现成为一流的国际化律师事务所的宏伟愿景，<br />\r\n<div>\r\n	<img src=\"/images/agency-detail-pic/818b370c-25ef-4d91-86f9-ab90f0c122cb.jpeg\" alt=\"\" /><br />\r\n</div>','2019-08-21 11:35:35',0,'0'),(2,2,'就这个feel倍爽','刘金鹏','哈哈哈哈','更多更符合','2019-08-21 11:35:30',0,'0'),(3,1,'测试','测试啊','cesh面啊啊','地方撒打算打发斯蒂芬','2019-08-22 20:52:05',0,'0'),(4,1,'图片测试','图片测试','图片测试','<p>\r\n	图片测试\r\n</p>\r\n<p>\r\n	1111\r\n</p>\r\n<p>\r\n	<img src=\"/images/rich-text-pic/a94d54a8-6883-4f5d-a2c4-f9870e48bba3.jpeg\" alt=\"\" />\r\n</p>','2019-08-23 10:16:19',0,'0');
 /*!40000 ALTER TABLE `t_article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `t_carousel` (
   `imgPath` varchar(255) NOT NULL,
   `editDate` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `t_carousel` (
 
 LOCK TABLES `t_carousel` WRITE;
 /*!40000 ALTER TABLE `t_carousel` DISABLE KEYS */;
-INSERT INTO `t_carousel` VALUES (2,'banner2','/images/banner-pic/02.jpg','2018-08-09 08:05:41'),(3,'banner3','/images/banner-pic/04.jpg','2019-08-09 08:06:09'),(4,'vannerName-666','/images/banner-pic/02.jpg','2019-08-07 00:00:00'),(5,'图片1','/images/banner-pic/04.jpg','2019-08-13 00:00:00'),(6,'图片2','/images/banner-pic/02.jpg','2019-08-13 00:00:00'),(14,'test','/images/banner-pic/446dac0e-fabc-46ac-bed7-5e5ba4ddb4eb.jpeg','2019-08-16 11:06:09'),(17,'liujinpemng','/images/banner-pic/7de28ef6-c145-49a2-a2e2-cefaf8fb5113','2019-08-16 11:38:54'),(18,'banner-test','/images/banner-pic/a59a6485-0388-4da2-9eff-6726715d0f56.jpeg','2019-08-16 14:01:51'),(19,'asdfasdfasdf','/images/banner-pic/f10b7fe1-0017-4996-9b10-684b302b1266.jpeg','2019-08-16 14:12:32'),(20,'asdfasdfasdf','/images/banner-pic/c311216f-14b8-4f44-aad9-58ba443e56fd.jpg','2019-08-16 14:13:29'),(21,'asdfasdf','/images/banner-pic/803fad97-4b37-4d49-9d1d-3c25071e54e4.jpeg','2019-08-16 14:14:23'),(22,' 轮播-s','/images/banner-pic/389e1127-fd81-48e2-8cb1-a9c3cc4cc009.png','2019-08-16 14:45:49');
+INSERT INTO `t_carousel` VALUES (4,'b1','/images/banner-pic/fcdec781-bcbb-4d74-b507-f6c91ee65992.jpg','2019-08-22 14:23:40'),(5,'b2','/images/banner-pic/aaf180d7-e060-4ea7-a520-c0a1363daa56.jpg','2019-08-22 14:23:47'),(6,'b3','/images/banner-pic/7e73e3fa-9c7f-4629-9288-72d8ca161b26.jpg','2019-08-22 14:23:54'),(7,'Test','/images/banner-pic/a4a6ccc7-7335-4cba-b101-2c736d3e63c8.jpg','2019-08-22 14:51:57');
 /*!40000 ALTER TABLE `t_carousel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,14 +115,15 @@ CREATE TABLE `t_case` (
   `result` text COMMENT '案件结果',
   `lessions` text COMMENT '经验心得',
   `publishDate` datetime DEFAULT NULL COMMENT '发布日期',
-  `isSuccess` int(11) DEFAULT NULL COMMENT '是否成功?1:0',
+  `successFlag` int(11) DEFAULT NULL COMMENT '是否成功?1:0',
   `editDate` datetime DEFAULT NULL COMMENT '编辑时间',
   `count` int(10) DEFAULT NULL COMMENT '浏览次数',
   `deleteFlag` varchar(10) NOT NULL DEFAULT '0' COMMENT '是否已删除0：未删除；1是删除',
+  `picUrl` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `t_case_t_charge_id_fk` (`chargeId`),
   CONSTRAINT `t_case_t_charge_id_fk` FOREIGN KEY (`chargeId`) REFERENCES `t_charge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,6 +132,7 @@ CREATE TABLE `t_case` (
 
 LOCK TABLES `t_case` WRITE;
 /*!40000 ALTER TABLE `t_case` DISABLE KEYS */;
+INSERT INTO `t_case` VALUES (5,8,'车祸','版权声明：本文为博主原创文章，遵循 CC 4.0 by-sa 版权协议，转载请附上原文出处链接和本声明。\r\n本文链接：https://blog.csdn.net/qq_37131111/article/details/78393016\r\n想要实现自动聚焦到text文本框，不需要手动点击文本框进行聚焦输入. \r\n使用focus()就可以实现\r\n ———————————————— \r\n版权声明：本文为CSDN博主「王立平的博客」的原创文章，遵循CC 4.0 by-sa版权协议，转载请附上原文出处链接及本声明。\r\n原文链接：https://blog.csdn.net/qq_37131111/article/details/78393016','阿斯顿发送到发送到发放共和国海关很好回复过分过分过分过分过分过分过分过分过分过分过分过分苟富贵','同学，祝贺你喜提彩蛋~\r\n或许你们还在犹豫是否加入，我会坦诚的告诉你我们超酷；\r\n在这里大家都用无人车代步，AI音箱不仅播放还可以交互；\r\n人工智能是发展的核心技术，做自己让未来不只领先几步；\r\n在这里做自己，欢迎来到百度！','哈哈哈哈哈哈非常好啊安监局奥所多付军军军军','2019-08-21 10:41:18',1,'2019-08-21 10:41:18',0,'0','/images/case-pic/839ba7ee-0dad-445d-b01e-475897085b2c.png'),(6,7,'案发多所发所过过过过','冠福股份还加金属软管孤鸿寡鹄共和国恢复供货收到个人风格风格风格非官方股份公司股份跟人探讨','非官方个风格的广告人工人工费股份公司分公司更好地','奥德赛发所发所多付过或军军军军军军军','水电费过胡胡刚刚嘎嘎嘎嘎嘎','2019-08-21 10:42:05',1,'2019-08-21 10:42:05',0,'0','/images/case-pic/347c7b75-7ad9-418f-a438-ca70740d8c38.png'),(8,7,'；代付款龙岗街道分手快乐高科技收到反馈更多是法国个','看到回复可见拉水电费as对方答复等丰富的大是大非','的范德萨发生发士大夫撒发的','大是大非的方法呃呃呃','哈哈哈哈哈','2019-08-21 10:43:23',0,'2019-08-21 10:43:23',0,'0','/images/case-pic/69f3526c-bc21-4640-b825-342c90024669.png'),(9,5,'斤斤计较军军军军所多多付','阿斯顿发送到发送到发放共和国海关很好回复过分过分过分过分过分过分过分过分过分过分过分过分苟富贵','的点点滴滴的二多付多风热人的发送到发送到凤飞飞 ','henhaoajhhdhhhdhhaljiooiids','的辅导辅导辅导辅导辅导费色色呃呃晚辅导辅导辅导辅导费','2019-08-21 10:46:27',1,'2019-08-21 16:16:17',0,'0','/images/case-pic/3c7e4213-9d2b-4a30-b64b-26ca15ea044b.jpeg'),(10,3,'张三走私','走私罪的法律概念是指违反海关法和国家其他有关法律、法规，逃避海关监管，非法运输、携带、邮寄国家禁止进出境的物品、国家限制进出境或者依法应当缴纳关税和其他进口环节代征税的货物、物品进出境，数额较大、情节严重的行为。','办案顺利','逮捕张三','打击犯罪','2019-08-21 14:04:10',1,'2019-08-21 14:04:10',0,'0','/images/case-pic/a0a38793-1a8b-4bba-b856-fb41e2d22887.png');
 /*!40000 ALTER TABLE `t_case` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,9 +154,10 @@ CREATE TABLE `t_charge` (
   `count` int(10) NOT NULL COMMENT '浏览次数',
   `deleteFlag` varchar(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `t_charge_chargeName_uindex` (`chargeName`),
   KEY `t_charge_t_chargeType_id_fk` (`chargeTypeId`),
   CONSTRAINT `t_charge_t_chargeType_id_fk` FOREIGN KEY (`chargeTypeId`) REFERENCES `t_chargeType` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +166,7 @@ CREATE TABLE `t_charge` (
 
 LOCK TABLES `t_charge` WRITE;
 /*!40000 ALTER TABLE `t_charge` DISABLE KEYS */;
-INSERT INTO `t_charge` VALUES (23,1,'顶顶顶','滴滴答答是否','阿斯顿发射点','阿迪斯发士大夫','2019-08-17 14:57:51',0,'0'),(24,1,'阿迪斯发士大夫','阿斯顿发射点法大师傅a','a撒撒旦发射点发','啊手动阀手动阀','2019-08-17 14:58:08',0,'0'),(25,1,'爱的色放','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(26,1,'爱的色放-1','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'1'),(27,1,'爱的色放-2','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(28,1,'爱的色放-3','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(29,1,'爱的色放-4','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(30,3,'爱的色放-5','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(31,3,'爱的色放-6','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(32,3,'爱的色放-7','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(33,3,'爱的色放-8','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(34,3,'爱的色放-11','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(35,3,'爱的色放-12','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(36,3,'爱的色放-13','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(37,5,'爱的色放-14','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(38,5,'爱的色放-15','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(39,5,'爱的色放-16','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(40,5,'爱的色放-17','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(41,5,'爱的色放-18','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(42,5,'爱的色放-19','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0'),(43,5,'爱的色放-18','阿斯蒂芬','纷纷大幅答复','顶顶顶顶顶啊','2019-08-17 15:09:54',0,'0');
+INSERT INTO `t_charge` VALUES (3,3,'走私、贩卖、运输、制造毒品罪','禁止走私','5年','流程简洁、顺畅','2019-08-21 09:28:38',0,'0'),(4,3,'非法持有毒品罪','禁止非法持有毒品罪','10年','流程顺利','2019-08-21 09:32:10',0,'0'),(5,4,'抢劫','不行','100年','不能辩护','2019-08-21 10:32:10',0,'0'),(6,5,'杀人','不行','不能量刑','找律师','2019-08-21 10:32:42',0,'0'),(7,5,'防火','防火烧山,牢底坐穿','10年','阿斯顿发斯蒂芬','2019-08-21 10:33:20',0,'0'),(8,4,'开车','私行','不能良心','阿斯顿发斯蒂芬','2019-08-21 10:34:03',0,'0'),(9,4,'哈哈哈','不能哈哈哈','10年','请律师啊','2019-08-21 10:35:28',0,'0');
 /*!40000 ALTER TABLE `t_charge` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +186,7 @@ CREATE TABLE `t_chargeType` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `t_chargeType_chargeTypeName_uindex` (`chargeTypeName`),
   UNIQUE KEY `t_chargeType_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,7 +195,7 @@ CREATE TABLE `t_chargeType` (
 
 LOCK TABLES `t_chargeType` WRITE;
 /*!40000 ALTER TABLE `t_chargeType` DISABLE KEYS */;
-INSERT INTO `t_chargeType` VALUES (1,'人事罪','2019-08-16 17:51:27',0,'0'),(3,'刺杀国家总理','2019-08-16 17:52:18',0,'0'),(5,'偷渡','2019-08-16 17:52:50',0,'0'),(10,'剌杀国家主席','2019-08-16 17:54:14',0,'0'),(12,'危害国家安全罪','2019-08-16 18:03:48',0,'0'),(13,'分裂国家安全罪','2019-08-16 18:03:59',0,'0'),(14,'暴乱罪','2019-08-16 18:04:16',0,'0'),(15,'暴乱罪-1','2019-08-16 18:04:16',0,'0'),(16,'暴乱罪-2','2019-08-16 18:04:16',0,'0'),(17,'暴乱罪-3','2019-08-16 18:04:16',0,'0'),(18,'暴乱罪-11','2019-08-16 18:53:08',0,'0'),(19,'暴乱罪-12','2019-08-16 18:53:27',0,'0'),(21,'最棒的仔','2019-08-16 20:23:24',0,'0'),(22,'哈哈哈哈哈哈','2019-08-16 20:23:38',0,'0'),(23,'最好爱的色放','2019-08-16 20:32:28',0,'0'),(24,'啊打发手动阀的','2019-08-16 20:35:15',0,'0'),(25,'煽动人民情绪罪','2019-08-16 20:48:07',0,'0');
+INSERT INTO `t_chargeType` VALUES (3,'毒品类犯罪辩护','2019-08-21 09:13:49',0,'0'),(4,'公司企业人员犯罪预防与辩护','2019-08-21 09:14:19',0,'0'),(5,'时下热点罪名辩护','2019-08-21 09:14:31',0,'0');
 /*!40000 ALTER TABLE `t_chargeType` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +217,7 @@ CREATE TABLE `t_chargeTypeQuestion` (
   PRIMARY KEY (`id`),
   KEY `t_chargeTypeQuestion_t_chargeType_id_fk` (`chargeTypeId`),
   CONSTRAINT `t_chargeTypeQuestion_t_chargeType_id_fk` FOREIGN KEY (`chargeTypeId`) REFERENCES `t_chargeType` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='罪名分类问答表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='罪名分类问答表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,8 +226,64 @@ CREATE TABLE `t_chargeTypeQuestion` (
 
 LOCK TABLES `t_chargeTypeQuestion` WRITE;
 /*!40000 ALTER TABLE `t_chargeTypeQuestion` DISABLE KEYS */;
-INSERT INTO `t_chargeTypeQuestion` VALUES (1,10,'你难么','我好难啊','2019-08-17 16:11:09',0,'1'),(2,15,'你喜欢什么人-`','美女','2019-08-17 19:36:05',0,'0'),(3,15,'你喜欢什么-1','美女','2019-08-17 16:17:27',0,'0'),(4,15,'你有什么娱乐活动','呤诗作对','2019-08-17 18:45:27',0,'0'),(5,15,'你喜欢什么-3','美女','2019-08-17 16:17:27',0,'0'),(6,15,'你喜欢什么-33','美女','2019-08-17 16:17:27',0,'0'),(7,15,'你喜欢什么-4','美女','2019-08-17 16:17:27',0,'0'),(8,15,'你喜欢什么-5','美女','2019-08-17 16:17:27',0,'0'),(9,15,'你喜欢什么-6','美女','2019-08-17 16:17:27',0,'0'),(10,15,'你喜欢什么-7','美女','2019-08-17 16:17:27',0,'1'),(11,15,'你喜欢什么-8','美女','2019-08-17 16:17:27',0,'1'),(12,15,'你喜欢什么-9','美女','2019-08-17 16:17:27',0,'0'),(13,15,'你喜欢什么-11','美女','2019-08-17 16:17:27',0,'0'),(14,15,'你喜欢什么-12','美女','2019-08-17 16:17:27',0,'0'),(15,3,'这是什么罪啊刺杀国家总理','可以完全没问题','2019-08-17 18:47:49',0,'0'),(16,1,'1的敢死队风格','啊但是发射点发射点发射点发射点发生','2019-08-17 18:49:47',0,'0'),(17,13,'你会什么？','hello world','2019-08-17 19:35:48',0,'0');
+INSERT INTO `t_chargeTypeQuestion` VALUES (1,3,'什么样的药物属于毒品','能够使人成瘾，并对人体产生伤害的，就是毒品。','2019-08-21 09:25:03',0,'0'),(2,5,'什么是时下热点罪名？','就是热点的罪名 。','2019-08-21 09:27:48',0,'0'),(3,4,'什么样的人员属于公司人员?','就是公司的人员.','2019-08-21 09:28:55',0,'0'),(4,3,'重量、人数如何计算','1克毒品判10年，1公斤无期徒刑','2019-08-21 09:33:06',0,'0'),(5,3,'重量、人数如何计算','1克毒品判10年，1公斤无期徒刑','2019-08-21 09:33:24',0,'0');
 /*!40000 ALTER TABLE `t_chargeTypeQuestion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_defenseAdvantage`
+--
+
+DROP TABLE IF EXISTS `t_defenseAdvantage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_defenseAdvantage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键，自增',
+  `title` text COMMENT '标题',
+  `content` text COMMENT '内容',
+  `icon` text COMMENT '刑辩图标',
+  `editDate` datetime DEFAULT NULL COMMENT '编辑时间',
+  `count` int(10) DEFAULT NULL COMMENT '浏览次数',
+  `deleteFlag` varchar(10) DEFAULT '0' COMMENT '是否已删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='刑辩优势表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_defenseAdvantage`
+--
+
+LOCK TABLES `t_defenseAdvantage` WRITE;
+/*!40000 ALTER TABLE `t_defenseAdvantage` DISABLE KEYS */;
+INSERT INTO `t_defenseAdvantage` VALUES (1,'取保候审','取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审取保候审','/images/defense-advantage-pic/dcea4f38-0f41-412d-9728-d26d3407f270.png','2019-08-21 09:37:01',0,'0');
+/*!40000 ALTER TABLE `t_defenseAdvantage` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_defenseDesc`
+--
+
+DROP TABLE IF EXISTS `t_defenseDesc`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_defenseDesc` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键，自增',
+  `desc` text COMMENT '团队优势介绍',
+  `editDate` datetime DEFAULT NULL COMMENT '编辑时间',
+  `count` int(10) DEFAULT NULL COMMENT '浏览次数',
+  `deleteFlag` varchar(10) DEFAULT '0' COMMENT '是否已删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='刑辨介绍表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_defenseDesc`
+--
+
+LOCK TABLES `t_defenseDesc` WRITE;
+/*!40000 ALTER TABLE `t_defenseDesc` DISABLE KEYS */;
+INSERT INTO `t_defenseDesc` VALUES (1,'<p>\r\n	<h4 style=\"font-family:&quot;font-weight:500;color:#4D4D4D;font-size:40px;text-align:center;background-color:#F2F2F2;\">\r\n		<span style=\"font-size:24px;\">《致当事人家属》</span>\r\n	</h4>\r\n	<h5 style=\"font-family:&quot;font-weight:500;color:#333333;font-size:20px;text-align:center;background-color:#F2F2F2;\">\r\n	</h5>\r\n	<p style=\"font-size:18px;color:#616161;font-family:&quot;background-color:#F2F2F2;\">\r\n		如果您或您的亲人朋友正身陷囹圄或遭受不白之冤，生命只有一次，请慎重的对待聘请律师的权利。他需要您的正确抉择，需要专业刑事律师来接手案件。<br />\r\n您走到这一步，我们相信您已经到了一种痛苦无助的状态。无论贫穷还是富有，我们都愿意向您伸出双手，我们特推出以下法律援助服务:<br />\r\n<span style=\"font-weight:600;\">一、免费会见当事人：</span><br />\r\n我们承诺：我们免费提供专业刑事律师会见，不仅详细了解案件情况，并且给犯罪嫌疑人有利的法律咨询和法律指导，帮助犯罪嫌疑人避免冤枉罪。<br />\r\n1.及时会见犯罪嫌疑人意义重大，一方面告知其正当权利；另一方面为其提供强大的心理支撑，最大程度还原事实真相。<br />\r\n2.如果会见后当事人不委托，我们不收取任何费用。请您放心托付！！！&nbsp;<br />\r\n<span style=\"font-weight:600;\">二、提供专业法律分析报告：</span><br />\r\n我们承诺：在首次会见后，免费出具专业法律分析报告<br />\r\n1.&nbsp;会见后两天内向当事人免费出具法律分析报告<br />\r\n2.&nbsp;法律分析报告包含基本案情、量刑规定、相关判例、辩护方向、工作安排、司法解释等。<br />\r\n崇杰刑事律师提示：刑事案件找律师要警惕不了解案情而盲目承诺的律师，不同的案情处理方式大相径庭。\r\n	</p>\r\n</p>\r\n<p>\r\n	<img src=\"/images/agency-detail-pic/e1d19ba4-0b98-4a2d-8cf6-5a408ffa2232.png\" alt=\"\" /> \r\n</p>','2019-08-22 13:46:21',144,'0');
+/*!40000 ALTER TABLE `t_defenseDesc` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -243,7 +302,7 @@ CREATE TABLE `t_lawyer` (
   `deleteFlag` varchar(10) NOT NULL,
   PRIMARY KEY (`lawyerId`),
   UNIQUE KEY `t_lawyer_lawyerName_uindex` (`lawyerName`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +311,7 @@ CREATE TABLE `t_lawyer` (
 
 LOCK TABLES `t_lawyer` WRITE;
 /*!40000 ALTER TABLE `t_lawyer` DISABLE KEYS */;
-INSERT INTO `t_lawyer` VALUES (1,'于九莲','高级律师111','这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富这个律经验丰富','/images/lawyer-pic/lawer.png','0'),(2,'王重阳','高级律师','100多年律师从业经验','/images/lawyer-pic/lawer.png','0'),(3,'龙云凤','中级律师','这个律师好啊','/images/lawyer-pic/2aa4a0b2-f32a-44be-8c29-c4acda8e44e3.jpg','0'),(4,'aaa','vvvv','cccc','/images/lawyer-pic/lawer.png','0'),(5,'vvvv111','asd','jjjasdjfhkjasdfs','/images/lawyer-pic/lawer.png','0'),(6,'5555sssd','555544aaa','55566aa','/images/lawyer-pic/lawer.png','0'),(7,'反反复复','饿肚肚多','的点点滴滴','/images/lawyer-pic/lawer.png','0'),(19,'高律师','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(21,'钱律师','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(22,'李律师','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(23,'增律师','究极律师','北京大学毕业','/images/lawyer-pic/12e9b116-7b19-4dc3-b1f4-c1cca0d4cc99.jpeg','0'),(25,'增律师-1','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(26,'增律师-2','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(27,'增律师-3','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(28,'增律师-4','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(29,'增律师-5','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(30,'增律师-6','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(31,'增律师-7','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(32,'增律师-8-888811','究极律师1','北京大学毕业','/images/lawyer-pic/8b1840c6-7a31-48a5-99d1-25e2022ce180.jpg','0'),(33,'增律师-9','究极律师','北京大学毕业','/images/lawyer-pic/7103947d-0c76-43df-9f83-60564c88958a.jpg','0'),(34,'增律师-10','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','0'),(35,'增律师-11','究极律师','北京大学毕业','/images/lawyer-pic/0c1f4286-b6ed-4e71-8b05-b160c3275619.jpeg','1'),(37,'sdfgsdfg','asdfasdf','asdfasdfasdf','/images/lawyer-pic/43d41a6c-b4a3-46de-80b7-c0fae30019ab.png','0');
+INSERT INTO `t_lawyer` VALUES (1,'李凯','高级合伙人 | 主任 | 高级律师','山东崇杰律师事务所民商法部主任律师，资深执业十七载，青岛市市北区劳动人事争议仲载调解委员会仲裁员,青岛市律师协会公司法委<br />\r\n员会委员，OTC场外市场专家律师，国家中级投资项目分析师，全球移民律师协会中国区会员。毕业于中国海洋大学，法学学士。<br />\r\n、法学研究业绩<br />\r\n参与骗写(成长型企业法商融通智慧系统》于2016年1月由中国经济出版社出版，该书分别从战略管理、股权控制及激励模式、合同的流<br />\r\n程化管理、人力资<br />\r\n源系统建设资本运营的管控、企业财税管控、刑事法律风险防控等方面展开论述,将法律价值融入企业的日常运营管理,力图能使法律<br />\r\n服务转化为企业的规范化价值。<br />\r\n二法律实务工作业绩<br />\r\n现担任多家企业法律顾问，为企业解决在经营中遇到的各种法律问题，引导企业依法经营和规范经营，增强企业防范法律风险的意识和能<br />\r\n力，维护企业合法权益。<br />\r\n.协助青岛英谷教育科技股份有限公司在全国中小企业股份转让系统(新三板)成功挂牌上市;<br />\r\n管为为中国银行、华夏银行、中国工商银行、中信银行等代理汽车消费贷款案件、为信达资产管理公司等提供法律服务。上述金融法律事<br />\r\n务通过诉论及其他方式为金融机构挽回经济损失900余万元;<br />\r\n管成功代理青岛和泰科技有限公司与微软公司侵犯计算机软件著作权案件，并胜诉，成为为数不多能够打败数软公司的的律师。<br />\r\n三专长领域<br />\r\n多年来持续关注研究新三板及场外市场，长期从事高新，科技企业法律顾问，股权架构，企业成长规划与投融资，股权激励与定增。新三<br />\r\n板挂牌与咨询专业法律服务、商事犯罪预防与辩护,与资本市场各中介机构广泛合作。','/images/lawyer-pic/c57fa10a-ae14-44c1-9bae-89394a90c847.jpeg','1'),(2,'刘金鹏','最高级的律师','非常好啊','/images/lawyer-pic/5ee778f9-3bfd-42c9-bd01-a5b6c9fa18bf.png','1'),(3,'李艳兴','究极律师','<p class=\"poem-detail-main-text\" id=\"body_p\">\r\n	<span id=\"body_1_0\">春江潮水连海平，</span><span id=\"body_1_1\">海上明月共潮生。</span> \r\n</p>\r\n<p class=\"poem-detail-main-text\" id=\"body_p\">\r\n	<span id=\"body_2_0\"><span class=\"body-zhushi-span\">滟滟</span>随波千万里，</span><span id=\"body_2_1\">何处春江无月明！</span> \r\n</p>\r\n<p class=\"poem-detail-main-text\" id=\"body_p\">\r\n	<span id=\"body_3_0\">江流宛转绕<span class=\"body-zhushi-span\">芳甸</span>，</span><span id=\"body_3_1\">月照花林皆似<span class=\"body-zhushi-span\">霰</span>；</span> \r\n</p>\r\n<p class=\"poem-detail-main-text\" id=\"body_p\">\r\n	<span id=\"body_4_0\">空里<span class=\"body-zhushi-span\">流霜</span>不觉飞，</span><span id=\"body_4_1\"><span class=\"body-zhushi-span\">汀</span>上白沙看不见。</span> \r\n</p>\r\n<p class=\"poem-detail-main-text\" id=\"body_p\">\r\n	<span id=\"body_5_0\">江天一色无<span class=\"body-zhushi-span\">纤尘</span>，</span><span id=\"body_5_1\">皎皎空中孤<span class=\"body-zhushi-span\">月轮</span>。</span> \r\n</p>\r\n<p class=\"poem-detail-main-text\" id=\"body_p\">\r\n	<span id=\"body_6_0\">江畔何人初见月？</span><span id=\"body_6_1\">江月何年初照人？</span> \r\n</p>\r\n<p class=\"poem-detail-main-text\" id=\"body_p\">\r\n	<span id=\"body_7_0\">人生代代无<span class=\"body-zhushi-span\">穷已</span>，</span><span id=\"body_7_1\"><span class=\"body-zhushi-span\">江月年年望相似</span>。</span> \r\n</p>','/images/lawyer-pic/ae05dd62-ab1d-4f71-a297-fed6428edf8b.jpg','1'),(4,'薛梅','高级合伙人|主任律师','青岛仲裁委员会仲裁员、青岛市律师协会商事委员会副主任、李沧信访听证员，现担任海尔集团公司、青岛海诚一家酒店管理股份有限公司、青岛梅蒂奇家居有限公司、青岛金星科技工程有限责任公司等多家公司的常年法律顾问。执业近二十年，对金融领域的诉讼及非诉案件有着丰富的处理经验。同时擅长公司管理、金融领域风险防范及追诉业务、知识产权、建设地产、商事谈判等领域。','/images/lawyer-pic/5c1fc143-038b-4528-ad79-ac36c1fe5ce7.png','0'),(5,'孙涛','高级合伙人|主任律师','青岛仲裁委员会仲裁员、青岛市律师协会商事委员会副主任、李沧信访听证员，现担任海尔集团公司、青岛海诚一家酒店管理股份有限公司、青岛梅蒂奇家居有限公司、青岛金星科技工程有限责任公司等多家公司的常年法律顾问。执业近二十年，对金融领域的诉讼及非诉案件有着丰富的处理经验。同时擅长公司管理、金融领域风险防范及追诉业务、知识产权、建设地产、商事谈判等领域。','/images/lawyer-pic/3fa859f2-5657-40e5-8cba-79c89930aba5.png','0'),(8,'东方故事梵蒂冈','水电费地方','大幅度发','/images/lawyer-pic/138c27ba-ccb0-4aed-861a-68feaacf9b3f.png','1'),(9,'朱建波','刑事法律服务部负责人','朱建波，山东崇杰律师事务所崇鼎刑事法律事务部主任，硕士研究生学历，曾任某市级检察院检察员、国家公诉人，多次被表彰为优秀公诉人、最佳辩手荣誉称号。朱建波律师刑事案件办案经验丰富，经办过各类重大刑事案件近几百余件，熟练掌握各类刑事案件的办理流程和司法判定标准，曾经办理的马崟抢劫杀人案被中央电视台《庭审现场》全程直播。朱建波律师办案过程中，以检察官的标准严格要求自己，对当事人认真负责，切实维护当事人权益，尤其擅长经济犯罪、暴力犯罪、毒品类犯罪、职务犯罪的辩护。','/images/lawyer-pic/cc9b7ca6-0301-46c9-b0cf-619ad5e58589.png','0');
 /*!40000 ALTER TABLE `t_lawyer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,9 +327,8 @@ CREATE TABLE `t_menu` (
   `menuName` varchar(100) NOT NULL,
   `parentId` int(10) NOT NULL,
   `router` varchar(100) NOT NULL,
-  PRIMARY KEY (`menuId`),
-  UNIQUE KEY `t_menu_menuName_uindex` (`menuName`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`menuId`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +337,7 @@ CREATE TABLE `t_menu` (
 
 LOCK TABLES `t_menu` WRITE;
 /*!40000 ALTER TABLE `t_menu` DISABLE KEYS */;
-INSERT INTO `t_menu` VALUES (1,'首页',0,'/'),(2,'律师事务所',0,'/introduce/office'),(3,'公司法律服务',0,'/server'),(4,'刑事法律服务',0,'/penallaw'),(5,'劳动法律服务',0,'/labour/reply/1'),(6,'律师事务所介绍',2,'/introduce/office'),(7,'团队介绍',2,'/introduce/leader'),(8,'团队文集',2,'/introduce/Collection/0'),(9,'股权设计',3,'/server/equityeightesign/1'),(10,'股权激励',3,'/server/equityincentive'),(11,'报价配置表',3,'/server/equityallocationtable'),(12,'刑事服务',4,'/penallaw/lawser/1'),(13,'刑事辩护',4,'/penallaw/penaldef'),(14,'诉讼与仲裁应对',5,'/labour/reply/1'),(15,'劳动用工制度事先设计',5,'/labour/design'),(16,'企业文化与策略选择',5,'/labour/select');
+INSERT INTO `t_menu` VALUES (2,'律师事务所',0,'/introduce/office'),(3,'公司法律服务',0,'/server'),(4,'刑事法律服务',0,'/penallaw'),(5,'劳动法律服务',0,'/labour/reply/1'),(6,'律师事务所',2,'/introduce/office'),(7,'团队介绍',2,'/introduce/leader'),(8,'团队文集',2,'/introduce/Collection/0'),(9,'股权设计',3,'/server/equityeightesign/1'),(10,'股权激励',3,'/server/equityincentive'),(11,'报价配置表',3,'/server/equityallocationtable'),(12,'刑事法律服务',4,'/penallaw/lawser/1'),(13,'毒品类犯罪辩护',4,'/penallaw/penaldef'),(14,'诉讼与仲裁应对',5,'/labour/reply'),(15,'劳动用工制度事先设计',5,'/labour/design'),(16,'企业文化与策略选择',5,'/labour/select'),(17,'公司法律服务',3,'/server/top'),(18,'公司企业人员犯罪预防与辨护',4,'/penallaw/crimedel'),(19,'时下热点罪名辩护',4,'/penallaw/currentdenfense'),(20,'劳动法律服务',5,'/labour/server');
 /*!40000 ALTER TABLE `t_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,12 +357,12 @@ CREATE TABLE `t_msgBoard` (
   `replyId` int(10) DEFAULT NULL,
   `replyName` varchar(100) DEFAULT NULL,
   `replyDate` datetime DEFAULT NULL,
-  `readFlag` varchar(10) NOT NULL,
+  `readFlag` varchar(10) NOT NULL DEFAULT '0',
   `replyMsg` text,
   PRIMARY KEY (`msgId`),
   KEY `redply_fk` (`replyId`),
   CONSTRAINT `redply_fk` FOREIGN KEY (`replyId`) REFERENCES `t_lawyer` (`lawyerId`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -313,7 +371,7 @@ CREATE TABLE `t_msgBoard` (
 
 LOCK TABLES `t_msgBoard` WRITE;
 /*!40000 ALTER TABLE `t_msgBoard` DISABLE KEYS */;
-INSERT INTO `t_msgBoard` VALUES (12,'user-1','13888888888','他杀1人被起诉','2014-09-12 18:51:09',1,'于九莲','2019-08-16 14:42:37','1','这是新的回复<br />'),(15,'user-4','13888888888','他杀4人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','0','等着'),(17,'user-6','13888888888','他杀6人被起诉','2014-09-12 18:51:09',2,'王重阳','2019-08-16 14:44:01','1','这是来自王重阳的回复'),(18,'user-7','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','0','等着'),(19,'user-1','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(20,'user-9','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(21,'user-10','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(22,'user-1','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(23,'user-12','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(24,'user-13','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(25,'user-111','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(26,'user-1','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(27,'user-1213','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(28,'user-177','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(29,'user-1','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(30,'user-188','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','1','等着'),(31,'user-122','13888888888','他杀6人被起诉','2014-09-12 18:51:09',25,'增律师-1','2019-08-15 17:34:27','1','这是一个更新的回复'),(32,'user-1','13888888888','他杀6人被起诉','2014-09-12 18:51:09',NULL,'vvvv111','2019-08-12 18:52:04','0','等着');
+INSERT INTO `t_msgBoard` VALUES (1,'liujinpeng','13210798444','非常好啊啊','2019-08-22 14:45:43',NULL,NULL,NULL,'0',NULL),(2,'李四','18588888','在巡视去','2019-08-22 14:52:30',NULL,NULL,NULL,'0',NULL);
 /*!40000 ALTER TABLE `t_msgBoard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,7 +395,7 @@ CREATE TABLE `t_user` (
   `role` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `t_user_loginName_uindex` (`loginName`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,7 +404,7 @@ CREATE TABLE `t_user` (
 
 LOCK TABLES `t_user` WRITE;
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` VALUES (2,'d52af20fcaf39ff11dafcef333c5c7d5','amy',NULL,'女',NULL,NULL,NULL,'0','root_user common_user'),(4,'d52af20fcaf39ff11dafcef333c5c7d5','hyg',NULL,'男',NULL,NULL,NULL,'0','common_user'),(5,'d52af20fcaf39ff11dafcef333c5c7d5','横推八百无对手','李艳兴','男','13999999999','123@163.com','CEO','0','common_user'),(6,'d52af20fcaf39ff11dafcef333c5c7d5','草上','盖飞侠','女','13666666666','11111@qq.com','扫地小组长','0','common_user'),(7,'d52af20fcaf39ff11dafcef333c5c7d5','海外野叟','王猿','男','13999999999','abc@qq.com','总经理助理','0','common_user'),(8,'f937748fe21e9a1a70a4cc0a2bbd66f2','liujinpeng','555','男','1321079','1638786338@qq.com',NULL,'0','common_user'),(9,'d52af20fcaf39ff11dafcef333c5c7d5','aaaa','jhon','男','123456','123@qq.com',NULL,'0','common_user'),(10,'bb232666cd0aeea80029c27e3c01582f','zjz','张静泽','女','11111','ddadsf@aa.com','adsfadsf','0','common_user'),(11,'d52af20fcaf39ff11dafcef333c5c7d5','aa','欧阳普钟','女','15875984125','1458@qq.com','扫地僧','0','common_user'),(12,'d52af20fcaf39ff11dafcef333c5c7d5','一a人','李三','女','15874652222','123@qq.com','ss','0','common_user'),(13,'d52af20fcaf39ff11dafcef333c5c7d5','一b人','李三','女','15874652222','123@qq.com','ss','0','common_user'),(14,'d52af20fcaf39ff11dafcef333c5c7d5','一c人','李三','女','15874652222','123@qq.com','ss','0','common_user'),(15,'d52af20fcaf39ff11dafcef333c5c7d5','一d人','李三','女','15874652222','123@qq.com','ss','0','common_user'),(16,'d52af20fcaf39ff11dafcef333c5c7d5','一e人','李三','女','15874652222','123@qq.com','ss','0','common_user'),(18,'8b8154f03b75f58a6c702235bf643629','ddd','','女','','','','0','common_user'),(21,'b8f8d24ea3e7ebd0e5e8064f31da5bea','g','d','女','d','d@qq.com','d','0','common_user'),(23,'6a1af7eed1de4ef7614961dfd7d7f1e4','刘金盆啊啊啊啊','诉讼时','男','1321079','123123123@qq.com','d','0','common_user'),(25,'bb232666cd0aeea80029c27e3c01582f','ddda','123','男','1321079','12232323@qq.com','对对对','0','common_user'),(26,'936c0c8c0c47a224a658ee03cfac8eb9','的点点滴滴','打发大水','男','1111','1234567@qq.com','顶顶顶顶','0','common_user'),(28,'f937748fe21e9a1a70a4cc0a2bbd66f2','zjza','张静泽','男','1112221111','12222222@qq.com','ceo','1','common_user'),(29,'fef10cd1325185dfed20645c3c035211','sdfasdf','11111','男','1111','11112@qq.com','中国总理','0','common_user');
+INSERT INTO `t_user` VALUES (2,'d52af20fcaf39ff11dafcef333c5c7d5','chongjie',NULL,'女',NULL,NULL,NULL,'0','root_user common_user'),(3,'d52af20fcaf39ff11dafcef333c5c7d5','yinggu','英谷测试','男','17862739259','4166985472@qq.com','扫地小组长','0','common_user'),(4,'d93ae65992caf6a8751e334d0a716ad8','lixh','李晓华','男','18888888888','18888888888@126.com','律师','1','common_user');
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -359,4 +417,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-18 16:12:27
+-- Dump completed on 2019-08-23 15:37:17

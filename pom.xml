@@ -16,7 +16,7 @@
 	</parent>
 
 	<groupId>com.hyg</groupId>
-	<artifactId>lawyercms</artifactId>
+	<artifactId>lawyerCms</artifactId>
 	<version>0.0.2</version>
 	<name>LawyerCms</name>
 	<description>LawyerCms Project</description>
