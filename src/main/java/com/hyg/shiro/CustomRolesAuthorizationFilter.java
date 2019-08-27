@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
 public class CustomRolesAuthorizationFilter extends AuthorizationFilter
 {
 	@Override
-	protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception
+	protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o)
 	{
 		Subject subject = getSubject(servletRequest, servletResponse);
 		String[] rolesArray = (String[]) o;
